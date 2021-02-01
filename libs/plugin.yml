@@ -1,0 +1,21 @@
+name: CXFundamental
+main: cxplugins.cxfundamental.minecraft.server.CXFundamentalMain
+version: 1.0.0
+commands:
+  cxp:
+    description: A Command
+    usage: /Command
+    permission: Legion_Player
+    permission-message: You don't have <permission>
+  uitest:
+    description: A Command
+    usage: /Command
+    permission: Legion_Player
+    permission-message: You don't have <permission>
+  nmstest:
+    description: A Command
+    usage: /Command
+    permission: Legion_Player
+    permission-message: You don't have <permission>
+
+

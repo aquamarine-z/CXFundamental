@@ -43,11 +43,11 @@ class CXFundamentalMain : CXPluginMain(null) {
                         itemStack.clone()
                     }
                     item.appendLore("&3&l介绍:${plugin.description}".toColor())
-                    item.appendLore("&3&l左键点我关闭此插件")
-                    item.appendLore("&3&l右键点我启动此插件")
-                    item.appendLore("&3&l左键点我+下蹲重载此插件")
+                    item!!.appendLore("&3&l左键点我关闭此插件")
+                    item!!.appendLore("&3&l右键点我启动此插件")
+                    item!!.appendLore("&3&l左键点我+下蹲重载此插件")
 
-                    var button=object:CXButton(item) {
+                    var button=object:CXButton(item!!) {
                         var plugin = plugin
 
                         override fun onLeftClick(event: InventoryClickEvent,frame:CXFrame) {

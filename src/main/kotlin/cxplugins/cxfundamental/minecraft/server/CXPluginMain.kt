@@ -88,7 +88,7 @@ open class CXPluginMain(item:ItemStack?) : JavaPlugin(){
                     return true
                 }
                 CommandException.Reason.WRONGAMOUNT->{
-                    sendReportToSender(sender!!,"参数数量过少")
+                    sendReportToSender(sender!!,"$noticePrefix 参数数量过少")
                     return true
                 }
                 CommandException.Reason.BYTE->{

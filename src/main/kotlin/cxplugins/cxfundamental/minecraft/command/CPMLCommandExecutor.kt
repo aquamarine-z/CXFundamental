@@ -100,7 +100,7 @@ class CPMLCommandExecutor{
         private fun sort(){
             for(i in 0..Companion.commands.size-2){
                 for (j in i+1..Companion.commands.size-1){
-                    if(Companion.commands[i].split(" ").size> Companion.commands[j].split(" ").size){
+                    if(Companion.commands[i].split(" ").size< Companion.commands[j].split(" ").size){
                         var temp= Companion.commands[i]
                         Companion.commands[i]= Companion.commands[j]
                         Companion.commands[j]=temp

@@ -95,19 +95,18 @@ public class CXScript : ConfigurationSerializable {
                 executor(Sender,Commands[i],Roles[i])
             }
             if (Roles[i] == "Player")
-                Sender.performCommand(CXReplace.replace(Commands[i]).replace("<self>".toRegex(), Sender.name))
-            else if (Roles[i] == "Op")
-                CXCommand.runWithoutPermission(Sender, CXReplace.replace(Commands[i]).replace("<self>".toRegex(), Sender.name))
-            else if (Roles[i] == "Console") CXCommand.sendCommandToConsole(CXReplace.replace(Commands[i]).replace("<self>".toRegex(), Sender.name))
+                Sender.performCommand(Commands[i])
+            else if (Roles[i] == "Op") CXCommand.runWithoutPermission(Sender, Commands[i])
+            else if (Roles[i] == "Console") CXCommand.sendCommandToConsole(Commands[i])
         }
     }
     fun perform(Sender: Player) {
         for (i in Commands.indices) {
             if (Roles[i] == "Player")
-                Sender.performCommand(CXReplace.replace(Commands[i]).replace("<self>".toRegex(), Sender.name))
+                Sender.performCommand(Commands[i])
             else if (Roles[i] == "Op")
-                CXCommand.runWithoutPermission(Sender, CXReplace.replace(Commands[i]).replace("<self>".toRegex(), Sender.name))
-            else if (Roles[i] == "Console") CXCommand.sendCommandToConsole(CXReplace.replace(Commands[i]).replace("<self>".toRegex(), Sender.name))
+                CXCommand.runWithoutPermission(Sender,Commands[i])
+            else if (Roles[i] == "Console") CXCommand.sendCommandToConsole(Commands[i])
         }
     }
     /**

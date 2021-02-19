@@ -27,7 +27,11 @@ class CXYamlConfiguration : YamlConfiguration {
     private val Defaults = HashMap<String, Any>()
     private var folderPath: String? = null
     private var fileName: String? = null
-
+    private var file:File?=null
+    override fun load(file: File?) {
+        this.file=file
+        super.load(file)
+    }
     /**
      * 加载配置文件
      *
@@ -57,7 +61,9 @@ class CXYamlConfiguration : YamlConfiguration {
         if (createFolder(FolderPath)) Exist = false
         if (createFile(FolderPath + "\\" + File_Name)) Exist = false
         try {
-            this.load(File(".\\plugins\\$FolderPath\\$File_Name"))
+            val file=File(".\\plugins\\$FolderPath\\$File_Name")
+            this.load(file)
+            this.file=file
         } catch (e: IOException) {
             // TODO 自动生成的 catch 块
             println("文件打开异常")
@@ -117,8 +123,9 @@ class CXYamlConfiguration : YamlConfiguration {
      * @return true为保存成功 false表示先前并没有使用load()或有参构造器提供文件的路径
      */
     fun save(): Boolean {
+
         try {
-            this.save(Path!!)
+            this.save(file)
         } catch (e: IOException) {
             // TODO 自动生成的 catch 块
             println("文件保存异常")

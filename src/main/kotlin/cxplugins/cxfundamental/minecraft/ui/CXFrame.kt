@@ -12,6 +12,9 @@ open class CXFrame(internal var height: Int) {
         }
     }
     var mainPanel:Any?=null
+    constructor(height:Int,lambda: CXFrame.() -> Unit) : this(height) {
+        this.apply(lambda)
+    }
     fun panel(title:String,lambda:CXPanel.()->Unit){
         var panel=CXPanel(height,title)
         panel.apply(lambda)
@@ -32,5 +35,8 @@ open class CXFrame(internal var height: Int) {
     fun setPanel(panel:CXMultipagePanel){
         if(panel.height>height) throw IllegalArgumentException()
         mainPanel=panel
+    }
+    fun getPanel():Any?{
+        return mainPanel
     }
 }

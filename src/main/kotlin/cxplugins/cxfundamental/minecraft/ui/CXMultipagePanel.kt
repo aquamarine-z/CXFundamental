@@ -15,7 +15,24 @@ import java.lang.IllegalArgumentException
 class CXMultipagePanel(internal var height: Int) {
     internal var pages: MutableList<CXPanel> = ArrayList()
     val buttonBar= mutableListOf<CXButton?>(null,null,null,null,null,null,null,null,null)
-
+    fun getElement(page:Int,x:Int,y:Int):CXUIElement?{
+        if(page !in pages.indices){
+            throw IllegalArgumentException("输入的page参数非法!")
+        }
+        if(x !in 0..8){
+            throw IllegalArgumentException("输入的x参数非法! 必须在0~8内")
+        }
+        if(x !in 0..(height-1)){
+            throw IllegalArgumentException("输入的y参数非法! 必须在0~高度内")
+        }
+        return pages[page].getElement(x,y)
+    }
+    fun getPage(page:Int):CXPanel{
+        if(page !in pages.indices){
+            throw IllegalArgumentException("输入的page参数非法!")
+        }
+        return pages[page]
+    }
     fun panel(title:String,lambda:CXPanel.()->Unit){
         var panel=CXPanel(height,title)
         panel.apply(lambda)
@@ -116,9 +133,9 @@ class CXMultipagePanel(internal var height: Int) {
         updateButtonBar()
     }
     fun setWithCreateNewPage(location:Int,button:CXButton,title:String=""){
-        var page=location/(height-1)
-        var x=CXInventory.integerToPos(location%(height-1)).blockX
-        var y=CXInventory.integerToPos(location%(height-1)).blockY
+        var page=location/((height-1)*9)
+        var x=CXInventory.integerToPos(location%((height-1)*9)).blockX
+        var y=CXInventory.integerToPos(location%((height-1)*9)).blockY
         setWithCreateNewPage(page,x,y,button,title)
     }
     fun setWithCreateNewPage(page:Int,location:Int,button:CXButton,title:String=""){

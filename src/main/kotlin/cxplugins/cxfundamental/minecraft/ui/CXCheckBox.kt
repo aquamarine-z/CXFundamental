@@ -5,7 +5,11 @@ import cxplugins.cxfundamental.minecraft.server.CXInventory
 import cxplugins.cxfundamental.minecraft.server.CXItemStack
 import org.bukkit.event.inventory.InventoryClickEvent
 
+/**
+ * 类似Java Swing的复选框
+ */
 open class CXCheckBox(text:String, lore:Array<String>?=null) : CXButton() {
+
     override fun onLeftClick(event: InventoryClickEvent, frame: CXFrame) {
         event.isCancelled=true
         onChanged()
@@ -49,32 +53,57 @@ open class CXCheckBox(text:String, lore:Array<String>?=null) : CXButton() {
         }
 
     }
-    var changed:CXCheckBox.()->Unit={
+    private var changed:CXCheckBox.()->Unit={
 
     }
+
+    /**
+     * 设置当勾选更换时操作的Lambda表达式的方法
+     *
+     */
     fun onChanged(lambda:CXCheckBox.()->Unit){
         changed=lambda
     }
+    /**
+     * 当勾选更换时的响应
+     *
+     */
     open fun onChanged(){
         this.apply(changed)
     }
 
-    var select:CXCheckBox.()->Unit={
+    private var select:CXCheckBox.()->Unit={
 
     }
+    /**
+     * 设置当选中时操作的Lambda表达式的方法
+     *
+     */
     fun onSelect(lambda:CXCheckBox.()->Unit){
         select=lambda
     }
+    /**
+     * 当选中时的响应
+     *
+     */
     open fun onSelect(){
         this.apply(select)
     }
 
-    var unselect:CXCheckBox.()->Unit={
+    private var unselect:CXCheckBox.()->Unit={
 
     }
+    /**
+     * 设置当取消选中时操作的Lambda表达式的方法
+     *
+     */
     fun onUnselect(lambda:CXCheckBox.()->Unit){
         unselect=lambda
     }
+    /**
+     * 当取消选中时的响应
+     *
+     */
     open fun onUnselect(){
         this.apply(unselect)
     }

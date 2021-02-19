@@ -1,3 +1,6 @@
 package cxplugins.cxfundamental.minecraft.ui
 
-open class CXUIElement// TODO 自动生成的构造函数存根
+import org.bukkit.inventory.ItemStack
+
+open class CXUIElement(){
+}// TODO 自动生成的构造函数存根

@@ -1,5 +1,6 @@
 package cxplugins.cxfundamental.minecraft.server
 
+import cxplugins.cxfundamental.minecraft.command.CPMLCommandExecutor
 import cxplugins.cxfundamental.minecraft.kotlindsl.*
 import cxplugins.cxfundamental.minecraft.ui.*
 import org.bukkit.Bukkit
@@ -7,14 +8,17 @@ import org.bukkit.Material
 import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
-
+var debug=false
 class CXFundamentalMain : CXPluginMain(null) {
+    override fun reload() {
+        updateBlockData()
+    }
     companion object
     {
         lateinit var pluginMain:CXFundamentalMain
     }
     init{
-        var itemStack=CXItemStack(Material.BOOKSHELF,1,"&3&lCXPluginLibrary(CX前置插件)"," ")
+        var itemStack=CXItemStack(Material.BOOKSHELF,1,"&3&lCXFundamental(CX前置插件)"," ")
         var meta=itemStack.itemMeta
         meta.addEnchant(Enchantment.DURABILITY,5,true)
         itemStack.itemMeta=meta
@@ -39,11 +43,11 @@ class CXFundamentalMain : CXPluginMain(null) {
                         itemStack.clone()
                     }
                     item.appendLore("&3&l介绍:${plugin.description}".toColor())
-                    item!!.appendLore("&3&l左键点我关闭此插件")
-                    item!!.appendLore("&3&l右键点我启动此插件")
-                    item!!.appendLore("&3&l左键点我+下蹲重载此插件")
+                    item.appendLore("&3&l左键点我关闭此插件")
+                    item.appendLore("&3&l右键点我启动此插件")
+                    item.appendLore("&3&l左键点我+下蹲重载此插件")
 
-                    var button=object:CXButton(item!!) {
+                    var button=object:CXButton(item) {
                         var plugin = plugin
 
                         override fun onLeftClick(event: InventoryClickEvent,frame:CXFrame) {
@@ -52,9 +56,9 @@ class CXFundamentalMain : CXPluginMain(null) {
 
                             if (Bukkit.getPluginManager().isPluginEnabled(plugin)) {
                                 Bukkit.getPluginManager().disablePlugin(plugin)
-                                (sender as Player).sendMessageWithColor("&2&l[CXFj d]操作成功 此插件已经被关闭")
+                                (sender as Player).sendMessageWithColor("&2&l[CXFundamental]操作成功 此插件已经被关闭")
                             } else {
-                                (sender as Player).sendMessageWithColor("&4&l[CXFj d]你无法关闭一个已经被关闭的插件")
+                                (sender as Player).sendMessageWithColor("&4&l[CXFundamental]你无法关闭一个已经被关闭的插件")
                             }
                             return
                         }
@@ -63,7 +67,7 @@ class CXFundamentalMain : CXPluginMain(null) {
                             event.isCancelled = true
                             if (!Bukkit.getPluginManager().isPluginEnabled(plugin)) {
                                 Bukkit.getPluginManager().enablePlugin(plugin)
-                                (sender as Player).sendMessageWithColor("&2&l[CXFj d]操作成功 此插件已经开启")
+                                (sender as Player).sendMessageWithColor("&2&l[CXFundamental]操作成功 此插件已经开启")
                             } else {
                                 (sender as Player).sendMessageWithColor("&4&l[CXFundamental]你无法开启一个正在运行的插件")
                             }
@@ -99,7 +103,14 @@ class CXFundamentalMain : CXPluginMain(null) {
         CXUIActionListener().register()
         Bukkit.getPluginManager().registerEvents(QuestionListener(),this)
         cxplugins.cxfundamental.minecraft.command.CPMLCommandExecutor.register("cxp","",onOpenMenu)
-        updataBlockData()
+        CPMLCommandExecutor.register("cxp debug"){
+            action{
+                debug=!debug
+                sender.sendMessageWithColor("&2&l[CXFundamental]Debug模式已经更改为$debug")
+                true
+            }
+        }
+        updateBlockData()
         return
     }
     override fun onDisable() {

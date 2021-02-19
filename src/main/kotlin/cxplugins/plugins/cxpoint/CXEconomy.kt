@@ -245,7 +245,7 @@ class CXEconomy {
             if(!hasPoint(PointName)){
                 return false
             }
-            var Config = CXYamlConfiguration("CXPlugins\\Players", "$From.yml")
+            //var Config = CXYamlConfiguration("CXPlugins\\Players", "$From.yml")
 
             //Config.load()
             if (Amount <= 0) return false

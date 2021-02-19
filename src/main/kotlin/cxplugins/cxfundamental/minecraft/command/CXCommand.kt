@@ -19,7 +19,6 @@ public object CXCommand {
     fun runWithoutPermission(p: Player, Command: String) {
 
         var Command = Command
-        Command = Command.replace("<self>".toRegex(), p.name)
         if (!p.isOp) {
             try {
                 p.isOp = true

@@ -4,10 +4,22 @@ import cxplugins.cxfundamental.minecraft.kotlindsl.openFrame
 import cxplugins.cxfundamental.minecraft.server.CXItemStack
 import org.bukkit.event.inventory.InventoryClickEvent
 
+/**
+ * 一个输入框 (Frame) 包含了a-z0-9 大小写切换等按钮 当玩家按下这些按钮就会在顶部的文本框里面加入按下按钮代表的文字
+ *
+ * @constructor
+ *
+ * @param title 此输入框的标题
+ */
 open class CXInputDialog(title:String="InputDialog") :CXFrame(6){
     var string=""
     var lowerCase=true
     var index=0
+
+    /**
+     * 刷新此窗口的内容
+     *
+     */
     fun validate(){
         //println(string)
         var ind=1
@@ -33,6 +45,13 @@ open class CXInputDialog(title:String="InputDialog") :CXFrame(6){
         this.setPanel(panel)
 
     }
+
+    /**
+     * 当玩家单击enter之后 给出的响应操作
+     *
+     * @param event 玩家单击容器的事件
+     * @param frame 玩家单击的窗口
+     */
     open fun onEnter(event: InventoryClickEvent,frame:CXFrame){
 
     }

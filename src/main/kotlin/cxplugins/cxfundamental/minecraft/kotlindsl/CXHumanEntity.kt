@@ -15,6 +15,10 @@ import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.scheduler.BukkitRunnable
 import java.util.*
 
+/**
+ * 当玩家回答此问题时的操作
+ *
+ */
 interface QuestionAction{
     fun action(answer:String)
 }
@@ -29,10 +33,20 @@ class QuestionListener: Listener {
         }
     }
 }
+/**
+ * 询问一个玩家问题
+ * @param question 问题的内容
+ * @param action 玩家回答后的操作
+ */
 fun HumanEntity.askQuestion(question:String,action:QuestionAction){
     this.setMetadata("question.action",FixedMetadataValue(CXFundamentalMain.pluginMain,action))
     this.sendMessageWithColor(question)
 }
+/**
+ * 询问一个玩家问题
+ * @param question 问题的内容
+ * @param lambda 玩家回答后的操作
+ */
 fun HumanEntity.askQuestion(question:String,lambda:(String)->Unit){
      var action=object:QuestionAction{
          override fun action(answer: String) {
@@ -55,10 +69,17 @@ fun HumanEntity.openInventorySynchronously(inventory:Inventory,plugin: JavaPlugi
     }
     thread.runTask(plugin)
 }
+/**
+ * 使一个人类实体关闭打开的窗口
+ */
 fun HumanEntity.closeFrame(){
     this.closeInventory()
     this.setOpeningFrame(null)
 }
+/**
+ * 使一个人类实体打开一个的窗口
+ * @param frame 要打开的窗口
+ */
 fun HumanEntity.openFrame(frame:CXFrame){
     if(frame.mainPanel is CXMultipagePanel){
         var mainPanel=frame.mainPanel as CXMultipagePanel
@@ -74,7 +95,7 @@ fun HumanEntity.openFrame(frame:CXFrame){
 }
 
 /**
- * 此人类实体正在打开的窗口
+ * 获取此人类实体正在打开的窗口
  */
 fun HumanEntity.getOpeningFrame():CXFrame?{
     return if(this.hasMetadata("openingFrame")){
@@ -87,6 +108,9 @@ fun HumanEntity.getOpeningFrame():CXFrame?{
         null
     }
 }
+/**
+ * 设置此人类实体正在打开的窗口
+ */
 fun HumanEntity.setOpeningFrame(value:CXFrame?){
     if(value==null){
         this.removeMetadata("openingFrame",CXFundamentalMain.pluginMain)
@@ -96,7 +120,9 @@ fun HumanEntity.setOpeningFrame(value:CXFrame?){
     }
 }
 
-
+/**
+ * 可以在异步线程调用 使一个人类实体打开窗口
+ */
 fun HumanEntity.openFrameSynchronously(frame:CXFrame,plugin:JavaPlugin){
     var thread=object:BukkitRunnable(){
         override fun run() {

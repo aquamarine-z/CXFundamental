@@ -7,9 +7,26 @@ import org.bukkit.Bukkit
 import org.bukkit.inventory.Inventory
 import java.lang.IllegalArgumentException
 
+/**
+ * 表示一个容器 一个容器不会单独存在 他会绑定到一个窗口中
+ *
+ * @property height 此容器的高度
+ * @constructor
+ *
+ * @param title 此容器的标题
+ */
 class CXPanel(internal var height: Int,title:String) {
     internal var elements: Array<Array<CXUIElement?>>
     var inventory: Inventory? = null
+
+    /**
+     * 通过Kotlin DSL为此容器添加按钮的方法
+     *
+     * @param x X坐标
+     * @param y Y坐标
+     * @param lambda DSL的Lambda表达式
+     * @receiver
+     */
     fun button(x:Int,y:Int,lambda: CXButton.() -> Unit){
         var button=CXButton(CXItemStack(1,1,"",""))
         button.apply(lambda)
@@ -19,16 +36,38 @@ class CXPanel(internal var height: Int,title:String) {
         this.inventory=Bukkit.createInventory(null,height*9,title.toColor())
         this.elements =Array(9,{ arrayOfNulls<CXUIElement?>(height)})
     }
+    /**
+     * 在某个位置设置组件
+     *
+     * @param location 位置
+     * @param element 此组件
+     * @receiver
+     */
     @Throws(CXPrepositionException::class)
     fun set(location:Int, element: CXUIElement) {
         this.set(CXInventory.integerToPos(location).blockX,CXInventory.integerToPos(location).blockY,element)
 
     }
+    /**
+     * 在某个位置设置按钮
+     *
+     * @param location 按钮
+     * @param element 此组件
+     * @receiver
+     */
     @Throws(CXPrepositionException::class)
     fun set(location:Int, element: CXButton) {
         this.set(CXInventory.integerToPos(location).blockX,CXInventory.integerToPos(location).blockY,element)
 
     }
+    /**
+     * 在某个位置设置组件
+     *
+     * @param x X坐标
+     * @param y Y坐标
+     * @param element 此组件
+     * @receiver
+     */
     @Throws(CXPrepositionException::class)
     fun set(x: Int, y: Int, element: CXUIElement) {
         if (y <0 || y >= this.height) throw IllegalArgumentException("参数Y必须在0~高度之间")
@@ -36,6 +75,14 @@ class CXPanel(internal var height: Int,title:String) {
         this.elements[x][y] = element
 
     }
+    /**
+     * 在某个位置设置按钮
+     *
+     * @param x X坐标
+     * @param y Y坐标
+     * @param element 此按钮
+     * @receiver
+     */
     @Throws(CXPrepositionException::class)
     fun set(x: Int, y: Int, element: CXButton) {
         if (y <0 || y >= this.height) throw IllegalArgumentException("参数Y必须在0~高度之间")
@@ -43,6 +90,13 @@ class CXPanel(internal var height: Int,title:String) {
         this.elements[x][y] = element
         this.inventory!!.setItem(CXInventory.posToInteger(x,y),element.item)
     }
+    /**
+     * 删除某个位置的组件
+     *
+     * @param x X坐标
+     * @param y Y坐标
+     * @receiver
+     */
     @Throws(CXPrepositionException::class)
     fun remove(x: Int, y: Int) {
         if (y < 0 || y >= this.height) throw IllegalArgumentException("参数Y必须在0~高度之间")
@@ -51,12 +105,25 @@ class CXPanel(internal var height: Int,title:String) {
 
         this.elements[x][y] = null
     }
+    /**
+     * 删除某个位置的组件
+     *
+     * @param location 位置
+     * @receiver
+     */
     @Throws(CXPrepositionException::class)
     fun remove(location: Int){
         val x=CXInventory.Companion.integerToPos(location).blockX
         val y=CXInventory.Companion.integerToPos(location).blockY
         remove(x,y)
     }
+    /**
+     * 获取某个位置的组件
+     *
+     * @param x X坐标
+     * @param y Y坐标
+     * @receiver
+     */
     @Throws(CXPrepositionException::class)
     fun  getElement(x:Int,y:Int):CXUIElement?{
         if (y <0 || y >= this.height) throw IllegalArgumentException("参数Y必须在0~高度之间")

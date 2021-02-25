@@ -1,8 +1,8 @@
 package cxplugins.cxfundamental.minecraft.kotlindsl
 
 import cxplugins.cxfundamental.minecraft.file.CXYamlConfiguration
-import cxplugins.cxfundamental.minecraft.server.CXFundamentalMain
-import cxplugins.cxfundamental.minecraft.server.debug
+import cxplugins.cxfundamental.minecraft.plugin.CXFundamentalMain
+import cxplugins.cxfundamental.minecraft.plugin.debug
 import org.bukkit.Bukkit
 import org.bukkit.block.Block
 import org.bukkit.configuration.ConfigurationSection

@@ -1,10 +1,8 @@
 package cxplugins.plugins.cxpoint
 
 import cxplugins.cxfundamental.minecraft.file.CXYamlConfiguration
-import cxplugins.cxfundamental.minecraft.server.CXGuide
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
-import cxplugins.*
 import kotlin.collections.ArrayList
 /*
 * Error Methods:

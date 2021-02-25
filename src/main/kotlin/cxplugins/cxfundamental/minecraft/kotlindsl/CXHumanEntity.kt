@@ -1,6 +1,6 @@
 package cxplugins.cxfundamental.minecraft.kotlindsl
 
-import cxplugins.cxfundamental.minecraft.server.CXFundamentalMain
+import cxplugins.cxfundamental.minecraft.plugin.CXFundamentalMain
 import cxplugins.cxfundamental.minecraft.ui.CXFrame
 import cxplugins.cxfundamental.minecraft.ui.CXMultipagePanel
 import cxplugins.cxfundamental.minecraft.ui.CXPanel

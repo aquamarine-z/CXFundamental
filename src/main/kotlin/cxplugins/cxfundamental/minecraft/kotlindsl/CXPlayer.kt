@@ -3,7 +3,6 @@ package cxplugins.cxfundamental.minecraft.kotlindsl
 
 import cxplugins.cxfundamental.minecraft.file.CXPlayerDataEditor
 import cxplugins.cxfundamental.minecraft.file.CXYamlConfiguration
-import cxplugins.cxfundamental.minecraft.server.CXFundamentalMain
 import cxplugins.plugins.cxpoint.CXEconomy
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin

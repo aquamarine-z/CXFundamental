@@ -6,10 +6,8 @@ import cxplugins.cxfundamental.minecraft.server.CXInventory
 import cxplugins.cxfundamental.minecraft.server.CXItemStack
 import java.util.ArrayList
 
-import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.event.inventory.InventoryClickEvent
-import org.bukkit.inventory.Inventory
 import java.lang.IllegalArgumentException
 
 /**

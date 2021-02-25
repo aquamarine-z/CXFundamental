@@ -1,0 +1,103 @@
+package cxplugins.cxfundamental.minecraft.plugin
+import cxplugins.cxfundamental.minecraft.command.CPMLCommandExecutor.Companion.register
+import cxplugins.cxfundamental.minecraft.permission.CXCommandPermission
+import cxplugins.cxfundamental.minecraft.kotlindsl.openFrame
+import cxplugins.cxfundamental.minecraft.kotlindsl.openFrameSynchronously
+import cxplugins.cxfundamental.minecraft.kotlindsl.sendMessageWithColor
+import org.bukkit.entity.Player
+import org.bukkit.permissions.PermissionDefault
+import java.io.*
+import java.net.MalformedURLException
+import java.net.URL
+import kotlin.concurrent.thread
+
+internal fun getAndSave(address:String, destination: File, fileName:String=address){
+    val url: URL
+    val inputStream: BufferedInputStream
+    val file: FileOutputStream
+    try {
+
+        if(!File(destination.canonicalPath+"\\"+fileName).exists()) {
+            if(!destination.exists()) destination.mkdirs()
+            File(destination.canonicalPath+"\\"+fileName).createNewFile()
+        }
+        //println("Getting $address ..........")
+        url = URL(address)
+        inputStream = BufferedInputStream(url.openStream())
+
+        file = FileOutputStream(File(destination.canonicalPath+"\\"+fileName))
+        var t: Int
+        while (inputStream.read().also { t = it } != -1) {
+            file.write(t)
+        }
+        file.close()
+        inputStream.close()
+        //println("Getting $address successfully!")
+    } catch (e: MalformedURLException) {
+        e.printStackTrace()
+    } catch (e: FileNotFoundException) {
+        e.printStackTrace()
+    } catch (e: IOException) {
+        e.printStackTrace()
+    }
+
+}
+fun registerCommands(){
+    CXCommandPermission.register{
+        name="cxfundamental"
+        permission {
+            name="op"
+            default=PermissionDefault.OP
+        }
+    }
+    register(CXFundamentalMain.pluginMain){
+        command="cxp"
+        permission="cxfundamental.op"
+        description="CX插件管理界面"
+        usage="/cxp"
+        action {
+            return@action if(sender !is Player){
+                sender.sendMessageWithColor("&4[错误]该命令必须由一个玩家来执行")
+                true
+            }
+            else{
+                (sender as Player).openFrame(DownloadedPluginControlFrame(sender as Player))
+                true
+            }
+        }
+    }
+    register(CXFundamentalMain.pluginMain){
+        command="cxp debug"
+        permission="cxfundamental.op"
+        description="CX插件管理界面"
+        usage="/cxp debug"
+        action{
+            debug=!debug
+            sender.sendMessageWithColor("&2&l[CXFundamental]Debug模式已经更改为$debug")
+            true
+        }
+    }
+    register(CXFundamentalMain.pluginMain){
+        command="cxp store"
+        permission="cxfundamental.op"
+        description="CX插件管理界面"
+        usage="/cxp store"
+        action {
+            thread(true,true){
+                sender.sendMessageWithColor("&3&l正在从Gitee中拉取插件列表文件...........")
+                try{
+                    getAndSave("https://gitee.com/yuncaiyuye/cxplugins/raw/master/plugins.yml",File(".\\plugins\\CXPlugins"),"plugins.yml")
+                } catch(exception:Exception){
+                    sender.sendMessageWithColor("&2&l[错误]拉取失败 请检查网络连接!")
+
+                } finally{
+                    sender.sendMessageWithColor("&3&l拉取成功!")
+                }
+                if(sender is Player) {
+                    (sender as Player).openFrameSynchronously(OnlinePluginControlFrame(),CXFundamentalMain.pluginMain)
+                }
+            }
+            true
+        }
+    }
+}

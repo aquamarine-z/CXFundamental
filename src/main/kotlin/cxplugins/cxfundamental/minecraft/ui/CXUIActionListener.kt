@@ -3,7 +3,7 @@ package cxplugins.cxfundamental.minecraft.ui
 import cxplugins.cxfundamental.minecraft.kotlindsl.getOpeningFrame
 import cxplugins.cxfundamental.minecraft.kotlindsl.setOpeningFrame
 import cxplugins.cxfundamental.minecraft.server.CXInventory
-import cxplugins.cxfundamental.minecraft.server.CXFundamentalMain
+import cxplugins.cxfundamental.minecraft.plugin.CXFundamentalMain
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler

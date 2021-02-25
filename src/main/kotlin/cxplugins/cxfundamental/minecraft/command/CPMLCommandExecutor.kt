@@ -4,10 +4,41 @@ import org.bukkit.World
 import org.bukkit.command.Command
 import cxplugins.cxfundamental.minecraft.math.CXMath
 import org.bukkit.Bukkit
+import org.bukkit.command.CommandMap
 import org.bukkit.command.CommandSender
+import org.bukkit.command.PluginCommand
 import org.bukkit.entity.Player
+import org.bukkit.permissions.Permission
+import org.bukkit.permissions.PermissionDefault
+import org.bukkit.plugin.Plugin
+import org.bukkit.plugin.SimplePluginManager
+import org.bukkit.plugin.java.JavaPlugin
+import org.bukkit.util.permissions.CommandPermissions
+
 typealias ActionLambda= Action.()->Boolean
 typealias CXCommandExecutor=CPMLCommandExecutor
+private fun registerByReflect(plugin: Plugin, command:String,permission: String,description:String,message:String,vararg alias:String): PluginCommand? {
+    try {
+        lateinit var cmd: PluginCommand
+        val constructors = PluginCommand::class.java.getDeclaredConstructor(String::class.java, Plugin::class.java)
+        constructors.isAccessible = true
+        cmd = constructors.newInstance(command, plugin)
+        cmd.setAliases(alias.toList())
+        cmd.setDescription(description)
+        cmd.setUsage(message)
+        cmd.setPermission(permission)
+        cmd.setTabCompleter(null)
+        cmd.setExecutor(null)
+
+        val field = SimplePluginManager::class.java.getDeclaredField("commandMap")
+        field.setAccessible(true)
+        val map= field.get(plugin.server.pluginManager) as CommandMap
+        map.register(command, cmd)
+        return cmd
+    } catch (exception:Exception) {
+        return null
+    }
+}
 /*@JvmName("StringParameter")
 fun string(name:String):String{
     return "[type=string,name=$name]"
@@ -45,6 +76,7 @@ fun onlinePlayer(name:String):String{
  * 处理玩家命令的类
  */
 class CPMLCommandExecutor{
+
     /**
      * 为优化玩家输入命令的处理提供的静态方法
      *
@@ -134,7 +166,11 @@ class CPMLCommandExecutor{
             }
             return null
         }
-
+        fun registerPermission(name:String,description: String,default:PermissionDefault,father:Permission?){
+            val permission= Permission(name,description,default)
+            CommandPermissions.registerPermissions(permission)
+            return
+        }
         /**
          * 将玩家输入的命令与注册的命令进行比对 若玩家输入的命令已经注册 则执行该命令
          *
@@ -357,13 +393,56 @@ class CPMLCommandExecutor{
 
             return true
         }
-        fun register(command:String,lambda: cxplugins.cxfundamental.minecraft.command.DSLCommandInformation.()->Unit){
-            var information= cxplugins.cxfundamental.minecraft.command.DSLCommandInformation()
+        fun register(plugin:Plugin,lambda: DSLCommandInformationWithRegisteration.()->Unit):PluginCommand?{
+            var information= DSLCommandInformationWithRegisteration()
+            information.apply(lambda)
+            var parameter=information.commandParameter
+            var action=information.commandAction
+            register(information.command,parameter,action)
+            return registerByReflect(plugin,information.command,information.permission,information.description,information.usage,*information.alias.toTypedArray())
+        }
+        /**
+         * 注册该命令(无需在plugin.yml里面注册此命令) 其中可选的type有:boolean,string,integer,double,player,onlineplayer,world
+         * 可选的功能有:calculate:是否计算玩家输入表达式的值为数
+         *            multiparameter:
+         *               multiparameterstart:
+         *               multiparameterend:
+         *            是否开启复合参数的读取 如_This is a test_ 中间有空格 若不开启符合参数读取则为四个参数 开启之后为一个参数"This is a test"
+         * @param command 该命令
+         * @param parameters 该命令的参数(使用CPML语法)
+         * @param action 该命令执行后的操作
+         * `register("test","[type=boolean,name="boolean"] [type=string,name=string,multiparameter=true,multiparameterstart=_,multiparameterend=_] [type=player,name=player] [type=integer,calculate=true,name=integer],null")`
+         * @return 该命令是否注册成功
+         *
+         */
+        fun register(plugin:Plugin,command:String,permission:String,parameters:String,action: Action,description: String="",usage:String="",vararg alias:String):Boolean {
+
+            var result=true
+            if(!this.register(command,parameters,action)) result=false
+            if(registerByReflect(plugin,command,permission,description,usage,*alias)==null) result=false
+            return result
+        }
+        fun register(command:String,lambda: DSLCommandInformation.()->Unit){
+            var information= DSLCommandInformation()
             information.apply(lambda)
             var parameter=information.commandParameter
             var action=information.commandAction
             Companion.register(command, parameter, action)
         }
+        /**
+         * 注册该命令(需要在plugin.yml里面注册此命令) 其中可选的type有:boolean,string,integer,double,player,onlineplayer,world
+         * 可选的功能有:calculate:是否计算玩家输入表达式的值为数
+         *            multiparameter:
+         *               multiparameterstart:
+         *               multiparameterend:
+         *            是否开启复合参数的读取 如_This is a test_ 中间有空格 若不开启符合参数读取则为四个参数 开启之后为一个参数"This is a test"
+         * @param command 该命令
+         * @param parameters 该命令的参数(使用CPML语法)
+         * @param action 该命令执行后的操作
+         * `register("test","[type=boolean,name="boolean"] [type=string,name=string,multiparameter=true,multiparameterstart=_,multiparameterend=_] [type=player,name=player] [type=integer,calculate=true,name=integer],null")`
+         * @return 该命令是否注册成功
+         *
+         */
         fun register(command:String,parameters:String,action: Action.()->Boolean){
             var act=object : Action(){
                 var action=action
@@ -375,7 +454,7 @@ class CPMLCommandExecutor{
             Companion.register(command, parameters, act)
         }
         /**
-         * 注册该命令 其中可选的type有:boolean,string,integer,double,player,onlineplayer,world
+         * 注册该命令(需要在plugin.yml里面注册此命令) 其中可选的type有:boolean,string,integer,double,player,onlineplayer,world
          * 可选的功能有:calculate:是否计算玩家输入表达式的值为数
          *            multiparameter:
          *               multiparameterstart:

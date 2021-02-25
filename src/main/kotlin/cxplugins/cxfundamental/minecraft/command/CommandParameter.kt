@@ -1,7 +1,17 @@
 package cxplugins.cxfundamental.minecraft.command
 
 import cxplugins.cxfundamental.minecraft.command.CPMLCommandExecutor.Companion.register
-class DSLCommandInformation{
+class DSLCommandInformationWithRegisteration:DSLCommandInformation(){
+    lateinit var command:String
+    var description=""
+    var usage=""
+    var alias=ArrayList<String>()
+    lateinit var permission: String
+    fun alia(alia:String){
+        alias.add(alia)
+    }
+}
+open class DSLCommandInformation{
     var commandParameter:String=""
     lateinit var commandAction: cxplugins.cxfundamental.minecraft.command.ActionLambda
     fun parameter(lambda:DSLCommandParameter.()->Unit){

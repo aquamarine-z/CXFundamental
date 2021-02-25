@@ -8,7 +8,6 @@ import cxplugins.cxfundamental.minecraft.server.nms.itemnbt.AttributeModifier
 import cxplugins.cxfundamental.minecraft.server.nms.itemnbt.AttributeOperation
 import cxplugins.cxfundamental.minecraft.server.nms.itemnbt.ItemAttribute
 import cxplugins.cxfundamental.minecraft.server.nms.itemnbt.NBTTagCompound
-import org.bukkit.Material
 import org.bukkit.inventory.meta.ItemMeta
 import org.bukkit.inventory.ItemStack as ItemStack
 

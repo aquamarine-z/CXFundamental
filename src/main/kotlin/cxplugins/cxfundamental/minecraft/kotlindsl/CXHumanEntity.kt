@@ -13,8 +13,7 @@ import org.bukkit.inventory.Inventory
 import org.bukkit.metadata.FixedMetadataValue
 import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.scheduler.BukkitRunnable
-import java.util.*
-
+import cxplugins.cxfundamental.minecraft.swing.CXFrame as SwingFrame
 /**
  * 当玩家回答此问题时的操作
  *
@@ -69,11 +68,26 @@ fun HumanEntity.openInventorySynchronously(inventory:Inventory,plugin: JavaPlugi
     }
     thread.runTask(plugin)
 }
+var HumanEntity.openingWindow : SwingFrame?
+    get(){
+        if(this.hasMetadata("CXFundamental.openingSwingFrame")){
+            return this.getMetadata("CXFundamental.openingSwingFrame")[0]?.value() as? SwingFrame
+        }
+        else return null
+    } //=
+    set(value) {
+        this.setMetadata("CXFundamental.openingSwingFrame",FixedMetadataValue(CXFundamentalMain.pluginMain,value))
+    }
+fun HumanEntity.openFrame(frame:SwingFrame){
+    this.openingWindow=frame
+    this.openInventory(frame.asInventory())
+}
 /**
  * 使一个人类实体关闭打开的窗口
  */
 fun HumanEntity.closeFrame(){
     this.closeInventory()
+    this.openingWindow=null
     this.setOpeningFrame(null)
 }
 /**

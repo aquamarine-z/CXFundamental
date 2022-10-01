@@ -9,7 +9,8 @@ import java.lang.Exception
  */
 class CraftingRecipe(item1: ItemStack,item2: ItemStack,item3: ItemStack,item4: ItemStack,item5: ItemStack,item6: ItemStack,item7: ItemStack,item8: ItemStack,item9: ItemStack){
     //var recipe=Array(3,{Array(3,{it -> 0}))
-    var recipe = Array(3,{Array(3,{it->ItemStack(0)})})
+    var recipe = Array(3) { Array(3, { it -> ItemStack(0) }) }
+
     init{
         recipe[0][0]=item1
         recipe[0][1]=item2

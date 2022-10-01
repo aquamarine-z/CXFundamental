@@ -2,14 +2,15 @@ package cxplugins.cxfundamental.minecraft.ui
 
 import cxplugins.cxfundamental.minecraft.kotlindsl.getOpeningFrame
 import cxplugins.cxfundamental.minecraft.kotlindsl.setOpeningFrame
-import cxplugins.cxfundamental.minecraft.server.CXInventory
 import cxplugins.cxfundamental.minecraft.plugin.CXFundamentalMain
+import cxplugins.cxfundamental.minecraft.server.CXInventory
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.inventory.ClickType
+import org.bukkit.event.inventory.InventoryAction
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
 
@@ -27,11 +28,25 @@ class CXUIActionListener() : Listener {
     fun onCloseFrame(event: InventoryCloseEvent){
         if(event.player.getOpeningFrame()!=null) event.player.setOpeningFrame(null)
     }
+        private fun checkAction(event: InventoryClickEvent):Boolean{
+        val acceptedAction=listOf(
+            InventoryAction.PICKUP_ALL,
+            InventoryAction.PICKUP_ONE,
+            InventoryAction.PICKUP_SOME,
+            InventoryAction.PICKUP_HALF,
+            InventoryAction.MOVE_TO_OTHER_INVENTORY
+        )
+        return event.action in acceptedAction;
+    }
     @EventHandler(priority = EventPriority.HIGHEST)
     fun onButtonPress(event: InventoryClickEvent) {
 
         if(event.whoClicked.getOpeningFrame()!=null){
 
+            if(!checkAction(event)) {
+                event.isCancelled=true
+                return
+            }
             var frame=event.whoClicked.getOpeningFrame() as CXFrame
             if(frame.mainPanel is CXMultipagePanel){
                 var mainPanel=frame.mainPanel as CXMultipagePanel

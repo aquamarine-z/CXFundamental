@@ -1,9 +1,0 @@
-name: CXFundamental
-main: cxplugins.cxfundamental.minecraft.plugin.CXFundamentalMain
-version: 1.4.8
-#commands:
-  #permissions:
-    #cxfundamental.op:
-      #default: op
-
-

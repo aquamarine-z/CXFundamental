@@ -5,8 +5,10 @@ import cxplugins.cxfundamental.minecraft.server.CXInventory
 import cxplugins.cxfundamental.minecraft.server.CXItemStack
 import org.bukkit.Bukkit
 import org.bukkit.inventory.Inventory
-import java.lang.IllegalArgumentException
-
+internal fun cutTitle(from:String):String{
+    return if(from.length<31) from
+    else from.substring(0,25)+"..."
+}
 /**
  * 表示一个容器 一个容器不会单独存在 他会绑定到一个窗口中
  *
@@ -30,11 +32,21 @@ class CXPanel(internal var height: Int,title:String) {
     fun button(x:Int,y:Int,lambda: CXButton.() -> Unit){
         var button=CXButton(CXItemStack(1,1,"",""))
         button.apply(lambda)
-        this.set(x,y,button)
+        try {
+            button.item!!.itemMeta.displayName = button.item!!.itemMeta.displayName.toColor()
+            button.item!!.itemMeta.lore = button.item!!.itemMeta.lore.toColor()
+        }
+        catch (exception:NullPointerException){
+
+        }
+        finally{
+            this.set(x,y,button)
+        }
+
     }
     init {
-        this.inventory=Bukkit.createInventory(null,height*9,title.toColor())
-        this.elements =Array(9,{ arrayOfNulls<CXUIElement?>(height)})
+        this.inventory=Bukkit.createInventory(null,height*9, cutTitle(title.toColor()))
+        this.elements =Array(9) { arrayOfNulls<CXUIElement?>(height) }
     }
     /**
      * 在某个位置设置组件
@@ -113,8 +125,8 @@ class CXPanel(internal var height: Int,title:String) {
      */
     @Throws(CXPrepositionException::class)
     fun remove(location: Int){
-        val x=CXInventory.Companion.integerToPos(location).blockX
-        val y=CXInventory.Companion.integerToPos(location).blockY
+        val x= CXInventory.integerToPos(location).blockX
+        val y= CXInventory.integerToPos(location).blockY
         remove(x,y)
     }
     /**

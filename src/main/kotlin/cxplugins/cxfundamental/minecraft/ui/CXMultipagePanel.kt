@@ -4,11 +4,9 @@ package cxplugins.cxfundamental.minecraft.ui
 import cxplugins.cxfundamental.minecraft.kotlindsl.openFrame
 import cxplugins.cxfundamental.minecraft.server.CXInventory
 import cxplugins.cxfundamental.minecraft.server.CXItemStack
-import java.util.ArrayList
-
 import org.bukkit.Material
 import org.bukkit.event.inventory.InventoryClickEvent
-import java.lang.IllegalArgumentException
+import java.util.*
 
 /**
  * 一个多页容器 其组成为 0..height-2为摆放容器的区域

@@ -1,9 +1,10 @@
 package cxplugins.cxfundamental.minecraft.command
 
-import org.bukkit.World
-import org.bukkit.command.Command
 import cxplugins.cxfundamental.minecraft.math.CXMath
 import org.bukkit.Bukkit
+import org.bukkit.World
+import org.bukkit.block.CommandBlock
+import org.bukkit.command.Command
 import org.bukkit.command.CommandMap
 import org.bukkit.command.CommandSender
 import org.bukkit.command.PluginCommand
@@ -12,7 +13,6 @@ import org.bukkit.permissions.Permission
 import org.bukkit.permissions.PermissionDefault
 import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.SimplePluginManager
-import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.util.permissions.CommandPermissions
 
 typealias ActionLambda= Action.()->Boolean
@@ -23,15 +23,15 @@ private fun registerByReflect(plugin: Plugin, command:String,permission: String,
         val constructors = PluginCommand::class.java.getDeclaredConstructor(String::class.java, Plugin::class.java)
         constructors.isAccessible = true
         cmd = constructors.newInstance(command, plugin)
-        cmd.setAliases(alias.toList())
-        cmd.setDescription(description)
-        cmd.setUsage(message)
-        cmd.setPermission(permission)
-        cmd.setTabCompleter(null)
-        cmd.setExecutor(null)
+        cmd.aliases = alias.toList()
+        cmd.description = description
+        cmd.usage = message
+        cmd.permission = permission
+        cmd.tabCompleter = null
+        cmd.executor = null
 
         val field = SimplePluginManager::class.java.getDeclaredField("commandMap")
-        field.setAccessible(true)
+        field.isAccessible = true
         val map= field.get(plugin.server.pluginManager) as CommandMap
         map.register(command, cmd)
         return cmd
@@ -125,6 +125,7 @@ class CPMLCommandExecutor{
      * 提供的注册 执行命令的静态方法
      */
     companion object{
+        private val targetMap=HashMap<String,MutableList<CommandSenderType>>()
         private val parameterMap=HashMap<String, CommandParameterCompound>()
         val actionMap=HashMap<String, Action>()
         val commands=ArrayList<String>()
@@ -188,7 +189,25 @@ class CPMLCommandExecutor{
             //(commandString)
             if(commandName!=null){
                 //(commandName)
-                var action= Companion.actionMap[commandName]
+                val senderType=
+                    if(sender is Player) CommandSenderType.PLAYER
+                    else if(sender is CommandBlock) CommandSenderType.COMMANDBLOCK
+                    else CommandSenderType.CONSOLE
+                val targetList= targetMap[commandName]?:mutableListOf(
+                    CommandSenderType.COMMANDBLOCK,
+                    CommandSenderType.CONSOLE,
+                    CommandSenderType.PLAYER
+                )
+                if(targetList.size==0){
+                    targetList.add(CommandSenderType.COMMANDBLOCK)
+                    targetList.add(CommandSenderType.CONSOLE)
+                    targetList.add(CommandSenderType.PLAYER)                }
+                if(senderType !in targetList){
+                    val exc=CommandException(0, CommandException.Reason.WRONGSENDER)
+                    exc.extraInformation=targetList
+                    throw exc
+                }
+                var action= actionMap[commandName]
                 var commandSize=commandName.split(" ").size
                 var inputParameters=commandString.split(" ").subList(commandSize,commandString.split(" ").size)
                 //(inputParameters)
@@ -198,6 +217,7 @@ class CPMLCommandExecutor{
                 var inputPointer=0
 
                 for(i in 0 until definedParameters!!.parameters.size){
+
                     var calculate=definedParameters.parameters[i].calculate
                     var name=definedParameters.parameters[i].name
                     var type=definedParameters.parameters[i].type
@@ -393,13 +413,18 @@ class CPMLCommandExecutor{
 
             return true
         }
-        fun register(plugin:Plugin,lambda: DSLCommandInformationWithRegisteration.()->Unit):PluginCommand?{
+
+        fun register(lambda: DSLCommandInformationWithRegisteration.()->Unit):PluginCommand?{
             var information= DSLCommandInformationWithRegisteration()
             information.apply(lambda)
+            val command=information.command
             var parameter=information.commandParameter
             var action=information.commandAction
             register(information.command,parameter,action)
-            return registerByReflect(plugin,information.command,information.permission,information.description,information.usage,*information.alias.toTypedArray())
+            if(!targetMap.containsKey(command)){
+                targetMap.put(command,information.targetList.toMutableList())
+            }
+            return registerByReflect(information.plugin,information.command,information.permission,information.description,information.usage,*information.alias.toTypedArray())
         }
         /**
          * 注册该命令(无需在plugin.yml里面注册此命令) 其中可选的type有:boolean,string,integer,double,player,onlineplayer,world
@@ -428,6 +453,9 @@ class CPMLCommandExecutor{
             var parameter=information.commandParameter
             var action=information.commandAction
             Companion.register(command, parameter, action)
+            if(!targetMap.containsKey(command)){
+                targetMap.put(command,information.targetList.toMutableList())
+            }
         }
         /**
          * 注册该命令(需要在plugin.yml里面注册此命令) 其中可选的type有:boolean,string,integer,double,player,onlineplayer,world
@@ -495,10 +523,10 @@ class CPMLCommandExecutor{
                 //(parameter[i])
                 var modifier=parameter[i].split(",")
                 var modifiersMap=HashMap<String,String>()
-                for(j in 0..modifier.size-1){
+                for(j in modifier.indices){
                     var key=modifier[j].split("=")[0]
                     var value=modifier[j].split("=")[1]
-                    modifiersMap.put(key,value)
+                    modifiersMap[key] = value
                 }
                 if(registeredNames.contains(modifiersMap["name"]!!)) return false
                 lateinit var commandParameter: CommandParameter

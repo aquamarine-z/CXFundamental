@@ -1,5 +1,6 @@
 package cxplugins.cxfundamental.minecraft.kotlindsl
 
+import cxplugins.cxfundamental.minecraft.file.CXYamlConfiguration
 import cxplugins.cxfundamental.minecraft.server.CXItemStack
 import cxplugins.cxfundamental.minecraft.server.nms.CraftItemStack
 import cxplugins.cxfundamental.minecraft.server.nms.NBTEditor
@@ -8,8 +9,8 @@ import cxplugins.cxfundamental.minecraft.server.nms.itemnbt.AttributeModifier
 import cxplugins.cxfundamental.minecraft.server.nms.itemnbt.AttributeOperation
 import cxplugins.cxfundamental.minecraft.server.nms.itemnbt.ItemAttribute
 import cxplugins.cxfundamental.minecraft.server.nms.itemnbt.NBTTagCompound
+import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.ItemMeta
-import org.bukkit.inventory.ItemStack as ItemStack
 
 /**
  * 将此物品的数量减少指定的值
@@ -139,6 +140,48 @@ fun ItemStack.setNBTValueToCopy(value:Any?,vararg path:String):ItemStack{
     return NBTEditor.setItemStackNBT(this,value,*path)
 }
 
+/**
+ * 设置此物品的NBT数据
+ *
+ * @param compound NBTCompound数据
+ */
+fun ItemStack.setNBTTag(compound:Any?){
+    val item=this.setNBTTagToCopy(compound)
+    this.itemMeta=item.itemMeta
+}
+
+/**
+ * 设置此物品的NBT数据
+ *
+ * @param value 设置的数据值
+ * @param path 数据的路径
+
+ */
+fun ItemStack.setNBTValue(value:Any?,vararg path:String){
+    val item=this.setNBTValueToCopy(value,*path)
+    this.itemMeta=item.itemMeta
+}
+
+fun ItemStack.setNBTValueBySerialization(value:Any?,vararg path:String){
+    val configuration= CXYamlConfiguration()
+    configuration.loadFromString("")
+    configuration["Value"]=value
+    val serialized=configuration.saveToString()
+    this.setNBTValue(serialized,*path)
+}
+
+fun ItemStack.getNBTValueBySerialization(vararg path:String) : Any?{
+    val configuration= CXYamlConfiguration()
+    try {
+        configuration.loadFromString((this.getNBTValue(*path) as? String) ?: "")
+        return configuration["Value"]
+    }
+    catch (exception:Exception){
+        return null
+    }
+
+
+}
 /**
  * 获取此物品的某个NBT数据
  *

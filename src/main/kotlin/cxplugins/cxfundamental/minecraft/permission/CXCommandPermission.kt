@@ -1,6 +1,5 @@
 
 package cxplugins.cxfundamental.minecraft.permission
-
 import org.bukkit.Bukkit
 import org.bukkit.permissions.Permission
 import org.bukkit.permissions.PermissionDefault

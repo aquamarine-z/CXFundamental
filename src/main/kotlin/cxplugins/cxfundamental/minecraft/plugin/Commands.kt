@@ -1,9 +1,14 @@
 package cxplugins.cxfundamental.minecraft.plugin
 import cxplugins.cxfundamental.minecraft.command.CPMLCommandExecutor.Companion.register
-import cxplugins.cxfundamental.minecraft.permission.CXCommandPermission
+import cxplugins.cxfundamental.minecraft.command.CommandSenderType
 import cxplugins.cxfundamental.minecraft.kotlindsl.openFrame
 import cxplugins.cxfundamental.minecraft.kotlindsl.openFrameSynchronously
 import cxplugins.cxfundamental.minecraft.kotlindsl.sendMessageWithColor
+import cxplugins.cxfundamental.minecraft.permission.CXCommandPermission
+import cxplugins.cxfundamental.minecraft.swing.CXButton
+import cxplugins.cxfundamental.minecraft.swing.CXFrame
+import cxplugins.cxfundamental.minecraft.swing.CXMultipagePanel
+import cxplugins.cxfundamental.minecraft.swing.CXMultipagePanelEvent
 import org.bukkit.entity.Player
 import org.bukkit.permissions.PermissionDefault
 import java.io.*
@@ -50,11 +55,40 @@ fun registerCommands(){
             default=PermissionDefault.OP
         }
     }
-    register(CXFundamentalMain.pluginMain){
+    register{
+        target(CommandSenderType.PLAYER)
+        plugin=CXFundamentalMain.pluginMain
+        command="uitest"
+        description="测试新UI系统 CXSwing"
+        usage="/uitest"
+        permission="cxfundamental.op"
+        action {
+            val frame=CXFrame(6)
+            val button=CXButton()
+            button.leftClick {
+                it.event.isCancelled=true
+            }
+            val multipagePanel=object:CXMultipagePanel(2,2){
+                override fun onPreviousPage(event: CXMultipagePanelEvent) {
+                }
+            }
+            multipagePanel.setComponent(0,0,button)
+            multipagePanel.addNewPage()
+            multipagePanel.addNewPage()
+            multipagePanel.cycle=true
+            frame.setComponent(0,0,multipagePanel)
+            //println(frame.getComponent(3,2))
+            (sender as Player).openFrame(frame)
+            true
+        }
+    }
+    register{
+        target(CommandSenderType.PLAYER)
+        plugin=CXFundamentalMain.pluginMain
         command="cxp"
         permission="cxfundamental.op"
         description="CX插件管理界面"
-        usage="/cxp"
+        usage="/cxp debug"
         action {
             return@action if(sender !is Player){
                 sender.sendMessageWithColor("&4[错误]该命令必须由一个玩家来执行")
@@ -66,7 +100,9 @@ fun registerCommands(){
             }
         }
     }
-    register(CXFundamentalMain.pluginMain){
+    register{
+        target(CommandSenderType.PLAYER)
+        plugin=CXFundamentalMain.pluginMain
         command="cxp debug"
         permission="cxfundamental.op"
         description="CX插件管理界面"
@@ -77,7 +113,9 @@ fun registerCommands(){
             true
         }
     }
-    register(CXFundamentalMain.pluginMain){
+    register{
+        target(CommandSenderType.PLAYER)
+        plugin=CXFundamentalMain.pluginMain
         command="cxp store"
         permission="cxfundamental.op"
         description="CX插件管理界面"

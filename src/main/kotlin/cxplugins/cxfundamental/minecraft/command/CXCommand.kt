@@ -1,10 +1,6 @@
 package cxplugins.cxfundamental.minecraft.command
-import org.bukkit.entity.Player
 import org.bukkit.Bukkit
-import org.bukkit.command.CommandSender
-import org.bukkit.entity.Villager
-import org.bukkit.inventory.ItemStack
-import org.bukkit.inventory.MerchantInventory
+import org.bukkit.entity.Player
 
 /**
  * 对命令的发送提供的类
@@ -16,6 +12,7 @@ public object CXCommand {
      * @param p 该玩家
      * @param Command 需要执行的命令(无需加'/')
      */
+
     fun runWithoutPermission(p: Player, Command: String) {
 
         var Command = Command

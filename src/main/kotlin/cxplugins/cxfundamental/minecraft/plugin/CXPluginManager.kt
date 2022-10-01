@@ -5,16 +5,17 @@ import cxplugins.cxfundamental.minecraft.kotlindsl.*
 import cxplugins.cxfundamental.minecraft.server.CXInventory
 import cxplugins.cxfundamental.minecraft.server.CXItemStack
 import cxplugins.cxfundamental.minecraft.server.CXPluginMain
+import cxplugins.cxfundamental.minecraft.swing.SwingFrame
 import cxplugins.cxfundamental.minecraft.ui.*
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
-import java.io.*
+import java.io.BufferedOutputStream
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
 import java.net.URL
-import java.net.URLDecoder
-import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.concurrent.thread
 
 class DownloadedPluginControlFrame(val owner:Player): CXFrame(6){
@@ -171,7 +172,11 @@ class OnlinePluginVersionViewFrame(val pluginName:String):CXFrame(6){
             val button=object :CXButton(){
                 init{
                     item=CXItemStack(Material.CHEST,1,"&c&l$pluginName:$version","")
-                    item!!.appendLore("&c&l介绍:${section["$version.description"] ?: "无"}")
+                    val descriptionList="&c&l介绍:${section["$version.description"] ?: "无"}".split("\\n")
+                    for(description in descriptionList){
+                        item!!.appendLore(description)
+                    }
+
                     item!!.appendLore("&c&l适用的Minecraft版本:${section["$version.version"] ?: "所有"}")
                     item!!.appendLore("&c&l下载链接:${section["$version.download"] ?: "暂无链接"}")
                 }
@@ -232,6 +237,13 @@ class OnlinePluginVersionViewFrame(val pluginName:String):CXFrame(6){
                 }
             }
             multipagePanel.setWithCreateNewPage(i,button,"&3下载:$pluginName")
+            i++;
+        }
+        multipagePanel.setButtonOnButtonBar(4){
+            item=CXItemStack(Material.IRON_DOOR,1,"&3&l返回","&3&l点我返回插件下载菜单")
+            leftClick{ inventoryClickEvent: InventoryClickEvent, cxFrame: CXFrame ->
+                inventoryClickEvent.whoClicked.openFrame(OnlinePluginControlFrame())
+            }
         }
         this.setPanel(multipagePanel)
     }
@@ -274,4 +286,47 @@ class OnlinePluginControlFrame():CXFrame(6){
         this.setPanel(multipagePanel)
     }
 
+}
+class OnlinePluginVersionViewingFrame(val pluginName:String):SwingFrame(6){
+    private fun readUrlFile(fileUrl: String?): ByteArray?  {
+        var r: ByteArray? = null
+        var out: ByteArrayOutputStream? = null
+        try {
+            val url = URL(fileUrl)
+            val `in` = url.openStream()
+            out = ByteArrayOutputStream()
+            val b = ByteArray(8 * 1024)
+            var read:Int=0
+            while (`in`.read(b).also { read = it } != -1) out.write(b, 0, read)
+            out.flush()
+            r = out.toByteArray()
+            out.close()
+            `in`.close()
+        } catch (e: java.lang.Exception) {
+        }
+        return r
+    }
+
+    private fun downloadPlugin(pluginName:String,address:String):Boolean{
+        val file= File(".\\plugins\\$pluginName.jar")
+        if(!file.exists()){
+            file.createNewFile()
+        }
+        val writer=BufferedOutputStream(FileOutputStream(file))
+        //val onlineStream= BufferedInputStream(URL(URLDecoder.decode(address,"utf-8")).openStream())
+        var buf=readUrlFile(address)
+        writer.write(buf)
+        writer.close()
+        return true
+    }
+    init{
+        this.apply { 
+            multipagePanel(0,0,8,6){
+                val configuration=CXYamlConfiguration("CXPlugins","plugins.yml")
+                val section=configuration.getConfigurationSection("$pluginName")
+                val versions=section.getKeys(false)
+
+            }
+        }
+    }
 }

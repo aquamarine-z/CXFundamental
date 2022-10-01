@@ -52,18 +52,11 @@ open class CXInputDialog(title:String="InputDialog") :CXFrame(6){
      * @param event 玩家单击容器的事件
      * @param frame 玩家单击的窗口
      */
-    open fun onEnter(event: InventoryClickEvent,frame:CXFrame){
+    open fun onEnter(event: InventoryClickEvent,frame:CXInputDialog){
 
     }
     init{
         var panel = CXPanel(6,title)
-        panel.set(8,1,object :CXButton(CXItemStack(160,1,"&3&lEnter"," ",3)){
-            override fun onLeftClick(event: InventoryClickEvent, frame: CXFrame) {
-                event.isCancelled=true
-                onEnter(event, frame)
-
-            }
-        })
         panel.set(1,1,object :CXButton(CXItemStack(160,1,"&3&l空格"," ",3)){
             val letter=" "
             override fun onLeftClick(event: InventoryClickEvent, frame: CXFrame) {
@@ -98,7 +91,7 @@ open class CXInputDialog(title:String="InputDialog") :CXFrame(6){
         panel.set(8,1,object :CXButton(CXItemStack(160,1,"&3&l确认"," ",1)){
             override fun onLeftClick(event: InventoryClickEvent, frame: CXFrame) {
                 event.isCancelled=true
-                onEnter(event, frame)
+                onEnter(event, frame as CXInputDialog)
             }
         })
         panel.set(0,0,object :CXButton(CXItemStack(160,1,"&3&l<"," ",3)){

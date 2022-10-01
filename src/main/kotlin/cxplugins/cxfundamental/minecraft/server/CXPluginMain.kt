@@ -1,10 +1,9 @@
 package cxplugins.cxfundamental.minecraft.server
 
 import cxplugins.cxfundamental.minecraft.command.CommandException
-import cxplugins.cxfundamental.minecraft.command.CPMLCommandExecutor
-import cxplugins.cxfundamental.minecraft.kotlindsl.toColor
+import cxplugins.cxfundamental.minecraft.command.CommandSenderType
+import cxplugins.cxfundamental.minecraft.dependiences.DependencyInformation
 import org.bukkit.Material
-
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
@@ -12,25 +11,33 @@ import org.bukkit.inventory.ItemStack
 import org.bukkit.plugin.java.JavaPlugin
 
 open class CXPluginMain(item:ItemStack?) : JavaPlugin(){
+
     var noticePrefix:String
     var description="A CXPlugin"
     var itemTypeInMenu= Material.WATER_BUCKET
     var itemInMenu: ItemStack?=null
+    var dependiences=ArrayList<DependencyInformation>()
     init{
-        this.noticePrefix="&3&l[${this.name}]:".toColor()
+        this.noticePrefix=("§3§l[${this.name}]:")
         itemInMenu=if(item==null){
-            CXItemStack(itemTypeInMenu,1,this.name,"")
+            var itemStack=ItemStack(itemTypeInMenu,1)
+            itemStack
         }
         else{
             item
         }
+
     }
     override fun onEnable() {
 
     }
+    fun dependOn(info:DependencyInformation){
+        dependiences.add(info)
+    }
     open fun reload(){
         throw NoSuchMethodException()
     }
+
     private fun sendReportToSender(sender:CommandSender,report:String){
         if(sender is Player){
             CXMessage.sendMessage(sender,report)
@@ -102,6 +109,14 @@ open class CXPluginMain(item:ItemStack?) : JavaPlugin(){
                 CommandException.Reason.LONG->{
                     sendReportToSender(sender!!,"$noticePrefix 第${place}个参数必须为一个数字")
                     return true
+                }
+                CommandException.Reason.WRONGSENDER->{
+                    val list=exception.extraInformation as MutableList<CommandSenderType>
+                    var senders=""
+                    if(list.contains(CommandSenderType.COMMANDBLOCK)) senders+=" 命令方块 "
+                    if(list.contains(CommandSenderType.PLAYER)) senders+=" 玩家 "
+                    if(list.contains(CommandSenderType.CONSOLE)) senders+=" 控制台 "
+                    sendReportToSender(sender!!,"$noticePrefix 此命令必须由$senders 执行")
                 }
             }
         }

@@ -3,7 +3,6 @@ package cxplugins.plugins.cxpoint
 import cxplugins.cxfundamental.minecraft.file.CXYamlConfiguration
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
-import kotlin.collections.ArrayList
 /*
 * Error Methods:
 * static getPointNameList()
@@ -28,9 +27,9 @@ class CXEconomy {
              */
             get() {
 
-                var Config = CXYamlConfiguration("CXPlugins", "CXPoints.yml")
+                var config = CXYamlConfiguration("CXPlugins", "CXPoints.yml")
 
-                val Names = ArrayList<String>(Config.getKeys(false));
+                val Names = ArrayList<String>(config.getKeys(false))
 
                 return Names
             }
@@ -207,8 +206,8 @@ class CXEconomy {
             if(!hasPoint(arg0)){
                 return false
             }
-            var Config = CXYamlConfiguration("CXPlugins", "CXPoints.yml")
-            return Config.getBoolean("$arg0.Payable")
+            var config = CXYamlConfiguration("CXPlugins", "CXPoints.yml")
+            return config.getBoolean("$arg0.Payable")
         }
         /**
          * 创建某种货币

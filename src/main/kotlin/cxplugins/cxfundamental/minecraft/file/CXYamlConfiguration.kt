@@ -4,18 +4,13 @@ package cxplugins.cxfundamental.minecraft.file
 import cxplugins.cxfundamental.minecraft.command.CXScript
 import cxplugins.cxfundamental.minecraft.server.CXCuboid
 import cxplugins.cxfundamental.minecraft.server.CXInventory
-import java.io.File
-import java.io.IOException
-import java.util.ArrayList
-import java.util.HashMap
-
+import cxplugins.cxfundamental.minecraft.server.CXLocation
 import org.bukkit.configuration.InvalidConfigurationException
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.configuration.serialization.ConfigurationSerializable
 import org.bukkit.configuration.serialization.ConfigurationSerialization
-
-import cxplugins.*
-import cxplugins.cxfundamental.minecraft.server.CXLocation
+import java.io.File
+import java.io.IOException
 
 /**
  * 简化配置文件访问提供的类
@@ -23,11 +18,13 @@ import cxplugins.cxfundamental.minecraft.server.CXLocation
  * @constructor Create empty CXYamlonfiguration
  */
 class CXYamlConfiguration : YamlConfiguration {
+
     private var Path: String? = null
     private val Defaults = HashMap<String, Any>()
     private var folderPath: String? = null
     private var fileName: String? = null
     private var file:File?=null
+
     override fun load(file: File?) {
         this.file=file
         super.load(file)
@@ -55,9 +52,10 @@ class CXYamlConfiguration : YamlConfiguration {
      */
     fun load(FolderPath: String?, File_Name: String?): Boolean {
         var Exist = true
-        register(CXCuboid::class.java)
-        register(CXInventory::class.java)
-        register(CXScript::class.java)
+        if(!loaded) {
+            registerAllClasses()
+            loaded=true
+        }
         if (createFolder(FolderPath)) Exist = false
         if (createFile(FolderPath + "\\" + File_Name)) Exist = false
         try {
@@ -152,8 +150,12 @@ class CXYamlConfiguration : YamlConfiguration {
     }
 
     companion object {
+        private var loaded=false
         init{
-            registerAllClasses()
+            if(!loaded) {
+                registerAllClasses()
+                loaded=true
+            }
         }
         @JvmStatic
         fun registerAllClasses(){
@@ -207,9 +209,10 @@ class CXYamlConfiguration : YamlConfiguration {
         fun open(FolderPath: String, File_Name: String): YamlConfiguration {
             createFolder(FolderPath)
             createFile(FolderPath + "\\" + File_Name)
-            register(CXCuboid::class.java)
-            register(CXInventory::class.java)
-            register(CXScript::class.java)
+            if(!loaded) {
+                registerAllClasses()
+                loaded=true
+            }
             return CXYamlConfiguration(FolderPath, File_Name)
         }
         /**

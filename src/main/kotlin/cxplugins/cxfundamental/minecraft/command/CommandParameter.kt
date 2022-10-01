@@ -1,25 +1,34 @@
 package cxplugins.cxfundamental.minecraft.command
 
-import cxplugins.cxfundamental.minecraft.command.CPMLCommandExecutor.Companion.register
+import org.bukkit.plugin.Plugin
+
+
 class DSLCommandInformationWithRegisteration:DSLCommandInformation(){
     lateinit var command:String
     var description=""
     var usage=""
     var alias=ArrayList<String>()
+
     lateinit var permission: String
+    lateinit var plugin:Plugin
+
     fun alia(alia:String){
         alias.add(alia)
     }
 }
 open class DSLCommandInformation{
     var commandParameter:String=""
-    lateinit var commandAction: cxplugins.cxfundamental.minecraft.command.ActionLambda
+    var targetList:List<CommandSenderType> =ArrayList()
+    lateinit var commandAction: ActionLambda
     fun parameter(lambda:DSLCommandParameter.()->Unit){
         var parameter=DSLCommandParameter()
         parameter.apply(lambda)
         commandParameter=parameter.parameter
     }
-    fun action(lambda: cxplugins.cxfundamental.minecraft.command.ActionLambda){
+    fun target(vararg type:CommandSenderType){
+        targetList=type.toMutableList()
+    }
+    fun action(lambda: ActionLambda){
         this.commandAction=lambda
         /*CPMLCommandExecutor.register("tp"){
             parameter {

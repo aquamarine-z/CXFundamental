@@ -10,7 +10,7 @@ class CommandException(place: Int, reason: Reason) : RuntimeException() {
         internal set
     var reason: Reason
         internal set
-
+    var extraInformation:Any?=null
 
     /**
      * Reason
@@ -100,7 +100,8 @@ class CommandException(place: Int, reason: Reason) : RuntimeException() {
         DOUBLE(10000010, "输入的参数不是[Double]", "ArgsException"),
         BYTE(10000011, "输入的参数不是[Byte]", "ArgsException"),
         LONG(10000012, "输入的参数不是[Long]", "ArgsException"),
-        SHORT(10000013, "输入的参数不是[Short]", "ArgsException");
+        SHORT(10000013, "输入的参数不是[Short]", "ArgsException"),
+        WRONGSENDER(10000014,"该命令的执行者不正确","SenderException");
         internal var errorCode: Long = 0
         internal var description = ""
         internal var type = ""

@@ -5,15 +5,10 @@ import cxplugins.cxfundamental.minecraft.command.CommandSenderType
 import cxplugins.cxfundamental.minecraft.kotlindsl.openFrame
 import cxplugins.cxfundamental.minecraft.kotlindsl.openFrameSynchronously
 import cxplugins.cxfundamental.minecraft.kotlindsl.sendMessageWithColor
-import cxplugins.cxfundamental.minecraft.math.geometry.Vector2I
 import cxplugins.cxfundamental.minecraft.permission.CXCommandPermission
-import cxplugins.cxfundamental.minecraft.server.CXItemStack
-import cxplugins.cxfundamental.minecraft.swing.SwingButton
 import cxplugins.cxfundamental.minecraft.swing.SwingFrame
-import cxplugins.cxfundamental.minecraft.swing.SwingItemContainer
-import cxplugins.cxfundamental.minecraft.swing.SwingMultipagePanel
+import cxplugins.cxfundamental.minecraft.swing.dsl.*
 import org.bukkit.entity.Player
-import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.permissions.PermissionDefault
 import java.io.*
 import java.net.MalformedURLException
@@ -113,79 +108,69 @@ fun registerCommands() {
         usage = "/swing test"
         action {
             val window = SwingFrame("Test", 6)
-            val multipagePanel1 = SwingMultipagePanel(Vector2I(0, 0), 4, 5)
-            multipagePanel1.addEmptyPage()
-            multipagePanel1.addEmptyPage()
-            multipagePanel1.addEmptyPage()
-            multipagePanel1.addEmptyPage()
+            window.setContent {
+                multipagePanel(0, 0, 4, 5) {
 
-            val button1 = object : SwingButton(Vector2I(0, 0)) {
-                override fun onLeftClick(event: InventoryClickEvent) {
-                    super.onLeftClick(event)
-                    println(1)
+                    newPage {
+                        button(0, 0) {
+                            onLeftClick {
+                                println(1)
+                            }
+                        }
+                    }
+                    newPage {
+                        button(1, 1) {
+                            onLeftClick {
+                                println(2)
+                            }
+                        }
+                    }
+                    newPage {
+                        button(2, 2) {
+                            onLeftClick {
+                                println(3)
+                            }
+                        }
+                    }
+                    newPage {
+                        itemContainer(3, 3) {
+                            title("ItemInside")
+                            description("This is a default item inside the container")
+                            amount(5)
+                        }
+                    }
+                }
+                multipagePanel(4, 0, 4, 5) {
+                    newPage {
+                        button(0, 0) {
+                            onLeftClick {
+                                println(1)
+                            }
+                        }
+                    }
+                    newPage {
+                        button(1, 1) {
+                            onLeftClick {
+                                println(2)
+                            }
+                        }
+                    }
+                    newPage {
+                        button(2, 2) {
+                            onLeftClick {
+                                println(3)
+                            }
+                        }
+                    }
+                    newPage {
+                        itemContainer(3, 3) {
+                            title("ItemInside")
+                            description("This is a default item inside the container")
+                            amount(5)
+                        }
+                    }
                 }
             }
-
-            val button2 = object : SwingButton(Vector2I(1, 1)) {
-                override fun onLeftClick(event: InventoryClickEvent) {
-                    super.onLeftClick(event)
-                    println(2)
-                }
-            }
-
-            val button3 = object : SwingButton(Vector2I(2, 2)) {
-                override fun onLeftClick(event: InventoryClickEvent) {
-                    super.onLeftClick(event)
-                    println(3)
-                }
-            }
-            val button4 = object : SwingButton(Vector2I(3, 3)) {
-                override fun onLeftClick(event: InventoryClickEvent) {
-                    super.onLeftClick(event)
-                    println(4)
-                }
-            }
-            multipagePanel1.setComponent(0, button1)
-            multipagePanel1.setComponent(1, button2)
-            multipagePanel1.setComponent(2, button3)
-            multipagePanel1.setComponent(3, button4)
-
-            val multipagePanel2 = SwingMultipagePanel(Vector2I(4, 0), 4, 5)
-            val container1 = object : SwingItemContainer(Vector2I(0, 0), itemInside = CXItemStack(1, 1, "", "")) {
-                override fun onItemChange(event: InventoryClickEvent) {
-                    super.onItemChange(event)
-                    println(itemInside!!.type)
-                }
-            }
-            val container2 = object : SwingItemContainer(Vector2I(1, 1)) {
-                override fun onItemChange(event: InventoryClickEvent) {
-                    super.onItemChange(event)
-                    println(itemInside!!.type)
-                }
-            }
-            val container3 = object : SwingItemContainer(Vector2I(2, 2)) {
-                override fun onItemChange(event: InventoryClickEvent) {
-                    super.onItemChange(event)
-                    println(itemInside!!.type)
-                }
-            }
-            val container4 = object : SwingItemContainer(Vector2I(3, 3)) {
-                override fun onItemChange(event: InventoryClickEvent) {
-                    super.onItemChange(event)
-                    println(itemInside!!.type)
-                }
-            }
-
-            multipagePanel2.addEmptyPage()
-            multipagePanel2.addEmptyPage()
-            multipagePanel2.addEmptyPage()
-            multipagePanel2.addEmptyPage()
-            multipagePanel2.setComponent(0, container1)
-            multipagePanel2.setComponent(1, button2)
-            multipagePanel2.setComponent(2, button3)
-            multipagePanel2.setComponent(3, button4)
-            window.setComponent(multipagePanel1)
-            window.setComponent(multipagePanel2)
             SwingFrame.openFrame((sender as Player), window)
             true
         }

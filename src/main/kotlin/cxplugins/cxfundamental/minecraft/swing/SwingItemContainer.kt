@@ -10,8 +10,8 @@ open class SwingItemContainer(override val position: Vector2I, override var item
 
 
     override fun onItemChange(event: InventoryClickEvent) {
-        itemInside = event.cursor
-
+        itemInside = event.cursor.clone()
+        if (itemChangeLambda != null) itemChangeLambda!!(event)
 
     }
 
@@ -46,7 +46,8 @@ open class SwingItemContainer(override val position: Vector2I, override var item
         this.position.y = point.y
     }
 
+
     override var height: Int = 1
     override var width: Int = 1
-
+    var itemChangeLambda: ((event: InventoryClickEvent) -> Unit)? = null
 }

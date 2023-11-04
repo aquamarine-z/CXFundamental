@@ -1,5 +1,4 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.plugin.mpp.pm20.util.distsDirectory
 
 val kotlinVersion = "1.9.20-RC2"
 buildscript {
@@ -97,7 +96,7 @@ val buildApiJar = task("buildApiJar", type = Jar::class) {
     from(sourceSets.getByName("main").output) // 添加编译输出目录到JAR中
     exclude("**/dependencies/**") // 排除依赖目录下的文件
     includeEmptyDirs = false // 不包含空目录
-    baseName = "CXFundamental-Api-${version}"
-    distsDirectory.set(File("api"))
+    baseName = "CXFundamental-Api"
+    destinationDir = File("api")
 }
 

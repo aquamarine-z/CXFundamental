@@ -1,0 +1,16 @@
+name: CXFundamental
+main: cxplugins.cxfundamental.minecraft.plugin.CXFundamentalMain
+version: 1.6.4-Unstable
+depend: [CXBaseRuntime]
+commands:
+  cxp:
+    description: CXFundamental
+    usage: /cxp
+    permission: cxfundamental.op
+    permission-message: You don't have <permission>
+  permissions:
+    cxfundamental.op:
+      description: CXFundamental permissions for op
+      default: Op
+
+

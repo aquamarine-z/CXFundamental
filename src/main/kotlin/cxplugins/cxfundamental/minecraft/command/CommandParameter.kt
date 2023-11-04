@@ -3,7 +3,7 @@ package cxplugins.cxfundamental.minecraft.command
 import org.bukkit.plugin.Plugin
 
 
-class DELCommandInformationWithRegistration : DSLCommandInformation() {
+class DSLCommandInformationWithRegistration : DSLCommandInformation() {
     lateinit var command: String
     var description = ""
     var usage = ""

@@ -444,8 +444,8 @@ class CPMLCommandExecutor {
             return true
         }
 
-        fun register(lambda: DELCommandInformationWithRegistration.() -> Unit): PluginCommand? {
-            var information = DELCommandInformationWithRegistration()
+        fun register(lambda: DSLCommandInformationWithRegistration.() -> Unit): PluginCommand? {
+            var information = DSLCommandInformationWithRegistration()
             information.apply(lambda)
             val command = information.command
             var parameter = information.commandParameter

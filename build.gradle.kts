@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.plugin.mpp.pm20.util.distsDirectory
 
 val kotlinVersion = "1.9.20-RC2"
 buildscript {
@@ -22,8 +23,8 @@ buildscript {
 }
 plugins {
     id("java")
-    id("com.github.johnrengelman.shadow") version "5.0.0"
-    id("org.jetbrains.dokka") version "1.9.0"
+    //id("com.github.johnrengelman.shadow") version "5.0.0"
+    id("org.jetbrains.dokka") version "1.9.10"
     kotlin("jvm") version "1.9.20-RC2" //String' can't be called in this context by implicit receiver. Use the explicit one if necessary
 }
 apply {
@@ -64,7 +65,12 @@ repositories {
     jcenter()
     maven("https://dl.bintray.com/kotlin/kotlin-eap")
 }
+tasks.compileJava {
 
+}
+java {
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
 kotlin {
     compilerOptions {
         apiVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_1_9)
@@ -85,12 +91,13 @@ kotlin {
     exclude ("libs/spigot-1.12.2.jar")
     this.destinationDir=File("./runtime")
 }*/
+
 val buildApiJar = task("buildApiJar", type = Jar::class) {
     dependsOn("compileKotlin") // 依赖于Kotlin编译任务，确保在此任务执行之前先编译Kotlin代码
     from(sourceSets.getByName("main").output) // 添加编译输出目录到JAR中
     exclude("**/dependencies/**") // 排除依赖目录下的文件
     includeEmptyDirs = false // 不包含空目录
-    baseName = "${project.name}-Api"
-    this.destinationDir = File("./api")
+    baseName = "CXFundamental-Api-${version}"
+    distsDirectory.set(File("api"))
 }
 

@@ -1,0 +1,50 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+$dokka.location:cxplugins.cxfundamental.minecraft.command/CPMLCommandExecutor.Companion///PointingToDeclaration/cxplugins/cxfundamental/minecraft/command/CPMLCommandExecutor.Companion.html
+$dokka.location:cxplugins.cxfundamental.minecraft.command/CommandException.Reason///PointingToDeclaration/cxplugins/cxfundamental/minecraft/command/CommandException.Reason.html
+$dokka.location:cxplugins.cxfundamental.minecraft.datastructure/CXTree.Companion///PointingToDeclaration/cxplugins/cxfundamental/minecraft/datastructure/CXTree.Companion.html
+$dokka.location:cxplugins.cxfundamental.minecraft.file/CXPlayerDataEditorPlus.Companion///PointingToDeclaration/cxplugins/cxfundamental/minecraft/file/CXPlayerDataEditorPlus.Companion.html
+$dokka.location:cxplugins.cxfundamental.minecraft.language/LanguageManager.Companion///PointingToDeclaration/cxplugins/cxfundamental/minecraft/language/LanguageManager.Companion.html
+$dokka.location:cxplugins.cxfundamental.minecraft.plugin/PluginLanguage.Companion///PointingToDeclaration/cxplugins/cxfundamental/minecraft/plugin/PluginLanguage.Companion.html
+$dokka.location:cxplugins.cxfundamental.minecraft.server.nms.itemnbt/AttributeOperation.Companion///PointingToDeclaration/cxplugins/cxfundamental/minecraft/server/nms/itemnbt/AttributeOperation.Companion.html
+$dokka.location:cxplugins.cxfundamental.minecraft.server.nms.itemnbt/ItemAttribute.Companion///PointingToDeclaration/cxplugins/cxfundamental/minecraft/server/nms/itemnbt/ItemAttribute.Companion.html
+$dokka.location:cxplugins.cxfundamental.minecraft.server.nms.itemnbt/ItemSlot.Companion///PointingToDeclaration/cxplugins/cxfundamental/minecraft/server/nms/itemnbt/ItemSlot.Companion.html
+$dokka.location:cxplugins.cxfundamental.minecraft.server.nms.itemnbt/NBTBase.Companion///PointingToDeclaration/cxplugins/cxfundamental/minecraft/server/nms/itemnbt/NBTBase.Companion.html
+$dokka.location:cxplugins.cxfundamental.minecraft.server.nms.itemnbt/NBTTagByte.Companion///PointingToDeclaration/cxplugins/cxfundamental/minecraft/server/nms/itemnbt/NBTTagByte.Companion.html
+$dokka.location:cxplugins.cxfundamental.minecraft.server.nms.itemnbt/NBTTagByteArray.Companion///PointingToDeclaration/cxplugins/cxfundamental/minecraft/server/nms/itemnbt/NBTTagByteArray.Companion.html
+$dokka.location:cxplugins.cxfundamental.minecraft.server.nms.itemnbt/NBTTagCompound.Companion///PointingToDeclaration/cxplugins/cxfundamental/minecraft/server/nms/itemnbt/NBTTagCompound.Companion.html
+$dokka.location:cxplugins.cxfundamental.minecraft.server.nms.itemnbt/NBTTagDouble.Companion///PointingToDeclaration/cxplugins/cxfundamental/minecraft/server/nms/itemnbt/NBTTagDouble.Companion.html
+$dokka.location:cxplugins.cxfundamental.minecraft.server.nms.itemnbt/NBTTagFloat.Companion///PointingToDeclaration/cxplugins/cxfundamental/minecraft/server/nms/itemnbt/NBTTagFloat.Companion.html
+$dokka.location:cxplugins.cxfundamental.minecraft.server.nms.itemnbt/NBTTagInt.Companion///PointingToDeclaration/cxplugins/cxfundamental/minecraft/server/nms/itemnbt/NBTTagInt.Companion.html
+$dokka.location:cxplugins.cxfundamental.minecraft.server.nms.itemnbt/NBTTagIntArray.Companion///PointingToDeclaration/cxplugins/cxfundamental/minecraft/server/nms/itemnbt/NBTTagIntArray.Companion.html
+$dokka.location:cxplugins.cxfundamental.minecraft.server.nms.itemnbt/NBTTagList.Companion///PointingToDeclaration/cxplugins/cxfundamental/minecraft/server/nms/itemnbt/NBTTagList.Companion.html
+$dokka.location:cxplugins.cxfundamental.minecraft.server.nms.itemnbt/NBTTagLong.Companion///PointingToDeclaration/cxplugins/cxfundamental/minecraft/server/nms/itemnbt/NBTTagLong.Companion.html
+$dokka.location:cxplugins.cxfundamental.minecraft.server.nms.itemnbt/NBTTagShort.Companion///PointingToDeclaration/cxplugins/cxfundamental/minecraft/server/nms/itemnbt/NBTTagShort.Companion.html
+$dokka.location:cxplugins.cxfundamental.minecraft.server.nms.itemnbt/NBTTagString.Companion///PointingToDeclaration/cxplugins/cxfundamental/minecraft/server/nms/itemnbt/NBTTagString.Companion.html
+$dokka.location:cxplugins.cxfundamental.minecraft.server/CXColor.Companion///PointingToDeclaration/cxplugins/cxfundamental/minecraft/server/CXColor.Companion.html
+$dokka.location:cxplugins.cxfundamental.minecraft.server/CXCrafting.Companion///PointingToDeclaration/cxplugins/cxfundamental/minecraft/server/CXCrafting.Companion.html
+$dokka.location:cxplugins.cxfundamental.minecraft.server/CXCraftingException.Reason///PointingToDeclaration/cxplugins/cxfundamental/minecraft/server/CXCraftingException.Reason.html
+$dokka.location:cxplugins.cxfundamental.minecraft.server/CXInventory.Companion///PointingToDeclaration/cxplugins/cxfundamental/minecraft/server/CXInventory.Companion.html
+$dokka.location:cxplugins.cxfundamental.minecraft.server/CXMessage.Companion///PointingToDeclaration/cxplugins/cxfundamental/minecraft/server/CXMessage.Companion.html
+$dokka.location:cxplugins.cxfundamental.minecraft.swing/SwingFrame.Companion///PointingToDeclaration/cxplugins/cxfundamental/minecraft/swing/SwingFrame.Companion.html
+$dokka.location:cxplugins.cxfundamental.minecraft.swing/SwingUIListener.Companion///PointingToDeclaration/cxplugins/cxfundamental/minecraft/swing/SwingUIListener.Companion.html
+$dokka.location:cxplugins.plugins.cxpoint/CXEconomy.Companion///PointingToDeclaration/cxplugins/plugins/cxpoint/CXEconomy.Companion.html
+$dokka.location:cxplugins.plugins.cxpoint/PluginSetEconomyEvent.Companion///PointingToDeclaration/cxplugins/plugins/cxpoint/PluginSetEconomyEvent.Companion.html
+cxplugins.cxfundamental.minecraft.command
+cxplugins.cxfundamental.minecraft.datastructure
+cxplugins.cxfundamental.minecraft.dependiences
+cxplugins.cxfundamental.minecraft.file
+cxplugins.cxfundamental.minecraft.kotlindsl
+cxplugins.cxfundamental.minecraft.language
+cxplugins.cxfundamental.minecraft.math
+cxplugins.cxfundamental.minecraft.math.geometry
+cxplugins.cxfundamental.minecraft.permission
+cxplugins.cxfundamental.minecraft.plugin
+cxplugins.cxfundamental.minecraft.server
+cxplugins.cxfundamental.minecraft.server.nms
+cxplugins.cxfundamental.minecraft.server.nms.itemnbt
+cxplugins.cxfundamental.minecraft.swing
+cxplugins.cxfundamental.minecraft.swing.dsl
+cxplugins.cxfundamental.minecraft.ui
+cxplugins.plugins.cxpoint
+

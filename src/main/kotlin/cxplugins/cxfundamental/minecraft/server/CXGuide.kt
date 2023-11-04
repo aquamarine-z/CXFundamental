@@ -9,7 +9,7 @@ object CXGuide {
              * 此插件的版本号
              */
     val version: String
-        get() = "Version: CXFundamental 1.6.3"
+        get() = "Version: CXFundamental 1.6.4-Unstable"
 
     @JvmStatic
             /**

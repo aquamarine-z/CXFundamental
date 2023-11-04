@@ -4,7 +4,6 @@ import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import java.io.File
 import java.util.*
-import java.util.List
 
 /**
  * 为修改玩家保存在".\\plugins\\CXPlugins\\Players"中的配置文件进行操作的简化类
@@ -31,7 +30,7 @@ object CXPlayerDataEditor {
                 result.add(CXYamlConfiguration("\\CXPlugins\\Players", fileName))
 
             }
-            return result as List<CXYamlConfiguration>
+            return result
         }
 
     @JvmStatic

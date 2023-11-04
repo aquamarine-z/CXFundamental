@@ -20,7 +20,7 @@ import java.io.IOException
 class CXYamlConfiguration : YamlConfiguration {
 
     private var path: String? = null
-    private val Defaults = HashMap<String, Any>()
+    private val defaultData = HashMap<String, Any>()
     private var folderPath: String? = null
     private var fileName: String? = null
     private var file: File? = null
@@ -47,20 +47,20 @@ class CXYamlConfiguration : YamlConfiguration {
     /**
      * 加载配置文件 其路径为".\\plugins\\FolderPath\\File_Name"
      *
-     * @param FolderPath 文件夹路径
-     * @param File_Name 文件名字
+     * @param folderPath 文件夹路径
+     * @param fileName 文件名字
      * @return 若此文件为新建文件则返回false 若此文件已存在则返回true
      */
-    fun load(FolderPath: String?, File_Name: String?): Boolean {
+    fun load(folderPath: String?, fileName: String?): Boolean {
         var Exist = true
         if (!loaded) {
             registerAllClasses()
             loaded = true
         }
-        if (createFolder(FolderPath)) Exist = false
-        if (createFile(FolderPath + "\\" + File_Name)) Exist = false
+        if (createFolder(folderPath)) Exist = false
+        if (createFile(folderPath + "\\" + fileName)) Exist = false
         try {
-            val file = File(".\\plugins\\$FolderPath\\$File_Name")
+            val file = File(".\\plugins\\$folderPath\\$fileName")
             this.load(file)
             this.file = file
         } catch (e: IOException) {
@@ -72,10 +72,10 @@ class CXYamlConfiguration : YamlConfiguration {
             e.printStackTrace()
         }
 
-        folderPath = FolderPath
-        fileName = File_Name
+        this.folderPath = folderPath
+        this.fileName = fileName
         try {
-            path = File(".\\plugins\\$FolderPath\\$File_Name").canonicalPath
+            path = File(".\\plugins\\$folderPath\\$fileName").canonicalPath
         } catch (e: IOException) {
             // TODO 自动生成的 catch 块
             e.printStackTrace()
@@ -86,21 +86,21 @@ class CXYamlConfiguration : YamlConfiguration {
 
     /**
      * 设置此配置文件的默认值:若此值存在 则不做修改 若不存在 则新建此值 值为设定好的值
-     * @param Path 路径
+     * @param path 路径
      * @param a 值
      */
-    fun setDefault(Path: String, a: Any) {
-        Defaults.put(Path, a)
+    fun setDefault(path: String, a: Any) {
+        defaultData.put(path, a)
         return
     }
 
     /**
      * 删除默认值
      *
-     * @param Path 默认值的路径
+     * @param path 默认值的路径
      */
-    fun removeDefault(Path: String) {
-        Defaults.remove(Path)
+    fun removeDefault(path: String) {
+        defaultData.remove(path)
         return
     }
 
@@ -110,8 +110,8 @@ class CXYamlConfiguration : YamlConfiguration {
      */
     fun saveDefault() {
         val Keys = ArrayList(this.getKeys(false))
-        for (Path in Defaults.keys) {
-            if (!Keys.contains(Path)) this.set(Path, Defaults[Path])
+        for (Path in defaultData.keys) {
+            if (!Keys.contains(Path)) this.set(Path, defaultData[Path])
         }
         return
     }
@@ -174,12 +174,12 @@ class CXYamlConfiguration : YamlConfiguration {
          * 在".\\plugins"路径下新建文件夹
          *
          *
-         * @param CPath 文件夹路径
+         * @param path 文件夹路径
          **/
         @JvmStatic
-        fun createFolder(CPath: String?): Boolean {
-            if (!File(".\\plugins\\" + CPath!!).exists()) {
-                File(".\\plugins\\$CPath").mkdirs()
+        fun createFolder(path: String?): Boolean {
+            if (!File(".\\plugins\\" + path!!).exists()) {
+                File(".\\plugins\\$path").mkdirs()
                 return true
             } else
                 return false
@@ -189,13 +189,13 @@ class CXYamlConfiguration : YamlConfiguration {
          * 在".\\plugins"路径下新建文件
          *
          *
-         * @param CPath 文件路径
+         * @param path 文件路径
          **/
         @JvmStatic
-        fun createFile(CPath: String): Boolean {
-            if (!File(".\\plugins\\$CPath").exists()) {
+        fun createFile(path: String): Boolean {
+            if (!File(".\\plugins\\$path").exists()) {
                 try {
-                    File(".\\plugins\\$CPath").createNewFile()
+                    File(".\\plugins\\$path").createNewFile()
                 } catch (e: IOException) {
                     // TODO 自动生成的 catch 块
                     e.printStackTrace()
@@ -209,42 +209,42 @@ class CXYamlConfiguration : YamlConfiguration {
         /**
          * 加载配置文件 其路径为".\\plugins\\FolderPath\\File_Name"
          *
-         * @param FolderPath 文件夹路径
-         * @param File_Name 文件名字
+         * @param folderPath 文件夹路径
+         * @param fileName 文件名字
          * @return 此配置文件类
          * */
         @JvmStatic
-        fun open(FolderPath: String, File_Name: String): YamlConfiguration {
-            createFolder(FolderPath)
-            createFile(FolderPath + "\\" + File_Name)
+        fun open(folderPath: String, fileName: String): YamlConfiguration {
+            createFolder(folderPath)
+            createFile(folderPath + "\\" + fileName)
             if (!loaded) {
                 registerAllClasses()
                 loaded = true
             }
-            return CXYamlConfiguration(FolderPath, File_Name)
+            return CXYamlConfiguration(folderPath, fileName)
         }
 
         /**
          * 在其路径为".\\plugins\\FolderPath\\File_Name"的位置查找是否有配置文件
          *
-         * @param FolderPath 文件夹路径
-         * @param File_Name 文件名字
+         * @param folderPath 文件夹路径
+         * @param fileName 文件名字
          * @return 若有文件 则返回true 否则返回false
          * */
         @JvmStatic
-        fun isExist(FolderPath: String, File_Name: String): Boolean {
-            return File(".\\plugins\\$FolderPath\\$File_Name").exists()
+        fun isExist(folderPath: String, fileName: String): Boolean {
+            return File(".\\plugins\\$folderPath\\$fileName").exists()
         }
 
         /**
          * 注册一个类 使其能够进行序列化操作
          *
-         * @param Class 需要注册的类 需实现ConfigurationSerializable接口
+         * @param classToSerialize 需要注册的类 需实现ConfigurationSerializable接口
          * @return 总是返回注册成功的信息(true)
          * */
         @JvmStatic
-        fun register(Class: Class<out ConfigurationSerializable>): Boolean {
-            ConfigurationSerialization.registerClass(Class)
+        fun register(classToSerialize: Class<out ConfigurationSerializable>): Boolean {
+            ConfigurationSerialization.registerClass(classToSerialize)
             return true
         }
     }

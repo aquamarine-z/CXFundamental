@@ -99,23 +99,23 @@ class CXInventory(var inventory: Inventory = Bukkit.createInventory(null, Invent
         /**
          * 创建一个Inventory
          *
-         * @param IT 此容器的类型
-         * @param Title 此容器的标题
+         * @param inventoryType 此容器的类型
+         * @param title 此容器的标题
          * @return 创建的容器
          */
-        fun create(IT: InventoryType, Title: String): Inventory {
-            return Bukkit.createInventory(null, IT, Title)
+        fun create(inventoryType: InventoryType, title: String): Inventory {
+            return Bukkit.createInventory(null, inventoryType, title)
         }
 
         /**
          * 创建一个Inventory
          *
-         * @param Amount 此容器的大小
-         * @param Title 此容器的标题
+         * @param amount 此容器的大小
+         * @param title 此容器的标题
          * @return 创建的容器
          */
-        fun create(Amount: Int, Title: String): Inventory {
-            return Bukkit.createInventory(null, Amount, Title)
+        fun create(amount: Int, title: String): Inventory {
+            return Bukkit.createInventory(null, amount, title)
 
         }
 
@@ -150,15 +150,15 @@ class CXInventory(var inventory: Inventory = Bukkit.createInventory(null, Invent
         /**
          * 根据一个已有的容器创建一个新的Inventory
          *
-         * @param From 已有的容器
-         * @param Title 此容器的标题
+         * @param from 已有的容器
+         * @param title 此容器的标题
          * @return 创建的容器
          */
-        fun create(From: Inventory, Title: String): Inventory {
-            var Result = Bukkit.createInventory(null, From.type, Title)
-            if (From.type == InventoryType.CHEST) Result = Bukkit.createInventory(null, From.size, Title)
-            for (i in 0 until From.size) {
-                if (From.getItem(i) != null) Result.setItem(i, From.getItem(i))
+        fun create(from: Inventory, title: String): Inventory {
+            var Result = Bukkit.createInventory(null, from.type, title)
+            if (from.type == InventoryType.CHEST) Result = Bukkit.createInventory(null, from.size, title)
+            for (i in 0 until from.size) {
+                if (from.getItem(i) != null) Result.setItem(i, from.getItem(i))
             }
             return Result
         }

@@ -93,7 +93,7 @@ class CPMLCommandExecutor {
      *
      */
     /**
-     * 表示一个命令的参数 (不建议生成对象)
+     * 表示一个命令的参数
      */
     private class CommandParameter(
         type: String,
@@ -138,7 +138,7 @@ class CPMLCommandExecutor {
     }
 
     /**
-     * 表示一个的参数命令列表 (不建议生成对象)
+     * 表示一个的参数命令列表
      */
     private class CommandParameterCompound {
         val parameters = ArrayList<CommandParameter>()
@@ -559,7 +559,7 @@ class CPMLCommandExecutor {
                 Companion.actionMap.put(command, action)
                 return true
             }
-            for (i in 0..parameter.size - 1) {
+            for (i in 0 until parameter.size) {
                 try {
                     parameter[i] = parameter[i].substring(1, parameter[i].length - 1)/*[name=integer,type=integer]*/
 

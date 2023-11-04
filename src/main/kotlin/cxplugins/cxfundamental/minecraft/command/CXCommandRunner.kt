@@ -11,6 +11,7 @@ import java.util.*
 /**
  * 简化对命令处理的类
  */
+@Deprecated("Use CPMLCommandExecutor Instead")
 object CXCommandRunner {
     var onlinePlayerNotFound = "Player Not Found"
     var playerNotFound = "Player Not Found"

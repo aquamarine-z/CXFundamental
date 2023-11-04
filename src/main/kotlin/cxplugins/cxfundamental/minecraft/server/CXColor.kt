@@ -118,24 +118,24 @@ class CXColor {
         /**
          * 将字符串进行颜色处理 即将'&'换为'§'
          *
-         * @param From 需要处理的字符串
+         * @param from 需要处理的字符串
          * @return 处理过的字符串
          */
         @JvmStatic
-        fun toColor(From: String): String {
-            return From.replace("&".toRegex(), "§")
+        fun toColor(from: String): String {
+            return from.replace("&".toRegex(), "§")
         }
 
         /**
          * 将物品的标题以及介绍进行颜色处理 即将'&'换为'§'
          *
-         * @param From 需要处理的物品
+         * @param from 需要处理的物品
          * @return 处理过的物品
          */
         @JvmStatic
-        fun toColor(From: ItemStack): ItemStack {
+        fun toColor(from: ItemStack): ItemStack {
             CXReplace.add("&", "§")
-            val Result = CXReplace.replace(From)
+            val Result = CXReplace.replace(from)
             CXReplace.remove("&")
             return Result
         }

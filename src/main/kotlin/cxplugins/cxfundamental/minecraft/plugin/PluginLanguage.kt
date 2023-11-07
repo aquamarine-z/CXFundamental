@@ -12,15 +12,16 @@ class PluginLanguage {
 
             chineseLanguagePack["cxplugins.cxfundamental.minecraft.language.LanguageManager.RegisterManagerTwice"] =
                 "此插件的语言管理器已经创建过了!"
-
-
             chineseLanguagePack["cxplugins.cxfundamental.minecraft.swing.SwingFrame.HeightOutOfBounds"] =
                 "窗口高度错误 高度只能为1~6"
-            chineseLanguagePack["cxplugins.cxfundamental.minecraft.swing.SwingFrame.WidthError"] = "窗口的宽度只能为9格"
-            chineseLanguagePack["cxplugins.cxfundamental.minecraft.swing.SwingFrame.Unrelocatable"] = "窗口无法设定位置"
+            chineseLanguagePack["cxplugins.cxfundamental.minecraft.swing.SwingFrame.WidthError"] =
+                "窗口的宽度只能为9格"
+            chineseLanguagePack["cxplugins.cxfundamental.minecraft.swing.SwingFrame.Unrelocatable"] =
+                "窗口无法设定位置"
             chineseLanguagePack["cxplugins.cxfundamental.minecraft.swing.SwingPanel.PositionOutOfBounds"] =
                 "位置参数超出该容器的范围"
-            chineseLanguagePack["cxplugins.cxfundamental.minecraft.swing.SwingPanel.WidthError"] = "容器的宽度只能为1~9"
+            chineseLanguagePack["cxplugins.cxfundamental.minecraft.swing.SwingPanel.WidthError"] =
+                "容器的宽度只能为1~9"
             chineseLanguagePack["cxplugins.cxfundamental.minecraft.swing.SwingPanel.HeightError"] =
                 "容器的高度只能为1~6"
             chineseLanguagePack["cxplugins.cxfundamental.minecraft.swing.SwingPanel.PositionError"] =

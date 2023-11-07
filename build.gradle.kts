@@ -67,11 +67,15 @@ repositories {
 tasks.compileJava {
 
 }
+tasks.withType<JavaExec> {
+    systemProperty("file.encoding", "utf-8")
+}
 java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 kotlin {
     compilerOptions {
+
         apiVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_1_9)
         jvmTarget.set(JvmTarget.JVM_1_8)
     }
@@ -92,10 +96,10 @@ kotlin {
 }*/
 
 val buildApiJar = task("buildApiJar", type = Jar::class) {
-    dependsOn("compileKotlin") // ÒÀÀµÓÚKotlin±àÒëÈÎÎñ£¬È·±£ÔÚ´ËÈÎÎñÖ´ĞĞÖ®Ç°ÏÈ±àÒëKotlin´úÂë
-    from(sourceSets.getByName("main").output) // Ìí¼Ó±àÒëÊä³öÄ¿Â¼µ½JARÖĞ
-    exclude("**/dependencies/**") // ÅÅ³ıÒÀÀµÄ¿Â¼ÏÂµÄÎÄ¼ş
-    includeEmptyDirs = false // ²»°üº¬¿ÕÄ¿Â¼
+    dependsOn("compileKotlin") // ä¾èµ–äºKotlinç¼–è¯‘ä»»åŠ¡ï¼Œç¡®ä¿åœ¨æ­¤ä»»åŠ¡æ‰§è¡Œä¹‹å‰å…ˆç¼–è¯‘Kotlinä»£ç 
+    from(sourceSets.getByName("main").output) // æ·»åŠ ç¼–è¯‘è¾“å‡ºç›®å½•åˆ°JARä¸­
+    exclude("**/dependencies/**") // æ’é™¤ä¾èµ–ç›®å½•ä¸‹çš„æ–‡ä»¶
+    includeEmptyDirs = false // ä¸åŒ…å«ç©ºç›®å½•
     baseName = "CXFundamental-Api"
     destinationDir = File("api")
 }

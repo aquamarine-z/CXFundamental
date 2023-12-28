@@ -7,153 +7,123 @@ import org.bukkit.entity.Player
 typealias ScriptExecuteLambda = (Player, String, String) -> Unit
 
 /**
- * ½Å±¾(°üº¬¶àÌõÃüÁîµÄÁĞ±í)
+ * è„šæœ¬(åŒ…å«å¤šæ¡å‘½ä»¤çš„åˆ—è¡¨)
  */
 class CXScript : ConfigurationSerializable {
     /**
-     * ÃüÁîµÄÁĞ±í
+     * å‘½ä»¤åˆ—è¡¨
      */
-    var commands: MutableList<String>
-        /**
-         * »ñÈ¡ÃüÁîµÄÁĞ±í
-         */
-        get() = Commands
-        /**
-         * ÉèÖÃÃüÁîµÄÁĞ±í
-         */
-        set(commands) {
-            Commands = commands
-        }
+    var commands: MutableList<String> = ArrayList()
 
     /**
-     * Éí·İµÄÁĞ±í
+     * èº«ä»½åˆ—è¡¨
      */
-    var roles: MutableList<String>
-        /**
-         * »ñÈ¡Éí·İµÄÁĞ±í
-         */
-        get() = Roles
-        /**
-         * ÉèÖÃÉí·İµÄÁĞ±í
-         */
-        set(roles) {
-            Roles = roles
-        }
+    var roles: MutableList<String> = ArrayList()
 
     /**
-     * ÃüÁîÁĞ±í
+     *æ·»åŠ ä¸€ä¸ªå‘½ä»¤
+     * @param command éœ€è¦æ·»åŠ çš„å‘½ä»¤
+     * @param role ä»¥ä»€ä¹ˆèº«ä»½æ‰§è¡Œæ­¤å‘½ä»¤
      */
-    private var Commands: MutableList<String> = ArrayList()
-
-    /**
-     * Éí·İÁĞ±í
-     */
-    private var Roles: MutableList<String> = ArrayList()
-
-    /**
-     *Ìí¼ÓÒ»¸öÃüÁî
-     * @param Command ĞèÒªÌí¼ÓµÄÃüÁî
-     * @param Role ÒÔÊ²Ã´Éí·İÖ´ĞĞ´ËÃüÁî
-     */
-    fun add(Command: String, Role: String) {
-        Commands.add(Command)
-        Roles.add(Role)
+    fun add(command: String, role: String) {
+        commands.add(command)
+        this.roles.add(role)
     }
 
     /**
-     *É¾³ıËùÓĞÆ¥ÅäµÄÃüÁî
-     * @param Command É¾³ıµÄÃüÁî
-     * @param Role Éí·İ
+     *åˆ é™¤æ‰€æœ‰åŒ¹é…çš„å‘½ä»¤
+     * @param command åˆ é™¤çš„å‘½ä»¤
+     * @param role èº«ä»½
      */
-    fun removeAll(Command: String, Role: String) {
-        for (i in Commands.indices) {
-            if (Commands[i] == Command && Roles[i] == Role) {
-                Commands.removeAt(i)
-                Roles.removeAt(i)
+    fun removeAll(command: String, role: String) {
+        for (i in commands.indices) {
+            if (commands[i] == command && this.roles[i] == role) {
+                commands.removeAt(i)
+                this.roles.removeAt(i)
             }
         }
     }
 
     /**
-     * É¾³ıÖ¸¶¨ĞĞÊıµÄÃüÁî
+     * åˆ é™¤æŒ‡å®šè¡Œæ•°çš„å‘½ä»¤
      *
-     * @param Line ÃüÁîµÄĞĞÊı
+     * @param line å‘½ä»¤çš„è¡Œæ•°
      */
-    fun remove(Line: Int) {
-        Commands.removeAt(Line)
-        Roles.removeAt(Line)
+    fun remove(line: Int) {
+        commands.removeAt(line)
+        this.roles.removeAt(line)
     }
 
     /**
-     * Ö´ĞĞ´Ë½Å±¾
+     * æ‰§è¡Œæ­¤è„šæœ¬
      *
-     * @param Sender Ö´ĞĞµÄÍæ¼Ò
+     * @param sender æ‰§è¡Œçš„ç©å®¶
      */
-    fun perform(Sender: Player, executors: List<ScriptExecuteLambda> = ArrayList<ScriptExecuteLambda>()) {
-        for (i in Commands.indices) {
+    fun perform(sender: Player, executors: List<ScriptExecuteLambda> = ArrayList<ScriptExecuteLambda>()) {
+        for (i in commands.indices) {
             for (executor in executors) {
-                executor(Sender, Commands[i], Roles[i])
+                executor(sender, commands[i], this.roles[i])
             }
-            if (Roles[i] == "Player")
-                Sender.performCommand(Commands[i])
-            else if (Roles[i] == "Op") CXCommand.runWithoutPermission(Sender, Commands[i])
-            else if (Roles[i] == "Console") CXCommand.sendCommandToConsole(Commands[i])
+            if (this.roles[i] == "Player")
+                sender.performCommand(commands[i])
+            else if (this.roles[i] == "Op") CXCommand.runWithoutPermission(sender, commands[i])
+            else if (this.roles[i] == "Console") CXCommand.sendCommandToConsole(commands[i])
         }
     }
 
-    fun perform(Sender: Player) {
-        for (i in Commands.indices) {
-            if (Roles[i] == "Player")
-                Sender.performCommand(Commands[i])
-            else if (Roles[i] == "Op")
-                CXCommand.runWithoutPermission(Sender, Commands[i])
-            else if (Roles[i] == "Console") CXCommand.sendCommandToConsole(Commands[i])
+    fun perform(sender: Player) {
+        for (i in commands.indices) {
+            if (this.roles[i] == "Player")
+                sender.performCommand(commands[i])
+            else if (this.roles[i] == "Op")
+                CXCommand.runWithoutPermission(sender, commands[i])
+            else if (this.roles[i] == "Console") CXCommand.sendCommandToConsole(commands[i])
         }
     }
 
     /**
-     * ÒÔ¿ØÖÆÌ¨Éí·İÖ´ĞĞ´Ë½Å±¾
+     * ä»¥æ§åˆ¶å°èº«ä»½æ‰§è¡Œæ­¤è„šæœ¬
      *
      */
     fun performAsConsole() {
-        for (i in Commands.indices) {
-            if (Roles[i] == "Player")
+        for (i in commands.indices) {
+            if (this.roles[i] == "Player")
                 continue
-            else if (Roles[i] == "Op")
+            else if (this.roles[i] == "Op")
                 continue
-            else if (Roles[i] == "Console") CXCommand.sendCommandToConsole(CXReplace.replace(Commands[i]))
+            else if (this.roles[i] == "Console") CXCommand.sendCommandToConsole(CXReplace.replace(commands[i]))
         }
     }
 
     /**
-     * É¾³ıËùÓĞÃüÁî
+     * åˆ é™¤æ‰€æœ‰å‘½ä»¤
      *
-     * @param Command ĞèÒªÉ¾³ıµÄÃüÁî
+     * @param command éœ€è¦åˆ é™¤çš„å‘½ä»¤
      */
-    fun removeAll(Command: String) {
-        for (i in Commands.indices) {
-            if (Commands[i] == Command) {
-                Commands.removeAt(i)
-                Roles.removeAt(i)
+    fun removeAll(command: String) {
+        for (i in commands.indices) {
+            if (commands[i] == command) {
+                commands.removeAt(i)
+                this.roles.removeAt(i)
             }
         }
     }
 
     override fun serialize(): Map<String, Any> {
-        val Result = HashMap<String, Any>()
-        Result["Commands"] = Commands
-        Result["Roles"] = Roles
-        return Result
+        val result = HashMap<String, Any>()
+        result["Commands"] = commands
+        result["Roles"] = this.roles
+        return result
     }
 
     constructor(arg0: Map<String, Any>) {
-        Commands = (arg0["Commands"] as List<String>).toMutableList()
-        Roles = (arg0["Roles"] as List<String>).toMutableList()
+        commands = (arg0["Commands"] as List<String>).toMutableList()
+        this.roles = (arg0["Roles"] as List<String>).toMutableList()
     }
 
     constructor() {
-        Commands = ArrayList()
-        Roles = ArrayList()
-        // TODO ×Ô¶¯Éú³ÉµÄ¹¹Ôìº¯Êı´æ¸ù
+        commands = ArrayList()
+        this.roles = ArrayList()
+        // TODO è‡ªåŠ¨ç”Ÿæˆçš„æ„é€ å‡½æ•°å­˜æ ¹
     }
 }

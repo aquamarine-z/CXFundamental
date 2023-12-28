@@ -32,13 +32,12 @@ class DownloadedPluginControlFrame(val owner: Player) : CXFrame(6) {
 
                     itemStack.clone()
                 }
-                item.appendLore("&3&l½éÉÜ:${plugin.description}".toColor())
-                item.appendLore("&3&l×ó¼üµãÎÒ¹Ø±Õ´Ë²å¼þ")
-                item.appendLore("&3&lÓÒ¼üµãÎÒÆô¶¯´Ë²å¼þ")
-                item.appendLore("&3&l×ó¼üµãÎÒ+ÏÂ¶×ÖØÔØ´Ë²å¼þ")
-                item.appendLore("&4&lÓÒ¼üµãÎÒ+ÏÂ¶×É¾³ý´Ë²å¼þ")
-                var button = object : CXButton(item) {
-                    var plugin = plugin
+                item.appendLore("&3&lDescription:${plugin.description}".toColor())
+                item.appendLore("&3&lLeftClick:Shutdown this plugin")
+                item.appendLore("&3&lRightClick:Start this plugin")
+                item.appendLore("&3&l[LeftClick+Shift]:Reload this plugin")
+                item.appendLore("&4&l[RightClick+Shift]:Remove this plugin")
+                val button = object : CXButton(item) {
 
                     override fun onLeftClick(event: InventoryClickEvent, frame: CXFrame) {
                         event.isCancelled = true
@@ -46,9 +45,9 @@ class DownloadedPluginControlFrame(val owner: Player) : CXFrame(6) {
 
                         if (Bukkit.getPluginManager().isPluginEnabled(plugin)) {
                             Bukkit.getPluginManager().disablePlugin(plugin)
-                            owner.sendMessageWithColor("&2&l[CXFundamental]²Ù×÷³É¹¦ ´Ë²å¼þÒÑ¾­±»¹Ø±Õ")
+                            owner.sendMessageWithColor("&2&l[CXFundamental]This plugin has been shutdown successfully")
                         } else {
-                            owner.sendMessageWithColor("&4&l[CXFundamental]ÄãÎÞ·¨¹Ø±ÕÒ»¸öÒÑ¾­±»¹Ø±ÕµÄ²å¼þ")
+                            owner.sendMessageWithColor("&4&l[CXFundamental]You can't shutdown a plugin which has been already shutdown")
                         }
                         return
                     }
@@ -57,9 +56,9 @@ class DownloadedPluginControlFrame(val owner: Player) : CXFrame(6) {
                         event.isCancelled = true
                         if (!Bukkit.getPluginManager().isPluginEnabled(plugin)) {
                             Bukkit.getPluginManager().enablePlugin(plugin)
-                            owner.sendMessageWithColor("&2&l[CXFundamental]²Ù×÷³É¹¦ ´Ë²å¼þÒÑ¾­¿ªÆô")
+                            owner.sendMessageWithColor("&2&l[CXFundamental]This plugin has been started successfully")
                         } else {
-                            owner.sendMessageWithColor("&4&l[CXFundamental]ÄãÎÞ·¨¿ªÆôÒ»¸öÕýÔÚÔËÐÐµÄ²å¼þ")
+                            owner.sendMessageWithColor("&4&l[CXFundamental]You can't start a plugin which is running now!")
                         }
                         return
                     }
@@ -69,10 +68,10 @@ class DownloadedPluginControlFrame(val owner: Player) : CXFrame(6) {
                         try {
                             (plugin).reload()
                         } catch (exception: NoSuchMethodException) {
-                            owner.sendMessageWithColor("&4&l[CXFundamental]´Ë²å¼þ²»°üº¬ÖØÔØ¹¦ÄÜ")
+                            owner.sendMessageWithColor("&4&l[CXFundamental]This plugin doesn't contain the [Reload] method")
                             return
                         }
-                        owner.sendMessageWithColor("&2&l[CXFundamental]²Ù×÷³É¹¦ ´Ë²å¼þÒÑ¾­ÖØÔØ")
+                        owner.sendMessageWithColor("&2&l[CXFundamental]This plugins has been reloaded successfully")
 
                     }
 
@@ -80,7 +79,7 @@ class DownloadedPluginControlFrame(val owner: Player) : CXFrame(6) {
                         super.onRightShiftClick(event, frame)
                         val optionPane = object : CXOptionPane(
                             1,
-                            "&4ÄãÈ·¶¨ÒªÉ¾³ý´Ë²å¼þÂð?",
+                            "&4Are you sure to remove this plugin?",
                             CXOptionPaneButtonType.CONFIRM,
                             CXOptionPaneButtonType.CANCEL
                         ) {
@@ -89,9 +88,9 @@ class DownloadedPluginControlFrame(val owner: Player) : CXFrame(6) {
                                 Bukkit.getPluginManager().disablePlugin(plugin)
                                 if (File(".\\plugins\\${plugin.name}.jar").exists()) {
                                     File(".\\plugins\\${plugin.name}.jar").delete()
-                                    owner.sendMessageWithColor("&2&l[CXFundamental]²Ù×÷³É¹¦ ´Ë²å¼þÒÑ¾­±»É¾³ý")
+                                    owner.sendMessageWithColor("&2&l[CXFundamental]This plugin has been removed successfully")
                                 } else {
-                                    owner.sendMessageWithColor("&4&l[´íÎó]ÎÞ·¨ÕÒµ½´Ë²å¼þ ÇëÈ·¶¨´Ë²å¼þµÄÎÄ¼þÃûÊÇ·ñÎª <²å¼þÃû>.jar")
+                                    owner.sendMessageWithColor("&4&l[Error]Can't find the file of this plugin,please make sure the file is named <æ’ä»¶å>.jar")
                                 }
                                 owner.openFrame(DownloadedPluginControlFrame(owner))
                             }
@@ -111,18 +110,18 @@ class DownloadedPluginControlFrame(val owner: Player) : CXFrame(6) {
                     vector.blockX,
                     vector.blockY,
                     button,
-                    "&3&lCX¸½Êô²å¼þ¹ÜÀí½çÃæ".toColor()
+                    "&3&lCXPlugins Management Frame".toColor()
                 )
 
                 amount++
             }
         }
         multiPagePanel.setButtonOnButtonBar(4) {
-            item = CXItemStack(Material.COMMAND, 1, "&3&lÁªÍøÏÂÔØCXPlugins", "&3&lµãÎÒ»ñÈ¡CXPluginsÍøÉÏÏÂÔØ²Ëµ¥")
+            item = CXItemStack(Material.COMMAND, 1, "&3&lè”ç½‘ä¸‹è½½CXPlugins", "&3&lç‚¹æˆ‘èŽ·å–CXPluginsç½‘ä¸Šä¸‹è½½èœå•")
             leftClick { inventoryClickEvent: InventoryClickEvent, cxFrame: CXFrame ->
                 thread(true, true) {
 
-                    inventoryClickEvent.whoClicked.sendMessageWithColor("&3&lÕýÔÚ´ÓGiteeÖÐÀ­È¡²å¼þÁÐ±íÎÄ¼þ...........")
+                    inventoryClickEvent.whoClicked.sendMessageWithColor("&3&læ­£åœ¨ä»ŽGiteeä¸­æ‹‰å–æ’ä»¶åˆ—è¡¨æ–‡ä»¶...........")
                     try {
                         getAndSave(
                             "https://gitee.com/yuncaiyuye/cxplugins/raw/master/plugins.yml",
@@ -130,10 +129,10 @@ class DownloadedPluginControlFrame(val owner: Player) : CXFrame(6) {
                             "plugins.yml"
                         )
                     } catch (exception: Exception) {
-                        inventoryClickEvent.whoClicked.sendMessageWithColor("&2&l[´íÎó]À­È¡Ê§°Ü Çë¼ì²éÍøÂçÁ¬½Ó!")
+                        inventoryClickEvent.whoClicked.sendMessageWithColor("&2&l[é”™è¯¯]æ‹‰å–å¤±è´¥ è¯·æ£€æŸ¥ç½‘ç»œè¿žæŽ¥!")
 
                     } finally {
-                        inventoryClickEvent.whoClicked.sendMessageWithColor("&3&lÀ­È¡³É¹¦!")
+                        inventoryClickEvent.whoClicked.sendMessageWithColor("&3&læ‹‰å–æˆåŠŸ!")
                     }
                     inventoryClickEvent.whoClicked.openFrameSynchronously(
                         OnlinePluginControlFrame(),
@@ -186,18 +185,18 @@ class OnlinePluginVersionViewFrame(val pluginName: String) : CXFrame(6) {
         val versions = section.getKeys(false)
         var i = 0
         val multipagePanel = CXMultipagePanel(6)
-        multipagePanel.addEmptyPage("&3ÏÂÔØ:$pluginName")
+        multipagePanel.addEmptyPage("&3ä¸‹è½½:$pluginName")
         for (version in versions) {
             val button = object : CXButton() {
                 init {
                     item = CXItemStack(Material.CHEST, 1, "&c&l$pluginName:$version", "")
-                    val descriptionList = "&c&l½éÉÜ:${section["$version.description"] ?: "ÎÞ"}".split("\\n")
+                    val descriptionList = "&c&lä»‹ç»:${section["$version.description"] ?: "æ— "}".split("\\n")
                     for (description in descriptionList) {
                         item!!.appendLore(description)
                     }
 
-                    item!!.appendLore("&c&lÊÊÓÃµÄMinecraft°æ±¾:${section["$version.version"] ?: "ËùÓÐ"}")
-                    item!!.appendLore("&c&lÏÂÔØÁ´½Ó:${section["$version.download"] ?: "ÔÝÎÞÁ´½Ó"}")
+                    item!!.appendLore("&c&lé€‚ç”¨çš„Minecraftç‰ˆæœ¬:${section["$version.version"] ?: "æ‰€æœ‰"}")
+                    item!!.appendLore("&c&lä¸‹è½½é“¾æŽ¥:${section["$version.download"] ?: "æš‚æ— é“¾æŽ¥"}")
                 }
 
                 override fun onLeftClick(event: InventoryClickEvent, frame: CXFrame) {
@@ -209,7 +208,7 @@ class OnlinePluginVersionViewFrame(val pluginName: String) : CXFrame(6) {
                     if (pluginName in pluginNames) {
                         val optionPane = object : CXOptionPane(
                             1,
-                            "&4&l´Ë²å¼þÒÑ¾­´æÔÚ ÄãÈ·ÈÏÒªÖØÐÂÏÂÔØËüÂð?",
+                            "&4&læ­¤æ’ä»¶å·²ç»å­˜åœ¨ ä½ ç¡®è®¤è¦é‡æ–°ä¸‹è½½å®ƒå—?",
                             CXOptionPaneButtonType.CONFIRM,
                             CXOptionPaneButtonType.CANCEL
                         ) {
@@ -218,13 +217,13 @@ class OnlinePluginVersionViewFrame(val pluginName: String) : CXFrame(6) {
                                 val thread = object : Thread() {
                                     override fun run() {
                                         try {
-                                            event.whoClicked.sendMessageWithColor("&3&lÕýÔÚÏÂÔØ$pluginName ´Ë¹ý³Ì¿ÉÄÜÐèÒªÒ»¶ÎÊ±¼ä...")
+                                            event.whoClicked.sendMessageWithColor("&3&læ­£åœ¨ä¸‹è½½$pluginName æ­¤è¿‡ç¨‹å¯èƒ½éœ€è¦ä¸€æ®µæ—¶é—´...")
                                             downloadPlugin(pluginName, "${section["$version.download"]}")
                                         } catch (exception: Exception) {
                                             exception.printStackTrace()
-                                            event.whoClicked.sendMessageWithColor("&4[´íÎó]ÏÂÔØÊ§°Ü Çë¼ì²éÍøÂçÉèÖÃ:${exception.message}")
+                                            event.whoClicked.sendMessageWithColor("&4[é”™è¯¯]ä¸‹è½½å¤±è´¥ è¯·æ£€æŸ¥ç½‘ç»œè®¾ç½®:${exception.message}")
                                         } finally {
-                                            event.whoClicked.sendMessageWithColor("&2ÏÂÔØ $pluginName ³É¹¦! ÇëÊÖ¶¯ÖØÆô·þÎñÆ÷ ¸üÐÂ´Ë²å¼þ ÃüÁî:/reload")
+                                            event.whoClicked.sendMessageWithColor("&2ä¸‹è½½ $pluginName æˆåŠŸ! è¯·æ‰‹åŠ¨é‡å¯æœåŠ¡å™¨ æ›´æ–°æ­¤æ’ä»¶ å‘½ä»¤:/reload")
 
                                         }
                                     }
@@ -247,20 +246,20 @@ class OnlinePluginVersionViewFrame(val pluginName: String) : CXFrame(6) {
                                 downloadPlugin(pluginName, "${section["$version.download"]}")
                             } catch (exception: Exception) {
                                 exception.printStackTrace()
-                                event.whoClicked.sendMessageWithColor("&4[´íÎó]ÏÂÔØÊ§°Ü Çë¼ì²éÍøÂçÉèÖÃ:${exception.message}")
+                                event.whoClicked.sendMessageWithColor("&4[é”™è¯¯]ä¸‹è½½å¤±è´¥ è¯·æ£€æŸ¥ç½‘ç»œè®¾ç½®:${exception.message}")
                             } finally {
-                                event.whoClicked.sendMessageWithColor("&2ÏÂÔØ $pluginName ³É¹¦! ÇëÊÖ¶¯ÖØÆô·þÎñÆ÷ ¸üÐÂ´Ë²å¼þ ÃüÁî:/reload")
+                                event.whoClicked.sendMessageWithColor("&2ä¸‹è½½ $pluginName æˆåŠŸ! è¯·æ‰‹åŠ¨é‡å¯æœåŠ¡å™¨ æ›´æ–°æ­¤æ’ä»¶ å‘½ä»¤:/reload")
                             }
                         }
                     }
                     thread.start()
                 }
             }
-            multipagePanel.setWithCreateNewPage(i, button, "&3ÏÂÔØ:$pluginName")
+            multipagePanel.setWithCreateNewPage(i, button, "&3ä¸‹è½½:$pluginName")
             i++
         }
         multipagePanel.setButtonOnButtonBar(4) {
-            item = CXItemStack(Material.IRON_DOOR, 1, "&3&l·µ»Ø", "&3&lµãÎÒ·µ»Ø²å¼þÏÂÔØ²Ëµ¥")
+            item = CXItemStack(Material.IRON_DOOR, 1, "&3&lè¿”å›ž", "&3&lç‚¹æˆ‘è¿”å›žæ’ä»¶ä¸‹è½½èœå•")
             leftClick { inventoryClickEvent: InventoryClickEvent, cxFrame: CXFrame ->
                 inventoryClickEvent.whoClicked.openFrame(OnlinePluginControlFrame())
             }
@@ -286,7 +285,7 @@ class OnlinePluginControlFrame : CXFrame(6) {
             val description = configuration.getString("$pluginName.description", "No description")
             val button = object : CXButton() {
                 init {
-                    this.item = CXItemStack(Material.CHEST, 1, "&9$pluginName", "&9$description|&9µãÎÒ½øÈë²é¿´ÏêÏ¸")
+                    this.item = CXItemStack(Material.CHEST, 1, "&9$pluginName", "&9$description|&9ç‚¹æˆ‘è¿›å…¥æŸ¥çœ‹è¯¦ç»†")
                 }
 
                 override fun onLeftClick(event: InventoryClickEvent, frame: CXFrame) {
@@ -299,7 +298,7 @@ class OnlinePluginControlFrame : CXFrame(6) {
 
         }
         multipagePanel.setButtonOnButtonBar(4) {
-            item = CXItemStack(Material.IRON_DOOR, 1, "&3&l·µ»Ø", "&3µãÎÒ·µ»Ø²å¼þ²Ù×÷²Ëµ¥")
+            item = CXItemStack(Material.IRON_DOOR, 1, "&3&lè¿”å›ž", "&3ç‚¹æˆ‘è¿”å›žæ’ä»¶æ“ä½œèœå•")
             leftClick { event, cxFrame ->
                 event.whoClicked.openFrame(DownloadedPluginControlFrame(event.whoClicked as Player))
             }

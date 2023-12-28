@@ -37,3 +37,9 @@ fun SwingContainer.itemHolder(x: Int, y: Int, content: SwingItemHolder.() -> Uni
     itemHolderToAdd.apply(content)
     this.setComponent(itemHolderToAdd)
 }
+
+fun SwingContainer.itemContainer(x: Int, y: Int, content: SwingItemContainer.() -> Unit) {
+    val itemHolderToAdd = SwingItemContainer(Vector2I(x, y))
+    itemHolderToAdd.apply(content)
+    this.setComponent(itemHolderToAdd)
+}

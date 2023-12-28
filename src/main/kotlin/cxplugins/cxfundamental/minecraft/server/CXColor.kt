@@ -3,139 +3,139 @@ package cxplugins.cxfundamental.minecraft.server
 import org.bukkit.inventory.ItemStack
 
 /**
- * ¶Ô¶Ô»°¿ò¶Ô»°µÄÑÕÉ«´¦ÀíÌá¹©µÄÀà
+ * å¯¹å¯¹è¯æ¡†å¯¹è¯çš„é¢œè‰²å¤„ç†æä¾›çš„ç±»
  *
  */
 class CXColor {
 
 
     /**
-     * ¶Ô¶Ô»°¿ò¶Ô»°µÄÑÕÉ«´¦ÀíÌá¹©µÄÀà ¾²Ì¬·½·¨
+     * å¯¹å¯¹è¯æ¡†å¯¹è¯çš„é¢œè‰²å¤„ç†æä¾›çš„ç±» é™æ€æ–¹æ³•
      *
      *
      */
     companion object {
         /**
-        ºìÉ«
+        çº¢è‰²
          */
-        val RED = "¡ì4"
+        val RED = "Â§4"
 
         /**
-        ÉîÀ¶É«
+        æ·±è“è‰²
          */
-        val DARK_BLUE = "¡ì1"
+        val DARK_BLUE = "Â§1"
 
         /**
-        ÂÌÉ«
+        ç»¿è‰²
          */
-        val GREEN = "¡ì2"
+        val GREEN = "Â§2"
 
         /**
-        À¶É«
+        è“è‰²
          */
-        val BLUE = "¡ì3"
+        val BLUE = "Â§3"
 
         /**
-        Éî·ÛÉ«
+        æ·±ç²‰è‰²
          */
-        val DEEP_PINK = "¡ì5"
+        val DEEP_PINK = "Â§5"
 
         /**
-        ½ğÉ«
+        é‡‘è‰²
          */
-        val GOLDEN = "¡ì6"
+        val GOLDEN = "Â§6"
 
         /**
-        »ÒÉ«
+        ç°è‰²
          */
-        val GRAY = "¡ì7"
+        val GRAY = "Â§7"
 
         /**
-        ºÚÉ«
+        é»‘è‰²
          */
-        val BLACK = "¡ì0"
+        val BLACK = "Â§0"
 
         /**
-        Éî»ÒÉ«
+        æ·±ç°è‰²
          */
-        val DARK_GRAY = "¡ì8"
+        val DARK_GRAY = "Â§8"
 
         /**
-        ×ÏÉ«
+        ç´«è‰²
          */
-        val PURPLE = "¡ì9"
+        val PURPLE = "Â§9"
 
         /**
-        ÌìÀ¶É«
+        å¤©è“è‰²
          */
-        val LBLUE = "¡ìb"
+        val LBLUE = "Â§b"
 
         /**
-        Ó£ÌÒºì
+        æ¨±æ¡ƒçº¢
          */
-        val LPINK = "¡ìc"
+        val LPINK = "Â§c"
 
         /**
-        ÖĞ»®Ïß
+        ä¸­åˆ’çº¿
          */
-        val LMIDLINE = "¡ìm"
+        val LMIDLINE = "Â§m"
 
         /**
-        ÏÂ»®Ïß
+        ä¸‹åˆ’çº¿
          */
-        val LUNDERLINE = "¡ìn"
+        val LUNDERLINE = "Â§n"
 
         /**
-        µ­»ÆÉ«
+        æ·¡é»„è‰²
          */
-        val LYELLOW = "¡ìe"
+        val LYELLOW = "Â§e"
 
         /**
-        °×É«
+        ç™½è‰²
          */
-        val LWHITE = "¡ìf"
+        val LWHITE = "Â§f"
 
         /**
-        ¼Ó´Ö×ÖÌå
+        åŠ ç²—å­—ä½“
          */
-        val LBOLD = "¡ìl"
+        val LBOLD = "Â§l"
 
         /**
-        Ç³ÂÌÉ«
+        æµ…ç»¿è‰²
          */
-        val LGREEN = "¡ìa"
+        val LGREEN = "Â§a"
 
         /**
-        µ­×ÏÉ«
+        æ·¡ç´«è‰²
          */
-        val LPURPLE = "¡ìd"
+        val LPURPLE = "Â§d"
 
         /**
-        ÑÕÉ«´úÂë'¡ì'
+        é¢œè‰²ä»£ç 'Â§'
          */
-        val colorCode = "¡ì"
+        val colorCode = "Â§"
 
         /**
-         * ½«×Ö·û´®½øĞĞÑÕÉ«´¦Àí ¼´½«'&'»»Îª'¡ì'
+         * å°†å­—ç¬¦ä¸²è¿›è¡Œé¢œè‰²å¤„ç† å³å°†'&'æ¢ä¸º'Â§'
          *
-         * @param From ĞèÒª´¦ÀíµÄ×Ö·û´®
-         * @return ´¦Àí¹ıµÄ×Ö·û´®
+         * @param from éœ€è¦å¤„ç†çš„å­—ç¬¦ä¸²
+         * @return å¤„ç†è¿‡çš„å­—ç¬¦ä¸²
          */
         @JvmStatic
-        fun toColor(From: String): String {
-            return From.replace("&".toRegex(), "¡ì")
+        fun toColor(from: String): String {
+            return from.replace("&".toRegex(), "Â§")
         }
 
         /**
-         * ½«ÎïÆ·µÄ±êÌâÒÔ¼°½éÉÜ½øĞĞÑÕÉ«´¦Àí ¼´½«'&'»»Îª'¡ì'
+         * å°†ç‰©å“çš„æ ‡é¢˜ä»¥åŠä»‹ç»è¿›è¡Œé¢œè‰²å¤„ç† å³å°†'&'æ¢ä¸º'Â§'
          *
-         * @param From ĞèÒª´¦ÀíµÄÎïÆ·
-         * @return ´¦Àí¹ıµÄÎïÆ·
+         * @param from éœ€è¦å¤„ç†çš„ç‰©å“
+         * @return å¤„ç†è¿‡çš„ç‰©å“
          */
         @JvmStatic
-        fun toColor(From: ItemStack): ItemStack {
-            CXReplace.add("&", "¡ì")
-            val Result = CXReplace.replace(From)
+        fun toColor(from: ItemStack): ItemStack {
+            CXReplace.add("&", "Â§")
+            val Result = CXReplace.replace(from)
             CXReplace.remove("&")
             return Result
         }

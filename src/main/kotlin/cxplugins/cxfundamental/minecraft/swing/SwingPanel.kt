@@ -6,7 +6,10 @@ import cxplugins.cxfundamental.minecraft.math.geometry.Vector2I
 import cxplugins.cxfundamental.minecraft.plugin.CXFundamentalMain
 import org.bukkit.inventory.ItemStack
 
-open class SwingPanel(override var position: Vector2I, override var width: Int, override var height: Int) :
+open class SwingPanel(
+    override var position: Vector2I, override var width: Int, override var height: Int,
+    override var id: String? = null
+) :
     SwingContainer {
     val componentList = mutableListOf<SwingComponent>()
     override fun setComponent(component: SwingComponent) {
@@ -95,6 +98,20 @@ open class SwingPanel(override var position: Vector2I, override var width: Int, 
         }
         this.width = width
         this.height = height
+    }
+
+    override fun containsElementWithId(id: String): Boolean {
+        for (component in componentList) {
+            if (component.id == id) return true
+        }
+        return false
+    }
+
+    override fun getElementById(id: String): SwingComponent? {
+        for (element in this.componentList) {
+            if (element.id == id) return element
+        }
+        return null
     }
 
     override fun relocate(x: Int, y: Int) {

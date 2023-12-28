@@ -6,7 +6,7 @@ import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 
 /**
- * ´«µİÊäÈëÃüÁîÊ±  Ìá¹©µÄÖµ
+ * ä¼ é€’è¾“å…¥å‘½ä»¤æ—¶  æä¾›çš„å€¼
  */
 class CXCommandInformation(var sender: CommandSender, var cmd: Command, var label: String, var args: Array<String>?) {
     var playerArgs = ArrayList<Player>()

@@ -12,3 +12,6 @@ fun SwingComponent.location(point: Vector2I) {
     this.position.x = point.x
     this.position.y = point.y
 }
+fun SwingComponent.id(id: String?) {
+    this.id = id
+}

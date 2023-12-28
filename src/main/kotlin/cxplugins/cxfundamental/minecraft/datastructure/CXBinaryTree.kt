@@ -1,39 +1,39 @@
 package cxplugins.cxfundamental.minecraft.datastructure
 
 /**
- * ÎªÊµÏÖ¶ş²æÊ÷½á¹¹Ìá¹©µÄÀà
+ * ä¸ºå®ç°äºŒå‰æ ‘ç»“æ„æä¾›çš„ç±»
  *
- * @param ValueClass ĞèÒª´ËTree´æ´¢µÄÀàĞÍ
+ * @param ValueClass éœ€è¦æ­¤Treeå­˜å‚¨çš„ç±»å‹
  * @constructor Create empty binary tree
  *
  */
 class CXBinaryTree<ValueClass> {
     /**
-     * ¸Ã½Úµã±£´æµÄÖµ
+     * è¯¥èŠ‚ç‚¹ä¿å­˜çš„å€¼
      */
     var value: ValueClass? = null
 
     /**
-     * ×ó×ÓÊ÷
+     * å·¦å­æ ‘
      */
     internal var leftSon: CXBinaryTree<ValueClass>? = null
 
     /**
-     * ÓÒ×ÓÊ÷
+     * å³å­æ ‘
      */
     internal var rightSon: CXBinaryTree<ValueClass>? = null
 
     /**
-     * ¸¸½Úµã
+     * çˆ¶èŠ‚ç‚¹
      */
     internal var father: CXBinaryTree<ValueClass>? = null
 
     /**
-     * ×Ó½ÚµãµÄÉî¶È
+     * å­èŠ‚ç‚¹çš„æ·±åº¦
      */
     val sonDepth: Int
         /**
-         * »ñÈ¡×Ó½ÚµãµÄÉî¶È
+         * è·å–å­èŠ‚ç‚¹çš„æ·±åº¦
          */
         get() {
             if (leftSon == null && rightSon == null)
@@ -44,34 +44,34 @@ class CXBinaryTree<ValueClass> {
         }
 
     /**
-     * ×Ô¼º¹ØÓÚ¸¸½ÚµãµÄÉî¶È
+     * è‡ªå·±å…³äºçˆ¶èŠ‚ç‚¹çš„æ·±åº¦
      */
     val selfDepth: Int
         /**
-         * »ñÈ¡×Ô¼º¹ØÓÚ¸¸½ÚµãµÄÉî¶È
+         * è·å–è‡ªå·±å…³äºçˆ¶èŠ‚ç‚¹çš„æ·±åº¦
          */
         get() = if (father == null) 1 else father!!.selfDepth + 1
 
     /**
-     * ÎŞ²Î¹¹Ôìº¯Êı
+     * æ— å‚æ„é€ å‡½æ•°
      */
     constructor() {
-        // TODO ×Ô¶¯Éú³ÉµÄ¹¹Ôìº¯Êı´æ¸ù
+        // TODO è‡ªåŠ¨ç”Ÿæˆçš„æ„é€ å‡½æ•°å­˜æ ¹
     }
 
     /**
-     * ¹¹Ôìº¯Êı
-     * @param arg0 ±£´æÔÚ´Ë½ÚµãµÄÖµ
+     * æ„é€ å‡½æ•°
+     * @param arg0 ä¿å­˜åœ¨æ­¤èŠ‚ç‚¹çš„å€¼
      */
     constructor(arg0: ValueClass) {
         value = arg0
-        // TODO ×Ô¶¯Éú³ÉµÄ¹¹Ôìº¯Êı´æ¸ù
+        // TODO è‡ªåŠ¨ç”Ÿæˆçš„æ„é€ å‡½æ•°å­˜æ ¹
     }
 
     /**
-     * ÉèÖÃ×ó×ÓÊ÷
+     * è®¾ç½®å·¦å­æ ‘
      *
-     * @param arg0 ×ó×ÓÊ÷
+     * @param arg0 å·¦å­æ ‘
      */
     fun setLeftSon(arg0: CXBinaryTree<ValueClass>) {
         leftSon = arg0
@@ -79,18 +79,18 @@ class CXBinaryTree<ValueClass> {
     }
 
     /**
-     * »ñÈ¡×ó×ÓÊ÷
+     * è·å–å·¦å­æ ‘
      *
-     * @return ×ó×ÓÊ÷
+     * @return å·¦å­æ ‘
      */
     fun getLeftSon(): CXBinaryTree<ValueClass>? {
         return leftSon
     }
 
     /**
-     * ÉèÖÃÓÒ×ÓÊ÷
+     * è®¾ç½®å³å­æ ‘
      *
-     * @param arg0 ÓÒ×ÓÊ÷
+     * @param arg0 å³å­æ ‘
      */
     fun setRightSon(arg0: CXBinaryTree<ValueClass>) {
         rightSon = arg0
@@ -98,9 +98,9 @@ class CXBinaryTree<ValueClass> {
     }
 
     /**
-     * »ñÈ¡ÓÒ×ÓÊ÷
+     * è·å–å³å­æ ‘
      *
-     * @return ÓÒ×ÓÊ÷
+     * @return å³å­æ ‘
      */
     fun getrightSon(): CXBinaryTree<ValueClass>? {
         return rightSon

@@ -1,9 +1,9 @@
 package cxplugins.cxfundamental.minecraft.command
 
 /**
- * ÔÚÍæ¼ÒÊäÈëÃüÁîÊ± ·¢ÉúµÄÒì³£
- * @param place ÓĞÒì³£µÄ²ÎÊıµÄÎ»ÖÃ
- * @param reason Å×³ö´ËÒì³£µÄÔ­Òò
+ * åœ¨ç©å®¶è¾“å…¥å‘½ä»¤æ—¶ å‘ç”Ÿçš„å¼‚å¸¸
+ * @param place æœ‰å¼‚å¸¸çš„å‚æ•°çš„ä½ç½®
+ * @param reason æŠ›å‡ºæ­¤å¼‚å¸¸çš„åŸå› 
  */
 class CommandException(place: Int, reason: Reason) : RuntimeException() {
     var place: Int = 0
@@ -17,9 +17,9 @@ class CommandException(place: Int, reason: Reason) : RuntimeException() {
      *
      * @constructor
      *
-     * @param errorcode ´íÎó´úÂë
-     * @param description ÃèÊö
-     * @param type ´íÎóÀàĞÍ
+     * @param errorcode é”™è¯¯ä»£ç 
+     * @param description æè¿°
+     * @param type é”™è¯¯ç±»å‹
      */
     enum class Reason(errorcode: Long, description: String, type: String) {
         /**
@@ -27,81 +27,81 @@ class CommandException(place: Int, reason: Reason) : RuntimeException() {
          *
          * @constructor Create empty O n l i n e p l a y e r
          */
-        ONLINEPLAYER(10000001, "ÊäÈëµÄ²ÎÊı²»ÊÇ[OnlinePlayer]", "ArgsException"),
+        ONLINEPLAYER(10000001, "è¾“å…¥çš„å‚æ•°ä¸æ˜¯[OnlinePlayer]", "ArgsException"),
 
         /**
          * W o r l d
          *
          * @constructor Create empty W o r l d
          */
-        WORLD(10000002, "ÊäÈëµÄ²ÎÊı²»ÊÇ[World]", "ArgsException"),
+        WORLD(10000002, "è¾“å…¥çš„å‚æ•°ä¸æ˜¯[World]", "ArgsException"),
 
         /**
          * I n t e g e r
          *
          * @constructor Create empty I n t e g e r
          */
-        INTEGER(10000003, "ÊäÈëµÄ²ÎÊı²»ÊÇ[Integer]", "ArgsException"),
+        INTEGER(10000003, "è¾“å…¥çš„å‚æ•°ä¸æ˜¯[Integer]", "ArgsException"),
 
         /**
          * N u m b e r
          *
          * @constructor Create empty N u m b e r
          */
-        NUMBER(10000004, "ÊäÈëµÄ²ÎÊı²»ÊÇ[Number]", "ArgsException"),
+        NUMBER(10000004, "è¾“å…¥çš„å‚æ•°ä¸æ˜¯[Number]", "ArgsException"),
 
         /**
          * B o o l e a n
          *
          * @constructor Create empty B o o l e a n
          */
-        BOOLEAN(10000005, "ÊäÈëµÄ²ÎÊı²»ÊÇ[Boolean]", "ArgsException"),
+        BOOLEAN(10000005, "è¾“å…¥çš„å‚æ•°ä¸æ˜¯[Boolean]", "ArgsException"),
 
         /**
          * P l a y e r
          *
          * @constructor Create empty P l a y e r
          */
-        PLAYER(10000006, "ÊäÈëµÄ²ÎÊı²»ÊÇ[Player]", "ArgsException"),
+        PLAYER(10000006, "è¾“å…¥çš„å‚æ•°ä¸æ˜¯[Player]", "ArgsException"),
 
         /**
          * W r o n g a m o u n t
          *
          * @constructor Create empty W r o n g a m o u n t
          */
-        WRONGAMOUNT(10000006, "ÊäÈëµÄ²ÎÊıÊıÁ¿´íÎó", "ArgsException"),
+        WRONGAMOUNT(10000006, "è¾“å…¥çš„å‚æ•°æ•°é‡é”™è¯¯", "ArgsException"),
 
         /**
          * M u l t i p a m a m e t e r n o t f o u n d e n d
          *
          * @constructor Create empty M u l t i p a m a m e t e r n o t f o u n d e n d
          */
-        MULTIPAMAMETERNOTFOUNDEND(10000008, "¸ÃÃüÁîµÄ×éºÏ²ÎÊıÃ»ÓĞ½áÎ²", "ArgsException"),
+        MULTIPAMAMETERNOTFOUNDEND(10000008, "è¯¥å‘½ä»¤çš„ç»„åˆå‚æ•°æ²¡æœ‰ç»“å°¾", "ArgsException"),
 
         /**
          * M u l t i p a m a m e t e r n o t f o u n d s t a r t
          *
          * @constructor Create empty M u l t i p a m a m e t e r n o t f o u n d s t a r t
          */
-        MULTIPAMAMETERNOTFOUNDSTART(10000008, "¸ÃÃüÁîµÄ×éºÏ²ÎÊıÃ»ÓĞ¿ªÍ·", "ArgsException"),
+        MULTIPAMAMETERNOTFOUNDSTART(10000008, "è¯¥å‘½ä»¤çš„ç»„åˆå‚æ•°æ²¡æœ‰å¼€å¤´", "ArgsException"),
 
         /**
          * F l o a t
          *
          * @constructor Create empty F l o a t
          */
-        FLOAT(10000009, "ÊäÈëµÄ²ÎÊı²»ÊÇ[Float]", "ArgsException"),
+        FLOAT(10000009, "è¾“å…¥çš„å‚æ•°ä¸æ˜¯[Float]", "ArgsException"),
 
         /**
          * D o u b l e
          *
          * @constructor Create empty D o u b l e
          */
-        DOUBLE(10000010, "ÊäÈëµÄ²ÎÊı²»ÊÇ[Double]", "ArgsException"),
-        BYTE(10000011, "ÊäÈëµÄ²ÎÊı²»ÊÇ[Byte]", "ArgsException"),
-        LONG(10000012, "ÊäÈëµÄ²ÎÊı²»ÊÇ[Long]", "ArgsException"),
-        SHORT(10000013, "ÊäÈëµÄ²ÎÊı²»ÊÇ[Short]", "ArgsException"),
-        WRONGSENDER(10000014, "¸ÃÃüÁîµÄÖ´ĞĞÕß²»ÕıÈ·", "SenderException");
+        DOUBLE(10000010, "è¾“å…¥çš„å‚æ•°ä¸æ˜¯[Double]", "ArgsException"),
+        BYTE(10000011, "è¾“å…¥çš„å‚æ•°ä¸æ˜¯[Byte]", "ArgsException"),
+        LONG(10000012, "è¾“å…¥çš„å‚æ•°ä¸æ˜¯[Long]", "ArgsException"),
+        SHORT(10000013, "è¾“å…¥çš„å‚æ•°ä¸æ˜¯[Short]", "ArgsException"),
+        WRONGSENDER(10000014, "è¯¥å‘½ä»¤çš„æ‰§è¡Œè€…ä¸æ­£ç¡®", "SenderException");
 
         internal var errorCode: Long = 0
         internal var description = ""

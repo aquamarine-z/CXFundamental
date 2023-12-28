@@ -4,11 +4,11 @@ import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemStack
 
 /**
- * ÔÚÎïÆ·À¸ÀïÃæÉ¾³ýÄ³¸öÎïÆ· ÊýÁ¿Îª²ÎÊýcostItemµÄÊýÁ¿
- * ÈôÎïÆ·À¸ÀïÃæµÄÎïÆ·²»ÊÇ¶Ñµþ×´Ì¬ ÔòÒÀ´ÎÉ¾³ýËùÓÐÓëcostItemÏàÍ¬µÄÎïÆ·(ºöÂÔÊýÁ¿) Ö±µ½É¾³ýµÄÊýÁ¿´ïµ½costItemµÄÊýÁ¿ÎªÖ¹
+ * åœ¨ç‰©å“æ é‡Œé¢åˆ é™¤æŸä¸ªç‰©å“ æ•°é‡ä¸ºå‚æ•°costItemçš„æ•°é‡
+ * è‹¥ç‰©å“æ é‡Œé¢çš„ç‰©å“ä¸æ˜¯å †å çŠ¶æ€ åˆ™ä¾æ¬¡åˆ é™¤æ‰€æœ‰ä¸ŽcostItemç›¸åŒçš„ç‰©å“(å¿½ç•¥æ•°é‡) ç›´åˆ°åˆ é™¤çš„æ•°é‡è¾¾åˆ°costItemçš„æ•°é‡ä¸ºæ­¢
  *
- * @param costItem É¾³ýµÄÎïÆ· ÆäÖÐcostItemµÄÊýÁ¿(amount)´ú±íÉ¾³ýÎïÆ·µÄ¶àÉÙ
- * @return Èô±³°üÄÚ´ËÎïÆ·×ÜÁ¿´óÓÚÉ¾³ýµÄÊýÁ¿ ÔòÉ¾³ý²¢·µ»Øtrue ·ñÔò²»½øÐÐÉ¾³ý²Ù×÷²¢·µ»Øfalse
+ * @param costItem åˆ é™¤çš„ç‰©å“ å…¶ä¸­costItemçš„æ•°é‡(amount)ä»£è¡¨åˆ é™¤ç‰©å“çš„å¤šå°‘
+ * @return è‹¥èƒŒåŒ…å†…æ­¤ç‰©å“æ€»é‡å¤§äºŽåˆ é™¤çš„æ•°é‡ åˆ™åˆ é™¤å¹¶è¿”å›žtrue å¦åˆ™ä¸è¿›è¡Œåˆ é™¤æ“ä½œå¹¶è¿”å›žfalse
  */
 fun Inventory.costItem(costItem: ItemStack): Boolean {
     var items = this.contents

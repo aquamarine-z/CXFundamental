@@ -6,7 +6,7 @@ import cxplugins.cxfundamental.minecraft.server.CXItemStack
 import org.bukkit.event.inventory.InventoryClickEvent
 
 /**
- * ÀàËÆJava SwingµÄ¸´Ñ¡¿ò
+ * ç±»ä¼¼Java Swingçš„å¤é€‰æ¡†
  */
 open class CXCheckBox(text: String, lore: Array<String>? = null) : CXButton() {
 
@@ -56,7 +56,7 @@ open class CXCheckBox(text: String, lore: Array<String>? = null) : CXButton() {
     }
 
     /**
-     * ÉèÖÃµ±¹´Ñ¡¸ü»»Ê±²Ù×÷µÄLambda±í´ïÊ½µÄ·½·¨
+     * è®¾ç½®å½“å‹¾é€‰æ›´æ¢æ—¶æ“ä½œçš„Lambdaè¡¨è¾¾å¼çš„æ–¹æ³•
      *
      */
     fun onChanged(lambda: CXCheckBox.() -> Unit) {
@@ -64,7 +64,7 @@ open class CXCheckBox(text: String, lore: Array<String>? = null) : CXButton() {
     }
 
     /**
-     * µ±¹´Ñ¡¸ü»»Ê±µÄÏìÓ¦
+     * å½“å‹¾é€‰æ›´æ¢æ—¶çš„å“åº”
      *
      */
     open fun onChanged() {
@@ -76,7 +76,7 @@ open class CXCheckBox(text: String, lore: Array<String>? = null) : CXButton() {
     }
 
     /**
-     * ÉèÖÃµ±Ñ¡ÖĞÊ±²Ù×÷µÄLambda±í´ïÊ½µÄ·½·¨
+     * è®¾ç½®å½“é€‰ä¸­æ—¶æ“ä½œçš„Lambdaè¡¨è¾¾å¼çš„æ–¹æ³•
      *
      */
     fun onSelect(lambda: CXCheckBox.() -> Unit) {
@@ -84,7 +84,7 @@ open class CXCheckBox(text: String, lore: Array<String>? = null) : CXButton() {
     }
 
     /**
-     * µ±Ñ¡ÖĞÊ±µÄÏìÓ¦
+     * å½“é€‰ä¸­æ—¶çš„å“åº”
      *
      */
     open fun onSelect() {
@@ -96,7 +96,7 @@ open class CXCheckBox(text: String, lore: Array<String>? = null) : CXButton() {
     }
 
     /**
-     * ÉèÖÃµ±È¡ÏûÑ¡ÖĞÊ±²Ù×÷µÄLambda±í´ïÊ½µÄ·½·¨
+     * è®¾ç½®å½“å–æ¶ˆé€‰ä¸­æ—¶æ“ä½œçš„Lambdaè¡¨è¾¾å¼çš„æ–¹æ³•
      *
      */
     fun onUnselect(lambda: CXCheckBox.() -> Unit) {
@@ -104,7 +104,7 @@ open class CXCheckBox(text: String, lore: Array<String>? = null) : CXButton() {
     }
 
     /**
-     * µ±È¡ÏûÑ¡ÖĞÊ±µÄÏìÓ¦
+     * å½“å–æ¶ˆé€‰ä¸­æ—¶çš„å“åº”
      *
      */
     open fun onUnselect() {

@@ -32,15 +32,15 @@ class CXFundamentalMain : CXPluginMain(null) {
         CXUIActionListener().register()
         SwingUIListener.registerListener()
         Bukkit.getPluginManager().registerEvents(QuestionListener(), this)
-        PluginLanguage.initializeChineseLanguagePack()
+        PluginLanguage.initializeEnglishLanguagePack()
         //Bukkit.getPluginManager().registerEvents(CXButtonListener(),this)
         registerCommands()
-        var itemStack = CXItemStack(Material.BOOKSHELF, 1, "&3&lCXFundamental(CX前置插件)", " ")
+        var itemStack = CXItemStack(Material.BOOKSHELF, 1, "&3&lCXFundamental", " ")
         var meta = itemStack.itemMeta
         meta.addEnchant(Enchantment.DURABILITY, 5, true)
         itemStack.itemMeta = meta
         this.itemInMenu = itemStack
-        this.description = "&3&l此插件是所有CX插件的前置插件 及其重要".toColor()
+        this.description = "&3&lThis plugin is the fundamental preposition for cxplugins".toColor()
         return
     }
 

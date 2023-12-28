@@ -4,43 +4,43 @@ import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 
 /**
- *Îª·şÎñÆ÷ĞÅÏ¢µÄ·¢ËÍÌá¹©µÄÀà
+ *ä¸ºæœåŠ¡å™¨ä¿¡æ¯çš„å‘é€æä¾›çš„ç±»
  */
 class CXMessage {
 
     /**
-     * ¾²Ì¬·½·¨
+     * é™æ€æ–¹æ³•
      */
     companion object {
         @JvmStatic
                 /**
-                 * ²å¼şµÄ½éÉÜ °ïÖú
+                 * æ’ä»¶çš„ä»‹ç» å¸®åŠ©
                  */
         var help: MutableList<String> = ArrayList()
 
         @JvmStatic
                 /**
-                 * ²å¼şÔËĞĞÊ±ÏòÍæ¼ÒÌáÊ¾µÄ´íÎó
+                 * æ’ä»¶è¿è¡Œæ—¶å‘ç©å®¶æç¤ºçš„é”™è¯¯
                  */
         var errors: MutableMap<String, String> = HashMap()
 
         @JvmStatic
                 /**
-                 * Êä³ö°ïÖú ´íÎóµÄÊ±ºò²å¼şµÄÇ°×º
+                 * è¾“å‡ºå¸®åŠ© é”™è¯¯çš„æ—¶å€™æ’ä»¶çš„å‰ç¼€
                  */
         var prefix = ""
 
         @JvmStatic
         /**
-         * ±¨¸æÖ´ĞĞ½ø¶ÈµÄ¼ÆÊıÆ÷
+         * æŠ¥å‘Šæ‰§è¡Œè¿›åº¦çš„è®¡æ•°å™¨
          */
         internal var Test_Report = 0
 
         @JvmStatic
                 /**
-                 * Ìí¼ÓÒ»Ìõ°ïÖúµ½°ïÖúÁĞ±í
+                 * æ·»åŠ ä¸€æ¡å¸®åŠ©åˆ°å¸®åŠ©åˆ—è¡¨
                  *
-                 * @param h ´ËÌõ°ïÖú
+                 * @param h æ­¤æ¡å¸®åŠ©
                  */
         fun addHelp(h: String) {
             help.add(h)
@@ -48,9 +48,9 @@ class CXMessage {
 
         @JvmStatic
                 /**
-                 * É¾³ıÄ³Ò»¸ö°ïÖú
+                 * åˆ é™¤æŸä¸€ä¸ªå¸®åŠ©
                  *
-                 * @param l ´Ë°ïÖúĞÅÏ¢µÄÎ»ÖÃ
+                 * @param l æ­¤å¸®åŠ©ä¿¡æ¯çš„ä½ç½®
                  */
         fun removeHelp(l: Int) {
             help.removeAt(l)
@@ -58,9 +58,9 @@ class CXMessage {
 
         @JvmStatic
                 /**
-                 * ½«°ïÖúĞÅÏ¢·¢ËÍµ½Íæ¼Ò
+                 * å°†å¸®åŠ©ä¿¡æ¯å‘é€åˆ°ç©å®¶
                  *
-                 * @param p Íæ¼Ò
+                 * @param p ç©å®¶
                  */
         fun sendHelpToPlayer(p: Player) {
 
@@ -102,10 +102,10 @@ class CXMessage {
         }
 
         /**
-         * ÏòÄ³Ò»¸öÍæ¼Ò·¢ËÍÒ»Ìõ¾­¹ıCXColor.toColor´¦ÀíµÄĞÅÏ¢
+         * å‘æŸä¸€ä¸ªç©å®¶å‘é€ä¸€æ¡ç»è¿‡CXColor.toColorå¤„ç†çš„ä¿¡æ¯
          *
-         * @param P Ä¿±êÍæ¼Ò
-         * @param Message ·¢ËÍµÄĞÅÏ¢
+         * @param P ç›®æ ‡ç©å®¶
+         * @param Message å‘é€çš„ä¿¡æ¯
          */
         @JvmStatic
         fun sendMessage(P: Player, Message: String) {
@@ -113,9 +113,9 @@ class CXMessage {
         }
 
         /**
-         * ÏòºóÌ¨·¢ËÍĞÅÏ¢
+         * å‘åå°å‘é€ä¿¡æ¯
          *
-         * @param Message ·¢ËÍµÄĞÅÏ¢
+         * @param Message å‘é€çš„ä¿¡æ¯
          */
         @JvmStatic
         fun sendToConsole(Message: String) {
@@ -123,9 +123,9 @@ class CXMessage {
         }
 
         /**
-         * ·¢ËÍÈ«·ş¹«¸æ
+         * å‘é€å…¨æœå…¬å‘Š
          *
-         * @param Message È«·ş¹«¸æµÄÄÚÈİ
+         * @param Message å…¨æœå…¬å‘Šçš„å†…å®¹
          */
         @JvmStatic
         fun announce(Message: String) {
@@ -133,7 +133,7 @@ class CXMessage {
         }
 
         /**
-         * ÏòºóÌ¨·¢ËÍ·şÎñÆ÷½ø¶È±¨¸æ
+         * å‘åå°å‘é€æœåŠ¡å™¨è¿›åº¦æŠ¥å‘Š
          */
         @JvmStatic
         fun processReport() {
@@ -142,7 +142,7 @@ class CXMessage {
         }
 
         /**
-         *½«½ø¶ÈÖØÖÃÎª0
+         *å°†è¿›åº¦é‡ç½®ä¸º0
          *
          */
         @JvmStatic

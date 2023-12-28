@@ -4,13 +4,13 @@ import cxplugins.cxfundamental.minecraft.server.CXItemStack
 import org.bukkit.event.inventory.InventoryClickEvent
 
 /**
- * ÀàËÆÓÚJava SwingµÄĞÅÏ¢´°
+ * ç±»ä¼¼äºJava Swingçš„ä¿¡æ¯çª—
  *
- * @property title ´ËĞÅÏ¢´°µÄ±êÌâ
+ * @property title æ­¤ä¿¡æ¯çª—çš„æ ‡é¢˜
  * @constructor
  *
- * @param height ´ËĞÅÏ¢´°µÄ¸ß¶È
- * @param buttonTypes ´ËĞÅÏ¢´°°üº¬ÄÄÒ»Ğ©°´Å¥
+ * @param height æ­¤ä¿¡æ¯çª—çš„é«˜åº¦
+ * @param buttonTypes æ­¤ä¿¡æ¯çª—åŒ…å«å“ªä¸€äº›æŒ‰é’®
  */
 open class CXOptionPane(height: Int = 3, var title: String, vararg buttonTypes: CXOptionPaneButtonType) :
     CXFrame(height) {
@@ -25,7 +25,7 @@ open class CXOptionPane(height: Int = 3, var title: String, vararg buttonTypes: 
         for (buttonType in buttonTypes)
             when (buttonType) {
                 OK -> {
-                    panel.set(0, height - 1, object : CXButton(CXItemStack(160, 1, "&3&lÊÇ", " ", 5)) {
+                    panel.set(0, height - 1, object : CXButton(CXItemStack(160, 1, "&3&læ˜¯", " ", 5)) {
                         override fun onLeftClick(event: InventoryClickEvent, frame: CXFrame) {
                             event.isCancelled = true
                             onClickOk(event, frame)
@@ -34,7 +34,7 @@ open class CXOptionPane(height: Int = 3, var title: String, vararg buttonTypes: 
                 }
 
                 NO -> {
-                    panel.set(8, height - 1, object : CXButton(CXItemStack(160, 1, "&4&l·ñ", " ", 14)) {
+                    panel.set(8, height - 1, object : CXButton(CXItemStack(160, 1, "&4&lå¦", " ", 14)) {
                         override fun onLeftClick(event: InventoryClickEvent, frame: CXFrame) {
                             event.isCancelled = true
                             onClickNo(event, frame)
@@ -43,7 +43,7 @@ open class CXOptionPane(height: Int = 3, var title: String, vararg buttonTypes: 
                 }
 
                 CLOSE -> {
-                    panel.set(1, height - 1, object : CXButton(CXItemStack(160, 1, "&3&l¹Ø±Õ", " ", 14)) {
+                    panel.set(1, height - 1, object : CXButton(CXItemStack(160, 1, "&3&lå…³é—­", " ", 14)) {
                         override fun onLeftClick(event: InventoryClickEvent, frame: CXFrame) {
                             event.isCancelled = true
                             onClickClose(event, frame)
@@ -52,7 +52,7 @@ open class CXOptionPane(height: Int = 3, var title: String, vararg buttonTypes: 
                 }
 
                 CANCEL -> {
-                    panel.set(7, height - 1, object : CXButton(CXItemStack(160, 1, "&4&lÈ¡Ïû", " ", 14)) {
+                    panel.set(7, height - 1, object : CXButton(CXItemStack(160, 1, "&4&lå–æ¶ˆ", " ", 14)) {
                         override fun onLeftClick(event: InventoryClickEvent, frame: CXFrame) {
                             event.isCancelled = true
                             onClickCancel(event, frame)
@@ -61,7 +61,7 @@ open class CXOptionPane(height: Int = 3, var title: String, vararg buttonTypes: 
                 }
 
                 CONFIRM -> {
-                    panel.set(5, height - 1, object : CXButton(CXItemStack(160, 1, "&3&lÈ·¶¨", " ", 5)) {
+                    panel.set(5, height - 1, object : CXButton(CXItemStack(160, 1, "&3&lç¡®å®š", " ", 5)) {
                         override fun onLeftClick(event: InventoryClickEvent, frame: CXFrame) {
                             event.isCancelled = true
                             onClickConfirm(event, frame)
@@ -78,50 +78,50 @@ open class CXOptionPane(height: Int = 3, var title: String, vararg buttonTypes: 
     }
 
     /**
-     * µ±µ¥»÷OK¼üµÄÊ±ºò×ö³öµÄÏìÓ¦
+     * å½“å•å‡»OKé”®çš„æ—¶å€™åšå‡ºçš„å“åº”
      *
-     * @param event Íæ¼Òµ¥»÷µÄÊÂ¼ş
-     * @param frame µ¥»÷µÄ´°¿Ú
+     * @param event ç©å®¶å•å‡»çš„äº‹ä»¶
+     * @param frame å•å‡»çš„çª—å£
      */
     open fun onClickOk(event: InventoryClickEvent, frame: CXFrame) {
 
     }
 
     /**
-     * µ±µ¥»÷NO¼üµÄÊ±ºò×ö³öµÄÏìÓ¦
+     * å½“å•å‡»NOé”®çš„æ—¶å€™åšå‡ºçš„å“åº”
      *
-     * @param event Íæ¼Òµ¥»÷µÄÊÂ¼ş
-     * @param frame µ¥»÷µÄ´°¿Ú
+     * @param event ç©å®¶å•å‡»çš„äº‹ä»¶
+     * @param frame å•å‡»çš„çª—å£
      */
     open fun onClickNo(event: InventoryClickEvent, frame: CXFrame) {
 
     }
 
     /**
-     * µ±µ¥»÷Close¼üµÄÊ±ºò×ö³öµÄÏìÓ¦
+     * å½“å•å‡»Closeé”®çš„æ—¶å€™åšå‡ºçš„å“åº”
      *
-     * @param event Íæ¼Òµ¥»÷µÄÊÂ¼ş
-     * @param frame µ¥»÷µÄ´°¿Ú
+     * @param event ç©å®¶å•å‡»çš„äº‹ä»¶
+     * @param frame å•å‡»çš„çª—å£
      */
     open fun onClickClose(event: InventoryClickEvent, frame: CXFrame) {
 
     }
 
     /**
-     * µ±µ¥»÷Cancel¼üµÄÊ±ºò×ö³öµÄÏìÓ¦
+     * å½“å•å‡»Cancelé”®çš„æ—¶å€™åšå‡ºçš„å“åº”
      *
-     * @param event Íæ¼Òµ¥»÷µÄÊÂ¼ş
-     * @param frame µ¥»÷µÄ´°¿Ú
+     * @param event ç©å®¶å•å‡»çš„äº‹ä»¶
+     * @param frame å•å‡»çš„çª—å£
      */
     open fun onClickCancel(event: InventoryClickEvent, frame: CXFrame) {
 
     }
 
     /**
-     * µ±µ¥»÷Confirm¼üµÄÊ±ºò×ö³öµÄÏìÓ¦
+     * å½“å•å‡»Confirmé”®çš„æ—¶å€™åšå‡ºçš„å“åº”
      *
-     * @param event Íæ¼Òµ¥»÷µÄÊÂ¼ş
-     * @param frame µ¥»÷µÄ´°¿Ú
+     * @param event ç©å®¶å•å‡»çš„äº‹ä»¶
+     * @param frame å•å‡»çš„çª—å£
      */
     open fun onClickConfirm(event: InventoryClickEvent, frame: CXFrame) {
 

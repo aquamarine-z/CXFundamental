@@ -9,10 +9,10 @@ import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.scheduler.BukkitRunnable
 
 /**
- * ½«´ËÍæ¼ÒÍ¬²½µØÌß³ö·şÎñÆ÷
- * ¿ÉÒÔÔÚÒì²½Ïß³ÌÖĞµ÷ÓÃ
- * @param reason ±»Ìß³öµÄÔ­Òò
- * @param plugin Ö´ĞĞÍ¬²½²Ù×÷µÄ²å¼ş
+ * å°†æ­¤ç©å®¶åŒæ­¥åœ°è¸¢å‡ºæœåŠ¡å™¨
+ * å¯ä»¥åœ¨å¼‚æ­¥çº¿ç¨‹ä¸­è°ƒç”¨
+ * @param reason è¢«è¸¢å‡ºçš„åŸå› 
+ * @param plugin æ‰§è¡ŒåŒæ­¥æ“ä½œçš„æ’ä»¶
  */
 fun Player.kickSynchronously(reason: String, plugin: JavaPlugin) {
     var thread = object : BukkitRunnable() {
@@ -24,20 +24,20 @@ fun Player.kickSynchronously(reason: String, plugin: JavaPlugin) {
 }
 
 /**
- * »ñÈ¡Íæ¼Ò´æ´¢ÓÚPlayersÎÄ¼ş¼ĞÖĞÅäÖÃÎÄ¼şÖĞµÄÊı¾İ
- * (ÏêÇéÇë¼ûCXPlayerDataEditor)
- * @param path Êı¾İµÄÂ·¾¶
- * @return Êı¾İµÄÖµ
+ * è·å–ç©å®¶å­˜å‚¨äºPlayersæ–‡ä»¶å¤¹ä¸­é…ç½®æ–‡ä»¶ä¸­çš„æ•°æ®
+ * (è¯¦æƒ…è¯·è§CXPlayerDataEditor)
+ * @param path æ•°æ®çš„è·¯å¾„
+ * @return æ•°æ®çš„å€¼
  */
 fun Player.getData(path: String): Any? {
     return CXPlayerDataEditor.get(this, path)
 }
 
 /**
- * ¸ü¸ÄÍæ¼Ò´æ´¢ÓÚPlayersÎÄ¼ş¼ĞÖĞÅäÖÃÎÄ¼şÖĞµÄÊı¾İ
- * (ÏêÇéÇë¼ûCXPlayerDataEditor)
- * @param path Êı¾İµÄÂ·¾¶
- * @param value ¸ü¸ÄµÄÖµ
+ * æ›´æ”¹ç©å®¶å­˜å‚¨äºPlayersæ–‡ä»¶å¤¹ä¸­é…ç½®æ–‡ä»¶ä¸­çš„æ•°æ®
+ * (è¯¦æƒ…è¯·è§CXPlayerDataEditor)
+ * @param path æ•°æ®çš„è·¯å¾„
+ * @param value æ›´æ”¹çš„å€¼
  */
 fun Player.editData(path: String, value: Any?) {
     CXPlayerDataEditor.edit(this, path, value)
@@ -45,83 +45,83 @@ fun Player.editData(path: String, value: Any?) {
 }
 
 /**
- * »ñÈ¡Íæ¼Ò´æ´¢ÓÚPlayersÎÄ¼ş¼ĞÖĞµÄÅäÖÃÎÄ¼ş
- * (ÏêÇéÇë¼ûCXPlayerDataEditor)
- * @return ´ËÍæ¼ÒµÄÅäÖÃÎÄ¼ş
+ * è·å–ç©å®¶å­˜å‚¨äºPlayersæ–‡ä»¶å¤¹ä¸­çš„é…ç½®æ–‡ä»¶
+ * (è¯¦æƒ…è¯·è§CXPlayerDataEditor)
+ * @return æ­¤ç©å®¶çš„é…ç½®æ–‡ä»¶
  */
 fun Player.getPlayerDataConfiguration(): CXYamlConfiguration {
     return CXPlayerDataEditor.getPlayerConfiguration(this)
 }
 
 /**
- * ÅĞ¶ÏÍæ¼ÒÅäÖÃÎÄ¼şÖĞÊÇ·ñÓĞÄ³Ò»¸öÊı¾İ
- * (ÏêÇéÇë¼ûCXPlayerDataEditor)
- * @param path ¸ÃÊı¾İµÄÂ·¾¶
- * @return ÈôÓĞ´ËÊı¾İ Ôò·µ»Øtrue ·ñÔò·µ»Øfalse
+ * åˆ¤æ–­ç©å®¶é…ç½®æ–‡ä»¶ä¸­æ˜¯å¦æœ‰æŸä¸€ä¸ªæ•°æ®
+ * (è¯¦æƒ…è¯·è§CXPlayerDataEditor)
+ * @param path è¯¥æ•°æ®çš„è·¯å¾„
+ * @return è‹¥æœ‰æ­¤æ•°æ® åˆ™è¿”å›true å¦åˆ™è¿”å›false
  */
 fun Player.hasData(path: String): Boolean {
     return CXPlayerDataEditor.hasData(this, path)
 }
 
 /**
- * ÅĞ¶ÏÍæ¼ÒÔÚPlayersÎÄ¼ş¼ĞÖĞÊÇ·ñÓĞÅäÖÃÎÄ¼ş
- * (ÏêÇéÇë¼ûCXPlayerDataEditor)
- * @return ÈôÓĞ´ËÎÄ¼ş Ôò·µ»Øtrue ·ñÔò·µ»Øfalse
+ * åˆ¤æ–­ç©å®¶åœ¨Playersæ–‡ä»¶å¤¹ä¸­æ˜¯å¦æœ‰é…ç½®æ–‡ä»¶
+ * (è¯¦æƒ…è¯·è§CXPlayerDataEditor)
+ * @return è‹¥æœ‰æ­¤æ–‡ä»¶ åˆ™è¿”å›true å¦åˆ™è¿”å›false
  */
 fun Player.hasDataFile(): Boolean {
     return CXPlayerDataEditor.hasPlayerData(this.displayName + ".yml")
 }
 
 /**
- * Ê¹Íæ¼ÒµÄÒøĞĞÕË»§ÖĞ¿Û³ıÒ»¶¨µÄÄ³Ò»ÖÖ»õ±Ò
- * (ÏêÇéÇë¼ûCXEconomy)
- * @param pointName »õ±ÒÃû³Æ
- * @param amount ÊıÁ¿
- * @return ÊÇ·ñ¿Û³ı³É¹¦ Í¨³£·µ»Øtrue
+ * ä½¿ç©å®¶çš„é“¶è¡Œè´¦æˆ·ä¸­æ‰£é™¤ä¸€å®šçš„æŸä¸€ç§è´§å¸
+ * (è¯¦æƒ…è¯·è§CXEconomy)
+ * @param pointName è´§å¸åç§°
+ * @param amount æ•°é‡
+ * @return æ˜¯å¦æ‰£é™¤æˆåŠŸ é€šå¸¸è¿”å›true
  */
 fun Player.costPoint(pointName: String, amount: Double): Boolean {
     return CXEconomy.cost(this, pointName, amount)
 }
 
 /**
- * Ê¹Íæ¼ÒµÄÒøĞĞÕË»§ÖĞÌí¼ÓÒ»¶¨µÄÄ³Ò»ÖÖ»õ±Ò
- *(ÏêÇéÇë¼ûCXEconomy)
- * @param pointName »õ±ÒÃû³Æ
- * @param amount ÊıÁ¿
- * @return ÊÇ·ñÌí¼Ó³É¹¦ Í¨³£·µ»Øtrue
+ * ä½¿ç©å®¶çš„é“¶è¡Œè´¦æˆ·ä¸­æ·»åŠ ä¸€å®šçš„æŸä¸€ç§è´§å¸
+ *(è¯¦æƒ…è¯·è§CXEconomy)
+ * @param pointName è´§å¸åç§°
+ * @param amount æ•°é‡
+ * @return æ˜¯å¦æ·»åŠ æˆåŠŸ é€šå¸¸è¿”å›true
  */
 fun Player.givePoint(pointName: String, amount: Double): Boolean {
     return CXEconomy.give(this, pointName, amount)
 }
 
 /**
- * Ê¹Íæ¼ÒµÄÒøĞĞÕË»§Ä³Ò»ÖÖ»õ±ÒµÄÊıÁ¿ÉèÖÃÎªÒ»¶¨Öµ
- *(ÏêÇéÇë¼ûCXEconomy)
- * @param pointName »õ±ÒÃû³Æ
- * @param amount ÊıÁ¿
- * @return ÊÇ·ñÉèÖÃ³É¹¦ Í¨³£·µ»Øtrue
+ * ä½¿ç©å®¶çš„é“¶è¡Œè´¦æˆ·æŸä¸€ç§è´§å¸çš„æ•°é‡è®¾ç½®ä¸ºä¸€å®šå€¼
+ *(è¯¦æƒ…è¯·è§CXEconomy)
+ * @param pointName è´§å¸åç§°
+ * @param amount æ•°é‡
+ * @return æ˜¯å¦è®¾ç½®æˆåŠŸ é€šå¸¸è¿”å›true
  */
 fun Player.setPoint(pointName: String, amount: Double): Boolean {
     return CXEconomy.set(this, pointName, amount)
 }
 
 /**
- * »ñÈ¡Íæ¼ÒµÄÒøĞĞÕË»§Ä³Ò»ÖÖ»õ±ÒµÄÊıÁ¿
- *(ÏêÇéÇë¼ûCXEconomy)
- * @param pointName »õ±ÒÃû³Æ
- * @return ÒøĞĞÕË»§ÖĞµÄ»õ±ÒÊıÁ¿
+ * è·å–ç©å®¶çš„é“¶è¡Œè´¦æˆ·æŸä¸€ç§è´§å¸çš„æ•°é‡
+ *(è¯¦æƒ…è¯·è§CXEconomy)
+ * @param pointName è´§å¸åç§°
+ * @return é“¶è¡Œè´¦æˆ·ä¸­çš„è´§å¸æ•°é‡
  */
 fun Player.getPoint(pointName: String): Double {
     return CXEconomy.get(this, pointName)
 }
 
 /**
- * Ê¹Íæ¼ÒÏòÁíÒ»Íæ¼ÒÖ§¸¶Ò»¶¨ÊıÁ¿µÄÄ³ÖÖ»õ±Ò
- *(ÏêÇéÇë¼ûCXEconomy)
- * @param pointName »õ±ÒµÄÃû×Ö
- * @param amount Ö§¸¶µÄÊıÁ¿
- * @param destination Ö§¸¶µÄÄ¿±ê
- * @return Èô´ËÍæ¼Ò»õ±ÒÊıÁ¿²»×ã Ôò·µ»Øfalse ·ñÔò·µ»Øtrue
+ * ä½¿ç©å®¶å‘å¦ä¸€ç©å®¶æ”¯ä»˜ä¸€å®šæ•°é‡çš„æŸç§è´§å¸
+ *(è¯¦æƒ…è¯·è§CXEconomy)
+ * @param pointName è´§å¸çš„åå­—
+ * @param amount æ”¯ä»˜çš„æ•°é‡
+ * @param destination æ”¯ä»˜çš„ç›®æ ‡
+ * @return è‹¥æ­¤ç©å®¶è´§å¸æ•°é‡ä¸è¶³ åˆ™è¿”å›false å¦åˆ™è¿”å›true
  */
 fun Player.payPoint(pointName: String, amount: Double, destination: Player): Boolean {
     return CXEconomy.pay(this, destination, pointName, amount)

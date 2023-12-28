@@ -1,6 +1,6 @@
 package cxplugins.cxfundamental.minecraft.ui
 
 /**
- * Ò»¸öÈİÆ÷µÄ×é¼ş
+ * ä¸€ä¸ªå®¹å™¨çš„ç»„ä»¶
  */
-open class CXUIElement // TODO ×Ô¶¯Éú³ÉµÄ¹¹Ôìº¯Êı´æ¸ù
+open class CXUIElement // TODO è‡ªåŠ¨ç”Ÿæˆçš„æ„é€ å‡½æ•°å­˜æ ¹

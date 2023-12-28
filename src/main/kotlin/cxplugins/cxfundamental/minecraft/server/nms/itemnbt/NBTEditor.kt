@@ -6,16 +6,16 @@ import org.bukkit.inventory.ItemStack
 import java.lang.reflect.Method
 
 /**
- * ²Ù×÷ÎïÆ·NBTÊı¾İÌá¹©µÄÀà
+ * æ“ä½œç‰©å“NBTæ•°æ®æä¾›çš„ç±»
  */
 object NBTEditor {
     /**
-     * ÉèÖÃÒ»¸öÎïÆ·µÄNBTÊı¾İ
+     * è®¾ç½®ä¸€ä¸ªç‰©å“çš„NBTæ•°æ®
      *
-     * @param itemStack ĞèÒªÉèÖÃµÄÎïÆ·
-     * @param value Õâ¸önbtµÄÊıÖµ
-     * @param compoundPath nbtµÄÂ·¾¶ ¿ÉÒÔµİ¹éÉèÖÃ
-     * @return ÉèÖÃºÃµÄÎïÆ·
+     * @param itemStack éœ€è¦è®¾ç½®çš„ç‰©å“
+     * @param value è¿™ä¸ªnbtçš„æ•°å€¼
+     * @param compoundPath nbtçš„è·¯å¾„ å¯ä»¥é€’å½’è®¾ç½®
+     * @return è®¾ç½®å¥½çš„ç‰©å“
      */
     @JvmStatic
     fun setItemStackNBT(itemStack: ItemStack, value: Any?, vararg compoundPath: String): ItemStack {
@@ -28,11 +28,11 @@ object NBTEditor {
     }
 
     /**
-     * »ñÈ¡Ò»¸öÎïÆ·µÄNBTÊı¾İ
+     * è·å–ä¸€ä¸ªç‰©å“çš„NBTæ•°æ®
      *
-     * @param itemStack ĞèÒª»ñÈ¡µÄÎïÆ·
-     * @param compoundPath nbtµÄÂ·¾¶ ¿ÉÒÔµİ¹é»ñÈ¡
-     * @return »ñÈ¡µÄÊıÖµ
+     * @param itemStack éœ€è¦è·å–çš„ç‰©å“
+     * @param compoundPath nbtçš„è·¯å¾„ å¯ä»¥é€’å½’è·å–
+     * @return è·å–çš„æ•°å€¼
      */
     @JvmStatic
     fun getItemStackNBT(itemStack: ItemStack, vararg compoundPath: String): Any? {
@@ -48,10 +48,10 @@ object NBTEditor {
     }
 
     /**
-     * ÉèÖÃÒ»¸öNBT×éºÏÖĞµÄÄ³¸öÖµ
+     * è®¾ç½®ä¸€ä¸ªNBTç»„åˆä¸­çš„æŸä¸ªå€¼
      *
-     * @param compound ĞèÒªÉèÖÃµÄ×éºÏ
-     * @param compoundPath nbtµÄÂ·¾¶ ¿ÉÒÔµİ¹éÉèÖÃ
+     * @param compound éœ€è¦è®¾ç½®çš„ç»„åˆ
+     * @param compoundPath nbtçš„è·¯å¾„ å¯ä»¥é€’å½’è®¾ç½®
      */
     @JvmStatic
     fun setValueInCompound(compound: Any, value: Any?, vararg compoundPath: String) {
@@ -142,10 +142,10 @@ object NBTEditor {
     }
 
     /**
-     * »ñÈ¡Ò»¸öNBT×éºÏÖĞµÄÄ³¸öÖµ
+     * è·å–ä¸€ä¸ªNBTç»„åˆä¸­çš„æŸä¸ªå€¼
      *
-     * @param compound ĞèÒª»ñÈ¡µÄ×éºÏ
-     * @param compoundPath nbtµÄÂ·¾¶ ¿ÉÒÔµİ¹é»ñÈ¡
+     * @param compound éœ€è¦è·å–çš„ç»„åˆ
+     * @param compoundPath nbtçš„è·¯å¾„ å¯ä»¥é€’å½’è·å–
      */
     @JvmStatic
     fun getValueInCompound(compound: Any, vararg compoundPath: String): Any? {
@@ -209,11 +209,11 @@ object NBTEditor {
     }
 
     /**
-     * ÅĞ¶ÏÄ³¸ö×éºÏÀïÃæÊÇ·ñ°üº¬Ä³¸öÖµ
+     * åˆ¤æ–­æŸä¸ªç»„åˆé‡Œé¢æ˜¯å¦åŒ…å«æŸä¸ªå€¼
      *
-     * @param compound ĞèÒªÅĞ¶ÏµÄ×éºÏ
-     * @param key ÖµµÄÃû×Ö
-     * @return Èô´æÔÚ Ôò·µ»Øtrue ·ñÔò·µ»Øfalse
+     * @param compound éœ€è¦åˆ¤æ–­çš„ç»„åˆ
+     * @param key å€¼çš„åå­—
+     * @return è‹¥å­˜åœ¨ åˆ™è¿”å›true å¦åˆ™è¿”å›false
      */
     @JvmStatic
     fun hasKeyInCompound(compound: Any, vararg key: String): Boolean {
@@ -235,10 +235,10 @@ object NBTEditor {
     }
 
     /**
-     * »ñÈ¡Ä³¸öÎïÆ·µÄÊôĞÔÁĞ±í
+     * è·å–æŸä¸ªç‰©å“çš„å±æ€§åˆ—è¡¨
      *
-     * @param itemStack ĞèÒª»ñÈ¡ÊôĞÔµÄÎïÆ·
-     * @return ÊôĞÔÁĞ±í
+     * @param itemStack éœ€è¦è·å–å±æ€§çš„ç‰©å“
+     * @return å±æ€§åˆ—è¡¨
      */
     @JvmStatic
     fun getItemAttributeModifiers(itemStack: ItemStack): List<AttributeModifier> {
@@ -291,11 +291,11 @@ object NBTEditor {
     }
 
     /**
-     * Ìí¼ÓÄ³¸öÎïÆ·µÄÊôĞÔ
+     * æ·»åŠ æŸä¸ªç‰©å“çš„å±æ€§
      *
-     * @param itemStack ĞèÒªÌí¼ÓÊôĞÔµÄÎïÆ·
-     * @param modifier Ìí¼ÓµÄÊôĞÔ
-     * @return Ìí¼ÓºóµÄÎïÆ·
+     * @param itemStack éœ€è¦æ·»åŠ å±æ€§çš„ç‰©å“
+     * @param modifier æ·»åŠ çš„å±æ€§
+     * @return æ·»åŠ åçš„ç‰©å“
      */
     @JvmStatic
     fun setItemAttribute(itemStack: ItemStack, modifier: AttributeModifier): ItemStack {
@@ -387,26 +387,26 @@ object NBTEditor {
 }
 
 /**
- * ·´ÉäµÄnet.minecraft.server.°æ±¾.ItemStackÀà¼°ÆäÏà¹Ø·½·¨
+ * åå°„çš„net.minecraft.server.ç‰ˆæœ¬.ItemStackç±»åŠå…¶ç›¸å…³æ–¹æ³•
  */
 object NMSItemStack {
     /**
-     * ·´ÉäµÄnet.minecraft.server.°æ±¾.ItemStackÀà
+     * åå°„çš„net.minecraft.server.ç‰ˆæœ¬.ItemStackç±»
      */
     @JvmStatic
     var clazz: Class<*>? = NMSHelper.getNMSClass("ItemStack")
 
     /**
-     * ·´ÉäµÄnet.minecraft.server.°æ±¾.ItemStack.hasTag·½·¨
+     * åå°„çš„net.minecraft.server.ç‰ˆæœ¬.ItemStack.hasTagæ–¹æ³•
      */
     @JvmStatic
     lateinit var hasTag: Method
 
     /**
-     * ÅĞ¶ÏÄ³¸öÎïÆ·ÊÇ·ñÓĞ¸½¼ÓÖµ
+     * åˆ¤æ–­æŸä¸ªç‰©å“æ˜¯å¦æœ‰é™„åŠ å€¼
      *
-     * @param item Õâ¸öÎïÆ· ÀàĞÍÎªnet.minecraft.server.°æ±¾.ItemStack
-     * @return ÈôÓĞ¸½¼ÓÖµ ·µ»Øtrue ·ñÔò·µ»Øfalse
+     * @param item è¿™ä¸ªç‰©å“ ç±»å‹ä¸ºnet.minecraft.server.ç‰ˆæœ¬.ItemStack
+     * @return è‹¥æœ‰é™„åŠ å€¼ è¿”å›true å¦åˆ™è¿”å›false
      */
     @JvmStatic
     fun hasTag(item: Any): Boolean {
@@ -414,16 +414,16 @@ object NMSItemStack {
     }
 
     /**
-     * ·´ÉäµÄnet.minecraft.server.°æ±¾.ItemStack.getTag·½·¨
+     * åå°„çš„net.minecraft.server.ç‰ˆæœ¬.ItemStack.getTagæ–¹æ³•
      */
     @JvmStatic
     lateinit var getTag: Method
 
     /**
-     * »ñÈ¡Ä³¸öÎïÆ·µÄ¸½¼ÓÖµ
+     * è·å–æŸä¸ªç‰©å“çš„é™„åŠ å€¼
      *
-     * @param item Õâ¸öÎïÆ· ÀàĞÍÎªnet.minecraft.server.°æ±¾.ItemStack
-     * @return »ñÈ¡µ½µÄ¸½¼ÓÖµ
+     * @param item è¿™ä¸ªç‰©å“ ç±»å‹ä¸ºnet.minecraft.server.ç‰ˆæœ¬.ItemStack
+     * @return è·å–åˆ°çš„é™„åŠ å€¼
      */
     @JvmStatic
     fun getTag(item: Any): Any {
@@ -431,15 +431,15 @@ object NMSItemStack {
     }
 
     /**
-     * ·´ÉäµÄnet.minecraft.server.°æ±¾.ItemStack.setTag·½·¨
+     * åå°„çš„net.minecraft.server.ç‰ˆæœ¬.ItemStack.setTagæ–¹æ³•
      */
     @JvmStatic
     lateinit var setTag: Method
 
     /**
-     * ÉèÖÃÄ³¸öÎïÆ·µÄ¸½¼ÓÖµ
+     * è®¾ç½®æŸä¸ªç‰©å“çš„é™„åŠ å€¼
      *
-     * @param item Õâ¸öÎïÆ· ÀàĞÍÎªnet.minecraft.server.°æ±¾.ItemStack
+     * @param item è¿™ä¸ªç‰©å“ ç±»å‹ä¸ºnet.minecraft.server.ç‰ˆæœ¬.ItemStack
      */
     @JvmStatic
     fun setTag(item: Any, tag: Any) {
@@ -449,23 +449,23 @@ object NMSItemStack {
 }
 
 /**
- * ·´ÉäµÄorg.bukkit.craftbukkit.°æ±¾.inventory.CraftItemStackÀà¼°ÆäÏà¹Ø·½·¨
+ * åå°„çš„org.bukkit.craftbukkit.ç‰ˆæœ¬.inventory.CraftItemStackç±»åŠå…¶ç›¸å…³æ–¹æ³•
  */
 object CraftItemStack {
     /**
-     * ·´ÉäµÄorg.bukkit.craftbukkit.°æ±¾.inventory.CraftItemStackÀà
+     * åå°„çš„org.bukkit.craftbukkit.ç‰ˆæœ¬.inventory.CraftItemStackç±»
      */
     @JvmStatic
     var clazz: Class<*> = OBCHelper.getOBCClass("inventory.CraftItemStack")
 
     /**
-     * ·´ÉäµÄorg.bukkit.craftbukkit.°æ±¾.inventory.CraftItemStackÀàµÄasNMSCopy·½·¨ ½«Ò»¸öBukkitµÄitemstack×ªÎªNMSµÄitemstack
+     * åå°„çš„org.bukkit.craftbukkit.ç‰ˆæœ¬.inventory.CraftItemStackç±»çš„asNMSCopyæ–¹æ³• å°†ä¸€ä¸ªBukkitçš„itemstackè½¬ä¸ºNMSçš„itemstack
      */
     @JvmStatic
     lateinit var asNMSCopy: Method
 
     /**
-     * ·´ÉäµÄorg.bukkit.craftbukkit.°æ±¾.inventory.CraftItemStackÀàµÄasBukkitCopy·½·¨ ½«Ò»¸öNMSµÄitemstack×ªÎªBukkitµÄitemstack
+     * åå°„çš„org.bukkit.craftbukkit.ç‰ˆæœ¬.inventory.CraftItemStackç±»çš„asBukkitCopyæ–¹æ³• å°†ä¸€ä¸ªNMSçš„itemstackè½¬ä¸ºBukkitçš„itemstack
      */
     @JvmStatic
     lateinit var asBukkitCopy: Method

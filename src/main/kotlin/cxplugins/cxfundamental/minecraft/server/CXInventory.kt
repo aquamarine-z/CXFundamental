@@ -15,7 +15,7 @@ import org.bukkit.util.Vector
     Result["MaxStackSize"] = this.maxStackSize
     Result["Contents"] = this.contents
     Result["Title"] = this.title
-    // TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+    // TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
     return Result
 }
 fun getInventoryTypeFromString(type:String) :InventoryType{
@@ -27,8 +27,8 @@ fun Inventory.constructor(arg0:Map<String,Any>){
     this=Bukkit.createInventory(null,type)
 }*/
 /**
- * Îª¸üºÃ²Ù×÷ÈİÆ÷ÀàÌá¹©µÄÀà Ê¹Ò»¸öÈİÆ÷ÀàÄÜ¹»Ö±½Ó½øĞĞĞòÁĞ»¯
- * ĞòÁĞ»¯Ê¹ÓÃ·½·¨:var inventory=Bukkit.createInventory(null,9,"");
+ * ä¸ºæ›´å¥½æ“ä½œå®¹å™¨ç±»æä¾›çš„ç±» ä½¿ä¸€ä¸ªå®¹å™¨ç±»èƒ½å¤Ÿç›´æ¥è¿›è¡Œåºåˆ—åŒ–
+ * åºåˆ—åŒ–ä½¿ç”¨æ–¹æ³•:var inventory=Bukkit.createInventory(null,9,"");
  * var cxinventory=CXInventory(inventory);
  * var config=CXYamlConfiguration("","Test.yml");
  * config.set("test",cxinventory);
@@ -40,7 +40,7 @@ class CXInventory(var inventory: Inventory = Bukkit.createInventory(null, Invent
     ConfigurationSerializable, Inventory by inventory {
 
     /**
-     *ĞòÁĞ»¯
+     *åºåˆ—åŒ–
      *
      *
      */
@@ -52,16 +52,16 @@ class CXInventory(var inventory: Inventory = Bukkit.createInventory(null, Invent
         result["Contents"] = this.contents
         result["Title"] = inventory.title ?: ""
         //Result["Holders"]=inventory!!.holder
-        // TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+        // TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 
         return result
     }
 
 
     /**
-     * ½«´ËCXInventory×ª»»ÎªInventory
+     * å°†æ­¤CXInventoryè½¬æ¢ä¸ºInventory
      *
-     * @return ×ª»»ºóµÄInventory
+     * @return è½¬æ¢åçš„Inventory
      */
     fun toInventory(): Inventory {
         return inventory
@@ -74,7 +74,7 @@ class CXInventory(var inventory: Inventory = Bukkit.createInventory(null, Invent
     }*/
     companion object {
         /**
-         *·´ĞòÁĞ»¯
+         *ååºåˆ—åŒ–
          *
          *
          */
@@ -97,43 +97,43 @@ class CXInventory(var inventory: Inventory = Bukkit.createInventory(null, Invent
         }
 
         /**
-         * ´´½¨Ò»¸öInventory
+         * åˆ›å»ºä¸€ä¸ªInventory
          *
-         * @param IT ´ËÈİÆ÷µÄÀàĞÍ
-         * @param Title ´ËÈİÆ÷µÄ±êÌâ
-         * @return ´´½¨µÄÈİÆ÷
+         * @param inventoryType æ­¤å®¹å™¨çš„ç±»å‹
+         * @param title æ­¤å®¹å™¨çš„æ ‡é¢˜
+         * @return åˆ›å»ºçš„å®¹å™¨
          */
-        fun create(IT: InventoryType, Title: String): Inventory {
-            return Bukkit.createInventory(null, IT, Title)
+        fun create(inventoryType: InventoryType, title: String): Inventory {
+            return Bukkit.createInventory(null, inventoryType, title)
         }
 
         /**
-         * ´´½¨Ò»¸öInventory
+         * åˆ›å»ºä¸€ä¸ªInventory
          *
-         * @param Amount ´ËÈİÆ÷µÄ´óĞ¡
-         * @param Title ´ËÈİÆ÷µÄ±êÌâ
-         * @return ´´½¨µÄÈİÆ÷
+         * @param amount æ­¤å®¹å™¨çš„å¤§å°
+         * @param title æ­¤å®¹å™¨çš„æ ‡é¢˜
+         * @return åˆ›å»ºçš„å®¹å™¨
          */
-        fun create(Amount: Int, Title: String): Inventory {
-            return Bukkit.createInventory(null, Amount, Title)
+        fun create(amount: Int, title: String): Inventory {
+            return Bukkit.createInventory(null, amount, title)
 
         }
 
         /**
-         * ½« x y ×ø±ê×ª»»ÎªÈİÆ÷µÄÎ»ÖÃ
+         * å°† x y åæ ‡è½¬æ¢ä¸ºå®¹å™¨çš„ä½ç½®
          *
-         * @param x x×ø±ê
-         * @param y y×ø±ê
-         * @return ÈİÆ÷µÄÎ»ÖÃ
+         * @param x xåæ ‡
+         * @param y yåæ ‡
+         * @return å®¹å™¨çš„ä½ç½®
          */
         fun posToInteger(x: Int, y: Int): Int {
             return (y) * 9 + (x)
         }
 
         /**
-         * ½« ÈİÆ÷µÄÎ»ÖÃ×ª»»Îª x y ×ø±ê
-         * @param arg0 ÈİÆ÷ÄÚµÄÎ»ÖÃ
-         * @return ÈİÆ÷µÄÎ»ÖÃ VectorµÄX×ø±ê±íÊ¾ÈİÆ÷µÄX×ø±ê Y×ø±ê±íÊ¾ÈİÆ÷ÄÚµÄY×ø±ê
+         * å°† å®¹å™¨çš„ä½ç½®è½¬æ¢ä¸º x y åæ ‡
+         * @param arg0 å®¹å™¨å†…çš„ä½ç½®
+         * @return å®¹å™¨çš„ä½ç½® Vectorçš„Xåæ ‡è¡¨ç¤ºå®¹å™¨çš„Xåæ ‡ Yåæ ‡è¡¨ç¤ºå®¹å™¨å†…çš„Yåæ ‡
          */
         fun integerToPos(arg0: Int): Vector {
             val v = Vector()
@@ -148,17 +148,17 @@ class CXInventory(var inventory: Inventory = Bukkit.createInventory(null, Invent
         }
 
         /**
-         * ¸ù¾İÒ»¸öÒÑÓĞµÄÈİÆ÷´´½¨Ò»¸öĞÂµÄInventory
+         * æ ¹æ®ä¸€ä¸ªå·²æœ‰çš„å®¹å™¨åˆ›å»ºä¸€ä¸ªæ–°çš„Inventory
          *
-         * @param From ÒÑÓĞµÄÈİÆ÷
-         * @param Title ´ËÈİÆ÷µÄ±êÌâ
-         * @return ´´½¨µÄÈİÆ÷
+         * @param from å·²æœ‰çš„å®¹å™¨
+         * @param title æ­¤å®¹å™¨çš„æ ‡é¢˜
+         * @return åˆ›å»ºçš„å®¹å™¨
          */
-        fun create(From: Inventory, Title: String): Inventory {
-            var Result = Bukkit.createInventory(null, From.type, Title)
-            if (From.type == InventoryType.CHEST) Result = Bukkit.createInventory(null, From.size, Title)
-            for (i in 0 until From.size) {
-                if (From.getItem(i) != null) Result.setItem(i, From.getItem(i))
+        fun create(from: Inventory, title: String): Inventory {
+            var Result = Bukkit.createInventory(null, from.type, title)
+            if (from.type == InventoryType.CHEST) Result = Bukkit.createInventory(null, from.size, title)
+            for (i in 0 until from.size) {
+                if (from.getItem(i) != null) Result.setItem(i, from.getItem(i))
             }
             return Result
         }
@@ -168,7 +168,7 @@ class CXInventory(var inventory: Inventory = Bukkit.createInventory(null, Invent
         internal var Inv: Inventory? = null
 
         /**
-         *ĞòÁĞ»¯
+         *åºåˆ—åŒ–
          *
          *
          */
@@ -179,12 +179,12 @@ class CXInventory(var inventory: Inventory = Bukkit.createInventory(null, Invent
             Result["MaxStackSize"] = Inv!!.maxStackSize
             Result["Contents"] = Inv!!.contents
             Result["Title"] = Inv!!.title
-            // TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+            // TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 
             return Result
         }
         /**
-         *·´ĞòÁĞ»¯
+         *ååºåˆ—åŒ–
          *
          *
          */
@@ -200,16 +200,16 @@ class CXInventory(var inventory: Inventory = Bukkit.createInventory(null, Invent
         }
 
         /**
-         * ½«´ËCXInventory×ª»»ÎªInventory
+         * å°†æ­¤CXInventoryè½¬æ¢ä¸ºInventory
          *
-         * @return ×ª»»ºóµÄInventory
+         * @return è½¬æ¢åçš„Inventory
          */
         fun toInventory(): Inventory? {
             return Inv
         }
 
         /**
-         * Í¨¹ıInventory¹¹ÔìÒ»¸öCXInventory
+         * é€šè¿‡Inventoryæ„é€ ä¸€ä¸ªCXInventory
          */
         constructor(I: Inventory) {
             Inv = I
@@ -218,40 +218,40 @@ class CXInventory(var inventory: Inventory = Bukkit.createInventory(null, Invent
 
         companion object {
             /**
-             * ´´½¨Ò»¸öInventory
+             * åˆ›å»ºä¸€ä¸ªInventory
              *
-             * @param IT ´ËÈİÆ÷µÄÀàĞÍ
-             * @param Title ´ËÈİÆ÷µÄ±êÌâ
-             * @return ´´½¨µÄÈİÆ÷
+             * @param IT æ­¤å®¹å™¨çš„ç±»å‹
+             * @param Title æ­¤å®¹å™¨çš„æ ‡é¢˜
+             * @return åˆ›å»ºçš„å®¹å™¨
              */
             fun create(IT: InventoryType, Title: String): Inventory {
                 return Bukkit.createInventory(null, IT, Title)
             }
             /**
-             * ´´½¨Ò»¸öInventory
+             * åˆ›å»ºä¸€ä¸ªInventory
              *
-             * @param Amount ´ËÈİÆ÷µÄ´óĞ¡
-             * @param Title ´ËÈİÆ÷µÄ±êÌâ
-             * @return ´´½¨µÄÈİÆ÷
+             * @param Amount æ­¤å®¹å™¨çš„å¤§å°
+             * @param Title æ­¤å®¹å™¨çš„æ ‡é¢˜
+             * @return åˆ›å»ºçš„å®¹å™¨
              */
             fun create(Amount: Int, Title: String): Inventory {
                 return Bukkit.createInventory(null, Amount, Title)
 
             }
             /**
-             * ½« x y ×ø±ê×ª»»ÎªÈİÆ÷µÄÎ»ÖÃ
+             * å°† x y åæ ‡è½¬æ¢ä¸ºå®¹å™¨çš„ä½ç½®
              *
-             * @param x x×ø±ê
-             * @param y y×ø±ê
-             * @return ÈİÆ÷µÄÎ»ÖÃ
+             * @param x xåæ ‡
+             * @param y yåæ ‡
+             * @return å®¹å™¨çš„ä½ç½®
              */
             fun posToInteger(x: Int, y: Int): Int {
                 return (y - 1) * 9 + (x - 1)
             }
             /**
-             * ½« ÈİÆ÷µÄÎ»ÖÃ×ª»»Îª x y ×ø±ê
-             * @param arg0 ÈİÆ÷ÄÚµÄÎ»ÖÃ
-             * @return ÈİÆ÷µÄÎ»ÖÃ VectorµÄX×ø±ê±íÊ¾ÈİÆ÷µÄX×ø±ê Y×ø±ê±íÊ¾ÈİÆ÷ÄÚµÄY×ø±ê
+             * å°† å®¹å™¨çš„ä½ç½®è½¬æ¢ä¸º x y åæ ‡
+             * @param arg0 å®¹å™¨å†…çš„ä½ç½®
+             * @return å®¹å™¨çš„ä½ç½® Vectorçš„Xåæ ‡è¡¨ç¤ºå®¹å™¨çš„Xåæ ‡ Yåæ ‡è¡¨ç¤ºå®¹å™¨å†…çš„Yåæ ‡
              */
             fun integerToPos(arg0: Int): Vector {
                 val V = Vector()
@@ -260,11 +260,11 @@ class CXInventory(var inventory: Inventory = Bukkit.createInventory(null, Invent
                 return V
             }
             /**
-             * ¸ù¾İÒ»¸öÒÑÓĞµÄÈİÆ÷´´½¨Ò»¸öĞÂµÄInventory
+             * æ ¹æ®ä¸€ä¸ªå·²æœ‰çš„å®¹å™¨åˆ›å»ºä¸€ä¸ªæ–°çš„Inventory
              *
-             * @param From ÒÑÓĞµÄÈİÆ÷
-             * @param Title ´ËÈİÆ÷µÄ±êÌâ
-             * @return ´´½¨µÄÈİÆ÷
+             * @param From å·²æœ‰çš„å®¹å™¨
+             * @param Title æ­¤å®¹å™¨çš„æ ‡é¢˜
+             * @return åˆ›å»ºçš„å®¹å™¨
              */
             fun create(From: Inventory, Title: String): Inventory {
                 var Result = Bukkit.createInventory(null, From.type, Title)
@@ -289,7 +289,7 @@ class CXInventory(var inventory: Inventory = Bukkit.createInventory(null, Invent
 			if(ar.size()<=0) break;
 			i++;
 		}
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		return Contents;
 	}
 	@Override
@@ -302,7 +302,7 @@ class CXInventory(var inventory: Inventory = Bukkit.createInventory(null, Invent
 				i++;
 			}
 		}
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		return Result;
 	}
 	@Override
@@ -315,7 +315,7 @@ class CXInventory(var inventory: Inventory = Bukkit.createInventory(null, Invent
 				i++;
 			}
 		}
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		return Result;
 	}
 	@Override
@@ -328,13 +328,13 @@ class CXInventory(var inventory: Inventory = Bukkit.createInventory(null, Invent
 				i++;
 			}
 		}
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		return Result;
 	}
 	@Override
 	public void clear() {
 		this.Contents=new HashMap<Integer,ItemStack>();
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		
 	}
 	@Override
@@ -346,7 +346,7 @@ class CXInventory(var inventory: Inventory = Bukkit.createInventory(null, Invent
 			}
 			i++;
 		}
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		
 	}
 	@Override
@@ -357,7 +357,7 @@ class CXInventory(var inventory: Inventory = Bukkit.createInventory(null, Invent
 			}
 			
 		}
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		return false;
 	}
 	@Override
@@ -368,7 +368,7 @@ class CXInventory(var inventory: Inventory = Bukkit.createInventory(null, Invent
 			}
 			
 		}
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		return false;
 		
 	}
@@ -380,7 +380,7 @@ class CXInventory(var inventory: Inventory = Bukkit.createInventory(null, Invent
 			}
 			
 		}
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		return false;
 	}
 
@@ -393,7 +393,7 @@ class CXInventory(var inventory: Inventory = Bukkit.createInventory(null, Invent
 			}
 			
 		}
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		return false;
 		
 	}
@@ -405,7 +405,7 @@ class CXInventory(var inventory: Inventory = Bukkit.createInventory(null, Invent
 			}
 			
 		}
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		return false;
 	}
 	@Override
@@ -416,7 +416,7 @@ class CXInventory(var inventory: Inventory = Bukkit.createInventory(null, Invent
 			}
 			
 		}
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		return false;
 	}
 	@Override
@@ -454,7 +454,7 @@ class CXInventory(var inventory: Inventory = Bukkit.createInventory(null, Invent
 	}
 	@Override
 	public ItemStack[] getContents() {
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		
 		return CXInventory.convertArray(ItemStack.class, this.Contents.values().toArray());
 	}
@@ -475,47 +475,47 @@ class CXInventory(var inventory: Inventory = Bukkit.createInventory(null, Invent
     }
 	@Override
 	public ItemStack getItem(int arg0) {
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		return this.Contents.get(arg0);
 	}
 	@Override
 	public int getMaxStackSize() {
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		return this.getMaxStackSize();
 	}
 	@Override
 	public String getName() {
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		return this.toString();
 	}
 	@Override
 	public int getSize() {
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		return this.Size;
 	}
 	@Override
 	public String getTitle() {
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		return this.Title;
 	}
 	@Override
 	public InventoryType getType() {
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		return this.Type;
 	}
 	@Override
 	public List<HumanEntity> getViewers() {
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		return this.Viewers;
 	}
 	@Override
 	public ListIterator<ItemStack> iterator() {
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		return this.Iter;
 	}
 	@Override
 	public ListIterator<ItemStack> iterator(int arg0) {
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		return this.Iter;
 	}
 	@Override
@@ -525,7 +525,7 @@ class CXInventory(var inventory: Inventory = Bukkit.createInventory(null, Invent
 			if(a.getTypeId()==arg0) Contents.put(i, null);
 			i++;
 		}
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		
 	}
 	@Override
@@ -535,7 +535,7 @@ class CXInventory(var inventory: Inventory = Bukkit.createInventory(null, Invent
 			if(a.getType().equals(arg0)) Contents.put(i, null);
 			i++;
 		}
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		
 	}
 	@Override
@@ -545,7 +545,7 @@ class CXInventory(var inventory: Inventory = Bukkit.createInventory(null, Invent
 			if(a.equals(arg0)) Contents.put(i, null);
 			i++;
 		}
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		
 	}
 	@Override
@@ -560,7 +560,7 @@ class CXInventory(var inventory: Inventory = Bukkit.createInventory(null, Invent
 			if(Is.size()<=0) return Contents;
 			i++;
 		}
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		return Contents;
 	}
 	@Override
@@ -568,19 +568,19 @@ class CXInventory(var inventory: Inventory = Bukkit.createInventory(null, Invent
 		for(int i=0;i<arg0.length;i++) {
 			this.Contents.put(i,arg0[i]);
 		}
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		
 	}
 	@Override
 	public void setItem(int arg0, ItemStack arg1) {
 		this.Contents.put(arg0, arg1);
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		
 	}
 	@Override
 	public void setMaxStackSize(int arg0) {
 		this.MaxStackSize=arg0;
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		
 	}
 	@Override
@@ -591,61 +591,61 @@ class CXInventory(var inventory: Inventory = Bukkit.createInventory(null, Invent
 			}
 			
 		}
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		return false;
 	}
 	@Override
 	public ItemStack getFuel() {
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		return this.Contents.get(1);
 	}
 	
 	@Override
 	public ItemStack getResult() {
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		return this.Contents.get(2);
 	}
 	@Override
 	public ItemStack getSmelting() {
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		return this.Contents.get(0);
 	}
 	@Override
 	public void setFuel(ItemStack arg0) {
 		this.Contents.put(1, arg0);
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		
 	}
 	@Override
 	public void setResult(ItemStack arg0) {
 		this.Contents.put(2, arg0);
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		
 	}
 	@Override
 	public void setSmelting(ItemStack arg0) {
 		this.Contents.put(0, arg0);
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		
 	}
 	@Override
 	public ItemStack[] getMatrix() {
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		return null;
 	}
 	@Override
 	public Recipe getRecipe() {
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		return null;
 	}
 	@Override
 	public void setMatrix(ItemStack[] arg0) {
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		
 	}
 	@Override
 	public Furnace getHolder() {
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		return null;
 	}
 	*/

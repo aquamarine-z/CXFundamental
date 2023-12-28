@@ -3,7 +3,7 @@ package cxplugins.cxfundamental.minecraft.server
 import org.bukkit.inventory.ItemStack
 
 /**
- * ÎªÒ»Ğ©Êı¾İµÄÌæ»»Ìá¹©µÄÀà
+ * ä¸ºä¸€äº›æ•°æ®çš„æ›¿æ¢æä¾›çš„ç±»
  *
  */
 object CXReplace {
@@ -12,10 +12,10 @@ object CXReplace {
 
     @JvmStatic
             /**
-             * Ìí¼ÓÒ»¸öÌæ»»Ïî
+             * æ·»åŠ ä¸€ä¸ªæ›¿æ¢é¡¹
              *
-             * @param Key ±»Ìæ»»µÄÄÚÈİ
-             * @param Value Ìæ»»µÄÄÚÈİ
+             * @param Key è¢«æ›¿æ¢çš„å†…å®¹
+             * @param Value æ›¿æ¢çš„å†…å®¹
              */
     fun add(Key: String, Value: String) {
         Replaces[Key] = Value
@@ -23,9 +23,9 @@ object CXReplace {
 
     @JvmStatic
             /**
-             * É¾³ıÒ»¸öÌæ»»Ïî
+             * åˆ é™¤ä¸€ä¸ªæ›¿æ¢é¡¹
              *
-             * @param Key ±»É¾³ıµÄÌæ»»ÄÚÈİ
+             * @param Key è¢«åˆ é™¤çš„æ›¿æ¢å†…å®¹
              */
     fun remove(Key: String) {
         Replaces.remove(Key)
@@ -33,10 +33,10 @@ object CXReplace {
 
     @JvmStatic
             /**
-             * ½«Ò»¸ö×Ö·û´®½øĞĞÒ»´ÎÌæ»»²Ù×÷
+             * å°†ä¸€ä¸ªå­—ç¬¦ä¸²è¿›è¡Œä¸€æ¬¡æ›¿æ¢æ“ä½œ
              *
-             * @param R ±»Ìæ»»µÄ×Ö·û´®
-             * @return Ìæ»»ºóµÄ×Ö·û´®
+             * @param R è¢«æ›¿æ¢çš„å­—ç¬¦ä¸²
+             * @return æ›¿æ¢åçš„å­—ç¬¦ä¸²
              */
     fun replace(R: String): String {
         var R = R
@@ -50,10 +50,10 @@ object CXReplace {
     }
 
     /**
-     * ½«Ò»¸öÁĞ±í½øĞĞÒ»´ÎÌæ»»²Ù×÷
+     * å°†ä¸€ä¸ªåˆ—è¡¨è¿›è¡Œä¸€æ¬¡æ›¿æ¢æ“ä½œ
      *
-     * @param R ±»Ìæ»»µÄÁĞ±í
-     * @return Ìæ»»ºóµÄÁĞ±í
+     * @param R è¢«æ›¿æ¢çš„åˆ—è¡¨
+     * @return æ›¿æ¢åçš„åˆ—è¡¨
      */
     @JvmStatic
     fun replace(R: MutableList<String>): List<String> {
@@ -67,10 +67,10 @@ object CXReplace {
     }
 
     /**
-     * ½«Ò»¸öÎïÆ·µÄ½éÉÜÓëÃû×Ö½øĞĞÒ»´ÎÌæ»»²Ù×÷
+     * å°†ä¸€ä¸ªç‰©å“çš„ä»‹ç»ä¸åå­—è¿›è¡Œä¸€æ¬¡æ›¿æ¢æ“ä½œ
      *
-     * @param Item ±»Ìæ»»µÄÎïÆ·
-     * @return Ìæ»»ºóµÄÎïÆ·
+     * @param Item è¢«æ›¿æ¢çš„ç‰©å“
+     * @return æ›¿æ¢åçš„ç‰©å“
      */
     @JvmStatic
     fun replace(Item: ItemStack): ItemStack {

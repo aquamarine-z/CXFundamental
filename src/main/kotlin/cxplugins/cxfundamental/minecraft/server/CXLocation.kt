@@ -7,7 +7,7 @@ import org.bukkit.configuration.serialization.ConfigurationSerializable
 import org.bukkit.util.Vector
 
 /**
- * ÎªLocationÀà½øĞĞĞòÁĞ»¯Ìá¹©µÄÀà
+ * ä¸ºLocationç±»è¿›è¡Œåºåˆ—åŒ–æä¾›çš„ç±»
  * @param world
  * @param x
  * @param y
@@ -16,17 +16,17 @@ import org.bukkit.util.Vector
 class CXLocation : Location, ConfigurationSerializable {
 
     /**
-     * Í¨¹ı world x y z ×ø±ê½øĞĞ¹¹ÔìµÄ¹¹ÔìÆ÷
+     * é€šè¿‡ world x y z åæ ‡è¿›è¡Œæ„é€ çš„æ„é€ å™¨
      */
     constructor(world: World, x: Double, y: Double, z: Double) : super(world, x, y, z) {
-        // TODO ×Ô¶¯Éú³ÉµÄ¹¹Ôìº¯Êı´æ¸ù
+        // TODO è‡ªåŠ¨ç”Ÿæˆçš„æ„é€ å‡½æ•°å­˜æ ¹
     }
 
     /**
-     * ĞòÁĞ»¯µÄ·½·¨
+     * åºåˆ—åŒ–çš„æ–¹æ³•
      */
     override fun serialize(): Map<String, Any> {
-        // TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+        // TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
         val result = HashMap<String, Any>()
         result["WorldName"] = super.getWorld().name
         result["Vector"] = super.toVector().clone()
@@ -36,7 +36,7 @@ class CXLocation : Location, ConfigurationSerializable {
     }
 
     /**
-     * Í¨¹ı¸¸ÀàLocation¹¹ÔìµÄ¹¹ÔìÆ÷
+     * é€šè¿‡çˆ¶ç±»Locationæ„é€ çš„æ„é€ å™¨
      */
     constructor(arg0: Location) : super(arg0.world, arg0.x, arg0.y, arg0.z) {
         super.setDirection(arg0.toVector().clone())
@@ -45,7 +45,7 @@ class CXLocation : Location, ConfigurationSerializable {
     }
 
     /**
-     * ·´ĞòÁĞ»¯µÄ¹¹ÔìÆ÷
+     * ååºåˆ—åŒ–çš„æ„é€ å™¨
      */
     constructor(m: Map<String, Any>) : this(
         Bukkit.getWorld(m["WorldName"] as String),

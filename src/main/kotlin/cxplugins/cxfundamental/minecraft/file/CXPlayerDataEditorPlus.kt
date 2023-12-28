@@ -4,10 +4,10 @@ import org.bukkit.entity.Player
 import java.io.File
 
 /**
- * ´ËÀàÊÇCXPlayerDataEditorµÄÓÅ»¯°æ±¾
- * ½«²»Í¬²å¼şµÄÊı¾İ·ÖÇø´¦Àí
- * ¿ÉÒÔ¼õÉÙ±¨´í·¢Éú
- * ÓÅ»¯¶ÁÈ¡ËÙ¶È
+ * æ­¤ç±»æ˜¯CXPlayerDataEditorçš„ä¼˜åŒ–ç‰ˆæœ¬
+ * å°†ä¸åŒæ’ä»¶çš„æ•°æ®åˆ†åŒºå¤„ç†
+ * å¯ä»¥å‡å°‘æŠ¥é”™å‘ç”Ÿ
+ * ä¼˜åŒ–è¯»å–é€Ÿåº¦
  */
 class CXPlayerDataEditorPlus(
     private val nameSpace: String,

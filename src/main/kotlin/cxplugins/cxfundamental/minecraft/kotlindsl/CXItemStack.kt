@@ -13,19 +13,19 @@ import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.ItemMeta
 
 /**
- * ½«´ËÎïÆ·µÄÊýÁ¿¼õÉÙÖ¸¶¨µÄÖµ
+ * å°†æ­¤ç‰©å“çš„æ•°é‡å‡å°‘æŒ‡å®šçš„å€¼
  *
- * @param Amount ¼õÉÙµÄÊýÁ¿
+ * @param Amount å‡å°‘çš„æ•°é‡
  */
 fun ItemStack.cost(Amount: Int) {
     this.amount = this.amount - Amount
 }
 
 /**
- * Éú³ÉÒ»¸ö´ËÎïÆ·µÄ¿½±´ ÆäÖÐÊýÁ¿Îª²ÎÊýamount
+ * ç”Ÿæˆä¸€ä¸ªæ­¤ç‰©å“çš„æ‹·è´ å…¶ä¸­æ•°é‡ä¸ºå‚æ•°amount
  *
- * @param amount Éú³ÉÎïÆ·µÄÊýÁ¿
- * @return ÎïÆ·µÄ¿½±´
+ * @param amount ç”Ÿæˆç‰©å“çš„æ•°é‡
+ * @return ç‰©å“çš„æ‹·è´
  */
 fun ItemStack.cloneWithAmount(amount: Int): ItemStack {
     var item = this.clone()
@@ -47,10 +47,10 @@ class ItemStack:ItemStacks(){
     }
 }*/
 /**
- * ÔÚºöÂÔÊýÁ¿µÄÇé¿öÏÂ ÅÐ¶Ï×ÔÉíÊÇ·ñÓë²ÎÊýItemÏàµÈ
+ * åœ¨å¿½ç•¥æ•°é‡çš„æƒ…å†µä¸‹ åˆ¤æ–­è‡ªèº«æ˜¯å¦ä¸Žå‚æ•°Itemç›¸ç­‰
  *
- * @param Item ÅÐ¶ÏµÄÎïÆ·
- * @return ÈôÏàµÈ Ôò·µ»Øtrue ·ñÔò·µ»Øfalse
+ * @param Item åˆ¤æ–­çš„ç‰©å“
+ * @return è‹¥ç›¸ç­‰ åˆ™è¿”å›žtrue å¦åˆ™è¿”å›žfalse
  */
 
 fun ItemStack.equalsIgnoreAmount(Item: ItemStack): Boolean {
@@ -65,10 +65,10 @@ fun ItemStack.equalsIgnoreAmount(Item: ItemStack): Boolean {
 }
 
 /**
- * ÔÚÎïÆ·½éÉÜÖÐ×·¼ÓÄÚÈÝ
+ * åœ¨ç‰©å“ä»‹ç»ä¸­è¿½åŠ å†…å®¹
  *
- * @param lore ×·¼ÓµÄÄÚÈÝ
- * @param index ×·¼ÓµÄÎ»ÖÃ Ä¬ÈÏÎªÄ©Î²
+ * @param lore è¿½åŠ çš„å†…å®¹
+ * @param index è¿½åŠ çš„ä½ç½® é»˜è®¤ä¸ºæœ«å°¾
  */
 fun ItemStack.appendLore(lore: String, index: Int = if (this.itemMeta.lore != null) this.itemMeta.lore.size else 0) {
     var meta = this.itemMeta
@@ -84,9 +84,9 @@ fun ItemStack.appendLore(lore: String, index: Int = if (this.itemMeta.lore != nu
 }
 
 /**
- * ÔÚÎïÆ·½éÉÜÖÐÉ¾³ýÄÚÈÝ
+ * åœ¨ç‰©å“ä»‹ç»ä¸­åˆ é™¤å†…å®¹
  *
- * @param line É¾³ýµÄÐÐÊý Ä¬ÈÏÎªÄ©Î²
+ * @param line åˆ é™¤çš„è¡Œæ•° é»˜è®¤ä¸ºæœ«å°¾
  */
 fun ItemStack.removeLore(line: Int = this.itemMeta.lore.size - 1) {
     if (this.itemMeta.lore == null) return
@@ -103,9 +103,9 @@ fun ItemStack.removeLore(line: Int = this.itemMeta.lore.size - 1) {
 }
 
 /**
- * ÉèÖÃÎïÆ·Õ¹Ê¾Ãû
+ * è®¾ç½®ç‰©å“å±•ç¤ºå
  *
- * @param name ÎïÆ·µÄÕ¹Ê¾Ãû
+ * @param name ç‰©å“çš„å±•ç¤ºå
  */
 fun ItemStack.setDisplayName(name: String) {
     var meta = this.itemMeta
@@ -114,10 +114,10 @@ fun ItemStack.setDisplayName(name: String) {
 }
 
 /**
- * ½«´ËÎïÆ·¿½±´Ò»·Ý²¢ÉèÖÃNBTÊý¾Ý
+ * å°†æ­¤ç‰©å“æ‹·è´ä¸€ä»½å¹¶è®¾ç½®NBTæ•°æ®
  *
- * @param compound NBTCompoundÊý¾Ý
- * @return ´ËÎïÆ·ÉèÖÃNBTÊý¾ÝÖ®ºóµÄ¿½±´
+ * @param compound NBTCompoundæ•°æ®
+ * @return æ­¤ç‰©å“è®¾ç½®NBTæ•°æ®ä¹‹åŽçš„æ‹·è´
  */
 fun ItemStack.setNBTTagToCopy(compound: Any?): ItemStack {
     var nmsItemStack = CraftItemStack.asNMSCopy(null, this)
@@ -126,20 +126,20 @@ fun ItemStack.setNBTTagToCopy(compound: Any?): ItemStack {
 }
 
 /**
- * ½«´ËÎïÆ·¿½±´Ò»·Ý²¢ÉèÖÃNBTÊý¾Ý
+ * å°†æ­¤ç‰©å“æ‹·è´ä¸€ä»½å¹¶è®¾ç½®NBTæ•°æ®
  *
- * @param value ÉèÖÃµÄÊý¾ÝÖµ
- * @param path Êý¾ÝµÄÂ·¾¶
- * @return ´ËÎïÆ·ÉèÖÃNBTÊý¾ÝÖ®ºóµÄ¿½±´
+ * @param value è®¾ç½®çš„æ•°æ®å€¼
+ * @param path æ•°æ®çš„è·¯å¾„
+ * @return æ­¤ç‰©å“è®¾ç½®NBTæ•°æ®ä¹‹åŽçš„æ‹·è´
  */
 fun ItemStack.setNBTValueToCopy(value: Any?, vararg path: String): ItemStack {
     return NBTEditor.setItemStackNBT(this, value, *path)
 }
 
 /**
- * ÉèÖÃ´ËÎïÆ·µÄNBTÊý¾Ý
+ * è®¾ç½®æ­¤ç‰©å“çš„NBTæ•°æ®
  *
- * @param compound NBTCompoundÊý¾Ý
+ * @param compound NBTCompoundæ•°æ®
  */
 fun ItemStack.setNBTTag(compound: Any?) {
     val item = this.setNBTTagToCopy(compound)
@@ -147,10 +147,10 @@ fun ItemStack.setNBTTag(compound: Any?) {
 }
 
 /**
- * ÉèÖÃ´ËÎïÆ·µÄNBTÊý¾Ý
+ * è®¾ç½®æ­¤ç‰©å“çš„NBTæ•°æ®
  *
- * @param value ÉèÖÃµÄÊý¾ÝÖµ
- * @param path Êý¾ÝµÄÂ·¾¶
+ * @param value è®¾ç½®çš„æ•°æ®å€¼
+ * @param path æ•°æ®çš„è·¯å¾„
 
  */
 fun ItemStack.setNBTValue(value: Any?, vararg path: String) {
@@ -179,19 +179,19 @@ fun ItemStack.getNBTValueBySerialization(vararg path: String): Any? {
 }
 
 /**
- * »ñÈ¡´ËÎïÆ·µÄÄ³¸öNBTÊý¾Ý
+ * èŽ·å–æ­¤ç‰©å“çš„æŸä¸ªNBTæ•°æ®
  *
- * @param path ´ËÊý¾ÝµÄÂ·¾¶
- * @return »ñÈ¡µÄNBTÊý¾Ý
+ * @param path æ­¤æ•°æ®çš„è·¯å¾„
+ * @return èŽ·å–çš„NBTæ•°æ®
  */
 fun ItemStack.getNBTValue(vararg path: String): Any? {
     return NBTEditor.getItemStackNBT(this, *path)
 }
 
 /**
- * »ñÈ¡´ËÎïÆ·µÄÄ³¸öNBT
+ * èŽ·å–æ­¤ç‰©å“çš„æŸä¸ªNBT
  *
- * @return »ñÈ¡µÄNBT
+ * @return èŽ·å–çš„NBT
  */
 fun ItemStack.getNBTTag(): Any {
     var nmsItemStack = CraftItemStack.asNMSCopy(null, this)
@@ -200,19 +200,19 @@ fun ItemStack.getNBTTag(): Any {
 }
 
 /**
- * ÅÐ¶ÏÊÇ·ñÓÐÄ³¸öNBTÊý¾Ý
+ * åˆ¤æ–­æ˜¯å¦æœ‰æŸä¸ªNBTæ•°æ®
  *
- * @param path ´ËÊý¾ÝµÄÂ·¾¶
- * @return ÊÇ·ñÓÐ´ËÊý¾Ý
+ * @param path æ­¤æ•°æ®çš„è·¯å¾„
+ * @return æ˜¯å¦æœ‰æ­¤æ•°æ®
  */
 fun ItemStack.hasNBTValue(vararg path: String): Boolean {
     return getNBTValue(*path) != null
 }
 
 /**
- * Kotlin DSL¶ÔÓÚItemMetaµÄÉèÖÃ
+ * Kotlin DSLå¯¹äºŽItemMetaçš„è®¾ç½®
  *
- * @param lambda ÉèÖÃItemMetaµÄlambda±í´ïÊ½
+ * @param lambda è®¾ç½®ItemMetaçš„lambdaè¡¨è¾¾å¼
  */
 fun CXItemStack.meta(lambda: ItemMeta.() -> Unit) {
     var meta = this.itemMeta
@@ -221,9 +221,9 @@ fun CXItemStack.meta(lambda: ItemMeta.() -> Unit) {
 }
 
 /**
- * Kotlin DSL¶ÔÓÚAttributeµÄÉèÖÃ
+ * Kotlin DSLå¯¹äºŽAttributeçš„è®¾ç½®
  *
- * @param lambda ÉèÖÃAttributeµÄlambda±í´ïÊ½
+ * @param lambda è®¾ç½®Attributeçš„lambdaè¡¨è¾¾å¼
  */
 fun CXItemStack.attribute(lambda: ItemAttributeCompound.() -> Unit) {
     var compound = ItemAttributeCompound()
@@ -237,9 +237,9 @@ fun CXItemStack.attribute(lambda: ItemAttributeCompound.() -> Unit) {
 }
 
 /**
- * Kotlin DSL¶ÔÓÚÎïÆ·ÉËº¦µÄÉèÖÃ
+ * Kotlin DSLå¯¹äºŽç‰©å“ä¼¤å®³çš„è®¾ç½®
  *
- * @param lambda ÉèÖÃÊôÐÔµÄlambda±í´ïÊ½
+ * @param lambda è®¾ç½®å±žæ€§çš„lambdaè¡¨è¾¾å¼
  */
 fun ItemAttributeCompound.attackDamage(lambda: AttributeModifier.() -> Unit) {
     var modifier =
@@ -250,9 +250,9 @@ fun ItemAttributeCompound.attackDamage(lambda: AttributeModifier.() -> Unit) {
 }
 
 /**
- * Kotlin DSL¶ÔÓÚÎïÆ·»¤¼×ÖµµÄÉèÖÃ
+ * Kotlin DSLå¯¹äºŽç‰©å“æŠ¤ç”²å€¼çš„è®¾ç½®
  *
- * @param lambda ÉèÖÃÊôÐÔµÄlambda±í´ïÊ½
+ * @param lambda è®¾ç½®å±žæ€§çš„lambdaè¡¨è¾¾å¼
  */
 fun ItemAttributeCompound.amour(lambda: AttributeModifier.() -> Unit) {
     var modifier = AttributeModifier("amour", 0.0, ItemAttribute.GENERIC_AMOUR, AttributeOperation.ADD_NUMBER)
@@ -262,9 +262,9 @@ fun ItemAttributeCompound.amour(lambda: AttributeModifier.() -> Unit) {
 }
 
 /**
- * Kotlin DSL¶ÔÓÚÎïÆ·¹¥ËÙµÄÉèÖÃ
+ * Kotlin DSLå¯¹äºŽç‰©å“æ”»é€Ÿçš„è®¾ç½®
  *
- * @param lambda ÉèÖÃÊôÐÔµÄlambda±í´ïÊ½
+ * @param lambda è®¾ç½®å±žæ€§çš„lambdaè¡¨è¾¾å¼
  */
 fun ItemAttributeCompound.attackSpeed(lambda: AttributeModifier.() -> Unit) {
     var modifier =
@@ -275,9 +275,9 @@ fun ItemAttributeCompound.attackSpeed(lambda: AttributeModifier.() -> Unit) {
 }
 
 /**
- * Kotlin DSL¶ÔÓÚÎïÆ·ÐÒÔËµÄÉèÖÃ
+ * Kotlin DSLå¯¹äºŽç‰©å“å¹¸è¿çš„è®¾ç½®
  *
- * @param lambda ÉèÖÃÊôÐÔµÄlambda±í´ïÊ½
+ * @param lambda è®¾ç½®å±žæ€§çš„lambdaè¡¨è¾¾å¼
  */
 fun ItemAttributeCompound.luck(lambda: AttributeModifier.() -> Unit) {
     var modifier = AttributeModifier("luck", 0.0, ItemAttribute.GENERIC_LUCK, AttributeOperation.ADD_NUMBER)
@@ -286,9 +286,9 @@ fun ItemAttributeCompound.luck(lambda: AttributeModifier.() -> Unit) {
 }
 
 /**
- * Kotlin DSL¶ÔÓÚÎïÆ·ÒÆËÙµÄÉèÖÃ
+ * Kotlin DSLå¯¹äºŽç‰©å“ç§»é€Ÿçš„è®¾ç½®
  *
- * @param lambda ÉèÖÃÊôÐÔµÄlambda±í´ïÊ½
+ * @param lambda è®¾ç½®å±žæ€§çš„lambdaè¡¨è¾¾å¼
  */
 fun ItemAttributeCompound.movementSpeed(lambda: AttributeModifier.() -> Unit) {
     var modifier =
@@ -298,9 +298,9 @@ fun ItemAttributeCompound.movementSpeed(lambda: AttributeModifier.() -> Unit) {
 }
 
 /**
- * Kotlin DSL¶ÔÓÚÎïÆ·×î´óÉúÃüÖµµÄÉèÖÃ
+ * Kotlin DSLå¯¹äºŽç‰©å“æœ€å¤§ç”Ÿå‘½å€¼çš„è®¾ç½®
  *
- * @param lambda ÉèÖÃÊôÐÔµÄlambda±í´ïÊ½
+ * @param lambda è®¾ç½®å±žæ€§çš„lambdaè¡¨è¾¾å¼
  */
 fun ItemAttributeCompound.maxHealth(lambda: AttributeModifier.() -> Unit) {
     var modifier = AttributeModifier("maxHealth", 0.0, ItemAttribute.GENERIC_MAX_HEALTH, AttributeOperation.ADD_NUMBER)
@@ -309,9 +309,9 @@ fun ItemAttributeCompound.maxHealth(lambda: AttributeModifier.() -> Unit) {
 }
 
 /**
- * Kotlin DSL¶ÔÓÚÎïÆ·NBT¸½¼ÓÖµµÄÉèÖÃ
+ * Kotlin DSLå¯¹äºŽç‰©å“NBTé™„åŠ å€¼çš„è®¾ç½®
  *
- * @param lambda ÉèÖÃNBT¸½¼ÓÖµµÄlambda±í´ïÊ½
+ * @param lambda è®¾ç½®NBTé™„åŠ å€¼çš„lambdaè¡¨è¾¾å¼
  */
 fun CXItemStack.tag(lambda: NBTTagCompound.() -> Unit) {
     var compound = NBTTagCompound()
@@ -325,9 +325,9 @@ fun CXItemStack.tag(lambda: NBTTagCompound.() -> Unit) {
 }
 
 /**
- * Kotlin DSL¿½±´Ò»¸öÎïÆ·²¢ÉèÖÃÏà¹ØÊôÐÔµÄ·½·¨
+ * Kotlin DSLæ‹·è´ä¸€ä¸ªç‰©å“å¹¶è®¾ç½®ç›¸å…³å±žæ€§çš„æ–¹æ³•
  *
- * @param lambda ÉèÖÃÎïÆ·ÊôÐÔµÄlambda±í´ïÊ½
+ * @param lambda è®¾ç½®ç‰©å“å±žæ€§çš„lambdaè¡¨è¾¾å¼
  */
 fun CXItemStack.Companion.copy(srcItemStack: CXItemStack, lambda: ItemStack.() -> Unit): CXItemStack {
     srcItemStack.apply(lambda)
@@ -341,9 +341,9 @@ fun CXItemStack.edit(lambda: ItemStack.() -> Unit): Unit {
 }
 
 /**
- * Kotlin DSL´´½¨Ò»¸öÎïÆ·²¢ÉèÖÃÏà¹ØÊôÐÔµÄ·½·¨
+ * Kotlin DSLåˆ›å»ºä¸€ä¸ªç‰©å“å¹¶è®¾ç½®ç›¸å…³å±žæ€§çš„æ–¹æ³•
  *
- * @param lambda ÉèÖÃÎïÆ·ÊôÐÔµÄlambda±í´ïÊ½
+ * @param lambda è®¾ç½®ç‰©å“å±žæ€§çš„lambdaè¡¨è¾¾å¼
  */
 fun CXItemStack.Companion.create(lambda: CXItemStack.() -> Unit): CXItemStack {
     var itemStack = CXItemStack(1, 1, "", "")

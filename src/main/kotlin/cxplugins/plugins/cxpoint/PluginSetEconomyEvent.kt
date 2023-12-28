@@ -4,17 +4,17 @@ import org.bukkit.event.Event
 import org.bukkit.event.HandlerList
 
 /**
- * µ±ÆäËû²å¼ş¸ü¸ÄÍæ¼ÒÒøĞĞÕË»§µÄÊıÄ¿µÄÊ±ºò ´¥·¢´ËÊÂ¼ş
+ * å½“å…¶ä»–æ’ä»¶æ›´æ”¹ç©å®¶é“¶è¡Œè´¦æˆ·çš„æ•°ç›®çš„æ—¶å€™ è§¦å‘æ­¤äº‹ä»¶
  *
  */
 class PluginSetEconomyEvent : Event() {
     /**
-     * ´ËÊÂ¼şÊÇ·ñ±»È¡Ïû
+     * æ­¤äº‹ä»¶æ˜¯å¦è¢«å–æ¶ˆ
      */
     private val cancelled: Boolean = false
 
     /**
-     * »ñÈ¡handerlist
+     * è·å–handerlist
      *
      * @return handerlist
      */
@@ -23,7 +23,7 @@ class PluginSetEconomyEvent : Event() {
     }
 
     /**
-     * ¾²Ì¬³ÉÔ±
+     * é™æ€æˆå‘˜
      */
     companion object {
         /**

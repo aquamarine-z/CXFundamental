@@ -4,7 +4,7 @@ import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemStack
 
 /**
- * Î´Íê¹¤µÄÀà Ö÷Òª±íÊ¾Ò»ÖÖ¾Å¸ö¸ñ×ÓµÄºÏ³É±í
+ * æœªå®Œå·¥çš„ç±» ä¸»è¦è¡¨ç¤ºä¸€ç§ä¹ä¸ªæ ¼å­çš„åˆæˆè¡¨
  */
 class CraftingRecipe(
     item1: ItemStack,
@@ -55,27 +55,27 @@ class CraftingRecipe(
 }
 
 /**
- * (Î´Íê¹¤) µ±Íæ¼ÒÔÚºÏ³ÉµÄÊ±ºò´¥·¢µÄÒì³£
+ * (æœªå®Œå·¥) å½“ç©å®¶åœ¨åˆæˆçš„æ—¶å€™è§¦å‘çš„å¼‚å¸¸
  *
  */
 class CXCraftingException : Exception() {
     /**
-     * Òì³£Ô­Òò
+     * å¼‚å¸¸åŸå› 
      */
     enum class Reason(reason: String, errcode: Int)
 }
 
 /**
- * (Î´Íê¹¤) Ìá¹©ÁËÍæ¼ÒÔÚÒ»¸öÈİÆ÷½çÃæºÏ³ÉµÄÀà
+ * (æœªå®Œå·¥) æä¾›äº†ç©å®¶åœ¨ä¸€ä¸ªå®¹å™¨ç•Œé¢åˆæˆçš„ç±»
  *
  */
 class CXCrafting {
     /**
-     * (Î´Íê¹¤) ¿ØÖÆºÏ³ÉµÄ¾²Ì¬·½·¨
+     * (æœªå®Œå·¥) æ§åˆ¶åˆæˆçš„é™æ€æ–¹æ³•
      */
     companion object {
         /**
-         *Í¨¹ıÆÕÍ¨µÄÈİÆ÷½øĞĞºÏ³É
+         *é€šè¿‡æ™®é€šçš„å®¹å™¨è¿›è¡Œåˆæˆ
          */
         fun craftByInventory(inventory: Inventory): Inventory? {
             return null

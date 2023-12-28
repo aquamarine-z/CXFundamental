@@ -12,9 +12,9 @@ open class SwingButton(
         1,
         "Button",
         "Button"
-
-    )
-) : SwingItemHolder(position, item) {
+    ),
+    id: String? = null
+) : SwingItemHolder(position, item, id) {
     override fun onClick(event: InventoryClickEvent) {
         super.onClick(event)
         if (event.isShiftClick && event.isLeftClick) {

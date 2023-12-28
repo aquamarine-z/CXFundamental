@@ -18,7 +18,7 @@ import org.bukkit.event.inventory.InventoryCloseEvent
 class CXUIActionListener : Listener {
     init {
 
-        // TODO ×Ô¶¯Éú³ÉµÄ¹¹Ôìº¯Êı´æ¸ù
+        // TODO è‡ªåŠ¨ç”Ÿæˆçš„æ„é€ å‡½æ•°å­˜æ ¹
     }
 
     companion object {

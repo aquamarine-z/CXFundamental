@@ -3,16 +3,16 @@ package cxplugins.cxfundamental.minecraft.server.nms.itemnbt
 import java.util.*
 
 /**
- * ´ËÀà´ú±íÎïÆ·µÄÄ³¸öÊôÐÔ
+ * æ­¤ç±»ä»£è¡¨ç‰©å“çš„æŸä¸ªå±žæ€§
  *
  *
- * @param name Õâ¸öÊôÐÔµÄÃû×Ö
- * @param amount Õâ¸öÊôÐÔµÄÊýÖµ
- * @param attribute Õâ¸öÊôÐÔµÄÀàÐÍ
- * @param operation Õâ¸öÊôÐÔµÄ·ûºÅ
- * @param slot Ö¸¶¨´ËÎïÆ·×°ÔÚÄ³¸ö²¿Î»²ÅÉúÐ§
- * @param uuidLeast UUIDµÄ×îÐ¡Öµ
- * @param uuidMost UUIDµÄ×î´óÖµ
+ * @param name è¿™ä¸ªå±žæ€§çš„åå­—
+ * @param amount è¿™ä¸ªå±žæ€§çš„æ•°å€¼
+ * @param attribute è¿™ä¸ªå±žæ€§çš„ç±»åž‹
+ * @param operation è¿™ä¸ªå±žæ€§çš„ç¬¦å·
+ * @param slot æŒ‡å®šæ­¤ç‰©å“è£…åœ¨æŸä¸ªéƒ¨ä½æ‰ç”Ÿæ•ˆ
+ * @param uuidLeast UUIDçš„æœ€å°å€¼
+ * @param uuidMost UUIDçš„æœ€å¤§å€¼
  */
 class AttributeModifier(
     name: String,
@@ -24,37 +24,37 @@ class AttributeModifier(
     uuidMost: Long = uuidLeast + Math.abs(Random().nextLong())
 ) {
     /**
-     * Õâ¸öÊôÐÔµÄÃû×Ö
+     * è¿™ä¸ªå±žæ€§çš„åå­—
      */
     var name: String = "name"
 
     /**
-     * UUIDµÄ×îÐ¡Öµ
+     * UUIDçš„æœ€å°å€¼
      */
     var UUIDLeast = uuidLeast
 
     /**
-     * UUIDµÄ×î´óÖµ
+     * UUIDçš„æœ€å¤§å€¼
      */
     var UUIDMost = uuidMost
 
     /**
-     * Õâ¸öÊôÐÔµÄÀàÐÍ
+     * è¿™ä¸ªå±žæ€§çš„ç±»åž‹
      */
     var attribute: ItemAttribute = ItemAttribute.GENERIC_AMOUR
 
     /**
-     * Õâ¸öÊôÐÔµÄ·ûºÅ
+     * è¿™ä¸ªå±žæ€§çš„ç¬¦å·
      */
     var operation: AttributeOperation = AttributeOperation.ADD_NUMBER
 
     /**
-     * Ö¸¶¨´ËÎïÆ·×°ÔÚÄ³¸ö²¿Î»²ÅÉúÐ§
+     * æŒ‡å®šæ­¤ç‰©å“è£…åœ¨æŸä¸ªéƒ¨ä½æ‰ç”Ÿæ•ˆ
      */
     var slot = ItemSlot.INVENTORY
 
     /**
-     * Õâ¸öÊôÐÔµÄÊýÖµ
+     * è¿™ä¸ªå±žæ€§çš„æ•°å€¼
      */
     var amount = 0.0
 
@@ -71,49 +71,49 @@ class AttributeModifier(
 }
 
 /**
- * ÊôÐÔµÄ²Ù×÷·û
- * ÒÔÏÂÕª×ÔMinecraft Wiki:
- * ÐÞÊÎ·û
-ÐÞÊÎ·û»áÐÞÊÎÒ»¸öÊôÐÔµÄBase£¨»ùÖµ£©£¬Ò²¾ÍÊÇÔö¼Ó»ò¼õÉÙËü¡£ÐèÒª×¢ÒâµÄÊÇ£¬ÐÞÊÎºóµÄÖµ²»ÄÜÔ½¹ý¸ÃÊôÐÔ×î´óÖµ/×îÐ¡ÖµµÄÏÞÖÆ¡£¾ÍÏñÊôÐÔÒ»Ñù£¬ÐÞÊÎ·ûÓÐName£¨Ãû³Æ£©£¬È»¶øÃû³ÆÓëÐÞÊÎ·ûµÄÐ§¹ûÎÞ¹Ø£¬ÐÞÊÎ·ûµÄÐ§¹ûÓÉOperation£¨ÔËËãÄ£Ê½£©ºÍAmount£¨ÐÞÊÎÖµ£©¾ö¶¨¡£ÐÞÊÎ·û»¹ÓÐËüµÄUUID£¬ÓÃÀ´Î¨Ò»µØ±êÊ¶Ã¿Ò»¸öÐÞÊÎ·û¡£
-ÏÂÃæ´ÓÊýÑ§½Ç¶È½âÊÍÐÞÊÎ·ûµÄ×÷ÓÃ£¬ÎªÁË·½±ãÆð¼û£¬¼ò¼ÇBaseÎªÊôÐÔµÄ»ùÖµ£»Op0ÎªËùÓÐOperation 0µÄÖµµÄ×ÜºÍ£»Op1ÎªËùÓÐOperation 1µÄÖµµÄ×ÜºÍ£»Op2ÎªËùÓÐOperation 2µÄÖµÔÙ+1ºóµÄ³Ë»ý[3]£¬ÔòÓÐÈçÏÂ±íÊ¾£º
+ * å±žæ€§çš„æ“ä½œç¬¦
+ * ä»¥ä¸‹æ‘˜è‡ªMinecraft Wiki:
+ * ä¿®é¥°ç¬¦
+ä¿®é¥°ç¬¦ä¼šä¿®é¥°ä¸€ä¸ªå±žæ€§çš„Baseï¼ˆåŸºå€¼ï¼‰ï¼Œä¹Ÿå°±æ˜¯å¢žåŠ æˆ–å‡å°‘å®ƒã€‚éœ€è¦æ³¨æ„çš„æ˜¯ï¼Œä¿®é¥°åŽçš„å€¼ä¸èƒ½è¶Šè¿‡è¯¥å±žæ€§æœ€å¤§å€¼/æœ€å°å€¼çš„é™åˆ¶ã€‚å°±åƒå±žæ€§ä¸€æ ·ï¼Œä¿®é¥°ç¬¦æœ‰Nameï¼ˆåç§°ï¼‰ï¼Œç„¶è€Œåç§°ä¸Žä¿®é¥°ç¬¦çš„æ•ˆæžœæ— å…³ï¼Œä¿®é¥°ç¬¦çš„æ•ˆæžœç”±Operationï¼ˆè¿ç®—æ¨¡å¼ï¼‰å’ŒAmountï¼ˆä¿®é¥°å€¼ï¼‰å†³å®šã€‚ä¿®é¥°ç¬¦è¿˜æœ‰å®ƒçš„UUIDï¼Œç”¨æ¥å”¯ä¸€åœ°æ ‡è¯†æ¯ä¸€ä¸ªä¿®é¥°ç¬¦ã€‚
+ä¸‹é¢ä»Žæ•°å­¦è§’åº¦è§£é‡Šä¿®é¥°ç¬¦çš„ä½œç”¨ï¼Œä¸ºäº†æ–¹ä¾¿èµ·è§ï¼Œç®€è®°Baseä¸ºå±žæ€§çš„åŸºå€¼ï¼›Op0ä¸ºæ‰€æœ‰Operation 0çš„å€¼çš„æ€»å’Œï¼›Op1ä¸ºæ‰€æœ‰Operation 1çš„å€¼çš„æ€»å’Œï¼›Op2ä¸ºæ‰€æœ‰Operation 2çš„å€¼å†+1åŽçš„ä¹˜ç§¯[3]ï¼Œåˆ™æœ‰å¦‚ä¸‹è¡¨ç¤ºï¼š
 
-×îÖÕÊôÐÔÖµ = (Base + Op0) ¡Á (1 + Op1) ¡Á Op2
+æœ€ç»ˆå±žæ€§å€¼ = (Base + Op0) Ã— (1 + Op1) Ã— Op2
  */
 enum class AttributeOperation(typeId: Short) {
     /**
-     * ¸ÃÄ£Ê½Ö±½ÓÔÚ»ùÖµÉÏ½øÐÐ¼Ó¼õ·¨²Ù×÷(Õª×ÔMinecraft Wiki)
-     * ÓÃ{Amount:2,Operation:0}ºÍ{Amount:4,Operation:0}ÐÞÊÎÄ³ÊôÐÔ£¬»ùÖµÎª3¡£
-     * ÔòÐÞÊÎ¹ý³Ì¿ÉÒÔ±íÊ¾Îª£º
+     * è¯¥æ¨¡å¼ç›´æŽ¥åœ¨åŸºå€¼ä¸Šè¿›è¡ŒåŠ å‡æ³•æ“ä½œ(æ‘˜è‡ªMinecraft Wiki)
+     * ç”¨{Amount:2,Operation:0}å’Œ{Amount:4,Operation:0}ä¿®é¥°æŸå±žæ€§ï¼ŒåŸºå€¼ä¸º3ã€‚
+     * åˆ™ä¿®é¥°è¿‡ç¨‹å¯ä»¥è¡¨ç¤ºä¸ºï¼š
      * 3 + (2 + 4) = 3 + 6 = 9
      */
     ADD_NUMBER(0),
 
     /**
-     *   ±¶ÂÊÔöÁ¿(Õª×ÔMinecraft Wiki)
-    ¼´Operation 1¡£¸ÃÄ£Ê½½«ÔÚOperation 0Ö®ºóÖ´ÐÐ£¬²¢Ö±½ÓÔÚÊôÐÔÖµµÄ×÷ÓÃ±¶ÂÊÉÏ½øÐÐ¼Ó¼õ·¨²Ù×÷£¬Ò²¾ÍÊÇ½«µ±Ç°µÄÊôÐÔÖµ½øÐÐ±¶ÂÊÉÏµÄÐÞ¸Ä£¬¶ø»ù´¡±¶ÂÊÎª¡Á1±¶£¨¼´²»×ö¸Ä¶¯£©¡£
-    Àý£ºÓÃ{Amount:3,Operation:1}ºÍ{Amount:6,Operation:1}ÐÞÊÎÄ³ÊôÐÔ£¬¾­¹ýOperation 0µÄ²Ù×÷ºóµÄÊôÐÔÖµÎª9¡£
-    ÔòÐÞÊÎ¹ý³Ì¿ÉÒÔ±íÊ¾Îª£º
-    9 ¡Á (1 + 3 + 6) = 9 ¡Á 10 = 90
+     *   å€çŽ‡å¢žé‡(æ‘˜è‡ªMinecraft Wiki)
+    å³Operation 1ã€‚è¯¥æ¨¡å¼å°†åœ¨Operation 0ä¹‹åŽæ‰§è¡Œï¼Œå¹¶ç›´æŽ¥åœ¨å±žæ€§å€¼çš„ä½œç”¨å€çŽ‡ä¸Šè¿›è¡ŒåŠ å‡æ³•æ“ä½œï¼Œä¹Ÿå°±æ˜¯å°†å½“å‰çš„å±žæ€§å€¼è¿›è¡Œå€çŽ‡ä¸Šçš„ä¿®æ”¹ï¼Œè€ŒåŸºç¡€å€çŽ‡ä¸ºÃ—1å€ï¼ˆå³ä¸åšæ”¹åŠ¨ï¼‰ã€‚
+    ä¾‹ï¼šç”¨{Amount:3,Operation:1}å’Œ{Amount:6,Operation:1}ä¿®é¥°æŸå±žæ€§ï¼Œç»è¿‡Operation 0çš„æ“ä½œåŽçš„å±žæ€§å€¼ä¸º9ã€‚
+    åˆ™ä¿®é¥°è¿‡ç¨‹å¯ä»¥è¡¨ç¤ºä¸ºï¼š
+    9 Ã— (1 + 3 + 6) = 9 Ã— 10 = 90
      *
      */
     ADD_SCALAR(1),
 
     /**
-     * ×îÖÕ±¶³Ë(Õª×ÔMinecraft Wiki)
-    ¼´Operation 2¡£¸ÃÄ£Ê½½«»áÔÚÆäËûËùÓÐÐÞÊÎ£¨°üÀ¨ÆäËûµÄOperation 2ÐÞÊÎ£©Íê³Éºó£¬ÔÚ×îÖÕ±¶ÂÊÉÏÖ´ÐÐ¼Ó¼õ·¨²Ù×÷£¬²¢Ö´ÐÐ×îÖÕµÄ±¶³Ë¡£»ù´¡±¶ÂÊÍ¬ÑùÎª¡Á1±¶¡£
+     * æœ€ç»ˆå€ä¹˜(æ‘˜è‡ªMinecraft Wiki)
+    å³Operation 2ã€‚è¯¥æ¨¡å¼å°†ä¼šåœ¨å…¶ä»–æ‰€æœ‰ä¿®é¥°ï¼ˆåŒ…æ‹¬å…¶ä»–çš„Operation 2ä¿®é¥°ï¼‰å®ŒæˆåŽï¼Œåœ¨æœ€ç»ˆå€çŽ‡ä¸Šæ‰§è¡ŒåŠ å‡æ³•æ“ä½œï¼Œå¹¶æ‰§è¡Œæœ€ç»ˆçš„å€ä¹˜ã€‚åŸºç¡€å€çŽ‡åŒæ ·ä¸ºÃ—1å€ã€‚
 
-    ÓÉÓÚÕâÊÇ×îÖÕµÄ²Ù×÷£¬Òò´Ë¶à¸öOperation 2Ö®¼äÏà»¥¶ÀÁ¢£¬·Ö±ð½øÐÐ¸÷×ÔµÄ×îÖÕ±¶ÂÊµÄ¼Ó¼õ·¨²Ù×÷£¬×îºó½á¹ûÔòÊÇÏà»¥±¶³Ë£¬¶ø·ÇÏà¼Ó¡£
+    ç”±äºŽè¿™æ˜¯æœ€ç»ˆçš„æ“ä½œï¼Œå› æ­¤å¤šä¸ªOperation 2ä¹‹é—´ç›¸äº’ç‹¬ç«‹ï¼Œåˆ†åˆ«è¿›è¡Œå„è‡ªçš„æœ€ç»ˆå€çŽ‡çš„åŠ å‡æ³•æ“ä½œï¼Œæœ€åŽç»“æžœåˆ™æ˜¯ç›¸äº’å€ä¹˜ï¼Œè€Œéžç›¸åŠ ã€‚
 
-    Àý£ºÓÃ{Amount:2,Operation:2}ºÍ{Amount:4,Operation:2}ÐÞÊÎÄ³ÊôÐÔ£¬¾­¹ýÆäËûËùÓÐ²Ù×÷ºóµÄÊôÐÔÖµÎª90¡£
+    ä¾‹ï¼šç”¨{Amount:2,Operation:2}å’Œ{Amount:4,Operation:2}ä¿®é¥°æŸå±žæ€§ï¼Œç»è¿‡å…¶ä»–æ‰€æœ‰æ“ä½œåŽçš„å±žæ€§å€¼ä¸º90ã€‚
 
-    ÔòÐÞÊÎ¹ý³Ì¿ÉÒÔ±íÊ¾Îª£º
+    åˆ™ä¿®é¥°è¿‡ç¨‹å¯ä»¥è¡¨ç¤ºä¸ºï¼š
 
-    1. Ê×ÏÈÖ´ÐÐµÚÒ»¸öAmount:2µÄ²Ù×÷£º
+    1. é¦–å…ˆæ‰§è¡Œç¬¬ä¸€ä¸ªAmount:2çš„æ“ä½œï¼š
 
-    90 ¡Á (1 + 2) = 90 ¡Á 3 = 270
-    2. ÔÙÖ´ÐÐµÚ¶þ¸öAmount:4µÄ²Ù×÷£º
+    90 Ã— (1 + 2) = 90 Ã— 3 = 270
+    2. å†æ‰§è¡Œç¬¬äºŒä¸ªAmount:4çš„æ“ä½œï¼š
 
-    270 ¡Á (1 + 4) = 270 ¡Á 5 = 1350
+    270 Ã— (1 + 4) = 270 Ã— 5 = 1350
      */
     MULTIPLY_SCALAR_1(2);
 
@@ -137,141 +137,141 @@ enum class AttributeOperation(typeId: Short) {
 }
 
 /**
- * ËùÓÐNBTÊôÐÔµÄÃ¶¾Ù
- * ÒÔÏÂÕª×ÔMinecraft Wiki
- *Ã¿¸ö¶ÀÁ¢µÄÊôÐÔ¶¼¿ØÖÆ×ÅÒ»Ð©ÐÔ×´£¬ÕâÓÉÕâ¸öÊôÐÔµÄName£¨Ãû×Ö£©¾ö¶¨¡£Ò»¸öÊôÐÔÍ¨³£¶¼ÓÐÒ»¸öBase£¨»ùÖµ£©£¬ÓÐµÄÊ±ºò»áÓÐÒ»Ð©Modifiers£¨ÐÞÊÎ·û£©¡£ÊôÐÔÍ¨³£Ò²ÓÐÒ»¸öÄ¬ÈÏÖµ£¨ÀýÈçÓÃÓÚÉú³ÉÒ»¸öÃ»ÓÐ¶¨Òå¹ýÌØ±ðÊôÐÔµÄÉúÎï£©£¬ÒÔ¼°Ò»¸ö×Ô´øµÄ¹æ¶¨ÖµÓò¡£ÐÞÊÎ·û»áÐÞÊÎÊôÐÔµÄ»ùÖµ£¬µ«½á¹ûÒ²ÊÇÔÚ¹æ¶¨ÖµÓòÄÚµÄ¡£
+ * æ‰€æœ‰NBTå±žæ€§çš„æžšä¸¾
+ * ä»¥ä¸‹æ‘˜è‡ªMinecraft Wiki
+ *æ¯ä¸ªç‹¬ç«‹çš„å±žæ€§éƒ½æŽ§åˆ¶ç€ä¸€äº›æ€§çŠ¶ï¼Œè¿™ç”±è¿™ä¸ªå±žæ€§çš„Nameï¼ˆåå­—ï¼‰å†³å®šã€‚ä¸€ä¸ªå±žæ€§é€šå¸¸éƒ½æœ‰ä¸€ä¸ªBaseï¼ˆåŸºå€¼ï¼‰ï¼Œæœ‰çš„æ—¶å€™ä¼šæœ‰ä¸€äº›Modifiersï¼ˆä¿®é¥°ç¬¦ï¼‰ã€‚å±žæ€§é€šå¸¸ä¹Ÿæœ‰ä¸€ä¸ªé»˜è®¤å€¼ï¼ˆä¾‹å¦‚ç”¨äºŽç”Ÿæˆä¸€ä¸ªæ²¡æœ‰å®šä¹‰è¿‡ç‰¹åˆ«å±žæ€§çš„ç”Ÿç‰©ï¼‰ï¼Œä»¥åŠä¸€ä¸ªè‡ªå¸¦çš„è§„å®šå€¼åŸŸã€‚ä¿®é¥°ç¬¦ä¼šä¿®é¥°å±žæ€§çš„åŸºå€¼ï¼Œä½†ç»“æžœä¹Ÿæ˜¯åœ¨è§„å®šå€¼åŸŸå†…çš„ã€‚
 
-³ý·ÇÁíÓÐËµÃ÷£¬·ñÔò×îÐ¡ÖµºÍ×î´óÖµ¾ùÎª°üº¬Öµ£¬»òÕßµÈÓÚ1.7x10308¡£
+é™¤éžå¦æœ‰è¯´æ˜Žï¼Œå¦åˆ™æœ€å°å€¼å’Œæœ€å¤§å€¼å‡ä¸ºåŒ…å«å€¼ï¼Œæˆ–è€…ç­‰äºŽ1.7x10308ã€‚
 
-Çë×¢Òâ£¬¾ßÓÐÏàÍ¬UUID²¢Ó°ÏìÏàÍ¬ÊôÐÔµÄÊôÐÔÐÞÊÎ·û½«²»»áµþ¼Ó£»Ö»ÓÐ×î½üÓ°ÏìµÄÍæ¼Ò»òÉúÎïµÄÒ»¸ö²Å»á²úÉúÓ°Ïì£¬ÇÒ¸²¸ÇÖ®Ç°µÄÐÞÊÎ·û
+è¯·æ³¨æ„ï¼Œå…·æœ‰ç›¸åŒUUIDå¹¶å½±å“ç›¸åŒå±žæ€§çš„å±žæ€§ä¿®é¥°ç¬¦å°†ä¸ä¼šå åŠ ï¼›åªæœ‰æœ€è¿‘å½±å“çš„çŽ©å®¶æˆ–ç”Ÿç‰©çš„ä¸€ä¸ªæ‰ä¼šäº§ç”Ÿå½±å“ï¼Œä¸”è¦†ç›–ä¹‹å‰çš„ä¿®é¥°ç¬¦
  */
 enum class Attribute {
-    /**ÒÔÏÂÕª×ÔMinecraft Wiki
-     *¿ø¼×µÄ·ÀÓùµãÊý
+    /**ä»¥ä¸‹æ‘˜è‡ªMinecraft Wiki
+     *ç›”ç”²çš„é˜²å¾¡ç‚¹æ•°
      */
     GENERIC_AMOUR,
 
     /**
-     * ÒÔÏÂÕª×ÔMinecraft Wiki
+     * ä»¥ä¸‹æ‘˜è‡ªMinecraft Wiki
      *
-    Õâ¸öÉúÎïµÄ×î´óÉúÃüÖµ£»Òà»òÕâ¸öÉúÎïÍ¨¹ýÉúÃü»Ö¸´×î¶à¿ÉÒÔ»Ö¸´ÖÁµÄ¼«ÏÞ¡£ÄãÐèÒªÔËÓÃ[Health:#]nbt¸Ä±äÉúÎïµÄµ±Ç°ÉúÃüÖµ¡£
+    è¿™ä¸ªç”Ÿç‰©çš„æœ€å¤§ç”Ÿå‘½å€¼ï¼›äº¦æˆ–è¿™ä¸ªç”Ÿç‰©é€šè¿‡ç”Ÿå‘½æ¢å¤æœ€å¤šå¯ä»¥æ¢å¤è‡³çš„æžé™ã€‚ä½ éœ€è¦è¿ç”¨[Health:#]nbtæ”¹å˜ç”Ÿç‰©çš„å½“å‰ç”Ÿå‘½å€¼ã€‚
      */
     GENERIC_MAX_HEALTH,
 
     /**
-     * ÒÔÏÂÕª×ÔMinecraft Wiki
+     * ä»¥ä¸‹æ‘˜è‡ªMinecraft Wiki
      *
-     * Õâ¸öÉúÎï×·×ÙÍæ¼Ò»òÕßÆäËûÉúÎïµÄ×î´ó·¶Î§£¬ÒÔ·½¿éÊýÎªµ¥Î»¡£Ä¿±êÀë¿ªÕâ¸öÇøÓòÒâÎ¶×ÅËüÃÇ½«Í£Ö¹×·×Ù¡£Ä¿Ç°´ó¶àÊýÉúÎïÕâ¸öÖµÎª16£¬¶ø½©Ê¬ÔòÓÐ40¡£
+     * è¿™ä¸ªç”Ÿç‰©è¿½è¸ªçŽ©å®¶æˆ–è€…å…¶ä»–ç”Ÿç‰©çš„æœ€å¤§èŒƒå›´ï¼Œä»¥æ–¹å—æ•°ä¸ºå•ä½ã€‚ç›®æ ‡ç¦»å¼€è¿™ä¸ªåŒºåŸŸæ„å‘³ç€å®ƒä»¬å°†åœæ­¢è¿½è¸ªã€‚ç›®å‰å¤§å¤šæ•°ç”Ÿç‰©è¿™ä¸ªå€¼ä¸º16ï¼Œè€Œåƒµå°¸åˆ™æœ‰40ã€‚
      */
     GENERIC_FOLLOW_RANGE,
 
     /**
-     * ÒÔÏÂÕª×ÔMinecraft Wiki
+     * ä»¥ä¸‹æ‘˜è‡ªMinecraft Wiki
      *
-     * Õâ¸öÉúÎïµÄ¿¹»÷ÍËÐ§¹û£¨°üÀ¨¹¥»÷µÄ»÷ÍË¡¢±¬Õ¨ºÍµ¯ÉäÎï³å»÷£©µÄ³Ì¶È£¬1.0´ú±íÍêÈ«µÖ¿¹¡£
+     * è¿™ä¸ªç”Ÿç‰©çš„æŠ—å‡»é€€æ•ˆæžœï¼ˆåŒ…æ‹¬æ”»å‡»çš„å‡»é€€ã€çˆ†ç‚¸å’Œå¼¹å°„ç‰©å†²å‡»ï¼‰çš„ç¨‹åº¦ï¼Œ1.0ä»£è¡¨å®Œå…¨æŠµæŠ—ã€‚
      */
     GENERIC_KNOCKBACK_RESISTANCE,
 
     /**
-     * ÒÔÏÂÕª×ÔMinecraft Wiki
+     * ä»¥ä¸‹æ‘˜è‡ªMinecraft Wiki
      *
-     * ÔÚÄ³ÖÖ²»Ã÷¶ÈÁ¿±ê×¼ÏÂÕâ¸öÉúÎïµÄËÙ¶È¡£ÒÔ¸ñ/ÃëÎªµ¥Î»µÄÉúÎï×î´óËÙ¶ÈÂÔ¸ßÓÚ´ËÖµµÄ43±¶£¬µ«¿ÉÄÜ»áÊÜµ½¸÷ÖÖÌõ¼þµÄÓ°Ïì£¬ÀýÈç£ºÆïÂí£¨Èç¹ûÊÇÂí£©£¬¼²ÅÜ£¬ÌÓÅÜ£¨Èç¹ûÊÇ±»¶¯ÉúÎï£©£¬¹¥»÷£¨Èç¹ûÊÇÒ»¸öÄ©Ó°ÈË»ò½©Ê¬ÖíÈË£©£¬±»Ë©ÉþÇ£Òý£¬ÊÜËÙ¶È»ò³Ù»ºÒ©Ë®Ó°Ïì£¬ÎªÓ×Äê½©Ê¬»òÕßÊÇÒ»¸öÅ®Î×ºÍºÈÒ©Ë®¡£¿ÉÒÔÊ¹ÓÃÒÔÏÂµÈÊ½¼ÆËãÃ¿Ãë¸ñÊýµÄËÙ¶È£¬ÆäÖÐxÊÇmovementSpeedÊôÐÔy = 43.178x-0.02141
+     * åœ¨æŸç§ä¸æ˜Žåº¦é‡æ ‡å‡†ä¸‹è¿™ä¸ªç”Ÿç‰©çš„é€Ÿåº¦ã€‚ä»¥æ ¼/ç§’ä¸ºå•ä½çš„ç”Ÿç‰©æœ€å¤§é€Ÿåº¦ç•¥é«˜äºŽæ­¤å€¼çš„43å€ï¼Œä½†å¯èƒ½ä¼šå—åˆ°å„ç§æ¡ä»¶çš„å½±å“ï¼Œä¾‹å¦‚ï¼šéª‘é©¬ï¼ˆå¦‚æžœæ˜¯é©¬ï¼‰ï¼Œç–¾è·‘ï¼Œé€ƒè·‘ï¼ˆå¦‚æžœæ˜¯è¢«åŠ¨ç”Ÿç‰©ï¼‰ï¼Œæ”»å‡»ï¼ˆå¦‚æžœæ˜¯ä¸€ä¸ªæœ«å½±äººæˆ–åƒµå°¸çŒªäººï¼‰ï¼Œè¢«æ‹´ç»³ç‰µå¼•ï¼Œå—é€Ÿåº¦æˆ–è¿Ÿç¼“è¯æ°´å½±å“ï¼Œä¸ºå¹¼å¹´åƒµå°¸æˆ–è€…æ˜¯ä¸€ä¸ªå¥³å·«å’Œå–è¯æ°´ã€‚å¯ä»¥ä½¿ç”¨ä»¥ä¸‹ç­‰å¼è®¡ç®—æ¯ç§’æ ¼æ•°çš„é€Ÿåº¦ï¼Œå…¶ä¸­xæ˜¯movementSpeedå±žæ€§y = 43.178x-0.02141
      */
     GENERIC_MOVEMENT_SPEED,
 
     /**
-     * ÒÔÏÂÕª×ÔMinecraft Wiki
+     * ä»¥ä¸‹æ‘˜è‡ªMinecraft Wiki
      *
-     * ÔÚÄ³ÖÖ²»Ã÷¶ÈÁ¿±ê×¼ÏÂðÐðÄµÄ·ÉÐÐËÙ¶È¡£
+     * åœ¨æŸç§ä¸æ˜Žåº¦é‡æ ‡å‡†ä¸‹é¹¦é¹‰çš„é£žè¡Œé€Ÿåº¦ã€‚
      */
     GENERIC_FLYING_SPEED,
 
     /**
-     * ÒÔÏÂÕª×ÔMinecraft Wiki
+     * ä»¥ä¸‹æ‘˜è‡ªMinecraft Wiki
      *
-     * ÆÕÍ¨¹¥»÷Ôì³ÉµÄÉËº¦£¬Ò»µã±íÊ¾°ë¸öÐÄÐÎ±êÖ¾¡£´ËÊôÐÔÔÚ±»¶¯ÉúÎïÖÐÎ´ÕÒµ½¡£
+     * æ™®é€šæ”»å‡»é€ æˆçš„ä¼¤å®³ï¼Œä¸€ç‚¹è¡¨ç¤ºåŠä¸ªå¿ƒå½¢æ ‡å¿—ã€‚æ­¤å±žæ€§åœ¨è¢«åŠ¨ç”Ÿç‰©ä¸­æœªæ‰¾åˆ°ã€‚
      */
     GENERIC_ATTACK_DAMAGE,
 
     /**
-     * ÒÔÏÂÕª×ÔMinecraft Wiki
+     * ä»¥ä¸‹æ‘˜è‡ªMinecraft Wiki
      *
-     * Õâ¸öÉúÎïµÄ¹¥»÷»÷ÍËÁ¦¶È£¬ÁÐ±íÖ®ÍâµÄÉúÎïÖÐ²»¾ß±¸¸ÃÊôÐÔ¡£
+     * è¿™ä¸ªç”Ÿç‰©çš„æ”»å‡»å‡»é€€åŠ›åº¦ï¼Œåˆ—è¡¨ä¹‹å¤–çš„ç”Ÿç‰©ä¸­ä¸å…·å¤‡è¯¥å±žæ€§ã€‚
      */
     GENERIC_ATTACK_KNOCKBACK,
 
     /**
-     * ÒÔÏÂÕª×ÔMinecraft Wiki
+     * ä»¥ä¸‹æ‘˜è‡ªMinecraft Wiki
      *
-     * ¾ö¶¨¹¥»÷Á¦¶ÈµÄÌî³äËÙ¶È£¬Öµ´ú±íÃ¿Ãë¿ÉÒÔ½øÐÐÈ«Á¦¹¥»÷µÄ´ÎÊý¡£
+     * å†³å®šæ”»å‡»åŠ›åº¦çš„å¡«å……é€Ÿåº¦ï¼Œå€¼ä»£è¡¨æ¯ç§’å¯ä»¥è¿›è¡Œå…¨åŠ›æ”»å‡»çš„æ¬¡æ•°ã€‚
      */
     GENERIC_ATTACK_SPEED,
 
     /**
-     * ÒÔÏÂÕª×ÔMinecraft Wiki
+     * ä»¥ä¸‹æ‘˜è‡ªMinecraft Wiki
      *
-     * ¿ø¼×ÈÍÐÔ
+     * ç›”ç”²éŸ§æ€§
      */
     GENERIC_ARMOR_TOUGHNESS,
 
     /**
-     * ÒÔÏÂÕª×ÔMinecraft Wiki
+     * ä»¥ä¸‹æ‘˜è‡ªMinecraft Wiki
      *
-     * Ó°ÏìÕ½ÀûÆ·±íÊ¹ÓÃµÄqualityºÍbonus_rolls£¨ÀýÈçµ±´ò¿ªÏä×Ó¡¢ÔËÊä¿ó³µ£¬µöÓãºÍÉ±¹Ö£©¡£
+     * å½±å“æˆ˜åˆ©å“è¡¨ä½¿ç”¨çš„qualityå’Œbonus_rollsï¼ˆä¾‹å¦‚å½“æ‰“å¼€ç®±å­ã€è¿è¾“çŸ¿è½¦ï¼Œé’“é±¼å’Œæ€æ€ªï¼‰ã€‚
      */
     GENERIC_LUCK,
 
     /**
-     * ÒÔÏÂÕª×ÔMinecraft Wiki
+     * ä»¥ä¸‹æ‘˜è‡ªMinecraft Wiki
      *
-     * ÔÚÄ³ÖÖ²»Ã÷¶ÈÁ¿±ê×¼ÏÂÂíµÄµ¯ÌøÁ¦¡£
+     * åœ¨æŸç§ä¸æ˜Žåº¦é‡æ ‡å‡†ä¸‹é©¬çš„å¼¹è·³åŠ›ã€‚
      */
     HORSE_JUMP_STRENGTH,
 
     /**
-     * ÒÔÏÂÕª×ÔMinecraft Wiki
+     * ä»¥ä¸‹æ‘˜è‡ªMinecraft Wiki
      *
-     * ½©Ê¬ÔÚÒ»´Î¹¥»÷ÖÐÔÚÖÜÎ§Éú³ÉÁíÒ»¸ö½©Ê¬µÄ¿ÉÄÜÐÔ¡£¼´Ê¹ÊÇ½©Ê¬ÖíÈËÒ²»áÉú³É½©Ê¬¡£
+     * åƒµå°¸åœ¨ä¸€æ¬¡æ”»å‡»ä¸­åœ¨å‘¨å›´ç”Ÿæˆå¦ä¸€ä¸ªåƒµå°¸çš„å¯èƒ½æ€§ã€‚å³ä½¿æ˜¯åƒµå°¸çŒªäººä¹Ÿä¼šç”Ÿæˆåƒµå°¸ã€‚
      */
     ZOMBIE_SPAWN_REINFORCEMENTS
 }
 
-/**ÒÔÏÂÕª×ÔMinecraft Wiki
- * ¾ö¶¨ÎïÆ·´¦ÔÚÊ²Ã´À¸Î»Ê±£¬ÊôÐÔÐÞÊÎ·û²Å»áÉúÐ§¡£Èç¹ûÃ»ÓÐ¶¨Òå´ËÏî£¬ÊôÐÔÐÞÊÎ·û½«¶ÔËùÓÐÀ¸Î»ÉúÐ§¡£
+/**ä»¥ä¸‹æ‘˜è‡ªMinecraft Wiki
+ * å†³å®šç‰©å“å¤„åœ¨ä»€ä¹ˆæ ä½æ—¶ï¼Œå±žæ€§ä¿®é¥°ç¬¦æ‰ä¼šç”Ÿæ•ˆã€‚å¦‚æžœæ²¡æœ‰å®šä¹‰æ­¤é¡¹ï¼Œå±žæ€§ä¿®é¥°ç¬¦å°†å¯¹æ‰€æœ‰æ ä½ç”Ÿæ•ˆã€‚
  */
 enum class ItemSlot(slotName: String) {
     /**
-     * Ö÷ÊÖ
+     * ä¸»æ‰‹
      */
     MAINHAND("mainhand"),
 
     /**
-     * ¸±ÊÖ
+     * å‰¯æ‰‹
      */
     offHAND("offhand"),
 
     /**
-     * ½Å
+     * è„š
      */
     FEET("feet"),
 
     /**
-     * Ë«ÍÈ
+     * åŒè…¿
      */
     LEGS("legs"),
 
     /**
-     * ÉíÌå ÐØ¼×µÄ²¿Î»
+     * èº«ä½“ èƒ¸ç”²çš„éƒ¨ä½
      */
     CHEST("chest"),
 
     /**
-     * Í·
+     * å¤´
      */
     HEAD("head"),
 
     /**
-     * ÎïÆ·À¸
+     * ç‰©å“æ 
      */
     INVENTORY("inventory");
 
@@ -294,52 +294,52 @@ enum class ItemSlot(slotName: String) {
 
 }
 
-/**¿ÉÓÃÓÚÎïÆ·µÄÊôÐÔÃ¶¾Ù
- * ÒÔÏÂÕª×ÔMinecraft Wiki
- *Ã¿¸ö¶ÀÁ¢µÄÊôÐÔ¶¼¿ØÖÆ×ÅÒ»Ð©ÐÔ×´£¬ÕâÓÉÕâ¸öÊôÐÔµÄName£¨Ãû×Ö£©¾ö¶¨¡£Ò»¸öÊôÐÔÍ¨³£¶¼ÓÐÒ»¸öBase£¨»ùÖµ£©£¬ÓÐµÄÊ±ºò»áÓÐÒ»Ð©Modifiers£¨ÐÞÊÎ·û£©¡£ÊôÐÔÍ¨³£Ò²ÓÐÒ»¸öÄ¬ÈÏÖµ£¨ÀýÈçÓÃÓÚÉú³ÉÒ»¸öÃ»ÓÐ¶¨Òå¹ýÌØ±ðÊôÐÔµÄÉúÎï£©£¬ÒÔ¼°Ò»¸ö×Ô´øµÄ¹æ¶¨ÖµÓò¡£ÐÞÊÎ·û»áÐÞÊÎÊôÐÔµÄ»ùÖµ£¬µ«½á¹ûÒ²ÊÇÔÚ¹æ¶¨ÖµÓòÄÚµÄ¡£
+/**å¯ç”¨äºŽç‰©å“çš„å±žæ€§æžšä¸¾
+ * ä»¥ä¸‹æ‘˜è‡ªMinecraft Wiki
+ *æ¯ä¸ªç‹¬ç«‹çš„å±žæ€§éƒ½æŽ§åˆ¶ç€ä¸€äº›æ€§çŠ¶ï¼Œè¿™ç”±è¿™ä¸ªå±žæ€§çš„Nameï¼ˆåå­—ï¼‰å†³å®šã€‚ä¸€ä¸ªå±žæ€§é€šå¸¸éƒ½æœ‰ä¸€ä¸ªBaseï¼ˆåŸºå€¼ï¼‰ï¼Œæœ‰çš„æ—¶å€™ä¼šæœ‰ä¸€äº›Modifiersï¼ˆä¿®é¥°ç¬¦ï¼‰ã€‚å±žæ€§é€šå¸¸ä¹Ÿæœ‰ä¸€ä¸ªé»˜è®¤å€¼ï¼ˆä¾‹å¦‚ç”¨äºŽç”Ÿæˆä¸€ä¸ªæ²¡æœ‰å®šä¹‰è¿‡ç‰¹åˆ«å±žæ€§çš„ç”Ÿç‰©ï¼‰ï¼Œä»¥åŠä¸€ä¸ªè‡ªå¸¦çš„è§„å®šå€¼åŸŸã€‚ä¿®é¥°ç¬¦ä¼šä¿®é¥°å±žæ€§çš„åŸºå€¼ï¼Œä½†ç»“æžœä¹Ÿæ˜¯åœ¨è§„å®šå€¼åŸŸå†…çš„ã€‚
 
-³ý·ÇÁíÓÐËµÃ÷£¬·ñÔò×îÐ¡ÖµºÍ×î´óÖµ¾ùÎª°üº¬Öµ£¬»òÕßµÈÓÚ1.7x10308¡£
+é™¤éžå¦æœ‰è¯´æ˜Žï¼Œå¦åˆ™æœ€å°å€¼å’Œæœ€å¤§å€¼å‡ä¸ºåŒ…å«å€¼ï¼Œæˆ–è€…ç­‰äºŽ1.7x10308ã€‚
 
-Çë×¢Òâ£¬¾ßÓÐÏàÍ¬UUID²¢Ó°ÏìÏàÍ¬ÊôÐÔµÄÊôÐÔÐÞÊÎ·û½«²»»áµþ¼Ó£»Ö»ÓÐ×î½üÓ°ÏìµÄÍæ¼Ò»òÉúÎïµÄÒ»¸ö²Å»á²úÉúÓ°Ïì£¬ÇÒ¸²¸ÇÖ®Ç°µÄÐÞÊÎ·û
+è¯·æ³¨æ„ï¼Œå…·æœ‰ç›¸åŒUUIDå¹¶å½±å“ç›¸åŒå±žæ€§çš„å±žæ€§ä¿®é¥°ç¬¦å°†ä¸ä¼šå åŠ ï¼›åªæœ‰æœ€è¿‘å½±å“çš„çŽ©å®¶æˆ–ç”Ÿç‰©çš„ä¸€ä¸ªæ‰ä¼šäº§ç”Ÿå½±å“ï¼Œä¸”è¦†ç›–ä¹‹å‰çš„ä¿®é¥°ç¬¦
  */
 enum class ItemAttribute(attributeName: String) {
-    /**ÒÔÏÂÕª×ÔMinecraft Wiki
-     *¿ø¼×µÄ·ÀÓùµãÊý
+    /**ä»¥ä¸‹æ‘˜è‡ªMinecraft Wiki
+     *ç›”ç”²çš„é˜²å¾¡ç‚¹æ•°
      */
     GENERIC_AMOUR("generic.amounr"),
 
     /**
-     * ÒÔÏÂÕª×ÔMinecraft Wiki
+     * ä»¥ä¸‹æ‘˜è‡ªMinecraft Wiki
      *
-     * ÔÚÄ³ÖÖ²»Ã÷¶ÈÁ¿±ê×¼ÏÂÕâ¸öÉúÎïµÄËÙ¶È¡£ÒÔ¸ñ/ÃëÎªµ¥Î»µÄÉúÎï×î´óËÙ¶ÈÂÔ¸ßÓÚ´ËÖµµÄ43±¶£¬µ«¿ÉÄÜ»áÊÜµ½¸÷ÖÖÌõ¼þµÄÓ°Ïì£¬ÀýÈç£ºÆïÂí£¨Èç¹ûÊÇÂí£©£¬¼²ÅÜ£¬ÌÓÅÜ£¨Èç¹ûÊÇ±»¶¯ÉúÎï£©£¬¹¥»÷£¨Èç¹ûÊÇÒ»¸öÄ©Ó°ÈË»ò½©Ê¬ÖíÈË£©£¬±»Ë©ÉþÇ£Òý£¬ÊÜËÙ¶È»ò³Ù»ºÒ©Ë®Ó°Ïì£¬ÎªÓ×Äê½©Ê¬»òÕßÊÇÒ»¸öÅ®Î×ºÍºÈÒ©Ë®¡£¿ÉÒÔÊ¹ÓÃÒÔÏÂµÈÊ½¼ÆËãÃ¿Ãë¸ñÊýµÄËÙ¶È£¬ÆäÖÐxÊÇmovementSpeedÊôÐÔy = 43.178x-0.02141
+     * åœ¨æŸç§ä¸æ˜Žåº¦é‡æ ‡å‡†ä¸‹è¿™ä¸ªç”Ÿç‰©çš„é€Ÿåº¦ã€‚ä»¥æ ¼/ç§’ä¸ºå•ä½çš„ç”Ÿç‰©æœ€å¤§é€Ÿåº¦ç•¥é«˜äºŽæ­¤å€¼çš„43å€ï¼Œä½†å¯èƒ½ä¼šå—åˆ°å„ç§æ¡ä»¶çš„å½±å“ï¼Œä¾‹å¦‚ï¼šéª‘é©¬ï¼ˆå¦‚æžœæ˜¯é©¬ï¼‰ï¼Œç–¾è·‘ï¼Œé€ƒè·‘ï¼ˆå¦‚æžœæ˜¯è¢«åŠ¨ç”Ÿç‰©ï¼‰ï¼Œæ”»å‡»ï¼ˆå¦‚æžœæ˜¯ä¸€ä¸ªæœ«å½±äººæˆ–åƒµå°¸çŒªäººï¼‰ï¼Œè¢«æ‹´ç»³ç‰µå¼•ï¼Œå—é€Ÿåº¦æˆ–è¿Ÿç¼“è¯æ°´å½±å“ï¼Œä¸ºå¹¼å¹´åƒµå°¸æˆ–è€…æ˜¯ä¸€ä¸ªå¥³å·«å’Œå–è¯æ°´ã€‚å¯ä»¥ä½¿ç”¨ä»¥ä¸‹ç­‰å¼è®¡ç®—æ¯ç§’æ ¼æ•°çš„é€Ÿåº¦ï¼Œå…¶ä¸­xæ˜¯movementSpeedå±žæ€§y = 43.178x-0.02141
      */
     GENERIC_MOVEMENT_SPEED("generic.movementSpeed"),
 
     /**
-     * ÒÔÏÂÕª×ÔMinecraft Wiki
+     * ä»¥ä¸‹æ‘˜è‡ªMinecraft Wiki
      *
-     * ÆÕÍ¨¹¥»÷Ôì³ÉµÄÉËº¦£¬Ò»µã±íÊ¾°ë¸öÐÄÐÎ±êÖ¾¡£´ËÊôÐÔÔÚ±»¶¯ÉúÎïÖÐÎ´ÕÒµ½¡£
+     * æ™®é€šæ”»å‡»é€ æˆçš„ä¼¤å®³ï¼Œä¸€ç‚¹è¡¨ç¤ºåŠä¸ªå¿ƒå½¢æ ‡å¿—ã€‚æ­¤å±žæ€§åœ¨è¢«åŠ¨ç”Ÿç‰©ä¸­æœªæ‰¾åˆ°ã€‚
      */
     GENERIC_ATTACK_DAMAGE("generic.attackDamage"),
 
     /**
-     * ÒÔÏÂÕª×ÔMinecraft Wiki
+     * ä»¥ä¸‹æ‘˜è‡ªMinecraft Wiki
      *
-     * ¾ö¶¨¹¥»÷Á¦¶ÈµÄÌî³äËÙ¶È£¬Öµ´ú±íÃ¿Ãë¿ÉÒÔ½øÐÐÈ«Á¦¹¥»÷µÄ´ÎÊý¡£
+     * å†³å®šæ”»å‡»åŠ›åº¦çš„å¡«å……é€Ÿåº¦ï¼Œå€¼ä»£è¡¨æ¯ç§’å¯ä»¥è¿›è¡Œå…¨åŠ›æ”»å‡»çš„æ¬¡æ•°ã€‚
      */
     GENERIC_ATTACK_SPEED("generic.attackSpeed"),
 
     /**
-     * ÒÔÏÂÕª×ÔMinecraft Wiki
+     * ä»¥ä¸‹æ‘˜è‡ªMinecraft Wiki
      *
-     * Ó°ÏìÕ½ÀûÆ·±íÊ¹ÓÃµÄqualityºÍbonus_rolls£¨ÀýÈçµ±´ò¿ªÏä×Ó¡¢ÔËÊä¿ó³µ£¬µöÓãºÍÉ±¹Ö£©¡£
+     * å½±å“æˆ˜åˆ©å“è¡¨ä½¿ç”¨çš„qualityå’Œbonus_rollsï¼ˆä¾‹å¦‚å½“æ‰“å¼€ç®±å­ã€è¿è¾“çŸ¿è½¦ï¼Œé’“é±¼å’Œæ€æ€ªï¼‰ã€‚
      */
     GENERIC_LUCK("generic.luck"),
 
     /**
-     * ÒÔÏÂÕª×ÔMinecraft Wiki
+     * ä»¥ä¸‹æ‘˜è‡ªMinecraft Wiki
      *
-    Õâ¸öÉúÎïµÄ×î´óÉúÃüÖµ£»Òà»òÕâ¸öÉúÎïÍ¨¹ýÉúÃü»Ö¸´×î¶à¿ÉÒÔ»Ö¸´ÖÁµÄ¼«ÏÞ¡£ÄãÐèÒªÔËÓÃ[Health:#]nbt¸Ä±äÉúÎïµÄµ±Ç°ÉúÃüÖµ¡£
+    è¿™ä¸ªç”Ÿç‰©çš„æœ€å¤§ç”Ÿå‘½å€¼ï¼›äº¦æˆ–è¿™ä¸ªç”Ÿç‰©é€šè¿‡ç”Ÿå‘½æ¢å¤æœ€å¤šå¯ä»¥æ¢å¤è‡³çš„æžé™ã€‚ä½ éœ€è¦è¿ç”¨[Health:#]nbtæ”¹å˜ç”Ÿç‰©çš„å½“å‰ç”Ÿå‘½å€¼ã€‚
      */
     GENERIC_MAX_HEALTH("generic.maxHealth");
 

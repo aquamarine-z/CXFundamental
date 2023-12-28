@@ -2,10 +2,10 @@ package cxplugins.cxfundamental.minecraft.server.nms
 
 object OBCHelper {
     /**
-     * Í¨¹ıÀàÃû·´Éä»ñÈ¡Ä³Ò»¸ö´¦ÓÚorg.bukkit.craftbukkitÖĞµÄÀà
+     * é€šè¿‡ç±»ååå°„è·å–æŸä¸€ä¸ªå¤„äºorg.bukkit.craftbukkitä¸­çš„ç±»
      *
-     * @param className ÀàÃû
-     * @return ´ËÀà
+     * @param className ç±»å
+     * @return æ­¤ç±»
      */
     @JvmStatic
     fun getOBCClass(className: String): Class<*> {

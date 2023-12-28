@@ -12,23 +12,23 @@ internal fun cutTitle(from: String): String {
 }
 
 /**
- * ±íÊ¾Ò»¸öÈİÆ÷ Ò»¸öÈİÆ÷²»»áµ¥¶À´æÔÚ Ëû»á°ó¶¨µ½Ò»¸ö´°¿ÚÖĞ
+ * è¡¨ç¤ºä¸€ä¸ªå®¹å™¨ ä¸€ä¸ªå®¹å™¨ä¸ä¼šå•ç‹¬å­˜åœ¨ ä»–ä¼šç»‘å®šåˆ°ä¸€ä¸ªçª—å£ä¸­
  *
- * @property height ´ËÈİÆ÷µÄ¸ß¶È
+ * @property height æ­¤å®¹å™¨çš„é«˜åº¦
  * @constructor
  *
- * @param title ´ËÈİÆ÷µÄ±êÌâ
+ * @param title æ­¤å®¹å™¨çš„æ ‡é¢˜
  */
 class CXPanel(internal var height: Int, title: String) {
     internal var elements: Array<Array<CXUIElement?>>
     var inventory: Inventory? = null
 
     /**
-     * Í¨¹ıKotlin DSLÎª´ËÈİÆ÷Ìí¼Ó°´Å¥µÄ·½·¨
+     * é€šè¿‡Kotlin DSLä¸ºæ­¤å®¹å™¨æ·»åŠ æŒ‰é’®çš„æ–¹æ³•
      *
-     * @param x X×ø±ê
-     * @param y Y×ø±ê
-     * @param lambda DSLµÄLambda±í´ïÊ½
+     * @param x Xåæ ‡
+     * @param y Yåæ ‡
+     * @param lambda DSLçš„Lambdaè¡¨è¾¾å¼
      * @receiver
      */
     fun button(x: Int, y: Int, lambda: CXButton.() -> Unit) {
@@ -51,10 +51,10 @@ class CXPanel(internal var height: Int, title: String) {
     }
 
     /**
-     * ÔÚÄ³¸öÎ»ÖÃÉèÖÃ×é¼ş
+     * åœ¨æŸä¸ªä½ç½®è®¾ç½®ç»„ä»¶
      *
-     * @param location Î»ÖÃ
-     * @param element ´Ë×é¼ş
+     * @param location ä½ç½®
+     * @param element æ­¤ç»„ä»¶
      * @receiver
      */
     @Throws(CXUIException::class)
@@ -64,10 +64,10 @@ class CXPanel(internal var height: Int, title: String) {
     }
 
     /**
-     * ÔÚÄ³¸öÎ»ÖÃÉèÖÃ°´Å¥
+     * åœ¨æŸä¸ªä½ç½®è®¾ç½®æŒ‰é’®
      *
-     * @param location °´Å¥
-     * @param element ´Ë×é¼ş
+     * @param location æŒ‰é’®
+     * @param element æ­¤ç»„ä»¶
      * @receiver
      */
     @Throws(CXUIException::class)
@@ -77,57 +77,57 @@ class CXPanel(internal var height: Int, title: String) {
     }
 
     /**
-     * ÔÚÄ³¸öÎ»ÖÃÉèÖÃ×é¼ş
+     * åœ¨æŸä¸ªä½ç½®è®¾ç½®ç»„ä»¶
      *
-     * @param x X×ø±ê
-     * @param y Y×ø±ê
-     * @param element ´Ë×é¼ş
+     * @param x Xåæ ‡
+     * @param y Yåæ ‡
+     * @param element æ­¤ç»„ä»¶
      * @receiver
      */
     @Throws(CXUIException::class)
     fun set(x: Int, y: Int, element: CXUIElement) {
-        if (y < 0 || y >= this.height) throw IllegalArgumentException("²ÎÊıY±ØĞëÔÚ0~¸ß¶ÈÖ®¼ä")
-        if (x !in 0..8) throw IllegalArgumentException("²ÎÊıX±ØĞëÔÚ0~8Ö®¼ä")
+        if (y < 0 || y >= this.height) throw IllegalArgumentException("å‚æ•°Yå¿…é¡»åœ¨0~é«˜åº¦ä¹‹é—´")
+        if (x !in 0..8) throw IllegalArgumentException("å‚æ•°Xå¿…é¡»åœ¨0~8ä¹‹é—´")
         this.elements[x][y] = element
 
     }
 
     /**
-     * ÔÚÄ³¸öÎ»ÖÃÉèÖÃ°´Å¥
+     * åœ¨æŸä¸ªä½ç½®è®¾ç½®æŒ‰é’®
      *
-     * @param x X×ø±ê
-     * @param y Y×ø±ê
-     * @param element ´Ë°´Å¥
+     * @param x Xåæ ‡
+     * @param y Yåæ ‡
+     * @param element æ­¤æŒ‰é’®
      * @receiver
      */
     @Throws(CXUIException::class)
     fun set(x: Int, y: Int, element: CXButton) {
-        if (y < 0 || y >= this.height) throw IllegalArgumentException("²ÎÊıY±ØĞëÔÚ0~¸ß¶ÈÖ®¼ä")
-        if (x !in 0..8) throw IllegalArgumentException("²ÎÊıX±ØĞëÔÚ0~8Ö®¼ä")
+        if (y < 0 || y >= this.height) throw IllegalArgumentException("å‚æ•°Yå¿…é¡»åœ¨0~é«˜åº¦ä¹‹é—´")
+        if (x !in 0..8) throw IllegalArgumentException("å‚æ•°Xå¿…é¡»åœ¨0~8ä¹‹é—´")
         this.elements[x][y] = element
         this.inventory!!.setItem(CXInventory.posToInteger(x, y), element.item)
     }
 
     /**
-     * É¾³ıÄ³¸öÎ»ÖÃµÄ×é¼ş
+     * åˆ é™¤æŸä¸ªä½ç½®çš„ç»„ä»¶
      *
-     * @param x X×ø±ê
-     * @param y Y×ø±ê
+     * @param x Xåæ ‡
+     * @param y Yåæ ‡
      * @receiver
      */
     @Throws(CXUIException::class)
     fun remove(x: Int, y: Int) {
-        if (y < 0 || y >= this.height) throw IllegalArgumentException("²ÎÊıY±ØĞëÔÚ0~¸ß¶ÈÖ®¼ä")
-        if (x !in 0..8) throw IllegalArgumentException("²ÎÊıX±ØĞëÔÚ0~8Ö®¼ä")
+        if (y < 0 || y >= this.height) throw IllegalArgumentException("å‚æ•°Yå¿…é¡»åœ¨0~é«˜åº¦ä¹‹é—´")
+        if (x !in 0..8) throw IllegalArgumentException("å‚æ•°Xå¿…é¡»åœ¨0~8ä¹‹é—´")
         this.inventory!!.setItem(CXInventory.posToInteger(x, y), null)
 
         this.elements[x][y] = null
     }
 
     /**
-     * É¾³ıÄ³¸öÎ»ÖÃµÄ×é¼ş
+     * åˆ é™¤æŸä¸ªä½ç½®çš„ç»„ä»¶
      *
-     * @param location Î»ÖÃ
+     * @param location ä½ç½®
      * @receiver
      */
     @Throws(CXUIException::class)
@@ -138,16 +138,16 @@ class CXPanel(internal var height: Int, title: String) {
     }
 
     /**
-     * »ñÈ¡Ä³¸öÎ»ÖÃµÄ×é¼ş
+     * è·å–æŸä¸ªä½ç½®çš„ç»„ä»¶
      *
-     * @param x X×ø±ê
-     * @param y Y×ø±ê
+     * @param x Xåæ ‡
+     * @param y Yåæ ‡
      * @receiver
      */
     @Throws(CXUIException::class)
     fun getElement(x: Int, y: Int): CXUIElement? {
-        if (y < 0 || y >= this.height) throw IllegalArgumentException("²ÎÊıY±ØĞëÔÚ0~¸ß¶ÈÖ®¼ä")
-        if (x !in 0..8) throw IllegalArgumentException("²ÎÊıX±ØĞëÔÚ0~8Ö®¼ä")
+        if (y < 0 || y >= this.height) throw IllegalArgumentException("å‚æ•°Yå¿…é¡»åœ¨0~é«˜åº¦ä¹‹é—´")
+        if (x !in 0..8) throw IllegalArgumentException("å‚æ•°Xå¿…é¡»åœ¨0~8ä¹‹é—´")
         return elements[x][y]
     }
 

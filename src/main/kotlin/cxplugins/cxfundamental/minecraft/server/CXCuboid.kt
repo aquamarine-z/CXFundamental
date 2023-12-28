@@ -8,51 +8,51 @@ import org.bukkit.configuration.serialization.ConfigurationSerializable
 import org.bukkit.util.Vector
 
 /**
- * ±íÊ¾Ò»¸öÈıÎ¬µÄÁ¢·½Ìå
- * Í¨¹ıx1 x2 y1 y2 z1 z2 À´±íÊ¾Ò»¸öÁ¢·½Ìå
- * ´ËÁ¢·½ÌåÌå»ıÎª|x1-x2|*|y1-y2|*|z1-z2|
- * @constructor ´´½¨Ò»¸öÁ¢·½Ìå¶ÔÏó
+ * è¡¨ç¤ºä¸€ä¸ªä¸‰ç»´çš„ç«‹æ–¹ä½“
+ * é€šè¿‡x1 x2 y1 y2 z1 z2 æ¥è¡¨ç¤ºä¸€ä¸ªç«‹æ–¹ä½“
+ * æ­¤ç«‹æ–¹ä½“ä½“ç§¯ä¸º|x1-x2|*|y1-y2|*|z1-z2|
+ * @constructor åˆ›å»ºä¸€ä¸ªç«‹æ–¹ä½“å¯¹è±¡
  */
 class CXCuboid : ConfigurationSerializable {
     /**
-     * ±íÊ¾Õâ¸öÁ¢·½Ìå´Ó[from] µ½ [to] ¼´[from]Îªmin(x1,x2),min(y1,y2),min(z1,z2)
+     * è¡¨ç¤ºè¿™ä¸ªç«‹æ–¹ä½“ä»[from] åˆ° [to] å³[from]ä¸ºmin(x1,x2),min(y1,y2),min(z1,z2)
      */
     var from: Vector
 
     /**
-     * ±íÊ¾Õâ¸öÁ¢·½Ìå´Ó[from] µ½ [to] ¼´[to]Îªmax(x1,x2),max(y1,y2),max(z1,z2)
+     * è¡¨ç¤ºè¿™ä¸ªç«‹æ–¹ä½“ä»[from] åˆ° [to] å³[to]ä¸ºmax(x1,x2),max(y1,y2),max(z1,z2)
      */
     var to: Vector
 
     /**
-     * ±íÊ¾´ËÁ¢·½ÌåËù´¦µÄÊÀ½ç
+     * è¡¨ç¤ºæ­¤ç«‹æ–¹ä½“æ‰€å¤„çš„ä¸–ç•Œ
      */
     var world: World? = null
 
     /**
-     * ±íÊ¾´ËÁ¢·½ÌåËù´¦µÄÊÀ½çµÄÃû×Ö
+     * è¡¨ç¤ºæ­¤ç«‹æ–¹ä½“æ‰€å¤„çš„ä¸–ç•Œçš„åå­—
      */
     internal var WorldName: String = ""
     val length: Int
         /**
-         * »ñÈ¡³¤·½ÌåµÄ³¤¶È
+         * è·å–é•¿æ–¹ä½“çš„é•¿åº¦
          */
         get() = (to.x - from.x).toInt()
     val width: Int
         /**
-         * »ñÈ¡³¤·½ÌåµÄ¿í¶È
+         * è·å–é•¿æ–¹ä½“çš„å®½åº¦
          */
         get() = (to.z - from.z).toInt()
     val height: Int
         /**
-         * »ñÈ¡³¤·½ÌåµÄ¸ß¶È
+         * è·å–é•¿æ–¹ä½“çš„é«˜åº¦
          */
         get() = (to.y - from.y).toInt()
 
     /**
-     * Í¨¹ıÁ½¸öÏòÁ¿À´´´½¨Á¢·½Ìå
-     * @param arg0 µÚÒ»¸öÏòÁ¿
-     * @param arg1 µÚ¶ş¸öÏòÁ¿
+     * é€šè¿‡ä¸¤ä¸ªå‘é‡æ¥åˆ›å»ºç«‹æ–¹ä½“
+     * @param arg0 ç¬¬ä¸€ä¸ªå‘é‡
+     * @param arg1 ç¬¬äºŒä¸ªå‘é‡
      */
     constructor(arg0: Vector, arg1: Vector) {
         from = Vector.getMinimum(arg0, arg1)
@@ -60,9 +60,9 @@ class CXCuboid : ConfigurationSerializable {
     }
 
     /**
-     * Í¨¹ıÁ½¸öÏòÁ¿´´½¨Á¢·½Ìå Ö¸¶¨Á¢·½ÌåËùÔÚÊÀ½ç
-     *  @param arg0 µÚÒ»¸öÏòÁ¿
-     * @param arg1 µÚ¶ş¸öÏòÁ¿
+     * é€šè¿‡ä¸¤ä¸ªå‘é‡åˆ›å»ºç«‹æ–¹ä½“ æŒ‡å®šç«‹æ–¹ä½“æ‰€åœ¨ä¸–ç•Œ
+     *  @param arg0 ç¬¬ä¸€ä¸ªå‘é‡
+     * @param arg1 ç¬¬äºŒä¸ªå‘é‡
      */
     constructor(arg0: Vector, arg1: Vector, arg3: World) {
         from = Vector.getMinimum(arg0, arg1)
@@ -71,20 +71,20 @@ class CXCuboid : ConfigurationSerializable {
     }
 
     /**
-     * ÅĞ¶ÏÄ³Ò»¸ö×ø±êÊÇ·ñÔÚ´ËÁ¢·½ÌåÖĞ
+     * åˆ¤æ–­æŸä¸€ä¸ªåæ ‡æ˜¯å¦åœ¨æ­¤ç«‹æ–¹ä½“ä¸­
      *
-     * @param arg0 ´Ë×ø±ê
-     * @return ÈôÔÚÁ¢·½ÌåÖĞ ·µ»Øtrue ·ñÔò·µ»Øfalse
+     * @param arg0 æ­¤åæ ‡
+     * @return è‹¥åœ¨ç«‹æ–¹ä½“ä¸­ è¿”å›true å¦åˆ™è¿”å›false
      */
     fun isLocationInCuboid(arg0: Location): Boolean {
         return isVectorInCuboid(arg0.toVector())
     }
 
     /**
-     * ÅĞ¶ÏÄ³Ò»¸öÏòÁ¿ÊÇ·ñÔÚ´ËÁ¢·½ÌåÖĞ
+     * åˆ¤æ–­æŸä¸€ä¸ªå‘é‡æ˜¯å¦åœ¨æ­¤ç«‹æ–¹ä½“ä¸­
      *
-     * @param arg0 ´ËÏòÁ¿
-     * @return ÈôÔÚÁ¢·½ÌåÖĞ ·µ»Øtrue ·ñÔò·µ»Øfalse
+     * @param arg0 æ­¤å‘é‡
+     * @return è‹¥åœ¨ç«‹æ–¹ä½“ä¸­ è¿”å›true å¦åˆ™è¿”å›false
      */
     fun isVectorInCuboid(arg0: Vector): Boolean {
 
@@ -92,20 +92,20 @@ class CXCuboid : ConfigurationSerializable {
     }
 
     /**
-     * ÅĞ¶ÏÄ³Ò»¸ö·½¿éÊÇ·ñÔÚ´ËÁ¢·½ÌåÖĞ
+     * åˆ¤æ–­æŸä¸€ä¸ªæ–¹å—æ˜¯å¦åœ¨æ­¤ç«‹æ–¹ä½“ä¸­
      *
-     * @param arg0 ´Ë·½¿é
-     * @return ÈôÔÚÁ¢·½ÌåÖĞ ·µ»Øtrue ·ñÔò·µ»Øfalse
+     * @param arg0 æ­¤æ–¹å—
+     * @return è‹¥åœ¨ç«‹æ–¹ä½“ä¸­ è¿”å›true å¦åˆ™è¿”å›false
      */
     fun isBlockInCuboid(arg0: Block): Boolean {
         return isLocationInCuboid(arg0.location)
     }
 
     /**
-     * ÅĞ¶Ï´ËÁ¢·½ÌåÊÇ·ñÓëÁíÍâÒ»¸öÁ¢·½ÌåÓĞ½Ó´¥
+     * åˆ¤æ–­æ­¤ç«‹æ–¹ä½“æ˜¯å¦ä¸å¦å¤–ä¸€ä¸ªç«‹æ–¹ä½“æœ‰æ¥è§¦
      *
-     * @param arg0 ÁíÍâÒ»¸öÁ¢·½Ìå
-     * @return ÈôÓĞ½Ó´¥ ·µ»Øtrue ·ñÔò·µ»Øfalse
+     * @param arg0 å¦å¤–ä¸€ä¸ªç«‹æ–¹ä½“
+     * @return è‹¥æœ‰æ¥è§¦ è¿”å›true å¦åˆ™è¿”å›false
      */
     fun contacts(arg0: CXCuboid): Boolean {
         var result = false
@@ -118,9 +118,9 @@ class CXCuboid : ConfigurationSerializable {
     }
 
     /**
-     * ½«´ËÁ¢·½ÌåÓÃÄ³ÖÖ·½¿éÌîÂú
+     * å°†æ­¤ç«‹æ–¹ä½“ç”¨æŸç§æ–¹å—å¡«æ»¡
      *
-     * @param blockID ÌîÂúµÄ·½¿é
+     * @param blockID å¡«æ»¡çš„æ–¹å—
      */
     fun fill(blockID: Int) {
         for (i in from.blockX..to.blockX) {
@@ -135,7 +135,7 @@ class CXCuboid : ConfigurationSerializable {
     }
 
     /**
-     * ĞòÁĞ»¯
+     * åºåˆ—åŒ–
      */
     override fun serialize(): Map<String, Any> {
         val Result = HashMap<String, Any>()
@@ -146,7 +146,7 @@ class CXCuboid : ConfigurationSerializable {
     }
 
     /**
-     * ·´ĞòÁĞ»¯¹¹ÔìÆ÷
+     * ååºåˆ—åŒ–æ„é€ å™¨
      */
     constructor(Map: Map<String, Any>) {
         this.from = Map["From"] as Vector

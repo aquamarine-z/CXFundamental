@@ -82,18 +82,18 @@ fun onlinePlayer(name:String):String{
     return "[type=onlineplayer,name=$name]"
 }*/
 /**
- * ´¦ÀíÍæ¼ÒÃüÁîµÄÀà
+ * å¤„ç†ç©å®¶å‘½ä»¤çš„ç±»
  */
 class CPMLCommandExecutor {
 
     /**
-     * ÎªÓÅ»¯Íæ¼ÒÊäÈëÃüÁîµÄ´¦ÀíÌá¹©µÄ¾²Ì¬·½·¨
+     * ä¸ºä¼˜åŒ–ç©å®¶è¾“å…¥å‘½ä»¤çš„å¤„ç†æä¾›çš„é™æ€æ–¹æ³•
      *
      *
      *
      */
     /**
-     * ±íÊ¾Ò»¸öÃüÁîµÄ²ÎÊı (²»½¨ÒéÉú³É¶ÔÏó)
+     * è¡¨ç¤ºä¸€ä¸ªå‘½ä»¤çš„å‚æ•°
      */
     private class CommandParameter(
         type: String,
@@ -138,14 +138,14 @@ class CPMLCommandExecutor {
     }
 
     /**
-     * ±íÊ¾Ò»¸öµÄ²ÎÊıÃüÁîÁĞ±í (²»½¨ÒéÉú³É¶ÔÏó)
+     * è¡¨ç¤ºä¸€ä¸ªçš„å‚æ•°å‘½ä»¤åˆ—è¡¨
      */
     private class CommandParameterCompound {
         val parameters = ArrayList<CommandParameter>()
     }
 
     /**
-     * Ìá¹©µÄ×¢²á Ö´ĞĞÃüÁîµÄ¾²Ì¬·½·¨
+     * æä¾›çš„æ³¨å†Œ æ‰§è¡Œå‘½ä»¤çš„é™æ€æ–¹æ³•
      */
     companion object {
         private val targetMap = HashMap<String, MutableList<CommandSenderType>>()
@@ -181,10 +181,10 @@ class CPMLCommandExecutor {
             val splitedCommand = commandString.split(" ")
             for (command in commands) {
                 val words = command.split(" ")
-                if (words.size > commandSize) continue //Èç¹û¶¨ÒåµÄÃüÁî³¤¶ÈÒÑ¾­´óÓÚ´ËÃüÁî Ôò½øĞĞÏÂÒ»´ÎËÑË÷
+                if (words.size > commandSize) continue //å¦‚æœå®šä¹‰çš„å‘½ä»¤é•¿åº¦å·²ç»å¤§äºæ­¤å‘½ä»¤ åˆ™è¿›è¡Œä¸‹ä¸€æ¬¡æœç´¢
                 var result = true
                 for (i in words.indices) {
-                    if (words[i] != splitedCommand[i]) result = false //Èç¹û´Ó0~¶¨ÒåÃüÁî³¤¶È-1¶¼Æ¥Åä Ôò·µ»Øcommand ·ñÔòÔÙ´ÎËÑË÷
+                    if (words[i] != splitedCommand[i]) result = false //å¦‚æœä»0~å®šä¹‰å‘½ä»¤é•¿åº¦-1éƒ½åŒ¹é… åˆ™è¿”å›command å¦åˆ™å†æ¬¡æœç´¢
                 }
                 if (result) {
                     return command
@@ -200,13 +200,13 @@ class CPMLCommandExecutor {
         }
 
         /**
-         * ½«Íæ¼ÒÊäÈëµÄÃüÁîÓë×¢²áµÄÃüÁî½øĞĞ±È¶Ô ÈôÍæ¼ÒÊäÈëµÄÃüÁîÒÑ¾­×¢²á ÔòÖ´ĞĞ¸ÃÃüÁî
+         * å°†ç©å®¶è¾“å…¥çš„å‘½ä»¤ä¸æ³¨å†Œçš„å‘½ä»¤è¿›è¡Œæ¯”å¯¹ è‹¥ç©å®¶è¾“å…¥çš„å‘½ä»¤å·²ç»æ³¨å†Œ åˆ™æ‰§è¡Œè¯¥å‘½ä»¤
          *
-         * @param sender ¸ÃÃüÁîµÄ·¢ËÍÕß
-         * @param cmd ¸ÃÃüÁî
-         * @param label ¸ÃÃüÁîµÄ±êÊ¶
-         * @param args ¸ÃÃüÁîµÄ²ÎÊı
-         * @return ¸ÃÃüÁîÊÇ·ñÖ´ĞĞ³É¹¦
+         * @param sender è¯¥å‘½ä»¤çš„å‘é€è€…
+         * @param cmd è¯¥å‘½ä»¤
+         * @param label è¯¥å‘½ä»¤çš„æ ‡è¯†
+         * @param args è¯¥å‘½ä»¤çš„å‚æ•°
+         * @return è¯¥å‘½ä»¤æ˜¯å¦æ‰§è¡ŒæˆåŠŸ
          */
         @JvmStatic
         fun execute(sender: CommandSender, cmd: Command, label: String, args: Array<String>): Boolean {
@@ -399,7 +399,7 @@ class CPMLCommandExecutor {
                         }
 
                         "char" -> {
-                            //CharÀàĞÍÊ¹ÓÃÆµÂÊÉÙ ¹Ê²»ÊµÏÖCharÀàĞÍµÄ²ÎÊı
+                            //Charç±»å‹ä½¿ç”¨é¢‘ç‡å°‘ æ•…ä¸å®ç°Charç±»å‹çš„å‚æ•°
                         }
 
                         "world" -> {
@@ -465,17 +465,17 @@ class CPMLCommandExecutor {
         }
 
         /**
-         * ×¢²á¸ÃÃüÁî(ÎŞĞèÔÚplugin.ymlÀïÃæ×¢²á´ËÃüÁî) ÆäÖĞ¿ÉÑ¡µÄtypeÓĞ:boolean,string,integer,double,player,onlineplayer,world
-         * ¿ÉÑ¡µÄ¹¦ÄÜÓĞ:calculate:ÊÇ·ñ¼ÆËãÍæ¼ÒÊäÈë±í´ïÊ½µÄÖµÎªÊı
+         * æ³¨å†Œè¯¥å‘½ä»¤(æ— éœ€åœ¨plugin.ymlé‡Œé¢æ³¨å†Œæ­¤å‘½ä»¤) å…¶ä¸­å¯é€‰çš„typeæœ‰:boolean,string,integer,double,player,onlineplayer,world
+         * å¯é€‰çš„åŠŸèƒ½æœ‰:calculate:æ˜¯å¦è®¡ç®—ç©å®¶è¾“å…¥è¡¨è¾¾å¼çš„å€¼ä¸ºæ•°
          *            multiparameter:
          *               multiparameterstart:
          *               multiparameterend:
-         *            ÊÇ·ñ¿ªÆô¸´ºÏ²ÎÊıµÄ¶ÁÈ¡ Èç_This is a test_ ÖĞ¼äÓĞ¿Õ¸ñ Èô²»¿ªÆô·ûºÏ²ÎÊı¶ÁÈ¡ÔòÎªËÄ¸ö²ÎÊı ¿ªÆôÖ®ºóÎªÒ»¸ö²ÎÊı"This is a test"
-         * @param command ¸ÃÃüÁî
-         * @param parameters ¸ÃÃüÁîµÄ²ÎÊı(Ê¹ÓÃCPMLÓï·¨)
-         * @param action ¸ÃÃüÁîÖ´ĞĞºóµÄ²Ù×÷
+         *            æ˜¯å¦å¼€å¯å¤åˆå‚æ•°çš„è¯»å– å¦‚_This is a test_ ä¸­é—´æœ‰ç©ºæ ¼ è‹¥ä¸å¼€å¯ç¬¦åˆå‚æ•°è¯»å–åˆ™ä¸ºå››ä¸ªå‚æ•° å¼€å¯ä¹‹åä¸ºä¸€ä¸ªå‚æ•°"This is a test"
+         * @param command è¯¥å‘½ä»¤
+         * @param parameters è¯¥å‘½ä»¤çš„å‚æ•°(ä½¿ç”¨CPMLè¯­æ³•)
+         * @param action è¯¥å‘½ä»¤æ‰§è¡Œåçš„æ“ä½œ
          * `register("test","[type=boolean,name="boolean"] [type=string,name=string,multiparameter=true,multiparameterstart=_,multiparameterend=_] [type=player,name=player] [type=integer,calculate=true,name=integer],null")`
-         * @return ¸ÃÃüÁîÊÇ·ñ×¢²á³É¹¦
+         * @return è¯¥å‘½ä»¤æ˜¯å¦æ³¨å†ŒæˆåŠŸ
          *
          */
         fun register(
@@ -507,17 +507,17 @@ class CPMLCommandExecutor {
         }
 
         /**
-         * ×¢²á¸ÃÃüÁî(ĞèÒªÔÚplugin.ymlÀïÃæ×¢²á´ËÃüÁî) ÆäÖĞ¿ÉÑ¡µÄtypeÓĞ:boolean,string,integer,double,player,onlineplayer,world
-         * ¿ÉÑ¡µÄ¹¦ÄÜÓĞ:calculate:ÊÇ·ñ¼ÆËãÍæ¼ÒÊäÈë±í´ïÊ½µÄÖµÎªÊı
+         * æ³¨å†Œè¯¥å‘½ä»¤(éœ€è¦åœ¨plugin.ymlé‡Œé¢æ³¨å†Œæ­¤å‘½ä»¤) å…¶ä¸­å¯é€‰çš„typeæœ‰:boolean,string,integer,double,player,onlineplayer,world
+         * å¯é€‰çš„åŠŸèƒ½æœ‰:calculate:æ˜¯å¦è®¡ç®—ç©å®¶è¾“å…¥è¡¨è¾¾å¼çš„å€¼ä¸ºæ•°
          *            multiparameter:
          *               multiparameterstart:
          *               multiparameterend:
-         *            ÊÇ·ñ¿ªÆô¸´ºÏ²ÎÊıµÄ¶ÁÈ¡ Èç_This is a test_ ÖĞ¼äÓĞ¿Õ¸ñ Èô²»¿ªÆô·ûºÏ²ÎÊı¶ÁÈ¡ÔòÎªËÄ¸ö²ÎÊı ¿ªÆôÖ®ºóÎªÒ»¸ö²ÎÊı"This is a test"
-         * @param command ¸ÃÃüÁî
-         * @param parameters ¸ÃÃüÁîµÄ²ÎÊı(Ê¹ÓÃCPMLÓï·¨)
-         * @param action ¸ÃÃüÁîÖ´ĞĞºóµÄ²Ù×÷
+         *            æ˜¯å¦å¼€å¯å¤åˆå‚æ•°çš„è¯»å– å¦‚_This is a test_ ä¸­é—´æœ‰ç©ºæ ¼ è‹¥ä¸å¼€å¯ç¬¦åˆå‚æ•°è¯»å–åˆ™ä¸ºå››ä¸ªå‚æ•° å¼€å¯ä¹‹åä¸ºä¸€ä¸ªå‚æ•°"This is a test"
+         * @param command è¯¥å‘½ä»¤
+         * @param parameters è¯¥å‘½ä»¤çš„å‚æ•°(ä½¿ç”¨CPMLè¯­æ³•)
+         * @param action è¯¥å‘½ä»¤æ‰§è¡Œåçš„æ“ä½œ
          * `register("test","[type=boolean,name="boolean"] [type=string,name=string,multiparameter=true,multiparameterstart=_,multiparameterend=_] [type=player,name=player] [type=integer,calculate=true,name=integer],null")`
-         * @return ¸ÃÃüÁîÊÇ·ñ×¢²á³É¹¦
+         * @return è¯¥å‘½ä»¤æ˜¯å¦æ³¨å†ŒæˆåŠŸ
          *
          */
         fun register(command: String, parameters: String, action: Action.() -> Boolean) {
@@ -532,17 +532,17 @@ class CPMLCommandExecutor {
         }
 
         /**
-         * ×¢²á¸ÃÃüÁî(ĞèÒªÔÚplugin.ymlÀïÃæ×¢²á´ËÃüÁî) ÆäÖĞ¿ÉÑ¡µÄtypeÓĞ:boolean,string,integer,double,player,onlineplayer,world
-         * ¿ÉÑ¡µÄ¹¦ÄÜÓĞ:calculate:ÊÇ·ñ¼ÆËãÍæ¼ÒÊäÈë±í´ïÊ½µÄÖµÎªÊı
+         * æ³¨å†Œè¯¥å‘½ä»¤(éœ€è¦åœ¨plugin.ymlé‡Œé¢æ³¨å†Œæ­¤å‘½ä»¤) å…¶ä¸­å¯é€‰çš„typeæœ‰:boolean,string,integer,double,player,onlineplayer,world
+         * å¯é€‰çš„åŠŸèƒ½æœ‰:calculate:æ˜¯å¦è®¡ç®—ç©å®¶è¾“å…¥è¡¨è¾¾å¼çš„å€¼ä¸ºæ•°
          *            multiparameter:
          *               multiparameterstart:
          *               multiparameterend:
-         *            ÊÇ·ñ¿ªÆô¸´ºÏ²ÎÊıµÄ¶ÁÈ¡ Èç_This is a test_ ÖĞ¼äÓĞ¿Õ¸ñ Èô²»¿ªÆô¸´ºÏ²ÎÊı¶ÁÈ¡ÔòÎªËÄ¸ö²ÎÊı ¿ªÆôÖ®ºóÎªÒ»¸ö²ÎÊı"This is a test"
-         * @param command ¸ÃÃüÁî
-         * @param parameters ¸ÃÃüÁîµÄ²ÎÊı(Ê¹ÓÃCPMLÓï·¨)
-         * @param action ¸ÃÃüÁîÖ´ĞĞºóµÄ²Ù×÷
+         *            æ˜¯å¦å¼€å¯å¤åˆå‚æ•°çš„è¯»å– å¦‚_This is a test_ ä¸­é—´æœ‰ç©ºæ ¼ è‹¥ä¸å¼€å¯å¤åˆå‚æ•°è¯»å–åˆ™ä¸ºå››ä¸ªå‚æ•° å¼€å¯ä¹‹åä¸ºä¸€ä¸ªå‚æ•°"This is a test"
+         * @param command è¯¥å‘½ä»¤
+         * @param parameters è¯¥å‘½ä»¤çš„å‚æ•°(ä½¿ç”¨CPMLè¯­æ³•)
+         * @param action è¯¥å‘½ä»¤æ‰§è¡Œåçš„æ“ä½œ
          * `register("test","[type=boolean,name="boolean"] [type=string,name=string,multiparameter=true,multiparameterstart=_,multiparameterend=_] [type=player,name=player] [type=integer,calculate=true,name=integer],null")`
-         * @return ¸ÃÃüÁîÊÇ·ñ×¢²á³É¹¦
+         * @return è¯¥å‘½ä»¤æ˜¯å¦æ³¨å†ŒæˆåŠŸ
          *
          */
         @JvmStatic
@@ -559,7 +559,7 @@ class CPMLCommandExecutor {
                 Companion.actionMap.put(command, action)
                 return true
             }
-            for (i in 0..parameter.size - 1) {
+            for (i in 0 until parameter.size) {
                 try {
                     parameter[i] = parameter[i].substring(1, parameter[i].length - 1)/*[name=integer,type=integer]*/
 
@@ -622,89 +622,89 @@ class CPMLCommandExecutor {
 }
 
 /**
- * µ±Íæ¼ÒÊäÈëÄ³¸öÃüÁîµÄÊ±ºò Ó¦¸ÃÖ´ĞĞµÄ²Ù×÷
- * Í¨¹ıÊµÏÖ·½·¨action()À´Ö¸¶¨ÃüÁîµÄ²Ù×÷
+ * å½“ç©å®¶è¾“å…¥æŸä¸ªå‘½ä»¤çš„æ—¶å€™ åº”è¯¥æ‰§è¡Œçš„æ“ä½œ
+ * é€šè¿‡å®ç°æ–¹æ³•action()æ¥æŒ‡å®šå‘½ä»¤çš„æ“ä½œ
  */
 abstract class Action {
     /**
-     * ÃüÁîµÄ·¢ËÍÕß
+     * å‘½ä»¤çš„å‘é€è€…
      */
     lateinit var sender: CommandSender
 
     /**
-     * ÃüÁîµÄ²ÎÊı
+     * å‘½ä»¤çš„å‚æ•°
      */
     lateinit var args: Array<String>
 
     /**
-     * ÃüÁîµÄ±êÊ¶
+     * å‘½ä»¤çš„æ ‡è¯†
      */
     lateinit var label: String
 
     /**
-     * ´ËÃüÁî
+     * æ­¤å‘½ä»¤
      */
     lateinit var cmd: Command
 
     /**
-     * ËùÓĞÔÚCPML²ÎÊıÁĞ±íÖĞ±»±ê¼ÇÎª"type=string"µÄ²ÎÊı¶¼»á±£´æÔÚstrings×ÖµäÖĞ
+     * æ‰€æœ‰åœ¨CPMLå‚æ•°åˆ—è¡¨ä¸­è¢«æ ‡è®°ä¸º"type=string"çš„å‚æ•°éƒ½ä¼šä¿å­˜åœ¨stringså­—å…¸ä¸­
      */
     var strings = HashMap<String, String>()
 
     /**
-     * ËùÓĞÔÚCPML²ÎÊıÁĞ±íÖĞ±»±ê¼ÇÎª"type=integers"µÄ²ÎÊı¶¼»á±£´æÔÚintegers×ÖµäÖĞ
+     * æ‰€æœ‰åœ¨CPMLå‚æ•°åˆ—è¡¨ä¸­è¢«æ ‡è®°ä¸º"type=integers"çš„å‚æ•°éƒ½ä¼šä¿å­˜åœ¨integerså­—å…¸ä¸­
      */
     var integers = HashMap<String, Int>()
 
     /**
-     * ËùÓĞÔÚCPML²ÎÊıÁĞ±íÖĞ±»±ê¼ÇÎª"type=boolean"µÄ²ÎÊı¶¼»á±£´æÔÚbooleans×ÖµäÖĞ
+     * æ‰€æœ‰åœ¨CPMLå‚æ•°åˆ—è¡¨ä¸­è¢«æ ‡è®°ä¸º"type=boolean"çš„å‚æ•°éƒ½ä¼šä¿å­˜åœ¨booleanså­—å…¸ä¸­
      */
     var booleans = HashMap<String, Boolean>()
 
     /**
-     * ËùÓĞÔÚCPML²ÎÊıÁĞ±íÖĞ±»±ê¼ÇÎª"type=double"µÄ²ÎÊı¶¼»á±£´æÔÚdoubles×ÖµäÖĞ
+     * æ‰€æœ‰åœ¨CPMLå‚æ•°åˆ—è¡¨ä¸­è¢«æ ‡è®°ä¸º"type=double"çš„å‚æ•°éƒ½ä¼šä¿å­˜åœ¨doubleså­—å…¸ä¸­
      */
     var doubles = HashMap<String, Double>()
 
     /**
-     * ËùÓĞÔÚCPML²ÎÊıÁĞ±íÖĞ±»±ê¼ÇÎª"type=float"µÄ²ÎÊı¶¼»á±£´æÔÚfloat×ÖµäÖĞ
+     * æ‰€æœ‰åœ¨CPMLå‚æ•°åˆ—è¡¨ä¸­è¢«æ ‡è®°ä¸º"type=float"çš„å‚æ•°éƒ½ä¼šä¿å­˜åœ¨floatå­—å…¸ä¸­
      */
     var floats = HashMap<String, Float>()
 
     /**
-     * ËùÓĞÔÚCPML²ÎÊıÁĞ±íÖĞ±»±ê¼ÇÎª"type=onlineplayer"µÄ²ÎÊı¶¼»á±£´æÔÚonlinePlayers×ÖµäÖĞ
+     * æ‰€æœ‰åœ¨CPMLå‚æ•°åˆ—è¡¨ä¸­è¢«æ ‡è®°ä¸º"type=onlineplayer"çš„å‚æ•°éƒ½ä¼šä¿å­˜åœ¨onlinePlayerså­—å…¸ä¸­
      */
     var onlinePlayers = HashMap<String, Player>()
 
     /**
-     * ËùÓĞÔÚCPML²ÎÊıÁĞ±íÖĞ±»±ê¼ÇÎª"type=player"µÄ²ÎÊı¶¼»á±£´æÔÚplayers×ÖµäÖĞ
+     * æ‰€æœ‰åœ¨CPMLå‚æ•°åˆ—è¡¨ä¸­è¢«æ ‡è®°ä¸º"type=player"çš„å‚æ•°éƒ½ä¼šä¿å­˜åœ¨playerså­—å…¸ä¸­
      */
     var players = HashMap<String, Player>()
 
     /**
-     * ËùÓĞÔÚCPML²ÎÊıÁĞ±íÖĞ±»±ê¼ÇÎª"type=world"µÄ²ÎÊı¶¼»á±£´æÔÚworlds×ÖµäÖĞ
+     * æ‰€æœ‰åœ¨CPMLå‚æ•°åˆ—è¡¨ä¸­è¢«æ ‡è®°ä¸º"type=world"çš„å‚æ•°éƒ½ä¼šä¿å­˜åœ¨worldså­—å…¸ä¸­
      */
     var worlds = HashMap<String, World>()
 
     /**
-     * ËùÓĞÔÚCPML²ÎÊıÁĞ±íÖĞ±»±ê¼ÇÎª"type=byte"µÄ²ÎÊı¶¼»á±£´æÔÚbytes×ÖµäÖĞ
+     * æ‰€æœ‰åœ¨CPMLå‚æ•°åˆ—è¡¨ä¸­è¢«æ ‡è®°ä¸º"type=byte"çš„å‚æ•°éƒ½ä¼šä¿å­˜åœ¨byteså­—å…¸ä¸­
      */
     var bytes = HashMap<String, Byte>()
 
     /**
-     * ËùÓĞÔÚCPML²ÎÊıÁĞ±íÖĞ±»±ê¼ÇÎª"type=short"µÄ²ÎÊı¶¼»á±£´æÔÚshorts×ÖµäÖĞ
+     * æ‰€æœ‰åœ¨CPMLå‚æ•°åˆ—è¡¨ä¸­è¢«æ ‡è®°ä¸º"type=short"çš„å‚æ•°éƒ½ä¼šä¿å­˜åœ¨shortså­—å…¸ä¸­
      */
     var shorts = HashMap<String, Short>()
 
     /**
-     * ËùÓĞÔÚCPML²ÎÊıÁĞ±íÖĞ±»±ê¼ÇÎª"type=long"µÄ²ÎÊı¶¼»á±£´æÔÚlongs×ÖµäÖĞ
+     * æ‰€æœ‰åœ¨CPMLå‚æ•°åˆ—è¡¨ä¸­è¢«æ ‡è®°ä¸º"type=long"çš„å‚æ•°éƒ½ä¼šä¿å­˜åœ¨longså­—å…¸ä¸­
      */
     var longs = HashMap<String, Long>()
 
     /**
-     * ĞèÒª½øĞĞÊµÏÖµÄÃüÁîÏìÓ¦·½·¨
+     * éœ€è¦è¿›è¡Œå®ç°çš„å‘½ä»¤å“åº”æ–¹æ³•
      *
-     * @return ¸ÃÃüÁîÊÇ·ñ³É¹¦Ö´ĞĞ
+     * @return è¯¥å‘½ä»¤æ˜¯å¦æˆåŠŸæ‰§è¡Œ
      */
     abstract fun action(): Boolean
 }

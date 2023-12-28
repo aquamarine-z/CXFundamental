@@ -1,7 +1,7 @@
 package cxplugins.cxfundamental.minecraft.file
 
 /**
- * Î´Íê¹¤µÄÀà ±íÊ¾²Ù×÷Íæ¼ÒÅäÖÃÎÄ¼şÊ±µÄ¶¯×÷
+ * æœªå®Œå·¥çš„ç±» è¡¨ç¤ºæ“ä½œç©å®¶é…ç½®æ–‡ä»¶æ—¶çš„åŠ¨ä½œ
  */
 interface PlayerEditAction {
     fun action(config: CXYamlConfiguration)

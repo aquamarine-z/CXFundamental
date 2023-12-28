@@ -1,7 +1,7 @@
 package cxplugins.cxfundamental.minecraft.command
 
 /**
- * Ìí¼ÓCXCommandRunner¶ÔÃüÁîµÄ´¦ÀíµÄ½Ó¿Ú
+ * æ·»åŠ CXCommandRunnerå¯¹å‘½ä»¤çš„å¤„ç†çš„æ¥å£
  */
 interface CXCommandAction {
     fun action(arg0: CXCommandInformation?): Boolean

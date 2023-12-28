@@ -8,7 +8,7 @@ import org.bukkit.inventory.ItemStack
 open class SwingBaseMultipagePanel(
     override var position: Vector2I,
     override var width: Int,
-    override var height: Int
+    override var height: Int, override var id: String? = null
 ) : SwingContainer {
     var pagePointer = 0
         set(value) {
@@ -17,12 +17,29 @@ open class SwingBaseMultipagePanel(
             else value
         }
     var panelList = mutableListOf<SwingPanel>()
+    private fun checkIdAvailable(component: SwingComponent): Boolean {
+        if (component.id == null) return true
+        else {
+            for (panel in panelList) {
+                for (i in panel.componentList) {
+                    if (i.id == component.id) return false
+                }
+            }
+            return true
+        }
+    }
 
     override fun setComponent(component: SwingComponent) {
         if (panelList.size == 0) {
             val languagePack = LanguageManager.getLanguageManager(CXFundamentalMain.pluginMain)!!.getSelectedLanguage()
             throw SwingException(
-                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBeseMultipagePanel.PageOutOfBounds"] ?: ""
+                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBaseMultipagePanel.PageOutOfBounds"] ?: ""
+            )
+        }
+        if (!checkIdAvailable(component)) {
+            val languagePack = LanguageManager.getLanguageManager(CXFundamentalMain.pluginMain)!!.getSelectedLanguage()
+            throw SwingException(
+                languagePack["swing.idAlreadyExists"]!!
             )
         }
         panelList[pagePointer].setComponent(component)
@@ -33,9 +50,10 @@ open class SwingBaseMultipagePanel(
         if (panelList.size == 0) {
             val languagePack = LanguageManager.getLanguageManager(CXFundamentalMain.pluginMain)!!.getSelectedLanguage()
             throw SwingException(
-                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBeseMultipagePanel.PageOutOfBounds"] ?: ""
+                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBaseMultipagePanel.PageOutOfBounds"] ?: ""
             )
         }
+
         return panelList[pagePointer].getTopComponent(position)
     }
 
@@ -43,7 +61,7 @@ open class SwingBaseMultipagePanel(
         if (panelList.size == 0) {
             val languagePack = LanguageManager.getLanguageManager(CXFundamentalMain.pluginMain)!!.getSelectedLanguage()
             throw SwingException(
-                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBeseMultipagePanel.PageOutOfBounds"] ?: ""
+                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBaseMultipagePanel.PageOutOfBounds"] ?: ""
             )
         }
         return panelList[pagePointer].getComponents(position)
@@ -53,7 +71,13 @@ open class SwingBaseMultipagePanel(
         if (page !in panelList.indices) {
             val languagePack = LanguageManager.getLanguageManager(CXFundamentalMain.pluginMain)!!.getSelectedLanguage()
             throw SwingException(
-                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBeseMultipagePanel.PageOutOfBounds"] ?: ""
+                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBaseMultipagePanel.PageOutOfBounds"] ?: ""
+            )
+        }
+        if (!checkIdAvailable(component)) {
+            val languagePack = LanguageManager.getLanguageManager(CXFundamentalMain.pluginMain)!!.getSelectedLanguage()
+            throw SwingException(
+                languagePack["swing.idAlreadyExists"]!!
             )
         }
         panelList[page].setComponent(component)
@@ -63,7 +87,7 @@ open class SwingBaseMultipagePanel(
         if (page !in panelList.indices) {
             val languagePack = LanguageManager.getLanguageManager(CXFundamentalMain.pluginMain)!!.getSelectedLanguage()
             throw SwingException(
-                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBeseMultipagePanel.PageOutOfBounds"] ?: ""
+                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBaseMultipagePanel.PageOutOfBounds"] ?: ""
             )
         }
         panelList[page].getTopComponent(position)
@@ -73,7 +97,7 @@ open class SwingBaseMultipagePanel(
         if (page !in panelList.indices) {
             val languagePack = LanguageManager.getLanguageManager(CXFundamentalMain.pluginMain)!!.getSelectedLanguage()
             throw SwingException(
-                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBeseMultipagePanel.PageOutOfBounds"] ?: ""
+                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBaseMultipagePanel.PageOutOfBounds"] ?: ""
             )
         }
         panelList[page].getComponents(position)
@@ -99,6 +123,21 @@ open class SwingBaseMultipagePanel(
 
     }
 
+    override fun getElementById(id: String): SwingComponent? {
+        for (page in this.panelList) {
+            for (component in page.componentList) {
+                if (component.id == id) {
+                    return component
+                }
+            }
+        }
+        return null
+    }
+
+    override fun containsElementWithId(id: String): Boolean {
+        return getElementById(id) != null
+    }
+
     override fun repaint(): Array<Array<ItemStack?>> {
         return panelList[pagePointer].repaint()
     }
@@ -108,13 +147,13 @@ open class SwingBaseMultipagePanel(
         if (x !in 1..9) {
             val languagePack = LanguageManager.getLanguageManager(CXFundamentalMain.pluginMain)!!.getSelectedLanguage()
             throw SwingException(
-                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBeseMultipagePanel.PositionError"] ?: ""
+                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBaseMultipagePanel.PositionError"] ?: ""
             )
         }
         if (y !in 1..6) {
             val languagePack = LanguageManager.getLanguageManager(CXFundamentalMain.pluginMain)!!.getSelectedLanguage()
             throw SwingException(
-                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBeseMultipagePanel.PositionError"] ?: ""
+                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBaseMultipagePanel.PositionError"] ?: ""
             )
         }
         this.position = Vector2I(x, y)
@@ -124,13 +163,13 @@ open class SwingBaseMultipagePanel(
         if (point.x !in 1..9) {
             val languagePack = LanguageManager.getLanguageManager(CXFundamentalMain.pluginMain)!!.getSelectedLanguage()
             throw SwingException(
-                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBeseMultipagePanel.PositionError"] ?: ""
+                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBaseMultipagePanel.PositionError"] ?: ""
             )
         }
         if (point.y !in 1..6) {
             val languagePack = LanguageManager.getLanguageManager(CXFundamentalMain.pluginMain)!!.getSelectedLanguage()
             throw SwingException(
-                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBeseMultipagePanel.PositionError"] ?: ""
+                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBaseMultipagePanel.PositionError"] ?: ""
             )
         }
         this.position = point
@@ -155,7 +194,7 @@ open class SwingBaseMultipagePanel(
         if (page !in panelList.indices) {
             val languagePack = LanguageManager.getLanguageManager(CXFundamentalMain.pluginMain)!!.getSelectedLanguage()
             throw SwingException(
-                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBeseMultipagePanel.PageOutOfBounds"] ?: ""
+                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBaseMultipagePanel.PageOutOfBounds"] ?: ""
             )
         }
         panelList.removeAt(page)
@@ -165,7 +204,7 @@ open class SwingBaseMultipagePanel(
         if (page !in panelList.indices) {
             val languagePack = LanguageManager.getLanguageManager(CXFundamentalMain.pluginMain)!!.getSelectedLanguage()
             throw SwingException(
-                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBeseMultipagePanel.PageOutOfBounds"] ?: ""
+                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBaseMultipagePanel.PageOutOfBounds"] ?: ""
             )
         }
         return panelList[page]

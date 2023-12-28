@@ -2,7 +2,7 @@ package cxplugins.cxfundamental.minecraft.server
 
 import cxplugins.cxfundamental.minecraft.command.CommandException
 import cxplugins.cxfundamental.minecraft.command.CommandSenderType
-import cxplugins.cxfundamental.minecraft.dependiences.DependencyInformation
+
 import org.bukkit.Material
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
@@ -13,12 +13,12 @@ import org.bukkit.plugin.java.JavaPlugin
 
 open class CXPluginMain(item: ItemStack?) : JavaPlugin() {
 
-    private var noticePrefix: String = ("¡ì3¡ìl[${this.name}]:")
+    private var noticePrefix: String = ("Â§3Â§l[${this.name}]:")
 
     var description = "A CXPlugin"
     var itemTypeInMenu = Material.WATER_BUCKET
     var itemInMenu: ItemStack? = null
-    var dependiences = ArrayList<DependencyInformation>()
+
 
     init {
         itemInMenu = if (item == null) {
@@ -34,9 +34,6 @@ open class CXPluginMain(item: ItemStack?) : JavaPlugin() {
 
     }
 
-    fun dependOn(info: DependencyInformation) {
-        dependiences.add(info)
-    }
 
     open fun reload() {
         throw NoSuchMethodException()
@@ -72,80 +69,80 @@ open class CXPluginMain(item: ItemStack?) : JavaPlugin() {
             var place = exception.place + 1
             when (exception.reason) {
                 CommandException.Reason.BOOLEAN -> {
-                    sendReportToSender(sender!!, "$noticePrefix µÚ${place}¸ö²ÎÊý±ØÐëÎªtrue»òÕßfalse")
+                    sendReportToSender(sender!!, "$noticePrefix ç¬¬${place}ä¸ªå‚æ•°å¿…é¡»ä¸ºtrueæˆ–è€…false")
                     return true
                 }
 
                 CommandException.Reason.INTEGER -> {
-                    sendReportToSender(sender!!, "$noticePrefix µÚ${place}¸ö²ÎÊý±ØÐëÎªÒ»¸öÕûÊý")
+                    sendReportToSender(sender!!, "$noticePrefix ç¬¬${place}ä¸ªå‚æ•°å¿…é¡»ä¸ºä¸€ä¸ªæ•´æ•°")
                     return true
                 }
 
                 CommandException.Reason.DOUBLE -> {
-                    sendReportToSender(sender!!, "$noticePrefix µÚ${place}¸ö²ÎÊý±ØÐëÎªÒ»¸öÊý×Ö")
+                    sendReportToSender(sender!!, "$noticePrefix ç¬¬${place}ä¸ªå‚æ•°å¿…é¡»ä¸ºä¸€ä¸ªæ•°å­—")
                     return true
                 }
 
                 CommandException.Reason.FLOAT -> {
-                    sendReportToSender(sender!!, "$noticePrefix µÚ${place}¸ö²ÎÊý±ØÐëÎªÒ»¸öÊý×Ö")
+                    sendReportToSender(sender!!, "$noticePrefix ç¬¬${place}ä¸ªå‚æ•°å¿…é¡»ä¸ºä¸€ä¸ªæ•°å­—")
                     return true
                 }
 
                 CommandException.Reason.WORLD -> {
-                    sendReportToSender(sender!!, "$noticePrefix µÚ${place}¸ö²ÎÊý±ØÐëÎªÒ»¸öÒÑ¾­´æÔÚµÄÊÀ½ç´æµµµÄÃû×Ö")
+                    sendReportToSender(sender!!, "$noticePrefix ç¬¬${place}ä¸ªå‚æ•°å¿…é¡»ä¸ºä¸€ä¸ªå·²ç»å­˜åœ¨çš„ä¸–ç•Œå­˜æ¡£çš„åå­—")
                     return true
                 }
 
                 CommandException.Reason.PLAYER -> {
-                    sendReportToSender(sender!!, "$noticePrefix µÚ${place}¸ö²ÎÊý±ØÐëÎªÒ»¸öÒÑ¾­×¢²á¹ýµÄÍæ¼ÒÃû×Ö")
+                    sendReportToSender(sender!!, "$noticePrefix ç¬¬${place}ä¸ªå‚æ•°å¿…é¡»ä¸ºä¸€ä¸ªå·²ç»æ³¨å†Œè¿‡çš„çŽ©å®¶åå­—")
                     return true
                 }
 
                 CommandException.Reason.ONLINEPLAYER -> {
                     sendReportToSender(
                         sender!!,
-                        "$noticePrefix µÚ${place}¸ö²ÎÊý±ØÐëÎªÒ»¸öÒÑ¾­×¢²á¹ýµÄÍæ¼ÒÃû×Ö ÇÒ´ËÍæ¼Ò±ØÐëÔÚÏß"
+                        "$noticePrefix ç¬¬${place}ä¸ªå‚æ•°å¿…é¡»ä¸ºä¸€ä¸ªå·²ç»æ³¨å†Œè¿‡çš„çŽ©å®¶åå­— ä¸”æ­¤çŽ©å®¶å¿…é¡»åœ¨çº¿"
                     )
                     return true
                 }
 
                 CommandException.Reason.MULTIPAMAMETERNOTFOUNDEND -> {
-                    sendReportToSender(sender!!, "$noticePrefix ¸´ºÏ²ÎÊýÈ±ÉÙ½áÊø±ê¼Ç")
+                    sendReportToSender(sender!!, "$noticePrefix å¤åˆå‚æ•°ç¼ºå°‘ç»“æŸæ ‡è®°")
                     return true
                 }
 
                 CommandException.Reason.MULTIPAMAMETERNOTFOUNDSTART -> {
-                    sendReportToSender(sender!!, "$noticePrefix ¸´ºÏ²ÎÊýÈ±ÉÙ¿ªÊ¼±ê¼Ç")
+                    sendReportToSender(sender!!, "$noticePrefix å¤åˆå‚æ•°ç¼ºå°‘å¼€å§‹æ ‡è®°")
                     return true
                 }
 
                 CommandException.Reason.WRONGAMOUNT -> {
-                    sendReportToSender(sender!!, "$noticePrefix ²ÎÊýÊýÁ¿¹ýÉÙ")
+                    sendReportToSender(sender!!, "$noticePrefix å‚æ•°æ•°é‡è¿‡å°‘")
                     return true
                 }
 
                 CommandException.Reason.BYTE -> {
-                    sendReportToSender(sender!!, "$noticePrefix µÚ${place}¸ö²ÎÊý±ØÐëÎªÒ»¸öÊý×Ö")
+                    sendReportToSender(sender!!, "$noticePrefix ç¬¬${place}ä¸ªå‚æ•°å¿…é¡»ä¸ºä¸€ä¸ªæ•°å­—")
                     return true
                 }
 
                 CommandException.Reason.SHORT -> {
-                    sendReportToSender(sender!!, "$noticePrefix µÚ${place}¸ö²ÎÊý±ØÐëÎªÒ»¸öÊý×Ö")
+                    sendReportToSender(sender!!, "$noticePrefix ç¬¬${place}ä¸ªå‚æ•°å¿…é¡»ä¸ºä¸€ä¸ªæ•°å­—")
                     return true
                 }
 
                 CommandException.Reason.LONG -> {
-                    sendReportToSender(sender!!, "$noticePrefix µÚ${place}¸ö²ÎÊý±ØÐëÎªÒ»¸öÊý×Ö")
+                    sendReportToSender(sender!!, "$noticePrefix ç¬¬${place}ä¸ªå‚æ•°å¿…é¡»ä¸ºä¸€ä¸ªæ•°å­—")
                     return true
                 }
 
                 CommandException.Reason.WRONGSENDER -> {
                     val list = exception.extraInformation as MutableList<CommandSenderType>
                     var senders = ""
-                    if (list.contains(CommandSenderType.COMMANDBLOCK)) senders += " ÃüÁî·½¿é "
-                    if (list.contains(CommandSenderType.PLAYER)) senders += " Íæ¼Ò "
-                    if (list.contains(CommandSenderType.CONSOLE)) senders += " ¿ØÖÆÌ¨ "
-                    sendReportToSender(sender!!, "$noticePrefix ´ËÃüÁî±ØÐëÓÉ$senders Ö´ÐÐ")
+                    if (list.contains(CommandSenderType.COMMANDBLOCK)) senders += " å‘½ä»¤æ–¹å— "
+                    if (list.contains(CommandSenderType.PLAYER)) senders += " çŽ©å®¶ "
+                    if (list.contains(CommandSenderType.CONSOLE)) senders += " æŽ§åˆ¶å° "
+                    sendReportToSender(sender!!, "$noticePrefix æ­¤å‘½ä»¤å¿…é¡»ç”±$senders æ‰§è¡Œ")
                 }
 
                 else -> {

@@ -6,11 +6,11 @@ import org.bukkit.event.inventory.InventoryClickEvent
 import java.util.*
 
 /**
- * Ò»¸öÊäÈë¿ò (Frame) °üº¬ÁËa-z0-9 ´óÐ¡Ð´ÇÐ»»µÈ°´Å¥ µ±Íæ¼Ò°´ÏÂÕâÐ©°´Å¥¾Í»áÔÚ¶¥²¿µÄÎÄ±¾¿òÀïÃæ¼ÓÈë°´ÏÂ°´Å¥´ú±íµÄÎÄ×Ö
+ * ä¸€ä¸ªè¾“å…¥æ¡† (Frame) åŒ…å«äº†a-z0-9 å¤§å°å†™åˆ‡æ¢ç­‰æŒ‰é’® å½“çŽ©å®¶æŒ‰ä¸‹è¿™äº›æŒ‰é’®å°±ä¼šåœ¨é¡¶éƒ¨çš„æ–‡æœ¬æ¡†é‡Œé¢åŠ å…¥æŒ‰ä¸‹æŒ‰é’®ä»£è¡¨çš„æ–‡å­—
  *
  * @constructor
  *
- * @param title ´ËÊäÈë¿òµÄ±êÌâ
+ * @param title æ­¤è¾“å…¥æ¡†çš„æ ‡é¢˜
  */
 open class CXInputDialog(title: String = "InputDialog") : CXFrame(6) {
     var string = ""
@@ -18,7 +18,7 @@ open class CXInputDialog(title: String = "InputDialog") : CXFrame(6) {
     var index = 0
 
     /**
-     * Ë¢ÐÂ´Ë´°¿ÚµÄÄÚÈÝ
+     * åˆ·æ–°æ­¤çª—å£çš„å†…å®¹
      *
      */
     fun validate() {
@@ -48,10 +48,10 @@ open class CXInputDialog(title: String = "InputDialog") : CXFrame(6) {
     }
 
     /**
-     * µ±Íæ¼Òµ¥»÷enterÖ®ºó ¸ø³öµÄÏìÓ¦²Ù×÷
+     * å½“çŽ©å®¶å•å‡»enterä¹‹åŽ ç»™å‡ºçš„å“åº”æ“ä½œ
      *
-     * @param event Íæ¼Òµ¥»÷ÈÝÆ÷µÄÊÂ¼þ
-     * @param frame Íæ¼Òµ¥»÷µÄ´°¿Ú
+     * @param event çŽ©å®¶å•å‡»å®¹å™¨çš„äº‹ä»¶
+     * @param frame çŽ©å®¶å•å‡»çš„çª—å£
      */
     open fun onEnter(event: InventoryClickEvent, frame: CXInputDialog) {
 
@@ -59,7 +59,7 @@ open class CXInputDialog(title: String = "InputDialog") : CXFrame(6) {
 
     init {
         var panel = CXPanel(6, title)
-        panel.set(1, 1, object : CXButton(CXItemStack(160, 1, "&3&l¿Õ¸ñ", " ", 3)) {
+        panel.set(1, 1, object : CXButton(CXItemStack(160, 1, "&3&lç©ºæ ¼", " ", 3)) {
             val letter = " "
             override fun onLeftClick(event: InventoryClickEvent, frame: CXFrame) {
 
@@ -70,7 +70,7 @@ open class CXInputDialog(title: String = "InputDialog") : CXFrame(6) {
                 event.isCancelled = true
             }
         })
-        panel.set(0, 1, object : CXCheckBox("&3&lÇÐ»»´óÐ¡Ð´") {
+        panel.set(0, 1, object : CXCheckBox("&3&låˆ‡æ¢å¤§å°å†™") {
 
             override fun onSelect() {
                 lowerCase = false
@@ -80,7 +80,7 @@ open class CXInputDialog(title: String = "InputDialog") : CXFrame(6) {
                 lowerCase = true
             }
         })
-        panel.set(2, 1, object : CXButton(CXItemStack(160, 1, "&5&lÉ¾³ý", " ", 15)) {
+        panel.set(2, 1, object : CXButton(CXItemStack(160, 1, "&5&låˆ é™¤", " ", 15)) {
             override fun onLeftClick(event: InventoryClickEvent, frame: CXFrame) {
                 if (this@CXInputDialog.string.length > 0) {
                     this@CXInputDialog.string =
@@ -91,7 +91,7 @@ open class CXInputDialog(title: String = "InputDialog") : CXFrame(6) {
                 event.isCancelled = true
             }
         })
-        panel.set(8, 1, object : CXButton(CXItemStack(160, 1, "&3&lÈ·ÈÏ", " ", 1)) {
+        panel.set(8, 1, object : CXButton(CXItemStack(160, 1, "&3&lç¡®è®¤", " ", 1)) {
             override fun onLeftClick(event: InventoryClickEvent, frame: CXFrame) {
                 event.isCancelled = true
                 onEnter(event, frame as CXInputDialog)

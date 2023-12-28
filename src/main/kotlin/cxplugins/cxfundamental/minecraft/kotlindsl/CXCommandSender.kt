@@ -1,5 +1,5 @@
 /**
- * ¶ÔÓÚCommandSenderµÄÀ©Õ¹·½·¨
+ * å¯¹äºCommandSenderçš„æ‰©å±•æ–¹æ³•
  */
 package cxplugins.cxfundamental.minecraft.kotlindsl
 
@@ -7,9 +7,9 @@ import cxplugins.cxfundamental.minecraft.server.CXColor
 import org.bukkit.command.CommandSender
 
 /**
- * ·¢ËÍ¾­¹ıCXColor.toColor()´¦Àí¹ıµÄĞÅÏ¢ ¼´°Ñ'&'×ª»»ÎªÑÕÉ«´úÂë'¡ì'
+ * å‘é€ç»è¿‡CXColor.toColor()å¤„ç†è¿‡çš„ä¿¡æ¯ å³æŠŠ'&'è½¬æ¢ä¸ºé¢œè‰²ä»£ç 'Â§'
  *
- * @param message ·¢ËÍµÄĞÅÏ¢
+ * @param message å‘é€çš„ä¿¡æ¯
  */
 fun CommandSender.sendMessageWithColor(message: String) {
     this.sendMessage(CXColor.toColor(message))

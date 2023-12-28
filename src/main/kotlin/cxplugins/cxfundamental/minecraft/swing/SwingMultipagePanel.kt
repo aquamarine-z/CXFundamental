@@ -8,12 +8,13 @@ import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 
-class SwingMultipagePanel(override var position: Vector2I, override var width: Int, override var height: Int) :
+class SwingMultipagePanel(
+    override var position: Vector2I, override var width: Int, override var height: Int,
+    override var id: String? = null
+) :
     SwingPanel(position, width, height) {
-
     val base = SwingBaseMultipagePanel(Vector2I(0, 0), width, height - 1)
     val buttonArea = SwingPanel(Vector2I(0, height - 1), width, 1)
-
     init {
         this.setComponent(base)
         this.setComponent(buttonArea)
@@ -45,7 +46,7 @@ class SwingMultipagePanel(override var position: Vector2I, override var width: I
         if (page !in base.panelList.indices) {
             val languagePack = LanguageManager.getLanguageManager(CXFundamentalMain.pluginMain)!!.getSelectedLanguage()
             throw SwingException(
-                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBeseMultipagePanel.PageOutOfBounds"] ?: ""
+                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBaseMultipagePanel.PageOutOfBounds"] ?: ""
             )
         }
         base.panelList[page].setComponent(component)
@@ -55,7 +56,7 @@ class SwingMultipagePanel(override var position: Vector2I, override var width: I
         if (page !in base.panelList.indices) {
             val languagePack = LanguageManager.getLanguageManager(CXFundamentalMain.pluginMain)!!.getSelectedLanguage()
             throw SwingException(
-                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBeseMultipagePanel.PageOutOfBounds"] ?: ""
+                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBaseMultipagePanel.PageOutOfBounds"] ?: ""
             )
         }
         base.panelList[page].getTopComponent(position)
@@ -65,7 +66,7 @@ class SwingMultipagePanel(override var position: Vector2I, override var width: I
         if (page !in base.panelList.indices) {
             val languagePack = LanguageManager.getLanguageManager(CXFundamentalMain.pluginMain)!!.getSelectedLanguage()
             throw SwingException(
-                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBeseMultipagePanel.PageOutOfBounds"] ?: ""
+                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBaseMultipagePanel.PageOutOfBounds"] ?: ""
             )
         }
         base.panelList[page].getComponents(position)
@@ -84,7 +85,7 @@ class SwingMultipagePanel(override var position: Vector2I, override var width: I
         if (page !in base.panelList.indices) {
             val languagePack = LanguageManager.getLanguageManager(CXFundamentalMain.pluginMain)!!.getSelectedLanguage()
             throw SwingException(
-                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBeseMultipagePanel.PageOutOfBounds"] ?: ""
+                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBaseMultipagePanel.PageOutOfBounds"] ?: ""
             )
         }
         base.panelList.removeAt(page)
@@ -94,11 +95,37 @@ class SwingMultipagePanel(override var position: Vector2I, override var width: I
         if (page !in base.panelList.indices) {
             val languagePack = LanguageManager.getLanguageManager(CXFundamentalMain.pluginMain)!!.getSelectedLanguage()
             throw SwingException(
-                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBeseMultipagePanel.PageOutOfBounds"] ?: ""
+                languagePack["cxplugins.cxfundamental.minecraft.swing.SwingBaseMultipagePanel.PageOutOfBounds"] ?: ""
             )
         }
         return base.panelList[page]
     }
 
+    fun checkIdAvailable(id: String): Boolean {
+        for (panel in base.panelList) {
+            for (component in panel.componentList) {
+                if (component.id == id) return false
+            }
+        }
+        for (component in buttonArea.componentList) {
+            if (component.id == id) return false
+        }
+        return true
+    }
 
+    override fun getElementById(id: String): SwingComponent? {
+        for (panel in base.panelList) {
+            for (component in panel.componentList) {
+                if (component.id == id) return component
+            }
+        }
+        for (component in buttonArea.componentList) {
+            if (component.id == id) return component
+        }
+        return null
+    }
+
+    override fun containsElementWithId(id: String): Boolean {
+        return getElementById(id) != null
+    }
 }

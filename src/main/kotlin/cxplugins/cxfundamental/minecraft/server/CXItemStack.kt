@@ -5,102 +5,102 @@ import org.bukkit.inventory.ItemStack
 import java.util.*
 
 /**
- * ¶ÔItemStackÀàÓĞËùÀ©Õ¹µÄÀà
+ * å¯¹ItemStackç±»æœ‰æ‰€æ‰©å±•çš„ç±»
  */
 class CXItemStack : ItemStack {
     /**
-     * ½«Õ¹Ê¾ÃûºÍ×¢ÊÍÍ¨¹ıCXColor.toColor´¦ÀíÔÙ½øĞĞ¹¹ÔìµÄ¹¹ÔìÆ÷
-     * @param ID ´ËÎïÆ·µÄIDºÅ
-     * @param Amount ´ËÎïÆ·µÄÊıÁ¿
-     * @param Display ÎïÆ·µÄÕ¹Ê¾Ãû
-     * @param Lore ´ËÎïÆ·µÄ½éÉÜ ÓÃ'|'À´·ÖĞĞ
-     * @param Dura ´ËÎïÆ·µÄÄ¥Ëğ¶È
+     * å°†å±•ç¤ºåå’Œæ³¨é‡Šé€šè¿‡CXColor.toColorå¤„ç†å†è¿›è¡Œæ„é€ çš„æ„é€ å™¨
+     * @param ID æ­¤ç‰©å“çš„IDå·
+     * @param amount æ­¤ç‰©å“çš„æ•°é‡
+     * @param display ç‰©å“çš„å±•ç¤ºå
+     * @param Lore æ­¤ç‰©å“çš„ä»‹ç» ç”¨'|'æ¥åˆ†è¡Œ
+     * @param durability æ­¤ç‰©å“çš„ç£¨æŸåº¦
      */
-    constructor(id: Int, Amount: Int, Display: String, lores: Array<out String>, Dura: Short = 0) {
+    constructor(id: Int, amount: Int, display: String, lores: Array<out String>, durability: Short = 0) {
         this.typeId = id
-        this.amount = Amount
+        this.amount = amount
         val IM = this.itemMeta
-        IM.displayName = Display.replace("&".toRegex(), "¡ì")
+        IM.displayName = display.replace("&".toRegex(), "Â§")
         val L = lores.toMutableList()
         for (i in L.indices) {
-            L[i] = L[i].replace("&".toRegex(), "¡ì")
+            L[i] = L[i].replace("&".toRegex(), "Â§")
         }
         IM.lore = L
-        this.durability = Dura
+        this.durability = durability
         this.itemMeta = IM
     }
 
     /**
-     * ½«Õ¹Ê¾ÃûºÍ×¢ÊÍÍ¨¹ıCXColor.toColor´¦ÀíÔÙ½øĞĞ¹¹ÔìµÄ¹¹ÔìÆ÷
-     * @param ID ´ËÎïÆ·µÄIDºÅ
-     * @param Amount ´ËÎïÆ·µÄÊıÁ¿
-     * @param Display ÎïÆ·µÄÕ¹Ê¾Ãû
-     * @param Lore ´ËÎïÆ·µÄ½éÉÜ ÓÃ'|'À´·ÖĞĞ
-     * @param Dura ´ËÎïÆ·µÄÄ¥Ëğ¶È
+     * å°†å±•ç¤ºåå’Œæ³¨é‡Šé€šè¿‡CXColor.toColorå¤„ç†å†è¿›è¡Œæ„é€ çš„æ„é€ å™¨
+     * @param id æ­¤ç‰©å“çš„IDå·
+     * @param amount æ­¤ç‰©å“çš„æ•°é‡
+     * @param display ç‰©å“çš„å±•ç¤ºå
+     * @param lore æ­¤ç‰©å“çš„ä»‹ç» ç”¨'|'æ¥åˆ†è¡Œ
+     * @param durability æ­¤ç‰©å“çš„ç£¨æŸåº¦
      */
-    constructor(ID: Int, Amount: Int, Display: String, Lore: String, Dura: Short = 0) {
-        this.typeId = ID
-        this.amount = Amount
+    constructor(id: Int, amount: Int, display: String, lore: String, durability: Short = 0) {
+        this.typeId = id
+        this.amount = amount
         val IM = this.itemMeta
-        IM.displayName = Display.replace("&".toRegex(), "¡ì")
-        val L = Arrays.asList(*Lore.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray())
+        IM.displayName = display.replace("&".toRegex(), "Â§")
+        val L = Arrays.asList(*lore.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray())
         for (i in L.indices) {
-            L[i] = L[i].replace("&".toRegex(), "¡ì")
+            L[i] = L[i].replace("&".toRegex(), "Â§")
         }
         IM.lore = L
-        this.durability = Dura.toShort()
+        this.durability = durability.toShort()
         this.itemMeta = IM
     }
 
     /**
-     * ½«Õ¹Ê¾ÃûºÍ×¢ÊÍÍ¨¹ıCXColor.toColor´¦ÀíÔÙ½øĞĞ¹¹ÔìµÄ¹¹ÔìÆ÷
-     * @param material ´ËÎïÆ·µÄ²ÄÖÊ
-     * @param Amount ´ËÎïÆ·µÄÊıÁ¿
-     * @param Display ÎïÆ·µÄÕ¹Ê¾Ãû
-     * @param Lore ´ËÎïÆ·µÄ½éÉÜ ÓÃ'|'À´·ÖĞĞ
-     * @param Dura ´ËÎïÆ·µÄÄ¥Ëğ¶È
+     * å°†å±•ç¤ºåå’Œæ³¨é‡Šé€šè¿‡CXColor.toColorå¤„ç†å†è¿›è¡Œæ„é€ çš„æ„é€ å™¨
+     * @param material æ­¤ç‰©å“çš„æè´¨
+     * @param amount æ­¤ç‰©å“çš„æ•°é‡
+     * @param display ç‰©å“çš„å±•ç¤ºå
+     * @param Lore æ­¤ç‰©å“çš„ä»‹ç» ç”¨'|'æ¥åˆ†è¡Œ
+     * @param durability æ­¤ç‰©å“çš„ç£¨æŸåº¦
      */
-    constructor(material: Material, Amount: Int, Display: String, lores: Array<out String>, Dura: Short = 0) {
+    constructor(material: Material, amount: Int, display: String, lores: Array<out String>, durability: Short = 0) {
         this.type = material
-        this.amount = Amount
+        this.amount = amount
         val IM = this.itemMeta
-        IM.displayName = Display.replace("&".toRegex(), "¡ì")
+        IM.displayName = display.replace("&".toRegex(), "Â§")
         val L = lores.toMutableList()
         for (i in L.indices) {
-            L[i] = L[i].replace("&".toRegex(), "¡ì")
+            L[i] = L[i].replace("&".toRegex(), "Â§")
         }
         IM.lore = L
-        this.durability = Dura.toShort()
+        this.durability = durability.toShort()
         this.itemMeta = IM
     }
 
     /**
-     * ½«Õ¹Ê¾ÃûºÍ×¢ÊÍÍ¨¹ıCXColor.toColor´¦ÀíÔÙ½øĞĞ¹¹ÔìµÄ¹¹ÔìÆ÷
-     * @param material ´ËÎïÆ·µÄ²ÄÖÊ
-     * @param Amount ´ËÎïÆ·µÄÊıÁ¿
-     * @param Display ÎïÆ·µÄÕ¹Ê¾Ãû
-     * @param Lore ´ËÎïÆ·µÄ½éÉÜ ÓÃ'|'À´·ÖĞĞ
-     * @param Dura ´ËÎïÆ·µÄÄ¥Ëğ¶È
+     * å°†å±•ç¤ºåå’Œæ³¨é‡Šé€šè¿‡CXColor.toColorå¤„ç†å†è¿›è¡Œæ„é€ çš„æ„é€ å™¨
+     * @param material æ­¤ç‰©å“çš„æè´¨
+     * @param amount æ­¤ç‰©å“çš„æ•°é‡
+     * @param display ç‰©å“çš„å±•ç¤ºå
+     * @param lore æ­¤ç‰©å“çš„ä»‹ç» ç”¨'|'æ¥åˆ†è¡Œ
+     * @param durability æ­¤ç‰©å“çš„ç£¨æŸåº¦
      */
-    constructor(material: Material, Amount: Int, Display: String, Lore: String, Dura: Short = 0) {
+    constructor(material: Material, amount: Int, display: String, lore: String, durability: Short = 0) {
         this.type = material
-        this.amount = Amount
+        this.amount = amount
         val IM = this.itemMeta
-        IM.displayName = Display.replace("&".toRegex(), "¡ì")
-        val L = Arrays.asList(*Lore.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray())
+        IM.displayName = display.replace("&".toRegex(), "Â§")
+        val L = Arrays.asList(*lore.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray())
         for (i in L.indices) {
-            L[i] = L[i].replace("&".toRegex(), "¡ì")
+            L[i] = L[i].replace("&".toRegex(), "Â§")
         }
         IM.lore = L
-        this.durability = Dura.toShort()
+        this.durability = durability.toShort()
         this.itemMeta = IM
     }
 
     /**
-     * ºöÂÔÊıÁ¿ÅĞ¶ÏÁ½¸öÎïÆ·ÊÇ·ñÏàÍ¬
+     * å¿½ç•¥æ•°é‡åˆ¤æ–­ä¸¤ä¸ªç‰©å“æ˜¯å¦ç›¸åŒ
      *
-     * @param arg0 ÁíÍâÒ»¸öÎïÆ·
-     * @return ÈôÏàµÈ Ôò·µ»Øtrue ·ñÔò·µ»Øfalse
+     * @param arg0 å¦å¤–ä¸€ä¸ªç‰©å“
+     * @return è‹¥ç›¸ç­‰ åˆ™è¿”å›true å¦åˆ™è¿”å›false
      */
     fun equalsIgnoreAmount(arg0: ItemStack): Boolean {
         val a = this.clone()
@@ -109,47 +109,47 @@ class CXItemStack : ItemStack {
     }
 
     /**
-     * ¹ØÓÚ´´½¨ÎïÆ· ÅĞ¶ÏÎïÆ·ÏàÍ¬µÈ·½·¨µÄ¾²Ì¬Àà
+     * å…³äºåˆ›å»ºç‰©å“ åˆ¤æ–­ç‰©å“ç›¸åŒç­‰æ–¹æ³•çš„é™æ€ç±»
      */
     companion object {
         /**
-         * ½«Õ¹Ê¾ÃûºÍ×¢ÊÍÍ¨¹ıCXColor.toColor´¦ÀíÔÙÉú³ÉÎïÆ·
-         * @param ID ´ËÎïÆ·µÄIDºÅ
-         * @param Amount ´ËÎïÆ·µÄÊıÁ¿
-         * @param Display ÎïÆ·µÄÕ¹Ê¾Ãû
-         * @param Lore ´ËÎïÆ·µÄ½éÉÜ ÓÃ'|'À´·ÖĞĞ
-         * @param Dura ´ËÎïÆ·µÄÄ¥Ëğ¶È
+         * å°†å±•ç¤ºåå’Œæ³¨é‡Šé€šè¿‡CXColor.toColorå¤„ç†å†ç”Ÿæˆç‰©å“
+         * @param id æ­¤ç‰©å“çš„IDå·
+         * @param amount æ­¤ç‰©å“çš„æ•°é‡
+         * @param display ç‰©å“çš„å±•ç¤ºå
+         * @param lore æ­¤ç‰©å“çš„ä»‹ç» ç”¨'|'æ¥åˆ†è¡Œ
+         * @param durability æ­¤ç‰©å“çš„ç£¨æŸåº¦
          */
         @JvmStatic
-        fun create(ID: Int, Amount: Int, Display: String, Lore: String, Dura: Int): ItemStack {
-            val Result = ItemStack(ID, Amount)
+        fun create(id: Int, amount: Int, display: String, lore: String, durability: Int): ItemStack {
+            val Result = ItemStack(id, amount)
             val IM = Result.itemMeta
-            IM.displayName = Display.replace("&".toRegex(), "¡ì")
-            val L = Arrays.asList(*Lore.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray())
+            IM.displayName = display.replace("&".toRegex(), "Â§")
+            val L = Arrays.asList(*lore.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray())
             for (i in L.indices) {
-                L[i] = L[i].replace("&".toRegex(), "¡ì")
+                L[i] = L[i].replace("&".toRegex(), "Â§")
             }
             IM.lore = L
             Result.itemMeta = IM
-            Result.durability = Dura.toShort()
+            Result.durability = durability.toShort()
             return Result
         }
 
         /**
-         * ½«Õ¹Ê¾ÃûºÍ×¢ÊÍÍ¨¹ıCXColor.toColor´¦ÀíÔÙÉú³ÉÎïÆ·
-         * @param ID ´ËÎïÆ·µÄIDºÅ
-         * @param Amount ´ËÎïÆ·µÄÊıÁ¿
-         * @param Display ÎïÆ·µÄÕ¹Ê¾Ãû
-         * @param Lore ´ËÎïÆ·µÄ½éÉÜ ÓÃ'|'À´·ÖĞĞ
+         * å°†å±•ç¤ºåå’Œæ³¨é‡Šé€šè¿‡CXColor.toColorå¤„ç†å†ç”Ÿæˆç‰©å“
+         * @param id æ­¤ç‰©å“çš„IDå·
+         * @param amount æ­¤ç‰©å“çš„æ•°é‡
+         * @param display ç‰©å“çš„å±•ç¤ºå
+         * @param lore æ­¤ç‰©å“çš„ä»‹ç» ç”¨'|'æ¥åˆ†è¡Œ
          */
         @JvmStatic
-        fun create(ID: Int, Amount: Int, Display: String, Lore: String): ItemStack {
-            val Result = ItemStack(ID, Amount)
+        fun create(id: Int, amount: Int, display: String, lore: String): ItemStack {
+            val Result = ItemStack(id, amount)
             val IM = Result.itemMeta
-            IM.displayName = Display.replace("&".toRegex(), "¡ì")
-            val L = Arrays.asList(*Lore.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray())
+            IM.displayName = display.replace("&".toRegex(), "Â§")
+            val L = Arrays.asList(*lore.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray())
             for (i in L.indices) {
-                L[i] = L[i].replace("&".toRegex(), "¡ì")
+                L[i] = L[i].replace("&".toRegex(), "Â§")
             }
             IM.lore = L
             Result.itemMeta = IM
@@ -157,24 +157,24 @@ class CXItemStack : ItemStack {
         }
 
         /**
-         * ½«Ä³¸öÎïÆ·¿Û³ıÒ»¶¨ÊıÁ¿
+         * å°†æŸä¸ªç‰©å“æ‰£é™¤ä¸€å®šæ•°é‡
          *
-         * @param Item ´ËÎïÆ·
-         * @param Amount ¿Û³ıµÄÊıÁ¿
-         * @return ¿Û³ıÖ®ºóµÄÎïÆ·
+         * @param item æ­¤ç‰©å“
+         * @param amount æ‰£é™¤çš„æ•°é‡
+         * @return æ‰£é™¤ä¹‹åçš„ç‰©å“
          */
         @JvmStatic
-        fun cost(Item: ItemStack, Amount: Int): ItemStack {
-            val Result = Item
-            Result.amount = Item.amount - Amount
+        fun cost(item: ItemStack, amount: Int): ItemStack {
+            val Result = item
+            Result.amount = item.amount - amount
             return Result
         }
 
         /**
-         * ºöÂÔÊıÁ¿ÅĞ¶ÏÁ½¸öÎïÆ·ÊÇ·ñÏàÍ¬
+         * å¿½ç•¥æ•°é‡åˆ¤æ–­ä¸¤ä¸ªç‰©å“æ˜¯å¦ç›¸åŒ
          *
-         * @param arg0 ÁíÍâÒ»¸öÎïÆ·
-         * @return ÈôÏàµÈ Ôò·µ»Øtrue ·ñÔò·µ»Øfalse
+         * @param arg0 å¦å¤–ä¸€ä¸ªç‰©å“
+         * @return è‹¥ç›¸ç­‰ åˆ™è¿”å›true å¦åˆ™è¿”å›false
          */
         @JvmStatic
         fun equalsIgnoreAmount(a: ItemStack, b: ItemStack): Boolean {

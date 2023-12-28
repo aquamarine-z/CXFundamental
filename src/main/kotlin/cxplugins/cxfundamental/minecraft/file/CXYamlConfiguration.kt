@@ -13,14 +13,14 @@ import java.io.File
 import java.io.IOException
 
 /**
- * ¼ò»¯ÅäÖÃÎÄ¼ş·ÃÎÊÌá¹©µÄÀà
+ * ç®€åŒ–é…ç½®æ–‡ä»¶è®¿é—®æä¾›çš„ç±»
  *
  * @constructor Create empty CXYamlonfiguration
  */
 class CXYamlConfiguration : YamlConfiguration {
 
     private var path: String? = null
-    private val Defaults = HashMap<String, Any>()
+    private val defaultData = HashMap<String, Any>()
     private var folderPath: String? = null
     private var fileName: String? = null
     private var file: File? = null
@@ -31,9 +31,9 @@ class CXYamlConfiguration : YamlConfiguration {
     }
 
     /**
-     * ¼ÓÔØÅäÖÃÎÄ¼ş
+     * åŠ è½½é…ç½®æ–‡ä»¶
      *
-     * @return ÈôÏÈÇ°Ã»ÓĞÉèÖÃ¹ıÂ·¾¶ Ôò·µ»Øfalse ±íÊ¾¼ÓÔØÊ§°Ü
+     * @return è‹¥å…ˆå‰æ²¡æœ‰è®¾ç½®è¿‡è·¯å¾„ åˆ™è¿”å›false è¡¨ç¤ºåŠ è½½å¤±è´¥
      */
     fun load(): Boolean {
         if (path == null)
@@ -45,39 +45,39 @@ class CXYamlConfiguration : YamlConfiguration {
     }
 
     /**
-     * ¼ÓÔØÅäÖÃÎÄ¼ş ÆäÂ·¾¶Îª".\\plugins\\FolderPath\\File_Name"
+     * åŠ è½½é…ç½®æ–‡ä»¶ å…¶è·¯å¾„ä¸º".\\plugins\\FolderPath\\File_Name"
      *
-     * @param FolderPath ÎÄ¼ş¼ĞÂ·¾¶
-     * @param File_Name ÎÄ¼şÃû×Ö
-     * @return Èô´ËÎÄ¼şÎªĞÂ½¨ÎÄ¼şÔò·µ»Øfalse Èô´ËÎÄ¼şÒÑ´æÔÚÔò·µ»Øtrue
+     * @param folderPath æ–‡ä»¶å¤¹è·¯å¾„
+     * @param fileName æ–‡ä»¶åå­—
+     * @return è‹¥æ­¤æ–‡ä»¶ä¸ºæ–°å»ºæ–‡ä»¶åˆ™è¿”å›false è‹¥æ­¤æ–‡ä»¶å·²å­˜åœ¨åˆ™è¿”å›true
      */
-    fun load(FolderPath: String?, File_Name: String?): Boolean {
+    fun load(folderPath: String?, fileName: String?): Boolean {
         var Exist = true
         if (!loaded) {
             registerAllClasses()
             loaded = true
         }
-        if (createFolder(FolderPath)) Exist = false
-        if (createFile(FolderPath + "\\" + File_Name)) Exist = false
+        if (createFolder(folderPath)) Exist = false
+        if (createFile(folderPath + "\\" + fileName)) Exist = false
         try {
-            val file = File(".\\plugins\\$FolderPath\\$File_Name")
+            val file = File(".\\plugins\\$folderPath\\$fileName")
             this.load(file)
             this.file = file
         } catch (e: IOException) {
-            // TODO ×Ô¶¯Éú³ÉµÄ catch ¿é
-            println("ÎÄ¼ş´ò¿ªÒì³£")
+            // TODO è‡ªåŠ¨ç”Ÿæˆçš„ catch å—
+            println("æ–‡ä»¶æ‰“å¼€å¼‚å¸¸")
             e.printStackTrace()
         } catch (e: InvalidConfigurationException) {
-            println("ÎÄ¼ş´ò¿ªÒì³£")
+            println("æ–‡ä»¶æ‰“å¼€å¼‚å¸¸")
             e.printStackTrace()
         }
 
-        folderPath = FolderPath
-        fileName = File_Name
+        this.folderPath = folderPath
+        this.fileName = fileName
         try {
-            path = File(".\\plugins\\$FolderPath\\$File_Name").canonicalPath
+            path = File(".\\plugins\\$folderPath\\$fileName").canonicalPath
         } catch (e: IOException) {
-            // TODO ×Ô¶¯Éú³ÉµÄ catch ¿é
+            // TODO è‡ªåŠ¨ç”Ÿæˆçš„ catch å—
             e.printStackTrace()
         }
 
@@ -85,70 +85,70 @@ class CXYamlConfiguration : YamlConfiguration {
     }
 
     /**
-     * ÉèÖÃ´ËÅäÖÃÎÄ¼şµÄÄ¬ÈÏÖµ:Èô´ËÖµ´æÔÚ Ôò²»×öĞŞ¸Ä Èô²»´æÔÚ ÔòĞÂ½¨´ËÖµ ÖµÎªÉè¶¨ºÃµÄÖµ
-     * @param Path Â·¾¶
-     * @param a Öµ
+     * è®¾ç½®æ­¤é…ç½®æ–‡ä»¶çš„é»˜è®¤å€¼:è‹¥æ­¤å€¼å­˜åœ¨ åˆ™ä¸åšä¿®æ”¹ è‹¥ä¸å­˜åœ¨ åˆ™æ–°å»ºæ­¤å€¼ å€¼ä¸ºè®¾å®šå¥½çš„å€¼
+     * @param path è·¯å¾„
+     * @param a å€¼
      */
-    fun setDefault(Path: String, a: Any) {
-        Defaults.put(Path, a)
+    fun setDefault(path: String, a: Any) {
+        defaultData.put(path, a)
         return
     }
 
     /**
-     * É¾³ıÄ¬ÈÏÖµ
+     * åˆ é™¤é»˜è®¤å€¼
      *
-     * @param Path Ä¬ÈÏÖµµÄÂ·¾¶
+     * @param path é»˜è®¤å€¼çš„è·¯å¾„
      */
-    fun removeDefault(Path: String) {
-        Defaults.remove(Path)
+    fun removeDefault(path: String) {
+        defaultData.remove(path)
         return
     }
 
     /**
-     * ±£´æÄ¬ÈÏÖµ ½«Ä¬ÈÏÖµ±£´æµ½ÅäÖÃÎÄ¼şÀàÖĞ(ÒªÊ¹ÓÃsave()²ÅÄÜ±£´æµ½ÎÄ¼şÖĞ)
+     * ä¿å­˜é»˜è®¤å€¼ å°†é»˜è®¤å€¼ä¿å­˜åˆ°é…ç½®æ–‡ä»¶ç±»ä¸­(è¦ä½¿ç”¨save()æ‰èƒ½ä¿å­˜åˆ°æ–‡ä»¶ä¸­)
      *
      */
     fun saveDefault() {
         val Keys = ArrayList(this.getKeys(false))
-        for (Path in Defaults.keys) {
-            if (!Keys.contains(Path)) this.set(Path, Defaults[Path])
+        for (Path in defaultData.keys) {
+            if (!Keys.contains(Path)) this.set(Path, defaultData[Path])
         }
         return
     }
 
     /**
-     * ±£´æ´ËÅäÖÃÎÄ¼şµ½´ÅÅÌ
+     * ä¿å­˜æ­¤é…ç½®æ–‡ä»¶åˆ°ç£ç›˜
      *
-     * @return trueÎª±£´æ³É¹¦ false±íÊ¾ÏÈÇ°²¢Ã»ÓĞÊ¹ÓÃload()»òÓĞ²Î¹¹ÔìÆ÷Ìá¹©ÎÄ¼şµÄÂ·¾¶
+     * @return trueä¸ºä¿å­˜æˆåŠŸ falseè¡¨ç¤ºå…ˆå‰å¹¶æ²¡æœ‰ä½¿ç”¨load()æˆ–æœ‰å‚æ„é€ å™¨æä¾›æ–‡ä»¶çš„è·¯å¾„
      */
     fun save(): Boolean {
 
         try {
             this.save(file)
         } catch (e: IOException) {
-            // TODO ×Ô¶¯Éú³ÉµÄ catch ¿é
-            println("ÎÄ¼ş±£´æÒì³£")
+            // TODO è‡ªåŠ¨ç”Ÿæˆçš„ catch å—
+            println("æ–‡ä»¶ä¿å­˜å¼‚å¸¸")
         }
 
         return true
     }
 
     /**
-     * Éú³ÉÒ»¸öĞÂµÄÅäÖÃÎÄ¼şÀà:Â·¾¶".\\plugins\\FolderPath\\File_Name"
+     * ç”Ÿæˆä¸€ä¸ªæ–°çš„é…ç½®æ–‡ä»¶ç±»:è·¯å¾„".\\plugins\\FolderPath\\File_Name"
      *
-     * @param folder ÎÄ¼ş¼ĞÂ·¾¶
-     * @param file ÎÄ¼şÃû×Ö
+     * @param folder æ–‡ä»¶å¤¹è·¯å¾„
+     * @param file æ–‡ä»¶åå­—
      **/
     constructor(folder: String, file: String) {
         this.load(folder, file)
     }
 
     /**
-     * Éú³ÉÒ»¸öĞÂµÄÅäÖÃÎÄ¼şÀà
+     * ç”Ÿæˆä¸€ä¸ªæ–°çš„é…ç½®æ–‡ä»¶ç±»
 
      **/
     constructor() {
-        // TODO ×Ô¶¯Éú³ÉµÄ¹¹Ôìº¯Êı´æ¸ù
+        // TODO è‡ªåŠ¨ç”Ÿæˆçš„æ„é€ å‡½æ•°å­˜æ ¹
         return
     }
 
@@ -171,33 +171,33 @@ class CXYamlConfiguration : YamlConfiguration {
         }
 
         /**
-         * ÔÚ".\\plugins"Â·¾¶ÏÂĞÂ½¨ÎÄ¼ş¼Ğ
+         * åœ¨".\\plugins"è·¯å¾„ä¸‹æ–°å»ºæ–‡ä»¶å¤¹
          *
          *
-         * @param CPath ÎÄ¼ş¼ĞÂ·¾¶
+         * @param path æ–‡ä»¶å¤¹è·¯å¾„
          **/
         @JvmStatic
-        fun createFolder(CPath: String?): Boolean {
-            if (!File(".\\plugins\\" + CPath!!).exists()) {
-                File(".\\plugins\\$CPath").mkdirs()
+        fun createFolder(path: String?): Boolean {
+            if (!File(".\\plugins\\" + path!!).exists()) {
+                File(".\\plugins\\$path").mkdirs()
                 return true
             } else
                 return false
         }
 
         /**
-         * ÔÚ".\\plugins"Â·¾¶ÏÂĞÂ½¨ÎÄ¼ş
+         * åœ¨".\\plugins"è·¯å¾„ä¸‹æ–°å»ºæ–‡ä»¶
          *
          *
-         * @param CPath ÎÄ¼şÂ·¾¶
+         * @param path æ–‡ä»¶è·¯å¾„
          **/
         @JvmStatic
-        fun createFile(CPath: String): Boolean {
-            if (!File(".\\plugins\\$CPath").exists()) {
+        fun createFile(path: String): Boolean {
+            if (!File(".\\plugins\\$path").exists()) {
                 try {
-                    File(".\\plugins\\$CPath").createNewFile()
+                    File(".\\plugins\\$path").createNewFile()
                 } catch (e: IOException) {
-                    // TODO ×Ô¶¯Éú³ÉµÄ catch ¿é
+                    // TODO è‡ªåŠ¨ç”Ÿæˆçš„ catch å—
                     e.printStackTrace()
                 }
 
@@ -207,44 +207,44 @@ class CXYamlConfiguration : YamlConfiguration {
         }
 
         /**
-         * ¼ÓÔØÅäÖÃÎÄ¼ş ÆäÂ·¾¶Îª".\\plugins\\FolderPath\\File_Name"
+         * åŠ è½½é…ç½®æ–‡ä»¶ å…¶è·¯å¾„ä¸º".\\plugins\\FolderPath\\File_Name"
          *
-         * @param FolderPath ÎÄ¼ş¼ĞÂ·¾¶
-         * @param File_Name ÎÄ¼şÃû×Ö
-         * @return ´ËÅäÖÃÎÄ¼şÀà
+         * @param folderPath æ–‡ä»¶å¤¹è·¯å¾„
+         * @param fileName æ–‡ä»¶åå­—
+         * @return æ­¤é…ç½®æ–‡ä»¶ç±»
          * */
         @JvmStatic
-        fun open(FolderPath: String, File_Name: String): YamlConfiguration {
-            createFolder(FolderPath)
-            createFile(FolderPath + "\\" + File_Name)
+        fun open(folderPath: String, fileName: String): YamlConfiguration {
+            createFolder(folderPath)
+            createFile(folderPath + "\\" + fileName)
             if (!loaded) {
                 registerAllClasses()
                 loaded = true
             }
-            return CXYamlConfiguration(FolderPath, File_Name)
+            return CXYamlConfiguration(folderPath, fileName)
         }
 
         /**
-         * ÔÚÆäÂ·¾¶Îª".\\plugins\\FolderPath\\File_Name"µÄÎ»ÖÃ²éÕÒÊÇ·ñÓĞÅäÖÃÎÄ¼ş
+         * åœ¨å…¶è·¯å¾„ä¸º".\\plugins\\FolderPath\\File_Name"çš„ä½ç½®æŸ¥æ‰¾æ˜¯å¦æœ‰é…ç½®æ–‡ä»¶
          *
-         * @param FolderPath ÎÄ¼ş¼ĞÂ·¾¶
-         * @param File_Name ÎÄ¼şÃû×Ö
-         * @return ÈôÓĞÎÄ¼ş Ôò·µ»Øtrue ·ñÔò·µ»Øfalse
+         * @param folderPath æ–‡ä»¶å¤¹è·¯å¾„
+         * @param fileName æ–‡ä»¶åå­—
+         * @return è‹¥æœ‰æ–‡ä»¶ åˆ™è¿”å›true å¦åˆ™è¿”å›false
          * */
         @JvmStatic
-        fun isExist(FolderPath: String, File_Name: String): Boolean {
-            return File(".\\plugins\\$FolderPath\\$File_Name").exists()
+        fun isExist(folderPath: String, fileName: String): Boolean {
+            return File(".\\plugins\\$folderPath\\$fileName").exists()
         }
 
         /**
-         * ×¢²áÒ»¸öÀà Ê¹ÆäÄÜ¹»½øĞĞĞòÁĞ»¯²Ù×÷
+         * æ³¨å†Œä¸€ä¸ªç±» ä½¿å…¶èƒ½å¤Ÿè¿›è¡Œåºåˆ—åŒ–æ“ä½œ
          *
-         * @param Class ĞèÒª×¢²áµÄÀà ĞèÊµÏÖConfigurationSerializable½Ó¿Ú
-         * @return ×ÜÊÇ·µ»Ø×¢²á³É¹¦µÄĞÅÏ¢(true)
+         * @param classToSerialize éœ€è¦æ³¨å†Œçš„ç±» éœ€å®ç°ConfigurationSerializableæ¥å£
+         * @return æ€»æ˜¯è¿”å›æ³¨å†ŒæˆåŠŸçš„ä¿¡æ¯(true)
          * */
         @JvmStatic
-        fun register(Class: Class<out ConfigurationSerializable>): Boolean {
-            ConfigurationSerialization.registerClass(Class)
+        fun register(classToSerialize: Class<out ConfigurationSerializable>): Boolean {
+            ConfigurationSerialization.registerClass(classToSerialize)
             return true
         }
     }

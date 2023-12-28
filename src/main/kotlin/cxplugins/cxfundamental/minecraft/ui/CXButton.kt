@@ -7,23 +7,23 @@ import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.inventory.ItemStack
 
 /**
- * GUI½çÃæµÄ°´Å¥Àà
+ * GUIç•Œé¢çš„æŒ‰é’®ç±»
  *
- * @constructor Éú³ÉÒ»¸ö°´Å¥Àà¶ÔÏó
+ * @constructor ç”Ÿæˆä¸€ä¸ªæŒ‰é’®ç±»å¯¹è±¡
  */
 open class CXButton : CXUIElement {
     /**
-     * ¸Ã°´Å¥ÔÚGUI½çÃæÉÏÏÔÊ¾µÄ²ÄÖÊ(ÎïÆ·)
+     * è¯¥æŒ‰é’®åœ¨GUIç•Œé¢ä¸Šæ˜¾ç¤ºçš„æè´¨(ç‰©å“)
      */
     var item: ItemStack? = null
 
     /**
-     * ¸Ã°´Å¥°´ÏÂµÄÊ±ºò·¢³öµÄÉùÒô
+     * è¯¥æŒ‰é’®æŒ‰ä¸‹çš„æ—¶å€™å‘å‡ºçš„å£°éŸ³
      */
     var clickSound: Sound? = null
 
     /**
-     * ÉèÖÃGUI²ÄÖÊµÄDSL Lambda±í´ïÊ½
+     * è®¾ç½®GUIæè´¨çš„DSL Lambdaè¡¨è¾¾å¼
      */
     fun itemStack(lambda: CXItemStack.() -> Unit) {
         var itemStack = CXItemStack.create(lambda)
@@ -31,7 +31,7 @@ open class CXButton : CXUIElement {
     }
 
     /**
-     * ×ó¼ü°´ÏÂ²Ù×÷µÄDSL Lambda±í´ïÊ½
+     * å·¦é”®æŒ‰ä¸‹æ“ä½œçš„DSL Lambdaè¡¨è¾¾å¼
      */
     private var leftClickLambda: (InventoryClickEvent, CXFrame) -> Unit =
         { inventoryClickEvent: InventoryClickEvent, cxFrame: CXFrame ->
@@ -39,17 +39,17 @@ open class CXButton : CXUIElement {
         }
 
     /**
-     * ÉèÖÃ×ó¼ü°´ÏÂ²Ù×÷µÄDSL Lambda±í´ïÊ½µÄ·½·¨
+     * è®¾ç½®å·¦é”®æŒ‰ä¸‹æ“ä½œçš„DSL Lambdaè¡¨è¾¾å¼çš„æ–¹æ³•
      */
     fun leftClick(lambda: (InventoryClickEvent, CXFrame) -> Unit) {
         leftClickLambda = lambda
     }
 
     /**
-     * ×ó¼ü°´ÏÂ²Ù×÷ÏìÓ¦µÄ·½·¨
+     * å·¦é”®æŒ‰ä¸‹æ“ä½œå“åº”çš„æ–¹æ³•
      *
-     * @param event °´ÏÂµÄÊÂ¼ş
-     * @param frame ÊôÓÚµÄ´°¿Ú
+     * @param event æŒ‰ä¸‹çš„äº‹ä»¶
+     * @param frame å±äºçš„çª—å£
      */
     open fun onLeftClick(event: InventoryClickEvent, frame: CXFrame) {
         event.isCancelled = true
@@ -57,7 +57,7 @@ open class CXButton : CXUIElement {
     }
 
     /**
-     * ÓÒ¼ü°´ÏÂ²Ù×÷µÄDSL Lambda±í´ïÊ½
+     * å³é”®æŒ‰ä¸‹æ“ä½œçš„DSL Lambdaè¡¨è¾¾å¼
      */
     private var rightClickLambda: (InventoryClickEvent, CXFrame) -> Unit =
         { inventoryClickEvent: InventoryClickEvent, cxFrame: CXFrame ->
@@ -65,17 +65,17 @@ open class CXButton : CXUIElement {
         }
 
     /**
-     * ÉèÖÃÓÒ¼ü°´ÏÂ²Ù×÷µÄDSL Lambda±í´ïÊ½µÄ·½·¨
+     * è®¾ç½®å³é”®æŒ‰ä¸‹æ“ä½œçš„DSL Lambdaè¡¨è¾¾å¼çš„æ–¹æ³•
      */
     fun rightClick(lambda: (InventoryClickEvent, CXFrame) -> Unit) {
         rightClickLambda = lambda
     }
 
     /**
-     * ÓÒ¼ü°´ÏÂ²Ù×÷ÏìÓ¦µÄ·½·¨
+     * å³é”®æŒ‰ä¸‹æ“ä½œå“åº”çš„æ–¹æ³•
      *
-     * @param event °´ÏÂµÄÊÂ¼ş
-     * @param frame ÊôÓÚµÄ´°¿Ú
+     * @param event æŒ‰ä¸‹çš„äº‹ä»¶
+     * @param frame å±äºçš„çª—å£
      */
     //fun a(){}
     open fun onRightClick(event: InventoryClickEvent, frame: CXFrame) {
@@ -84,7 +84,7 @@ open class CXButton : CXUIElement {
     }
 
     /**
-     * ÓÒ¼ü¶×ÏÂ°´ÏÂ²Ù×÷µÄDSL Lambda±í´ïÊ½
+     * å³é”®è¹²ä¸‹æŒ‰ä¸‹æ“ä½œçš„DSL Lambdaè¡¨è¾¾å¼
      */
     private var rightShiftClickLambda: (InventoryClickEvent, CXFrame) -> Unit =
         { inventoryClickEvent: InventoryClickEvent, cxFrame: CXFrame ->
@@ -93,17 +93,17 @@ open class CXButton : CXUIElement {
         }
 
     /**
-     * ÉèÖÃÓÒ¼ü¶×ÏÂ°´ÏÂ²Ù×÷µÄDSL Lambda±í´ïÊ½µÄ·½·¨
+     * è®¾ç½®å³é”®è¹²ä¸‹æŒ‰ä¸‹æ“ä½œçš„DSL Lambdaè¡¨è¾¾å¼çš„æ–¹æ³•
      */
     fun rightShiftClick(lambda: (InventoryClickEvent, CXFrame) -> Unit) {
         rightShiftClickLambda = lambda
     }
 
     /**
-     * ÓÒ¼ü¶×ÏÂ°´ÏÂ²Ù×÷ÏìÓ¦µÄ·½·¨
+     * å³é”®è¹²ä¸‹æŒ‰ä¸‹æ“ä½œå“åº”çš„æ–¹æ³•
      *
-     * @param event °´ÏÂµÄÊÂ¼ş
-     * @param frame ÊôÓÚµÄ´°¿Ú
+     * @param event æŒ‰ä¸‹çš„äº‹ä»¶
+     * @param frame å±äºçš„çª—å£
      */
     open fun onRightShiftClick(event: InventoryClickEvent, frame: CXFrame) {
         event.isCancelled = true
@@ -111,24 +111,24 @@ open class CXButton : CXUIElement {
     }
 
     /**
-     * ×ó¼ü¶×ÏÂ°´ÏÂ²Ù×÷µÄDSL Lambda±í´ïÊ½
+     * å·¦é”®è¹²ä¸‹æŒ‰ä¸‹æ“ä½œçš„DSL Lambdaè¡¨è¾¾å¼
      */
     private var leftShiftClickLambda: (InventoryClickEvent, CXFrame) -> Unit =
         { inventoryClickEvent: InventoryClickEvent, cxFrame: CXFrame ->
         }
 
     /**
-     * ÉèÖÃ×ó¼ü¶×ÏÂ°´ÏÂ²Ù×÷µÄDSL Lambda±í´ïÊ½µÄ·½·¨
+     * è®¾ç½®å·¦é”®è¹²ä¸‹æŒ‰ä¸‹æ“ä½œçš„DSL Lambdaè¡¨è¾¾å¼çš„æ–¹æ³•
      */
     fun leftShiftClick(lambda: (InventoryClickEvent, CXFrame) -> Unit) {
         leftShiftClickLambda = lambda
     }
 
     /**
-     * ×ó¼ü¶×ÏÂ°´ÏÂ²Ù×÷ÏìÓ¦µÄ·½·¨
+     * å·¦é”®è¹²ä¸‹æŒ‰ä¸‹æ“ä½œå“åº”çš„æ–¹æ³•
      *
-     * @param event °´ÏÂµÄÊÂ¼ş
-     * @param frame ÊôÓÚµÄ´°¿Ú
+     * @param event æŒ‰ä¸‹çš„äº‹ä»¶
+     * @param frame å±äºçš„çª—å£
      */
     open fun onLeftShiftClick(event: InventoryClickEvent, frame: CXFrame) {
         event.isCancelled = true
@@ -136,24 +136,24 @@ open class CXButton : CXUIElement {
     }
 
     /**
-     * Ë«»÷²Ù×÷µÄDSL Lambda±í´ïÊ½
+     * åŒå‡»æ“ä½œçš„DSL Lambdaè¡¨è¾¾å¼
      */
     private var doubleClickLambda: (InventoryClickEvent, CXFrame) -> Unit =
         { inventoryClickEvent: InventoryClickEvent, cxFrame: CXFrame ->
         }
 
     /**
-     * ÉèÖÃË«»÷²Ù×÷µÄDSL Lambda±í´ïÊ½µÄ·½·¨
+     * è®¾ç½®åŒå‡»æ“ä½œçš„DSL Lambdaè¡¨è¾¾å¼çš„æ–¹æ³•
      */
     fun doubleClick(lambda: (InventoryClickEvent, CXFrame) -> Unit) {
         doubleClickLambda = lambda
     }
 
     /**
-     * Ë«»÷²Ù×÷ÏìÓ¦µÄ·½·¨
+     * åŒå‡»æ“ä½œå“åº”çš„æ–¹æ³•
      *
-     * @param event °´ÏÂµÄÊÂ¼ş
-     * @param frame ÊôÓÚµÄ´°¿Ú
+     * @param event æŒ‰ä¸‹çš„äº‹ä»¶
+     * @param frame å±äºçš„çª—å£
      */
     open fun onDoubleClick(event: InventoryClickEvent, frame: CXFrame) {
         event.isCancelled = true
@@ -161,24 +161,24 @@ open class CXButton : CXUIElement {
     }
 
     /**
-     * ÖĞ¼ü°´ÏÂ²Ù×÷µÄDSL Lambda±í´ïÊ½
+     * ä¸­é”®æŒ‰ä¸‹æ“ä½œçš„DSL Lambdaè¡¨è¾¾å¼
      */
     private var middleClickLambda: (InventoryClickEvent, CXFrame) -> Unit =
         { inventoryClickEvent: InventoryClickEvent, cxFrame: CXFrame ->
         }
 
     /**
-     * ÉèÖÃÖĞ¼ü°´ÏÂ²Ù×÷µÄDSL Lambda±í´ïÊ½µÄ·½·¨
+     * è®¾ç½®ä¸­é”®æŒ‰ä¸‹æ“ä½œçš„DSL Lambdaè¡¨è¾¾å¼çš„æ–¹æ³•
      */
     fun middleClick(lambda: (InventoryClickEvent, CXFrame) -> Unit) {
         middleClickLambda = lambda
     }
 
     /**
-     * ÖĞ¼ü°´ÏÂ²Ù×÷ÏìÓ¦µÄ·½·¨
+     * ä¸­é”®æŒ‰ä¸‹æ“ä½œå“åº”çš„æ–¹æ³•
      *
-     * @param event °´ÏÂµÄÊÂ¼ş
-     * @param frame ÊôÓÚµÄ´°¿Ú
+     * @param event æŒ‰ä¸‹çš„äº‹ä»¶
+     * @param frame å±äºçš„çª—å£
      */
     open fun onMiddleClick(event: InventoryClickEvent, frame: CXFrame) {
         event.isCancelled = true
@@ -188,7 +188,7 @@ open class CXButton : CXUIElement {
     constructor(arg0: ItemStack) {
         item = arg0
 
-        // TODO ×Ô¶¯Éú³ÉµÄ¹¹Ôìº¯Êı´æ¸ù
+        // TODO è‡ªåŠ¨ç”Ÿæˆçš„æ„é€ å‡½æ•°å­˜æ ¹
     }
 
     constructor() {

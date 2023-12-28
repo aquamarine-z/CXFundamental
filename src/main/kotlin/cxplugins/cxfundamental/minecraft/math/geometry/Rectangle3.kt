@@ -38,12 +38,9 @@ class Rectangle3D(var x1: Double, var y1: Double, var z1: Double, var x2: Double
     }
 
     fun isPointInside(point: Vector3D): Boolean {
-        return point.x >= x1 && point.x <= x2 && point.y >= y1 && point.y <= y2 && point.z >= z1 && point.z <= z2
+        return point.x in x1..x2 && point.y >= y1 && point.y <= y2 && point.z >= z1 && point.z <= z2
     }
 
-    fun isPointInside(point: Vector3I): Boolean {
-        return point.x >= x1 && point.x <= x2 && point.y >= y1 && point.y <= y2 && point.z >= z1 && point.z <= z2
-    }
 }
 
 class Rectangle3I(var x1: Int, var y1: Int, var z1: Int, var x2: Int, var y2: Int, var z2: Int) {
@@ -78,12 +75,7 @@ class Rectangle3I(var x1: Int, var y1: Int, var z1: Int, var x2: Int, var y2: In
     fun getPoint2(): Vector3I {
         return Vector3I(x2, y2, z2)
     }
-
-    fun isPointInside(point: Vector3D): Boolean {
-        return point.x >= x1 && point.x <= x2 && point.y >= y1 && point.y <= y2 && point.z >= z1 && point.z <= z2
-    }
-
     fun isPointInside(point: Vector3I): Boolean {
-        return point.x >= x1 && point.x <= x2 && point.y >= y1 && point.y <= y2 && point.z >= z1 && point.z <= z2
+        return point.x in x1..x2 && point.y >= y1 && point.y <= y2 && point.z >= z1 && point.z <= z2
     }
 }

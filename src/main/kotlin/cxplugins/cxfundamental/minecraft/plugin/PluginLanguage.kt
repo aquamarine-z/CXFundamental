@@ -6,29 +6,60 @@ import cxplugins.cxfundamental.minecraft.language.LanguagePack
 class PluginLanguage {
 
     companion object {
+        val englishLanguagePack = LanguagePack()
         val chineseLanguagePack = LanguagePack()
+        fun initializeEnglishLanguagePack() {
+            val manager = LanguageManager(CXFundamentalMain.pluginMain)
+
+            englishLanguagePack["cxplugins.cxfundamental.minecraft.language.LanguageManager.RegisterManagerTwice"] =
+                "The languagemanager of this plugin has been already created!"
+            englishLanguagePack["cxplugins.cxfundamental.minecraft.swing.SwingFrame.HeightOutOfBounds"] =
+                "The height of the window can only be in 1..6"
+            englishLanguagePack["cxplugins.cxfundamental.minecraft.swing.SwingFrame.WidthError"] =
+                "The width of the window can only be 9"
+            englishLanguagePack["cxplugins.cxfundamental.minecraft.swing.SwingFrame.Unrelocatable"] =
+                "The position of the window can't be set"
+            englishLanguagePack["cxplugins.cxfundamental.minecraft.swing.SwingPanel.PositionOutOfBounds"] =
+                "The position out of the bound of this container"
+            englishLanguagePack["cxplugins.cxfundamental.minecraft.swing.SwingPanel.WidthError"] =
+                "The width of this container can only be in 1..9"
+            englishLanguagePack["cxplugins.cxfundamental.minecraft.swing.SwingPanel.HeightError"] =
+                "The height of this container can only be in 1..6"
+            englishLanguagePack["cxplugins.cxfundamental.minecraft.swing.SwingPanel.PositionError"] =
+                "The position set can only be (x in 0..8,y in 0..5)"
+            englishLanguagePack["cxplugins.cxfundamental.minecraft.swing.SwingBaseMultipagePanel.PageOutOfBounds"] =
+                "The page index out of the range of this multipagepanel"
+            englishLanguagePack["cxplugins.cxfundamental.minecraft.swing.SwingBaseMultipagePanel.PositionError"] =
+                "The position set can only be (x in 0..8,y in 0..5)"
+
+            manager.languageMap["English"] = englishLanguagePack
+            manager.selectedLanguage = "English"
+
+
+        }
         fun initializeChineseLanguagePack() {
             val manager = LanguageManager(CXFundamentalMain.pluginMain)
 
             chineseLanguagePack["cxplugins.cxfundamental.minecraft.language.LanguageManager.RegisterManagerTwice"] =
-                "´Ë²å¼şµÄÓïÑÔ¹ÜÀíÆ÷ÒÑ¾­´´½¨¹ıÁË!"
-
-
+                "æ­¤æ’ä»¶çš„è¯­è¨€ç®¡ç†å™¨å·²ç»åˆ›å»ºè¿‡äº†!"
             chineseLanguagePack["cxplugins.cxfundamental.minecraft.swing.SwingFrame.HeightOutOfBounds"] =
-                "´°¿Ú¸ß¶È´íÎó ¸ß¶ÈÖ»ÄÜÎª1~6"
-            chineseLanguagePack["cxplugins.cxfundamental.minecraft.swing.SwingFrame.WidthError"] = "´°¿ÚµÄ¿í¶ÈÖ»ÄÜÎª9¸ñ"
-            chineseLanguagePack["cxplugins.cxfundamental.minecraft.swing.SwingFrame.Unrelocatable"] = "´°¿ÚÎŞ·¨Éè¶¨Î»ÖÃ"
+                "çª—å£é«˜åº¦é”™è¯¯ é«˜åº¦åªèƒ½ä¸º1~6"
+            chineseLanguagePack["cxplugins.cxfundamental.minecraft.swing.SwingFrame.WidthError"] =
+                "çª—å£çš„å®½åº¦åªèƒ½ä¸º9æ ¼"
+            chineseLanguagePack["cxplugins.cxfundamental.minecraft.swing.SwingFrame.Unrelocatable"] =
+                "çª—å£æ— æ³•è®¾å®šä½ç½®"
             chineseLanguagePack["cxplugins.cxfundamental.minecraft.swing.SwingPanel.PositionOutOfBounds"] =
-                "Î»ÖÃ²ÎÊı³¬³ö¸ÃÈİÆ÷µÄ·¶Î§"
-            chineseLanguagePack["cxplugins.cxfundamental.minecraft.swing.SwingPanel.WidthError"] = "ÈİÆ÷µÄ¿í¶ÈÖ»ÄÜÎª1~9"
+                "ä½ç½®å‚æ•°è¶…å‡ºè¯¥å®¹å™¨çš„èŒƒå›´"
+            chineseLanguagePack["cxplugins.cxfundamental.minecraft.swing.SwingPanel.WidthError"] =
+                "å®¹å™¨çš„å®½åº¦åªèƒ½ä¸º1~9"
             chineseLanguagePack["cxplugins.cxfundamental.minecraft.swing.SwingPanel.HeightError"] =
-                "ÈİÆ÷µÄ¸ß¶ÈÖ»ÄÜÎª1~6"
+                "å®¹å™¨çš„é«˜åº¦åªèƒ½ä¸º1~6"
             chineseLanguagePack["cxplugins.cxfundamental.minecraft.swing.SwingPanel.PositionError"] =
-                "Éè¶¨µÄÎ»ÖÃÖ»ÄÜÎª 1<=x<=9 1<=y<=6"
+                "è®¾å®šçš„ä½ç½®åªèƒ½ä¸º 1<=x<=9 1<=y<=6"
             chineseLanguagePack["cxplugins.cxfundamental.minecraft.swing.SwingBaseMultipagePanel.PageOutOfBounds"] =
-                "Ò³Êı²ÎÊı³¬³ö¸ÃÈİÆ÷µÄÈİÄÉÊı"
+                "é¡µæ•°å‚æ•°è¶…å‡ºè¯¥å®¹å™¨çš„å®¹çº³æ•°"
             chineseLanguagePack["cxplugins.cxfundamental.minecraft.swing.SwingBaseMultipagePanel.PositionError"] =
-                "Éè¶¨µÄÎ»ÖÃÖ»ÄÜÎª 1<=x<=9 1<=y<=6"
+                "è®¾å®šçš„ä½ç½®åªèƒ½ä¸º 1<=x<=9 1<=y<=6"
 
             manager.languageMap["Chinese"] = chineseLanguagePack
             manager.selectedLanguage = "Chinese"

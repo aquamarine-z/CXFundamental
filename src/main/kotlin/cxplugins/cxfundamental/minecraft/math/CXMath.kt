@@ -8,14 +8,14 @@ import kotlin.math.sin
 
 class CXMath {
     /**
-     * ¾²Ì¬µÄ·½·¨
+     * é™æ€çš„æ–¹æ³•
      */
     companion object {
         /**
-         * ¼ÆËãÄ³Ò»¸ö¼ÆËã±í´ïÊ½
-         * ÌáÊ¾:ÊäÈëÄ³Ò»¸ö·Ç·¨µÄ×Ö·û´®±í´ïÊ½Ê±¿ÉÄÜ»á³öÏÖ¼ÆËã´íÎóµÄÎÊÌâ
-         * @param string ¼ÆËã±í´ïÊ½
-         * @return ¼ÆËã±í´ïÊ½µÄ½á¹û
+         * è®¡ç®—æŸä¸€ä¸ªè®¡ç®—è¡¨è¾¾å¼
+         * æç¤º:è¾“å…¥æŸä¸€ä¸ªéæ³•çš„å­—ç¬¦ä¸²è¡¨è¾¾å¼æ—¶å¯èƒ½ä¼šå‡ºç°è®¡ç®—é”™è¯¯çš„é—®é¢˜
+         * @param string è®¡ç®—è¡¨è¾¾å¼
+         * @return è®¡ç®—è¡¨è¾¾å¼çš„ç»“æœ
          */
         @JvmStatic
         fun calculate(string: String): Double {
@@ -30,12 +30,12 @@ class CXMath {
         }
 
         /**
-         * ½«Ò»¸öÖµÈıÎ¬Õı½»·Ö½â
+         * å°†ä¸€ä¸ªå€¼ä¸‰ç»´æ­£äº¤åˆ†è§£
          *
-         * @param value Õâ¸öÖµ
-         * @param pyaw Æ«º½½Ç½Ç¶È(½Ç¶ÈÖÆ)
-         * @param ppitch Ğı½ø½Ç½Ç¶È(½Ç¶ÈÖÆ)
-         * @return ·Ö½âµ½X,Y,ZÖáÉÏµÄÈı¸öÊıÖµ
+         * @param value è¿™ä¸ªå€¼
+         * @param pyaw åèˆªè§’è§’åº¦(è§’åº¦åˆ¶)
+         * @param ppitch æ—‹è¿›è§’è§’åº¦(è§’åº¦åˆ¶)
+         * @return åˆ†è§£åˆ°X,Y,Zè½´ä¸Šçš„ä¸‰ä¸ªæ•°å€¼
          */
         @JvmStatic
         fun orthogonalDecomposition(value: Double, pyaw: Double, ppitch: Double): Vector {
@@ -48,7 +48,7 @@ class CXMath {
             }
             var pValue = 0.0
             var y = 0.0
-            //½«yÖáµÄËÙ¶ÈÓëx-z×ø±êÏµµÄËÙ¶ÈÕı½»·Ö½â
+            //å°†yè½´çš„é€Ÿåº¦ä¸x-zåæ ‡ç³»çš„é€Ÿåº¦æ­£äº¤åˆ†è§£
             if (pitch in 0.0..90.0) {
                 pValue = (cos(Math.toRadians(pitch.toDouble()))) * value
                 y = -sin(Math.toRadians(pitch.toDouble())) * value
@@ -56,7 +56,7 @@ class CXMath {
                 pValue = (cos(Math.toRadians(pitch.toDouble()))) * value
                 y = -sin(Math.toRadians(pitch.toDouble())) * value
             }
-            //½«xÖáÓëzÖáµÄËÙ¶ÈÕı½»·Ö½â
+            //å°†xè½´ä¸zè½´çš„é€Ÿåº¦æ­£äº¤åˆ†è§£
             when (yaw) {
                 in 0.0..90.0 -> {
                     //if(pitch)
@@ -84,10 +84,10 @@ class CXMath {
         }
 
         /**
-         *ÅĞ¶ÏÄ³¸ö×Ö·û´®ÊÇ·ñÎªÕûÊı
+         *åˆ¤æ–­æŸä¸ªå­—ç¬¦ä¸²æ˜¯å¦ä¸ºæ•´æ•°
          *
-         * @param str ×Ö·û´®
-         * @return ÈôÊÇÕûÊı ·µ»Øtrue ·ñÔò·µ»Øfalse
+         * @param str å­—ç¬¦ä¸²
+         * @return è‹¥æ˜¯æ•´æ•° è¿”å›true å¦åˆ™è¿”å›false
          */
         @JvmStatic
         fun isInteger(str: String): Boolean {
@@ -96,10 +96,10 @@ class CXMath {
         }
 
         /**
-         *ÅĞ¶ÏÄ³¸ö×Ö·û´®ÊÇ·ñÎªÊı×Ö
+         *åˆ¤æ–­æŸä¸ªå­—ç¬¦ä¸²æ˜¯å¦ä¸ºæ•°å­—
          *
-         * @param str ×Ö·û´®
-         * @return ÈôÊÇÕûÊı ·µ»Øtrue ·ñÔò·µ»Øfalse
+         * @param str å­—ç¬¦ä¸²
+         * @return è‹¥æ˜¯æ•´æ•° è¿”å›true å¦åˆ™è¿”å›false
          */
         @JvmStatic
         fun isNumeric(str: String): Boolean {
@@ -113,20 +113,20 @@ class CXMath {
         }
     }
 
-}// TODO ×Ô¶¯Éú³ÉµÄ¹¹Ôìº¯Êı´æ¸ù
+}// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ„é€ å‡½æ•°å­˜æ ¹
 
 
 internal object ArithHelper {
 
-    // Ä¬ÈÏ³ı·¨ÔËËã¾«¶È
+    // é»˜è®¤é™¤æ³•è¿ç®—ç²¾åº¦
     private val DEF_DIV_SCALE = 16
 
     /**
-     * Ìá¹©¾«È·µÄ¼Ó·¨ÔËËã¡£
+     * æä¾›ç²¾ç¡®çš„åŠ æ³•è¿ç®—ã€‚
      *
-     * @param v1 ±»¼ÓÊı
-     * @param v2 ¼ÓÊı
-     * @return Á½¸ö²ÎÊıµÄºÍ
+     * @param v1 è¢«åŠ æ•°
+     * @param v2 åŠ æ•°
+     * @return ä¸¤ä¸ªå‚æ•°çš„å’Œ
      */
 
     fun add(v1: Double, v2: Double): Double {
@@ -142,11 +142,11 @@ internal object ArithHelper {
     }
 
     /**
-     * Ìá¹©¾«È·µÄ¼õ·¨ÔËËã¡£
+     * æä¾›ç²¾ç¡®çš„å‡æ³•è¿ç®—ã€‚
      *
-     * @param v1 ±»¼õÊı
-     * @param v2 ¼õÊı
-     * @return Á½¸ö²ÎÊıµÄ²î
+     * @param v1 è¢«å‡æ•°
+     * @param v2 å‡æ•°
+     * @return ä¸¤ä¸ªå‚æ•°çš„å·®
      */
 
     fun sub(v1: Double, v2: Double): Double {
@@ -162,13 +162,13 @@ internal object ArithHelper {
     }
 
     /**
-     * Ìá¹©¾«È·µÄ³Ë·¨ÔËËã¡£
+     * æä¾›ç²¾ç¡®çš„ä¹˜æ³•è¿ç®—ã€‚
      *
      * @param v1
-     * ±»³ËÊı
+     * è¢«ä¹˜æ•°
      * @param v2
-     * ³ËÊı
-     * @return Á½¸ö²ÎÊıµÄ»ı
+     * ä¹˜æ•°
+     * @return ä¸¤ä¸ªå‚æ•°çš„ç§¯
      */
 
     fun mul(v1: Double, v2: Double): Double {
@@ -190,12 +190,12 @@ internal object ArithHelper {
     }
 
     /**
-     * Ìá¹©£¨Ïà¶Ô£©¾«È·µÄ³ı·¨ÔËËã¡£µ±·¢Éú³ı²»¾¡µÄÇé¿öÊ±£¬ÓÉscale²ÎÊıÖ¸ ¶¨¾«¶È£¬ÒÔºóµÄÊı×ÖËÄÉáÎåÈë¡£
+     * æä¾›ï¼ˆç›¸å¯¹ï¼‰ç²¾ç¡®çš„é™¤æ³•è¿ç®—ã€‚å½“å‘ç”Ÿé™¤ä¸å°½çš„æƒ…å†µæ—¶ï¼Œç”±scaleå‚æ•°æŒ‡ å®šç²¾åº¦ï¼Œä»¥åçš„æ•°å­—å››èˆäº”å…¥ã€‚
      *
-     * @param v1 ±»³ıÊı
-     * @param v2 ³ıÊı
-     * @param scale ±íÊ¾±íÊ¾ĞèÒª¾«È·µ½Ğ¡ÊıµãÒÔºó¼¸Î»¡£
-     * @return Á½¸ö²ÎÊıµÄÉÌ
+     * @param v1 è¢«é™¤æ•°
+     * @param v2 é™¤æ•°
+     * @param scale è¡¨ç¤ºè¡¨ç¤ºéœ€è¦ç²¾ç¡®åˆ°å°æ•°ç‚¹ä»¥åå‡ ä½ã€‚
+     * @return ä¸¤ä¸ªå‚æ•°çš„å•†
      */
 
     @JvmOverloads
@@ -209,11 +209,11 @@ internal object ArithHelper {
     }
 
     /**
-     * Ìá¹©¾«È·µÄĞ¡ÊıÎ»ËÄÉáÎåÈë´¦Àí¡£
+     * æä¾›ç²¾ç¡®çš„å°æ•°ä½å››èˆäº”å…¥å¤„ç†ã€‚
      *
-     * @param v ĞèÒªËÄÉáÎåÈëµÄÊı×Ö
-     * @param scale Ğ¡Êıµãºó±£Áô¼¸Î»
-     * @return ËÄÉáÎåÈëºóµÄ½á¹û
+     * @param v éœ€è¦å››èˆäº”å…¥çš„æ•°å­—
+     * @param scale å°æ•°ç‚¹åä¿ç•™å‡ ä½
+     * @return å››èˆäº”å…¥åçš„ç»“æœ
      */
 
     fun round(v: Double, scale: Int): Double {
@@ -233,46 +233,46 @@ internal object ArithHelper {
         val one = java.math.BigDecimal("1")
         return b.divide(one, scale, java.math.BigDecimal.ROUND_HALF_UP).toDouble()
     }
-}// Õâ¸öÀà²»ÄÜÊµÀı»¯
+}// è¿™ä¸ªç±»ä¸èƒ½å®ä¾‹åŒ–
 
 /**
- * Ìá¹©£¨Ïà¶Ô£©¾«È·µÄ³ı·¨ÔËËã£¬µ±·¢Éú³ı²»¾¡µÄÇé¿öÊ±£¬¾«È·µ½ Ğ¡ÊıµãÒÔºó10Î»£¬ÒÔºóµÄÊı×ÖËÄÉáÎåÈë¡£
+ * æä¾›ï¼ˆç›¸å¯¹ï¼‰ç²¾ç¡®çš„é™¤æ³•è¿ç®—ï¼Œå½“å‘ç”Ÿé™¤ä¸å°½çš„æƒ…å†µæ—¶ï¼Œç²¾ç¡®åˆ° å°æ•°ç‚¹ä»¥å10ä½ï¼Œä»¥åçš„æ•°å­—å››èˆäº”å…¥ã€‚
  *
  * @param v1
- * ±»³ıÊı
+ * è¢«é™¤æ•°
  * @param v2
- * ³ıÊı
- * @return Á½¸ö²ÎÊıµÄÉÌ
+ * é™¤æ•°
+ * @return ä¸¤ä¸ªå‚æ•°çš„å•†
  */
 internal class Calculator {
-    private val postfixStack = Stack<String>()// ºó×ºÊ½Õ»
-    private val opStack = Stack<Char>()// ÔËËã·ûÕ»
-    private val operatPriority = intArrayOf(0, 3, 2, 1, -1, 1, 0, 2)// ÔËÓÃÔËËã·ûASCIIÂë-40×öË÷ÒıµÄÔËËã·ûÓÅÏÈ¼¶
+    private val postfixStack = Stack<String>()// åç¼€å¼æ ˆ
+    private val opStack = Stack<Char>()// è¿ç®—ç¬¦æ ˆ
+    private val operatPriority = intArrayOf(0, 3, 2, 1, -1, 1, 0, 2)// è¿ç”¨è¿ç®—ç¬¦ASCIIç -40åšç´¢å¼•çš„è¿ç®—ç¬¦ä¼˜å…ˆçº§
 
     /**
-     * °´ÕÕ¸ø¶¨µÄ±í´ïÊ½¼ÆËã
+     * æŒ‰ç…§ç»™å®šçš„è¡¨è¾¾å¼è®¡ç®—
      *
      * @param expression
-     * Òª¼ÆËãµÄ±í´ïÊ½ÀıÈç:5+12*(3+5)/7
+     * è¦è®¡ç®—çš„è¡¨è¾¾å¼ä¾‹å¦‚:5+12*(3+5)/7
      * @return
      */
     fun calculate(expression: String): Double {
         val resultStack = Stack<String>()
         prepare(expression)
-        Collections.reverse(postfixStack)// ½«ºó×ºÊ½Õ»·´×ª
+        Collections.reverse(postfixStack)// å°†åç¼€å¼æ ˆåè½¬
         var firstValue: String
         var secondValue: String
-        var currentValue: String// ²ÎÓë¼ÆËãµÄµÚÒ»¸öÖµ£¬µÚ¶ş¸öÖµºÍËãÊõÔËËã·û
+        var currentValue: String// å‚ä¸è®¡ç®—çš„ç¬¬ä¸€ä¸ªå€¼ï¼Œç¬¬äºŒä¸ªå€¼å’Œç®—æœ¯è¿ç®—ç¬¦
         while (!postfixStack.isEmpty()) {
             currentValue = postfixStack.pop()
-            if (!isOperator(currentValue[0])) {// Èç¹û²»ÊÇÔËËã·ûÔò´æÈë²Ù×÷ÊıÕ»ÖĞ
+            if (!isOperator(currentValue[0])) {// å¦‚æœä¸æ˜¯è¿ç®—ç¬¦åˆ™å­˜å…¥æ“ä½œæ•°æ ˆä¸­
                 currentValue = currentValue.replace("~", "-")
                 resultStack.push(currentValue)
-            } else {// Èç¹ûÊÇÔËËã·ûÔò´Ó²Ù×÷ÊıÕ»ÖĞÈ¡Á½¸öÖµºÍ¸ÃÊıÖµÒ»Æğ²ÎÓëÔËËã
+            } else {// å¦‚æœæ˜¯è¿ç®—ç¬¦åˆ™ä»æ“ä½œæ•°æ ˆä¸­å–ä¸¤ä¸ªå€¼å’Œè¯¥æ•°å€¼ä¸€èµ·å‚ä¸è¿ç®—
                 secondValue = resultStack.pop()
                 firstValue = resultStack.pop()
 
-                // ½«¸ºÊı±ê¼Ç·û¸ÄÎª¸ººÅ
+                // å°†è´Ÿæ•°æ ‡è®°ç¬¦æ”¹ä¸ºè´Ÿå·
                 firstValue = firstValue.replace("~", "-")
                 secondValue = secondValue.replace("~", "-")
 
@@ -284,25 +284,25 @@ internal class Calculator {
     }
 
     /**
-     * Êı¾İ×¼±¸½×¶Î½«±í´ïÊ½×ª»»³ÉÎªºó×ºÊ½Õ»
+     * æ•°æ®å‡†å¤‡é˜¶æ®µå°†è¡¨è¾¾å¼è½¬æ¢æˆä¸ºåç¼€å¼æ ˆ
      *
      * @param expression
      */
     private fun prepare(expression: String) {
-        opStack.push(',')// ÔËËã·û·ÅÈëÕ»µ×ÔªËØ¶ººÅ£¬´Ë·ûºÅÓÅÏÈ¼¶×îµÍ
+        opStack.push(',')// è¿ç®—ç¬¦æ”¾å…¥æ ˆåº•å…ƒç´ é€—å·ï¼Œæ­¤ç¬¦å·ä¼˜å…ˆçº§æœ€ä½
         val arr = expression.toCharArray()
-        var currentIndex = 0// µ±Ç°×Ö·ûµÄÎ»ÖÃ
-        var count = 0// ÉÏ´ÎËãÊõÔËËã·ûµ½±¾´ÎËãÊõÔËËã·ûµÄ×Ö·ûµÄ³¤¶È±ãÓÚ»òÕßÖ®¼äµÄÊıÖµ
+        var currentIndex = 0// å½“å‰å­—ç¬¦çš„ä½ç½®
+        var count = 0// ä¸Šæ¬¡ç®—æœ¯è¿ç®—ç¬¦åˆ°æœ¬æ¬¡ç®—æœ¯è¿ç®—ç¬¦çš„å­—ç¬¦çš„é•¿åº¦ä¾¿äºæˆ–è€…ä¹‹é—´çš„æ•°å€¼
         var currentOp: Char
-        var peekOp: Char// µ±Ç°²Ù×÷·ûºÍÕ»¶¥²Ù×÷·û
+        var peekOp: Char// å½“å‰æ“ä½œç¬¦å’Œæ ˆé¡¶æ“ä½œç¬¦
         for (i in arr.indices) {
             currentOp = arr[i]
-            if (isOperator(currentOp)) {// Èç¹ûµ±Ç°×Ö·ûÊÇÔËËã·û
+            if (isOperator(currentOp)) {// å¦‚æœå½“å‰å­—ç¬¦æ˜¯è¿ç®—ç¬¦
                 if (count > 0) {
-                    postfixStack.push(String(arr, currentIndex, count))// È¡Á½¸öÔËËã·ûÖ®¼äµÄÊı×Ö
+                    postfixStack.push(String(arr, currentIndex, count))// å–ä¸¤ä¸ªè¿ç®—ç¬¦ä¹‹é—´çš„æ•°å­—
                 }
                 peekOp = opStack.peek()
-                if (currentOp == ')') {// Óöµ½·´À¨ºÅÔò½«ÔËËã·ûÕ»ÖĞµÄÔªËØÒÆ³ıµ½ºó×ºÊ½Õ»ÖĞÖ±µ½Óöµ½×óÀ¨ºÅ
+                if (currentOp == ')') {// é‡åˆ°åæ‹¬å·åˆ™å°†è¿ç®—ç¬¦æ ˆä¸­çš„å…ƒç´ ç§»é™¤åˆ°åç¼€å¼æ ˆä¸­ç›´åˆ°é‡åˆ°å·¦æ‹¬å·
                     while (opStack.peek() != '(') {
                         postfixStack.push(opStack.pop().toString())
                     }
@@ -320,17 +320,17 @@ internal class Calculator {
                 count++
             }
         }
-        if (count > 1 || count == 1 && !isOperator(arr[currentIndex])) {// ×îºóÒ»¸ö×Ö·û²»ÊÇÀ¨ºÅ»òÕßÆäËûÔËËã·ûµÄÔò¼ÓÈëºó×ºÊ½Õ»ÖĞ
+        if (count > 1 || count == 1 && !isOperator(arr[currentIndex])) {// æœ€åä¸€ä¸ªå­—ç¬¦ä¸æ˜¯æ‹¬å·æˆ–è€…å…¶ä»–è¿ç®—ç¬¦çš„åˆ™åŠ å…¥åç¼€å¼æ ˆä¸­
             postfixStack.push(String(arr, currentIndex, count))
         }
 
         while (opStack.peek() != ',') {
-            postfixStack.push(opStack.pop().toString())// ½«²Ù×÷·ûÕ»ÖĞµÄÊ£ÓàµÄÔªËØÌí¼Óµ½ºó×ºÊ½Õ»ÖĞ
+            postfixStack.push(opStack.pop().toString())// å°†æ“ä½œç¬¦æ ˆä¸­çš„å‰©ä½™çš„å…ƒç´ æ·»åŠ åˆ°åç¼€å¼æ ˆä¸­
         }
     }
 
     /**
-     * ÅĞ¶ÏÊÇ·ñÎªËãÊõ·ûºÅ
+     * åˆ¤æ–­æ˜¯å¦ä¸ºç®—æœ¯ç¬¦å·
      *
      * @param c
      * @return
@@ -340,13 +340,13 @@ internal class Calculator {
     }
 
     /**
-     * ÀûÓÃASCIIÂë-40×öÏÂ±êÈ¥ËãÊõ·ûºÅÓÅÏÈ¼¶
+     * åˆ©ç”¨ASCIIç -40åšä¸‹æ ‡å»ç®—æœ¯ç¬¦å·ä¼˜å…ˆçº§
      *
      * @param cur
      * @param peek
      * @return
      */
-    fun compare(cur: Char, peek: Char): Boolean {// Èç¹ûÊÇpeekÓÅÏÈ¼¶¸ßÓÚcur£¬·µ»Øtrue£¬Ä¬ÈÏ¶¼ÊÇpeekÓÅÏÈ¼¶ÒªµÍ
+    fun compare(cur: Char, peek: Char): Boolean {// å¦‚æœæ˜¯peekä¼˜å…ˆçº§é«˜äºcurï¼Œè¿”å›trueï¼Œé»˜è®¤éƒ½æ˜¯peekä¼˜å…ˆçº§è¦ä½
         var result = false
         if (operatPriority[peek.code - 40] >= operatPriority[cur.code - 40]) {
             result = true
@@ -355,7 +355,7 @@ internal class Calculator {
     }
 
     /**
-     * °´ÕÕ¸ø¶¨µÄËãÊõÔËËã·û×ö¼ÆËã
+     * æŒ‰ç…§ç»™å®šçš„ç®—æœ¯è¿ç®—ç¬¦åšè®¡ç®—
      *
      * @param firstValue
      * @param secondValue
@@ -384,7 +384,7 @@ internal class Calculator {
                 result = cal.calculate(expression)
             } catch (e: Exception) {
                 // e.printStackTrace();
-                // ÔËËã´íÎó·µ»ØNaN
+                // è¿ç®—é”™è¯¯è¿”å›NaN
                 return 0.0 / 0.0
             }
 
@@ -393,10 +393,10 @@ internal class Calculator {
         }
 
         /**
-         * ½«±í´ïÊ½ÖĞ¸ºÊıµÄ·ûºÅ¸ü¸Ä
+         * å°†è¡¨è¾¾å¼ä¸­è´Ÿæ•°çš„ç¬¦å·æ›´æ”¹
          *
          * @param expression
-         * ÀıÈç-2+-1*(-3E-2)-(-1) ±»×ªÎª ~2+~1*(~3E~2)-(~1)
+         * ä¾‹å¦‚-2+-1*(-3E-2)-(-1) è¢«è½¬ä¸º ~2+~1*(~3E~2)-(~1)
          * @return
          */
         private fun transform(expression: String): String {

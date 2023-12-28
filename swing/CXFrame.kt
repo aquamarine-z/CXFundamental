@@ -20,9 +20,10 @@ abstract class CXFrame(var frameHeight: Int = 6, title: String = "CXFrame") : CX
         }
 
     init {
+
         this.title = title
         if (frameHeight !in 1..6) {
-            throw IllegalArgumentException("面板的高度参数必须在1~6之间")
+            throw IllegalArgumentException("闈㈡澘鐨勯珮搴﹀弬鏁板繀椤诲湪1~6涔嬮棿")
         }
         elementArray = Array(9) { Array(frameHeight) { null } }
     }

@@ -4,22 +4,21 @@ import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import java.io.File
 import java.util.*
-import java.util.List
 
 /**
- * ÎªĞŞ¸ÄÍæ¼Ò±£´æÔÚ".\\plugins\\CXPlugins\\Players"ÖĞµÄÅäÖÃÎÄ¼ş½øĞĞ²Ù×÷µÄ¼ò»¯Àà
+ * ä¸ºä¿®æ”¹ç©å®¶ä¿å­˜åœ¨".\\plugins\\CXPlugins\\Players"ä¸­çš„é…ç½®æ–‡ä»¶è¿›è¡Œæ“ä½œçš„ç®€åŒ–ç±»
  *
  */
 object CXPlayerDataEditor {
     @JvmStatic
             /**
-             *".\\plugins\\CXPlugins\\Players"ÎÄ¼ş¼ĞÖĞËùÓĞÍæ¼ÒÅäÖÃÎÄ¼şµÄÁĞ±í
+             *".\\plugins\\CXPlugins\\Players"æ–‡ä»¶å¤¹ä¸­æ‰€æœ‰ç©å®¶é…ç½®æ–‡ä»¶çš„åˆ—è¡¨
              *
              *
              * */
     val playerDataList: List<CXYamlConfiguration>
         /**
-         *»ñÈ¡".\\plugins\\CXPlugins\\Players"ÎÄ¼ş¼ĞÖĞËùÓĞÍæ¼ÒÅäÖÃÎÄ¼şµÄÁĞ±í
+         *è·å–".\\plugins\\CXPlugins\\Players"æ–‡ä»¶å¤¹ä¸­æ‰€æœ‰ç©å®¶é…ç½®æ–‡ä»¶çš„åˆ—è¡¨
          *
          *
          * */
@@ -31,15 +30,15 @@ object CXPlayerDataEditor {
                 result.add(CXYamlConfiguration("\\CXPlugins\\Players", fileName))
 
             }
-            return result as List<CXYamlConfiguration>
+            return result
         }
 
     @JvmStatic
             /**
-             * ÅĞ¶ÏÊÇ·ñÓĞÄ³Öµ
-             * @param path ÖµÂ·¾¶
-             * @param Player Íæ¼ÒÃû×Ö
-             * @return ÈôÓĞ´ËÖµ ·µ»Øtrue ·ñÔò·µ»Øfalse
+             * åˆ¤æ–­æ˜¯å¦æœ‰æŸå€¼
+             * @param path å€¼è·¯å¾„
+             * @param Player ç©å®¶åå­—
+             * @return è‹¥æœ‰æ­¤å€¼ è¿”å›true å¦åˆ™è¿”å›false
              *
              */
 
@@ -49,10 +48,10 @@ object CXPlayerDataEditor {
     }
 
     /**
-     * ÅĞ¶ÏÔÚPlayersÎÄ¼ş¼ĞÖĞÊÇ·ñÓĞÄ³¸öÎÄ¼ş
-     * @param fileName ÎÄ¼şÃû×Ö
+     * åˆ¤æ–­åœ¨Playersæ–‡ä»¶å¤¹ä¸­æ˜¯å¦æœ‰æŸä¸ªæ–‡ä»¶
+     * @param fileName æ–‡ä»¶åå­—
      *
-     * @return ÈôÓĞ´ËÎÄ¼ş ·µ»Øtrue ·ñÔò·µ»Øfalse
+     * @return è‹¥æœ‰æ­¤æ–‡ä»¶ è¿”å›true å¦åˆ™è¿”å›false
      *
      */
     @JvmStatic
@@ -67,12 +66,12 @@ object CXPlayerDataEditor {
     }
 
     /**
-     * ²Ù×÷Ä³¸öÍæ¼ÒÅäÖÃÎÄ¼şÖĞµÄÄ³Öµ
-     * @param playerName Íæ¼ÒÃû×Ö
+     * æ“ä½œæŸä¸ªç©å®¶é…ç½®æ–‡ä»¶ä¸­çš„æŸå€¼
+     * @param playerName ç©å®¶åå­—
      *
-     * @param dataPath ÖµµÄÂ·¾¶
+     * @param dataPath å€¼çš„è·¯å¾„
      *
-     * @param data Öµ
+     * @param data å€¼
      *
      */
     @JvmStatic
@@ -84,11 +83,11 @@ object CXPlayerDataEditor {
     }
 
     /**
-     * »ñÈ¡Ä³¸öÍæ¼ÒÅäÖÃÎÄ¼şÖĞµÄÄ³Öµ
-     * @param playerName Íæ¼ÒÃû×Ö
+     * è·å–æŸä¸ªç©å®¶é…ç½®æ–‡ä»¶ä¸­çš„æŸå€¼
+     * @param playerName ç©å®¶åå­—
      *
-     * @param dataPath ÖµµÄÂ·¾¶
-     * @return Öµ
+     * @param dataPath å€¼çš„è·¯å¾„
+     * @return å€¼
      *
      */
     @JvmStatic
@@ -100,9 +99,9 @@ object CXPlayerDataEditor {
     }
 
     /**
-     * »ñÈ¡Ä³¸öÍæ¼ÒµÄÅäÖÃÎÄ¼ş
-     * @param playerName Íæ¼ÒÃû×Ö
-     * @return ÅäÖÃÎÄ¼ş
+     * è·å–æŸä¸ªç©å®¶çš„é…ç½®æ–‡ä»¶
+     * @param playerName ç©å®¶åå­—
+     * @return é…ç½®æ–‡ä»¶
      *
      */
     @JvmStatic
@@ -111,9 +110,9 @@ object CXPlayerDataEditor {
     }
 
     /**
-     * »ñÈ¡Ä³¸öÍæ¼ÒµÄÅäÖÃÎÄ¼ş
-     * @param player Íæ¼Ò
-     * @return ÅäÖÃÎÄ¼ş
+     * è·å–æŸä¸ªç©å®¶çš„é…ç½®æ–‡ä»¶
+     * @param player ç©å®¶
+     * @return é…ç½®æ–‡ä»¶
      *
      */
     @JvmStatic
@@ -123,7 +122,7 @@ object CXPlayerDataEditor {
 
     @JvmStatic
             /**
-            Î´Íê¹¤µÄ·½·¨
+            æœªå®Œå·¥çš„æ–¹æ³•
              *
              */
     fun editAll(selector: PlayerSelector, action: PlayerEditAction) {
@@ -140,12 +139,12 @@ object CXPlayerDataEditor {
 
     @JvmStatic
             /**
-             * ²Ù×÷Ä³¸öÍæ¼ÒÅäÖÃÎÄ¼şÖĞµÄÄ³Öµ
-             * @param player Ãû×Ö
+             * æ“ä½œæŸä¸ªç©å®¶é…ç½®æ–‡ä»¶ä¸­çš„æŸå€¼
+             * @param player åå­—
              *
-             * @param dataPath ÖµµÄÂ·¾¶
+             * @param dataPath å€¼çš„è·¯å¾„
              *
-             * @param data Öµ
+             * @param data å€¼
              *
              */
     fun edit(player: Player, dataPath: String, data: Any?) {
@@ -153,11 +152,11 @@ object CXPlayerDataEditor {
     }
 
     /**
-     * »ñÈ¡Ä³¸öÍæ¼ÒÅäÖÃÎÄ¼şÖĞµÄÄ³Öµ
-     * @param player Íæ¼Ò
+     * è·å–æŸä¸ªç©å®¶é…ç½®æ–‡ä»¶ä¸­çš„æŸå€¼
+     * @param player ç©å®¶
      *
-     * @param dataPath ÖµµÄÂ·¾¶
-     * @return Öµ
+     * @param dataPath å€¼çš„è·¯å¾„
+     * @return å€¼
      *
      */
     @JvmStatic

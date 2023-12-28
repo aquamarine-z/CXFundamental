@@ -4,23 +4,23 @@ import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 
 /**
- * ¶ÔÃüÁîµÄ·¢ËÍÌá¹©µÄÀà
+ * å¯¹å‘½ä»¤çš„å‘é€æä¾›çš„ç±»
  */
 object CXCommand {
     /**
-     * ºöÂÔÊÇ·ñÓµÓĞÈ¨ÏŞ Ö´ĞĞÄ³ÃüÁî
+     * å¿½ç•¥æ˜¯å¦æ‹¥æœ‰æƒé™ æ‰§è¡ŒæŸå‘½ä»¤
      *
-     * @param p ¸ÃÍæ¼Ò
-     * @param Command ĞèÒªÖ´ĞĞµÄÃüÁî(ÎŞĞè¼Ó'/')
+     * @param p è¯¥ç©å®¶
+     * @param command éœ€è¦æ‰§è¡Œçš„å‘½ä»¤(æ— éœ€åŠ '/')
      */
 
-    fun runWithoutPermission(p: Player, Command: String) {
+    fun runWithoutPermission(p: Player, command: String) {
 
-        var Command = Command
+
         if (!p.isOp) {
             try {
                 p.isOp = true
-                p.performCommand(Command)
+                p.performCommand(command)
             } catch (e: Exception) {
                 p.sendMessage("error$e")
                 return
@@ -28,16 +28,16 @@ object CXCommand {
                 p.isOp = false
             }
         } else {
-            p.performCommand(Command)
+            p.performCommand(command)
         }
     }
 
     /**
      * Send command to console
      *
-     * @param Command ·şÎñÆ÷ºóÌ¨Ö´ĞĞµÄ´úÂë(ÎŞĞè¼Ó'/')
+     * @param command æœåŠ¡å™¨åå°æ‰§è¡Œçš„ä»£ç (æ— éœ€åŠ '/')
      */
-    fun sendCommandToConsole(Command: String) {
-        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), Command)
+    fun sendCommandToConsole(command: String) {
+        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), command)
     }
 }

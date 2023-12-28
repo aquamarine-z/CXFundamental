@@ -2,10 +2,10 @@ package cxplugins.cxfundamental.minecraft.server.nms
 
 object NMSHelper {
     /**
-     * Í¨¹ıÀàÃû·´Éä»ñÈ¡Ä³Ò»¸ö´¦ÓÚnet.minecraft.serverÖĞµÄÀà
+     * é€šè¿‡ç±»ååå°„è·å–æŸä¸€ä¸ªå¤„äºnet.minecraft.serverä¸­çš„ç±»
      *
-     * @param className ÀàÃû
-     * @return ´ËÀà
+     * @param className ç±»å
+     * @return æ­¤ç±»
      */
     @JvmStatic
     fun getNMSClass(className: String): Class<*> {

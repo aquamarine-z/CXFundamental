@@ -9,8 +9,9 @@ import org.bukkit.entity.Player
 import java.util.*
 
 /**
- * ¼ò»¯¶ÔÃüÁî´¦ÀíµÄÀà
+ * ç®€åŒ–å¯¹å‘½ä»¤å¤„ç†çš„ç±»
  */
+@Deprecated("Use CPMLCommandExecutor Instead")
 object CXCommandRunner {
     var onlinePlayerNotFound = "Player Not Found"
     var playerNotFound = "Player Not Found"
@@ -20,10 +21,10 @@ object CXCommandRunner {
     var argsMap: MutableMap<String?, String> = HashMap()
 
     /**
-     * Ìí¼Ó(×¢²á)Ò»¸öĞÂÃüÁî//
-     * @param name ¸ÃÃüÁî (ÎŞĞè"/")
-     * @param args ¸ÃÃüÁîµÄ²ÎÊı ÓÃ"[]"À¨ÆğÀ´ ÓĞ¶à¸ö²ÎÊıÔòÓÃ¿Õ¸ñ·Ö¸ô Èç¹û²ÎÊıÊÇÔÚÏßÍæ¼ÒµÄ»°Ê¹ÓÃ"[OnlinePlayer]" Íæ¼ÒÊ¹ÓÃ"[Player]" ÊÀ½çÊ¹ÓÃ"[World]" ÆäËû²ÎÊıÇëÊ¹ÓÃ"[Other]"
-     * @param action ´¥·¢¸ÃÃüÁîÖ®ºóĞèÒªÖ´ĞĞµÄ¶¯×÷
+     * æ·»åŠ (æ³¨å†Œ)ä¸€ä¸ªæ–°å‘½ä»¤//
+     * @param name è¯¥å‘½ä»¤ (æ— éœ€"/")
+     * @param args è¯¥å‘½ä»¤çš„å‚æ•° ç”¨"[]"æ‹¬èµ·æ¥ æœ‰å¤šä¸ªå‚æ•°åˆ™ç”¨ç©ºæ ¼åˆ†éš” å¦‚æœå‚æ•°æ˜¯åœ¨çº¿ç©å®¶çš„è¯ä½¿ç”¨"[OnlinePlayer]" ç©å®¶ä½¿ç”¨"[Player]" ä¸–ç•Œä½¿ç”¨"[World]" å…¶ä»–å‚æ•°è¯·ä½¿ç”¨"[Other]"
+     * @param action è§¦å‘è¯¥å‘½ä»¤ä¹‹åéœ€è¦æ‰§è¡Œçš„åŠ¨ä½œ
      */
     fun addCommand(name: String?, args: String, action: CXCommandAction) {
         actionMap[name] = action
@@ -31,11 +32,11 @@ object CXCommandRunner {
     }
 
     /**
-     * ¶ÔJavaPlugin.OnCommandµÄÃüÁî½øĞĞ´¦Àí
-     * @param sender OnCommandµÄsender²ÎÊı
-     * @param cmd OnCommandµÄcmd²ÎÊı
-     * @param label OnCommandµÄlabel²ÎÊı
-     * @param args OnCommandµÄargs²ÎÊı
+     * å¯¹JavaPlugin.OnCommandçš„å‘½ä»¤è¿›è¡Œå¤„ç†
+     * @param sender OnCommandçš„senderå‚æ•°
+     * @param cmd OnCommandçš„cmdå‚æ•°
+     * @param label OnCommandçš„labelå‚æ•°
+     * @param args OnCommandçš„argså‚æ•°
      */
     fun runCommand(sender: CommandSender?, cmd: Command, label: String?, args: Array<String>): Boolean {
         var commandLine = cmd.name

@@ -3,20 +3,20 @@ package cxplugins.cxfundamental.minecraft.server
 import java.util.*
 
 /**
- * ÎªÒ»Ğ©Ëæ»úĞÔÎÊÌâÌá¹©µÄÀà
+ * ä¸ºä¸€äº›éšæœºæ€§é—®é¢˜æä¾›çš„ç±»
  *
  */
 class CXRandom {
 
     /**
-     * ¾²Ì¬·½·¨
+     * é™æ€æ–¹æ³•
      *
      */
     companion object {
         /**
-         * ´ÓÁĞ±íÖĞËæ»ú³é³öÒ»¶¨ÊıÁ¿µÄÔªËØ
-         *  @param EList ´ËÁĞ±í
-         *  @param Amount ³é³öµÄÊıÁ¿
+         * ä»åˆ—è¡¨ä¸­éšæœºæŠ½å‡ºä¸€å®šæ•°é‡çš„å…ƒç´ 
+         *  @param EList æ­¤åˆ—è¡¨
+         *  @param Amount æŠ½å‡ºçš„æ•°é‡
          */
         @JvmStatic
         fun <Value> randomList(EList: MutableList<Value>, Amount: Int): List<Value> {
@@ -38,10 +38,10 @@ class CXRandom {
         }
 
         /**
-         * Ëæ»úÒ»¸öÔÚÄ³¸ö·¶Î§¼äµÄÕûÊı
+         * éšæœºä¸€ä¸ªåœ¨æŸä¸ªèŒƒå›´é—´çš„æ•´æ•°
          *
-         * @param min ·¶Î§×îĞ¡Öµ
-         * @param max ·¶Î§×î´óÖµ
+         * @param min èŒƒå›´æœ€å°å€¼
+         * @param max èŒƒå›´æœ€å¤§å€¼
          * @return
          */
         @JvmStatic
@@ -50,10 +50,10 @@ class CXRandom {
         }
 
         /**
-         * Ëæ»úÒ»¸öÔÚÄ³¸ö·¶Î§¼äµÄÊı
+         * éšæœºä¸€ä¸ªåœ¨æŸä¸ªèŒƒå›´é—´çš„æ•°
          *
-         * @param min ·¶Î§×îĞ¡Öµ
-         * @param max ·¶Î§×î´óÖµ
+         * @param min èŒƒå›´æœ€å°å€¼
+         * @param max èŒƒå›´æœ€å¤§å€¼
          * @return
          */
         @JvmStatic
@@ -62,10 +62,10 @@ class CXRandom {
         }
 
         /**
-         * Ä£ÄâÒ»´Î³é½±²Ù×÷
+         * æ¨¡æ‹Ÿä¸€æ¬¡æŠ½å¥–æ“ä½œ
          *
-         * @param Probability ¸ÅÂÊ
-         * @return Èô³éÖĞ Ôò·µ»Øtrue ·ñÔò·µ»Øfalse
+         * @param Probability æ¦‚ç‡
+         * @return è‹¥æŠ½ä¸­ åˆ™è¿”å›true å¦åˆ™è¿”å›false
          */
         @JvmStatic
         fun lottery(Probability: Double): Boolean {

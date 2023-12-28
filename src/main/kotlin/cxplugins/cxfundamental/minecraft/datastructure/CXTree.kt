@@ -3,29 +3,29 @@ package cxplugins.cxfundamental.minecraft.datastructure
 import java.io.File
 
 /**
- * ÎªÊµÏÖÊ÷×´½á¹¹Ìá¹©µÄÀà
+ * ä¸ºå®ç°æ ‘çŠ¶ç»“æ„æä¾›çš„ç±»
  *
- * @param ValueClass ÖµµÄÀà
- * @property value ´Ë½Úµã±£´æµÄÖµ
- * @constructor ĞÂ½¨Ò»¸öÊ÷¸ù»ò½Úµã
+ * @param ValueClass å€¼çš„ç±»
+ * @property value æ­¤èŠ‚ç‚¹ä¿å­˜çš„å€¼
+ * @constructor æ–°å»ºä¸€ä¸ªæ ‘æ ¹æˆ–èŠ‚ç‚¹
  */
 class CXTree<ValueClass>(var value: ValueClass?) {
     /**
-     * ×ÓÊ÷µÄÁĞ±í
+     * å­æ ‘çš„åˆ—è¡¨
      */
     private var son: MutableList<CXTree<ValueClass>>? = null
 
     /**
-     * ¸¸½Úµã
+     * çˆ¶èŠ‚ç‚¹
      */
     private var father: CXTree<ValueClass>? = null
 
     /**
-     * ×Ó½ÚµãµÄÉî¶È
+     * å­èŠ‚ç‚¹çš„æ·±åº¦
      */
     val sonDepth: Int
         /**
-         * »ñÈ¡×Ó½ÚµãµÄÉî¶È
+         * è·å–å­èŠ‚ç‚¹çš„æ·±åº¦
          */
         get() {
             var maxSon = 0
@@ -37,27 +37,27 @@ class CXTree<ValueClass>(var value: ValueClass?) {
         }
 
     /**
-     * ×ÔÉíÏà¶ÔÓÚ¸ù½ÚµãµÄÉî¶È
+     * è‡ªèº«ç›¸å¯¹äºæ ¹èŠ‚ç‚¹çš„æ·±åº¦
      */
     val selfDepth: Int
         /**
-         * »ñÈ¡×ÔÉíÏà¶ÔÓÚ¸ù½ÚµãµÄÉî¶È
+         * è·å–è‡ªèº«ç›¸å¯¹äºæ ¹èŠ‚ç‚¹çš„æ·±åº¦
          */
         get() = if (this.father == null) 1 else this.father!!.selfDepth + 1
 
     /**
-     * ¸ù½Úµã
+     * æ ¹èŠ‚ç‚¹
      */
     val root: CXTree<ValueClass>
         /**
-         * »ñÈ¡¸ù½Úµã
+         * è·å–æ ¹èŠ‚ç‚¹
          */
         get() = if (this.father == null) this else this.father!!.root
 
     init {
         this.son = ArrayList()
         this.father = null
-    }// TODO ×Ô¶¯Éú³ÉµÄ¹¹Ôìº¯Êı´æ¸ù
+    }// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ„é€ å‡½æ•°å­˜æ ¹
 
     override fun hashCode(): Int {
         return this.value!!.hashCode()
@@ -70,18 +70,18 @@ class CXTree<ValueClass>(var value: ValueClass?) {
     }
 
     /**
-     * ÉèÖÃËùÓĞ×ÓÊ÷
+     * è®¾ç½®æ‰€æœ‰å­æ ‘
      *
-     * @param arg0 ËùÓĞ×ÓÊ÷
+     * @param arg0 æ‰€æœ‰å­æ ‘
      */
     fun setSons(arg0: MutableList<CXTree<ValueClass>>) {
         this.son = arg0
     }
 
     /**
-     * Ìí¼Ó×ÓÊ÷
+     * æ·»åŠ å­æ ‘
      *
-     * @param arg0 Ìí¼ÓµÄ×ÓÊ÷
+     * @param arg0 æ·»åŠ çš„å­æ ‘
      */
     fun addSon(arg0: CXTree<ValueClass>) {
         arg0.father = this
@@ -89,16 +89,16 @@ class CXTree<ValueClass>(var value: ValueClass?) {
     }
 
     /**
-     * »ñÈ¡ËùÓĞ×ÓÊ÷
+     * è·å–æ‰€æœ‰å­æ ‘
      *
-     * @return ×ÓÊ÷µÄÁĞ±í
+     * @return å­æ ‘çš„åˆ—è¡¨
      */
     fun getSons(): List<CXTree<ValueClass>>? {
         return this.son
     }
 
     /**
-     * Î´Íê¹¤µÄ·½·¨ Éî¶ÈÓÅÏÈËÑË÷±éÀú´ËÊ÷
+     * æœªå®Œå·¥çš„æ–¹æ³• æ·±åº¦ä¼˜å…ˆæœç´¢éå†æ­¤æ ‘
      *
      */
     fun depthFirstSearch() {
@@ -107,10 +107,10 @@ class CXTree<ValueClass>(var value: ValueClass?) {
 
     companion object {
         /**
-         * ÒÔÊ÷µÄ½á¹¹´ò¿ªÄ³Ò»¸öÎÄ¼ş¼Ğ
+         * ä»¥æ ‘çš„ç»“æ„æ‰“å¼€æŸä¸€ä¸ªæ–‡ä»¶å¤¹
          *
-         * @param name ÎÄ¼ş¼ĞÂ·¾¶
-         * @return °üº¬ËùÓĞÎÄ¼şµÄÊ÷
+         * @param name æ–‡ä»¶å¤¹è·¯å¾„
+         * @return åŒ…å«æ‰€æœ‰æ–‡ä»¶çš„æ ‘
          */
         fun openDictoryAsTree(name: File): CXTree<File> {
             val file = CXTree(name)

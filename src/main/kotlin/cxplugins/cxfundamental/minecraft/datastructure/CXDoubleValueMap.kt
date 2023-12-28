@@ -1,36 +1,36 @@
 package cxplugins.cxfundamental.minecraft.datastructure
 
 /**
- * ÎªÊµÏÖË«Öµ×ÖµäÌá¹©µÄÀà
+ * ä¸ºå®ç°åŒå€¼å­—å…¸æä¾›çš„ç±»
  *
- * @param Key ¼üµÄÀàĞÍ
- * @param Value1 Öµ1µÄÀàĞÍ
- * @param Value2 Öµ2µÄÀàĞÍ
- * @constructor ´´½¨Ë«Öµ×Öµä
+ * @param Key é”®çš„ç±»å‹
+ * @param Value1 å€¼1çš„ç±»å‹
+ * @param Value2 å€¼2çš„ç±»å‹
+ * @constructor åˆ›å»ºåŒå€¼å­—å…¸
  */
 class CXDoubleValueMap<Key, Value1, Value2> {
     /**
-     * Öµ1µÄ×Öµä
+     * å€¼1çš„å­—å…¸
      */
     internal var value1Map: HashMap<Key, Value1>? = null
 
     /**
-     * Öµ2µÄ×Öµä
+     * å€¼2çš„å­—å…¸
      */
     internal var value2Map: HashMap<Key, Value2>? = null
 
     init {
         value1Map = HashMap()
         value2Map = HashMap()
-        // TODO ×Ô¶¯Éú³ÉµÄ¹¹Ôìº¯Êı´æ¸ù
+        // TODO è‡ªåŠ¨ç”Ÿæˆçš„æ„é€ å‡½æ•°å­˜æ ¹
     }
 
     /**
-     * Ìí¼Ó¼ü-Öµ¶Ô
+     * æ·»åŠ é”®-å€¼å¯¹
      *
-     * @param key ¼ü
-     * @param value1 Öµ1
-     * @param value2 Öµ2
+     * @param key é”®
+     * @param value1 å€¼1
+     * @param value2 å€¼2
      */
     fun put(key: Key, value1: Value1, value2: Value2) {
         value1Map!!.put(key, value1)
@@ -38,20 +38,20 @@ class CXDoubleValueMap<Key, Value1, Value2> {
     }
 
     /**
-     * »ñÈ¡Öµ1
+     * è·å–å€¼1
      *
-     * @param key ¼ü
-     * @return Öµ1µÄÖµ
+     * @param key é”®
+     * @return å€¼1çš„å€¼
      */
     fun getFirstValue(key: Key): Value1? {
         return value1Map!![key]
     }
 
     /**
-     * »ñÈ¡Öµ2
+     * è·å–å€¼2
      *
-     * @param key ¼ü
-     * @return Öµ2µÄÖµ
+     * @param key é”®
+     * @return å€¼2çš„å€¼
      */
     fun getSecondValue(key: Key): Value2? {
         return value2Map!![key]

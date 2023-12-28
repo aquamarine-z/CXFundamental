@@ -8,5 +8,7 @@ interface SwingContainer : SwingComponent {
     fun getComponents(position: Vector2I): Array<SwingComponent>
     fun resize(width: Int, height: Int)
     fun setBounds(x: Int, y: Int, w: Int, h: Int)
+    fun getElementById(id: String): SwingComponent?
+    fun containsElementWithId(id: String): Boolean
 
 }

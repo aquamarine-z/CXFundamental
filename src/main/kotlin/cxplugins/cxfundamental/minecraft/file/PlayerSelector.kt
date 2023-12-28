@@ -3,7 +3,7 @@ package cxplugins.cxfundamental.minecraft.file
 import org.bukkit.entity.Player
 
 /**
- * Î´Íê¹¤µÄÀà ±íÊ¾ÒªĞŞ¸ÄËùÓĞÍæ¼ÒÎÄ¼şÊ±Íæ¼ÒµÄÑ¡ÔñÆ÷
+ * æœªå®Œå·¥çš„ç±» è¡¨ç¤ºè¦ä¿®æ”¹æ‰€æœ‰ç©å®¶æ–‡ä»¶æ—¶ç©å®¶çš„é€‰æ‹©å™¨
  */
 interface PlayerSelector {
 

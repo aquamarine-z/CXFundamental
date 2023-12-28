@@ -17,7 +17,7 @@ import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.scheduler.BukkitRunnable
 
 /**
- * µ±Íæ¼Ò»Ø´ğ´ËÎÊÌâÊ±µÄ²Ù×÷
+ * å½“ç©å®¶å›ç­”æ­¤é—®é¢˜æ—¶çš„æ“ä½œ
  *
  */
 interface QuestionAction {
@@ -37,9 +37,9 @@ class QuestionListener : Listener {
 }
 
 /**
- * Ñ¯ÎÊÒ»¸öÍæ¼ÒÎÊÌâ
- * @param question ÎÊÌâµÄÄÚÈİ
- * @param action Íæ¼Ò»Ø´ğºóµÄ²Ù×÷
+ * è¯¢é—®ä¸€ä¸ªç©å®¶é—®é¢˜
+ * @param question é—®é¢˜çš„å†…å®¹
+ * @param action ç©å®¶å›ç­”åçš„æ“ä½œ
  */
 fun HumanEntity.askQuestion(question: String, action: QuestionAction) {
     this.setMetadata("question.action", FixedMetadataValue(CXFundamentalMain.pluginMain, action))
@@ -47,9 +47,9 @@ fun HumanEntity.askQuestion(question: String, action: QuestionAction) {
 }
 
 /**
- * Ñ¯ÎÊÒ»¸öÍæ¼ÒÎÊÌâ
- * @param question ÎÊÌâµÄÄÚÈİ
- * @param lambda Íæ¼Ò»Ø´ğºóµÄ²Ù×÷
+ * è¯¢é—®ä¸€ä¸ªç©å®¶é—®é¢˜
+ * @param question é—®é¢˜çš„å†…å®¹
+ * @param lambda ç©å®¶å›ç­”åçš„æ“ä½œ
  */
 fun HumanEntity.askQuestion(question: String, lambda: (String) -> Unit) {
     var action = object : QuestionAction {
@@ -61,10 +61,10 @@ fun HumanEntity.askQuestion(question: String, lambda: (String) -> Unit) {
 }
 
 /**
- * Ê¹Ò»¸öHumanEntityÍ¬²½´ò¿ªÒ»¸öÈİÆ÷Inventory
- * ¿ÉÒÔÔÚÒì²½Ïß³ÌÖĞµ÷ÓÃ
- * @param inventory Òª´ò¿ªµÄÈİÆ÷
- * @param plugin Ö´ĞĞ´ò¿ªÈİÆ÷²Ù×÷µÄ²å¼ş
+ * ä½¿ä¸€ä¸ªHumanEntityåŒæ­¥æ‰“å¼€ä¸€ä¸ªå®¹å™¨Inventory
+ * å¯ä»¥åœ¨å¼‚æ­¥çº¿ç¨‹ä¸­è°ƒç”¨
+ * @param inventory è¦æ‰“å¼€çš„å®¹å™¨
+ * @param plugin æ‰§è¡Œæ‰“å¼€å®¹å™¨æ“ä½œçš„æ’ä»¶
  */
 fun HumanEntity.openInventorySynchronously(inventory: Inventory, plugin: JavaPlugin) {
     var thread = object : BukkitRunnable() {
@@ -89,7 +89,7 @@ fun HumanEntity.openInventorySynchronously(inventory: Inventory, plugin: JavaPlu
     this.openInventory(frame.asInventory())
 }*/
 /**
- * Ê¹Ò»¸öÈËÀàÊµÌå¹Ø±Õ´ò¿ªµÄ´°¿Ú
+ * ä½¿ä¸€ä¸ªäººç±»å®ä½“å…³é—­æ‰“å¼€çš„çª—å£
  */
 fun HumanEntity.closeFrame() {
     this.closeInventory()
@@ -102,8 +102,8 @@ fun HumanEntity.closeFrame() {
 }
 
 /**
- * Ê¹Ò»¸öÈËÀàÊµÌå´ò¿ªÒ»¸öµÄ´°¿Ú
- * @param frame Òª´ò¿ªµÄ´°¿Ú
+ * ä½¿ä¸€ä¸ªäººç±»å®ä½“æ‰“å¼€ä¸€ä¸ªçš„çª—å£
+ * @param frame è¦æ‰“å¼€çš„çª—å£
  */
 fun HumanEntity.openFrame(frame: CXFrame) {
     if (frame.mainPanel is CXMultipagePanel) {
@@ -126,7 +126,7 @@ fun HumanEntity.openFrame(frame: SwingFrame) {
 }
 
 /**
- * »ñÈ¡´ËÈËÀàÊµÌåÕıÔÚ´ò¿ªµÄ´°¿Ú
+ * è·å–æ­¤äººç±»å®ä½“æ­£åœ¨æ‰“å¼€çš„çª—å£
  */
 fun HumanEntity.getOpeningFrame(): CXFrame? {
     return if (this.hasMetadata("openingFrame")) {
@@ -140,7 +140,7 @@ fun HumanEntity.getOpeningFrame(): CXFrame? {
 }
 
 /**
- * ÉèÖÃ´ËÈËÀàÊµÌåÕıÔÚ´ò¿ªµÄ´°¿Ú
+ * è®¾ç½®æ­¤äººç±»å®ä½“æ­£åœ¨æ‰“å¼€çš„çª—å£
  */
 fun HumanEntity.setOpeningFrame(value: CXFrame?) {
     if (value == null) {
@@ -151,7 +151,7 @@ fun HumanEntity.setOpeningFrame(value: CXFrame?) {
 }
 
 /**
- * ¿ÉÒÔÔÚÒì²½Ïß³Ìµ÷ÓÃ Ê¹Ò»¸öÈËÀàÊµÌå´ò¿ª´°¿Ú
+ * å¯ä»¥åœ¨å¼‚æ­¥çº¿ç¨‹è°ƒç”¨ ä½¿ä¸€ä¸ªäººç±»å®ä½“æ‰“å¼€çª—å£
  */
 fun HumanEntity.openFrameSynchronously(frame: CXFrame, plugin: JavaPlugin) {
     var thread = object : BukkitRunnable() {

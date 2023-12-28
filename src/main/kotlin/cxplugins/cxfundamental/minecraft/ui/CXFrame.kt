@@ -1,19 +1,19 @@
 package cxplugins.cxfundamental.minecraft.ui
 
 /**
- * Ò»¸ö´°¿Ú ÀàËÆÓÚInventoryµÄ½çÃæ Ò»¸ö´°¿ÚÀïÃæ¿ÉÒÔ°üº¬Ò»¸öPanel»òÕßÒ»¸öMultipagePanel
+ * ä¸€ä¸ªçª—å£ ç±»ä¼¼äºInventoryçš„ç•Œé¢ ä¸€ä¸ªçª—å£é‡Œé¢å¯ä»¥åŒ…å«ä¸€ä¸ªPanelæˆ–è€…ä¸€ä¸ªMultipagePanel
  *
- * @property height ´°¿ÚµÄ¸ß¶È 1..6
+ * @property height çª—å£çš„é«˜åº¦ 1..6
  */
 open class CXFrame(internal var height: Int) {
     companion object {
         /**
-         * ²ÉÓÃKotlin DSLÀ´Éú³ÉÒ»¸ö´°¿ÚµÄ·½·¨
+         * é‡‡ç”¨Kotlin DSLæ¥ç”Ÿæˆä¸€ä¸ªçª—å£çš„æ–¹æ³•
          *
-         * @param height ¸ß¶È
-         * @param lambda DSLµÄLambda±í´ïÊ½
+         * @param height é«˜åº¦
+         * @param lambda DSLçš„Lambdaè¡¨è¾¾å¼
          * @receiver
-         * @return Éú³ÉµÄ´°¿Ú
+         * @return ç”Ÿæˆçš„çª—å£
          */
         @JvmStatic
         fun create(height: Int, lambda: CXFrame.() -> Unit): CXFrame {
@@ -24,15 +24,15 @@ open class CXFrame(internal var height: Int) {
     }
 
     /**
-     * ´Ë´°¿ÚµÄmainPanel Ö÷ÈİÆ÷ ¿ÉÒÔÎªmultipagepanel»òpanel
+     * æ­¤çª—å£çš„mainPanel ä¸»å®¹å™¨ å¯ä»¥ä¸ºmultipagepanelæˆ–panel
      */
     var mainPanel: Any? = null
 
     /**
-     * ²ÉÓÃKotlin DSLÀ´Éú³ÉÒ»¸ö´°¿ÚµÄ¹¹ÔìÆ÷
+     * é‡‡ç”¨Kotlin DSLæ¥ç”Ÿæˆä¸€ä¸ªçª—å£çš„æ„é€ å™¨
      *
-     * @param height ¸ß¶È
-     * @param lambda DSLµÄLambda±í´ïÊ½
+     * @param height é«˜åº¦
+     * @param lambda DSLçš„Lambdaè¡¨è¾¾å¼
      * @receiver
      */
     constructor(height: Int, lambda: CXFrame.() -> Unit) : this(height) {
@@ -40,10 +40,10 @@ open class CXFrame(internal var height: Int) {
     }
 
     /**
-     * Ê¹ÓÃDSLÀ´Éè¶¨´Ë´°¿ÚµÄpanelµÄ·½·¨
+     * ä½¿ç”¨DSLæ¥è®¾å®šæ­¤çª—å£çš„panelçš„æ–¹æ³•
      *
-     * @param title panelµÄ±êÌâ
-     * @param lambda DSLµÄLambda±í´ïÊ½
+     * @param title panelçš„æ ‡é¢˜
+     * @param lambda DSLçš„Lambdaè¡¨è¾¾å¼
      * @receiver
      */
     fun panel(title: String, lambda: CXPanel.() -> Unit) {
@@ -53,8 +53,8 @@ open class CXFrame(internal var height: Int) {
     }
 
     /**
-     * Ê¹ÓÃDSLÀ´Éè¶¨´Ë´°¿ÚµÄmultipagepanelµÄ·½·¨ ×¢Òâ multipagepanelÖĞ»¹ĞèÇ¶Ì×panel
-     * @param lambda DSLµÄLambda±í´ïÊ½
+     * ä½¿ç”¨DSLæ¥è®¾å®šæ­¤çª—å£çš„multipagepanelçš„æ–¹æ³• æ³¨æ„ multipagepanelä¸­è¿˜éœ€åµŒå¥—panel
+     * @param lambda DSLçš„Lambdaè¡¨è¾¾å¼
      * @receiver
      */
     fun multipagePanel(lambda: CXMultipagePanel.() -> Unit) {
@@ -68,9 +68,9 @@ open class CXFrame(internal var height: Int) {
     }
 
     /**
-     * ÉèÖÃ´Ë´°¿ÚµÄÖ÷ÈİÆ÷ÎªÒ»¸öÆÕÍ¨ÈİÆ÷
+     * è®¾ç½®æ­¤çª—å£çš„ä¸»å®¹å™¨ä¸ºä¸€ä¸ªæ™®é€šå®¹å™¨
      *
-     * @param panel Ö÷ÈİÆ÷ ¿ÉÒÔ°üº¬¸÷ÖÖ×é¼ş
+     * @param panel ä¸»å®¹å™¨ å¯ä»¥åŒ…å«å„ç§ç»„ä»¶
      */
     fun setPanel(panel: CXPanel) {
         if (panel.height > height) throw IllegalArgumentException()
@@ -78,9 +78,9 @@ open class CXFrame(internal var height: Int) {
     }
 
     /**
-     * ÉèÖÃ´Ë´°¿ÚµÄÖ÷ÈİÆ÷ÎªÒ»¸ö¶àÒ³ÈİÆ÷
+     * è®¾ç½®æ­¤çª—å£çš„ä¸»å®¹å™¨ä¸ºä¸€ä¸ªå¤šé¡µå®¹å™¨
      *
-     * @param panel Ö÷ÈİÆ÷ ¿ÉÒÔ°üº¬¸÷ÖÖ×é¼ş
+     * @param panel ä¸»å®¹å™¨ å¯ä»¥åŒ…å«å„ç§ç»„ä»¶
      */
     fun setPanel(panel: CXMultipagePanel) {
         if (panel.height > height) throw IllegalArgumentException()
@@ -88,9 +88,9 @@ open class CXFrame(internal var height: Int) {
     }
 
     /**
-     * »ñÈ¡´Ë´°¿ÚµÄÖ÷ÈİÆ÷
+     * è·å–æ­¤çª—å£çš„ä¸»å®¹å™¨
      *
-     * @return ´Ë´°¿ÚµÄÖ÷ÈİÆ÷
+     * @return æ­¤çª—å£çš„ä¸»å®¹å™¨
      */
     fun getPanel(): Any? {
         return mainPanel

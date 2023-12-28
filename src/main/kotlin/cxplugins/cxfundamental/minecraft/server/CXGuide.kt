@@ -1,19 +1,19 @@
 package cxplugins.cxfundamental.minecraft.server
 
 /**
- * Ìá¹©ÁËÒ»Ğ©¹ØÓÚ¸Ã°æ±¾CXFundamentalµÄ»ù´¡ĞÅÏ¢µÄÀà
+ * æä¾›äº†ä¸€äº›å…³äºè¯¥ç‰ˆæœ¬CXFundamentalçš„åŸºç¡€ä¿¡æ¯çš„ç±»
  */
 object CXGuide {
     @JvmStatic
             /**
-             * ´Ë²å¼şµÄ°æ±¾ºÅ
+             * æ­¤æ’ä»¶çš„ç‰ˆæœ¬å·
              */
     val version: String
-        get() = "Version: CXFundamental 1.6.3"
+        get() = "Version: CXFundamental 1.6.5-Unstable"
 
     @JvmStatic
             /**
-             * ´Ë°æ±¾ĞÂÔöµÄ·½·¨
+             * æ­¤ç‰ˆæœ¬æ–°å¢çš„æ–¹æ³•
              */
     val newMethods: List<String>
         get() {
@@ -23,7 +23,7 @@ object CXGuide {
 
     @JvmStatic
             /**
-             * ´Ë°æ±¾ÓĞËùĞŞ¸ÄµÄ·½·¨
+             * æ­¤ç‰ˆæœ¬æœ‰æ‰€ä¿®æ”¹çš„æ–¹æ³•
              */
     val changedMethods: List<String>
         get() {
@@ -34,7 +34,7 @@ object CXGuide {
 
     @JvmStatic
             /**
-             * ´Ë°æ±¾µÄ¼òÂÔ½éÉÜ
+             * æ­¤ç‰ˆæœ¬çš„ç®€ç•¥ä»‹ç»
              */
     val newVersionDescription: String
         get() {

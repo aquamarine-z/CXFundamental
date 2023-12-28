@@ -3,18 +3,18 @@ package cxplugins.cxfundamental.minecraft.kotlindsl
 import cxplugins.cxfundamental.minecraft.server.CXColor
 
 /**
- * ½«×Ö·û´®ÖĞµÄ'&'×ª»»ÎªÑÕÉ«´úÂë'¡ì'
+ * å°†å­—ç¬¦ä¸²ä¸­çš„'&'è½¬æ¢ä¸ºé¢œè‰²ä»£ç 'Â§'
  *
- * @return ×ª»»ºóµÄ×Ö·û´®
+ * @return è½¬æ¢åçš„å­—ç¬¦ä¸²
  */
 fun String.toColor(): String {
     return CXColor.toColor(this)
 }
 
 /**
- * ½«ListÖĞµÄ'&'×ª»»ÎªÑÕÉ«´úÂë'¡ì'
+ * å°†Listä¸­çš„'&'è½¬æ¢ä¸ºé¢œè‰²ä»£ç 'Â§'
  *
- * @return ×ª»»ºóµÄ×Ö·û´®
+ * @return è½¬æ¢åçš„å­—ç¬¦ä¸²
  */
 fun List<String>.toColor(): List<String> {
     var list = this.toMutableList()

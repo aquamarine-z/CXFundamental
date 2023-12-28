@@ -9,22 +9,22 @@ import org.bukkit.entity.Player
 * static getPointNameList()
 * static hasPoint()*/
 /**
- * ²Ù×÷Íæ¼ÒÒøĞĞÕË»§ÒÔ¼°»õ±ÒÁĞ±íµÄÀà
+ * æ“ä½œç©å®¶é“¶è¡Œè´¦æˆ·ä»¥åŠè´§å¸åˆ—è¡¨çš„ç±»
  */
 class CXEconomy {
 
     /**
-     * ¾²Ì¬·½·¨
+     * é™æ€æ–¹æ³•
      */
     companion object {
         /**
-         * ±íÊ¾´Ë·şÎñÆ÷ÒÑ´´½¨µÄËùÓĞ»õ±ÒÃûµÄÁĞ±í
+         * è¡¨ç¤ºæ­¤æœåŠ¡å™¨å·²åˆ›å»ºçš„æ‰€æœ‰è´§å¸åçš„åˆ—è¡¨
          */
 
         @JvmStatic
         val pointNameList: ArrayList<String>
             /**
-             * »ñÈ¡´Ë·şÎñÆ÷ÒÑ´´½¨µÄËùÓĞ»õ±ÒÃûµÄÁĞ±í
+             * è·å–æ­¤æœåŠ¡å™¨å·²åˆ›å»ºçš„æ‰€æœ‰è´§å¸åçš„åˆ—è¡¨
              */
             get() {
 
@@ -36,11 +36,11 @@ class CXEconomy {
             }
 
         /**
-         * ¿Û³ıÄ³¸öÍæ¼ÒÒ»¶¨µÄÄ³ÖÖ»õ±Ò
-         * @param arg0 Íæ¼ÒÃû×Ö
-         * @param arg1 »õ±ÒÃû³Æ
-         * @param arg2 ¿Û³ı½ğ¶î
-         * @return ÊÇ·ñ¿Û³ı³É¹¦
+         * æ‰£é™¤æŸä¸ªç©å®¶ä¸€å®šçš„æŸç§è´§å¸
+         * @param arg0 ç©å®¶åå­—
+         * @param arg1 è´§å¸åç§°
+         * @param arg2 æ‰£é™¤é‡‘é¢
+         * @return æ˜¯å¦æ‰£é™¤æˆåŠŸ
          */
         @JvmStatic
         fun cost(arg0: String, arg1: String, arg2: Double): Boolean {
@@ -62,11 +62,11 @@ class CXEconomy {
         }
 
         /**
-         * ¿Û³ıÄ³¸öÍæ¼ÒÒ»¶¨µÄÄ³ÖÖ»õ±Ò
-         * @param arg0 Íæ¼Ò
-         * @param arg1 »õ±ÒÃû³Æ
-         * @param arg2 ¿Û³ı½ğ¶î
-         * @return ÊÇ·ñ¿Û³ı³É¹¦
+         * æ‰£é™¤æŸä¸ªç©å®¶ä¸€å®šçš„æŸç§è´§å¸
+         * @param arg0 ç©å®¶
+         * @param arg1 è´§å¸åç§°
+         * @param arg2 æ‰£é™¤é‡‘é¢
+         * @return æ˜¯å¦æ‰£é™¤æˆåŠŸ
          */
         @JvmStatic
         fun cost(arg0: Player, arg1: String, arg2: Double): Boolean {
@@ -75,11 +75,11 @@ class CXEconomy {
         }
 
         /**
-         * ¸øÓèÄ³¸öÍæ¼ÒÒ»¶¨µÄÄ³ÖÖ»õ±Ò
-         * @param arg0 Íæ¼ÒÃû×Ö
-         * @param arg1 »õ±ÒÃû³Æ
-         * @param arg2 »õ±Ò½ğ¶î
-         * @return ÊÇ·ñ¸øÓè³É¹¦
+         * ç»™äºˆæŸä¸ªç©å®¶ä¸€å®šçš„æŸç§è´§å¸
+         * @param arg0 ç©å®¶åå­—
+         * @param arg1 è´§å¸åç§°
+         * @param arg2 è´§å¸é‡‘é¢
+         * @return æ˜¯å¦ç»™äºˆæˆåŠŸ
          */
         @JvmStatic
         fun give(arg0: String, arg1: String, arg2: Double): Boolean {
@@ -98,11 +98,11 @@ class CXEconomy {
         }
 
         /**
-         * ÉèÖÃÄ³¸öÍæ¼ÒÒ»¶¨µÄÄ³ÖÖ»õ±Ò
-         * @param arg0 Íæ¼ÒÃû×Ö
-         * @param arg1 »õ±ÒÃû³Æ
-         * @param arg2 »õ±Ò½ğ¶î
-         * @return ÊÇ·ñÉèÖÃ³É¹¦
+         * è®¾ç½®æŸä¸ªç©å®¶ä¸€å®šçš„æŸç§è´§å¸
+         * @param arg0 ç©å®¶åå­—
+         * @param arg1 è´§å¸åç§°
+         * @param arg2 è´§å¸é‡‘é¢
+         * @return æ˜¯å¦è®¾ç½®æˆåŠŸ
          */
         @JvmStatic
         fun set(arg0: String, arg1: String, arg2: Double): Boolean {
@@ -122,11 +122,11 @@ class CXEconomy {
         }
 
         /**
-         * ÉèÖÃÄ³¸öÍæ¼ÒÒ»¶¨µÄÄ³ÖÖ»õ±Ò
-         * @param arg0 Íæ¼Ò
-         * @param arg1 »õ±ÒÃû³Æ
-         * @param arg2 »õ±Ò½ğ¶î
-         * @return ÊÇ·ñÉèÖÃ³É¹¦
+         * è®¾ç½®æŸä¸ªç©å®¶ä¸€å®šçš„æŸç§è´§å¸
+         * @param arg0 ç©å®¶
+         * @param arg1 è´§å¸åç§°
+         * @param arg2 è´§å¸é‡‘é¢
+         * @return æ˜¯å¦è®¾ç½®æˆåŠŸ
          */
         @JvmStatic
         fun set(arg0: Player, arg1: String, arg2: Double): Boolean {
@@ -134,11 +134,11 @@ class CXEconomy {
         }
 
         /**
-         * ¸øÓèÄ³¸öÍæ¼ÒÒ»¶¨µÄÄ³ÖÖ»õ±Ò
-         * @param arg0 Íæ¼Ò
-         * @param arg1 »õ±ÒÃû³Æ
-         * @param arg2 »õ±Ò½ğ¶î
-         * @return ÊÇ·ñ¸øÓè³É¹¦
+         * ç»™äºˆæŸä¸ªç©å®¶ä¸€å®šçš„æŸç§è´§å¸
+         * @param arg0 ç©å®¶
+         * @param arg1 è´§å¸åç§°
+         * @param arg2 è´§å¸é‡‘é¢
+         * @return æ˜¯å¦ç»™äºˆæˆåŠŸ
          */
         @JvmStatic
         fun give(arg0: Player, arg1: String, arg2: Double): Boolean {
@@ -147,9 +147,9 @@ class CXEconomy {
         }
 
         /**
-         * ÅĞ¶Ï·şÎñÆ÷ÄÚÊÇ·ñ´´½¨ÁËÄ³ÖÖ»õ±Ò
-         * @param arg0 »õ±ÒÃû³Æ
-         * @return Èô´æÔÚ ·µ»Øtrue ·ñÔò·µ»Øfalse
+         * åˆ¤æ–­æœåŠ¡å™¨å†…æ˜¯å¦åˆ›å»ºäº†æŸç§è´§å¸
+         * @param arg0 è´§å¸åç§°
+         * @return è‹¥å­˜åœ¨ è¿”å›true å¦åˆ™è¿”å›false
          */
         @JvmStatic
         fun hasPoint(arg0: String): Boolean {
@@ -160,10 +160,10 @@ class CXEconomy {
         }
 
         /**
-         * É¾³ıÒÑ¾­´´½¨µÄÄ³ÖÖ»õ±Ò
+         * åˆ é™¤å·²ç»åˆ›å»ºçš„æŸç§è´§å¸
          *
-         * @param arg0 »õ±ÒÃû×Ö
-         * @return ÊÇ·ñÉ¾³ı³É¹¦ ³É¹¦Ôò·µ»Øtrue ·ñÔò·µ»Øfalse
+         * @param arg0 è´§å¸åå­—
+         * @return æ˜¯å¦åˆ é™¤æˆåŠŸ æˆåŠŸåˆ™è¿”å›true å¦åˆ™è¿”å›false
          */
         @JvmStatic
         fun delete(arg0: String): Boolean {
@@ -181,11 +181,11 @@ class CXEconomy {
         }
 
         /**
-         * ÉèÖÃÄ³ÖÖ»õ±ÒÄÜ·ñÖ§¸¶¸øÆäËûÍæ¼Ò
+         * è®¾ç½®æŸç§è´§å¸èƒ½å¦æ”¯ä»˜ç»™å…¶ä»–ç©å®¶
          *
-         * @param arg0 »õ±ÒÃû×Ö
-         * @param arg1 ÄÜ·ñ±»Ö§¸¶
-         * @return ÊÇ·ñÉèÖÃ³É¹¦ ³É¹¦Ôò·µ»Øtrue ·ñÔò·µ»Øfalse
+         * @param arg0 è´§å¸åå­—
+         * @param arg1 èƒ½å¦è¢«æ”¯ä»˜
+         * @return æ˜¯å¦è®¾ç½®æˆåŠŸ æˆåŠŸåˆ™è¿”å›true å¦åˆ™è¿”å›false
          */
         @JvmStatic
         fun setPayable(arg0: String, arg1: Boolean): Boolean {
@@ -203,10 +203,10 @@ class CXEconomy {
         }
 
         /**
-         * ÅĞ¶ÏÄ³ÖÖ»õ±ÒÄÜ·ñÖ§¸¶¸øÆäËûÍæ¼Ò
+         * åˆ¤æ–­æŸç§è´§å¸èƒ½å¦æ”¯ä»˜ç»™å…¶ä»–ç©å®¶
          *
-         * @param arg0 »õ±ÒÃû×Ö
-         * @return ÊÇ·ñÄÜ¹»Ö§¸¶ ÄÜÔò·µ»Øtrue ²»ÄÜ·µ»Øfalse
+         * @param arg0 è´§å¸åå­—
+         * @return æ˜¯å¦èƒ½å¤Ÿæ”¯ä»˜ èƒ½åˆ™è¿”å›true ä¸èƒ½è¿”å›false
          */
         @JvmStatic
         fun getPayable(arg0: String): Boolean {
@@ -218,11 +218,11 @@ class CXEconomy {
         }
 
         /**
-         * ´´½¨Ä³ÖÖ»õ±Ò
+         * åˆ›å»ºæŸç§è´§å¸
          *
-         * @param arg0 »õ±ÒÃû×Ö
-         * @param arg1 ÄÜ·ñ±»Ö§¸¶
-         * @return ÊÇ·ñ´´½¨³É¹¦ ³É¹¦·µ»Øtrue ·ñÔò·µ»Øfalse
+         * @param arg0 è´§å¸åå­—
+         * @param arg1 èƒ½å¦è¢«æ”¯ä»˜
+         * @return æ˜¯å¦åˆ›å»ºæˆåŠŸ æˆåŠŸè¿”å›true å¦åˆ™è¿”å›false
          */
         @JvmStatic
         fun create(arg0: String, arg1: Boolean = false): Boolean {
@@ -237,13 +237,13 @@ class CXEconomy {
         }
 
         /**
-         * ½«Ä³¸öÍæ¼ÒµÄÒ»¶¨ÊıÁ¿µÄÄ³ÖÖ»õ±ÒÖ§¸¶¸øÁíÍâÒ»¸öÍæ¼Ò
+         * å°†æŸä¸ªç©å®¶çš„ä¸€å®šæ•°é‡çš„æŸç§è´§å¸æ”¯ä»˜ç»™å¦å¤–ä¸€ä¸ªç©å®¶
          *
-         * @param From Ö§¸¶µÄÍæ¼Ò
-         * @param To Ö§¸¶µÄÄ¿±ê
-         * @param PointName Ö§¸¶µÄ»õ±ÒÃû×Ö
-         * @param Amount ½ğ¶î
-         * @return ÊÇ·ñÖ§¸¶³É¹¦
+         * @param From æ”¯ä»˜çš„ç©å®¶
+         * @param To æ”¯ä»˜çš„ç›®æ ‡
+         * @param PointName æ”¯ä»˜çš„è´§å¸åå­—
+         * @param Amount é‡‘é¢
+         * @return æ˜¯å¦æ”¯ä»˜æˆåŠŸ
          */
         @JvmStatic
         fun pay(From: String, To: String, PointName: String, Amount: Double): Boolean {
@@ -265,13 +265,13 @@ class CXEconomy {
         }
 
         /**
-         * ½«Ä³¸öÍæ¼ÒµÄÒ»¶¨ÊıÁ¿µÄÄ³ÖÖ»õ±ÒÖ§¸¶¸øÁíÍâÒ»¸öÍæ¼Ò
+         * å°†æŸä¸ªç©å®¶çš„ä¸€å®šæ•°é‡çš„æŸç§è´§å¸æ”¯ä»˜ç»™å¦å¤–ä¸€ä¸ªç©å®¶
          *
-         * @param From Ö§¸¶µÄÍæ¼Ò
-         * @param To Ö§¸¶µÄÄ¿±ê
-         * @param PointName Ö§¸¶µÄ»õ±ÒÃû×Ö
-         * @param Amount ½ğ¶î
-         * @return ÊÇ·ñÖ§¸¶³É¹¦
+         * @param From æ”¯ä»˜çš„ç©å®¶
+         * @param To æ”¯ä»˜çš„ç›®æ ‡
+         * @param PointName æ”¯ä»˜çš„è´§å¸åå­—
+         * @param Amount é‡‘é¢
+         * @return æ˜¯å¦æ”¯ä»˜æˆåŠŸ
          */
         @JvmStatic
         fun pay(From: Player, To: Player, PointName: String, Amount: Double): Boolean {
@@ -279,11 +279,11 @@ class CXEconomy {
         }
 
         /**
-         * »ñÈ¡Ä³Íæ¼ÒÄ³ÖÖ»õ±ÒµÄ´æ¿î
+         * è·å–æŸç©å®¶æŸç§è´§å¸çš„å­˜æ¬¾
          *
-         * @param arg0 Íæ¼ÒÃû
-         * @param arg1 »õ±ÒÃû
-         * @return Íæ¼ÒµÄ´æ¿î½ğ¶î
+         * @param arg0 ç©å®¶å
+         * @param arg1 è´§å¸å
+         * @return ç©å®¶çš„å­˜æ¬¾é‡‘é¢
          */
         @JvmStatic
         fun get(arg0: String, arg1: String): Double {
@@ -296,11 +296,11 @@ class CXEconomy {
         }
 
         /**
-         * »ñÈ¡Ä³Íæ¼ÒÄ³ÖÖ»õ±ÒµÄ´æ¿î
+         * è·å–æŸç©å®¶æŸç§è´§å¸çš„å­˜æ¬¾
          *
-         * @param arg0 Íæ¼Ò
-         * @param arg1 »õ±ÒÃû
-         * @return Íæ¼ÒµÄ´æ¿î½ğ¶î
+         * @param arg0 ç©å®¶
+         * @param arg1 è´§å¸å
+         * @return ç©å®¶çš„å­˜æ¬¾é‡‘é¢
          */
         @JvmStatic
         fun get(arg0: Player, arg1: String): Double {

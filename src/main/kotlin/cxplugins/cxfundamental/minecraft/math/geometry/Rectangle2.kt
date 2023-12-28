@@ -43,10 +43,6 @@ class Rectangle2D(var x1: Double, var y1: Double, var x2: Double, var y2: Double
         return point.x in x1..x2 && point.y >= y1 && point.y <= y2
     }
 
-    fun isPointInside(point: Vector2I): Boolean {
-        return point.x >= x1 && point.x <= x2 && point.y >= y1 && point.y <= y2
-    }
-
     override fun serialize(): MutableMap<String, Any> {
         val map = mutableMapOf<String, Any>()
         map["x1"] = x1
@@ -89,9 +85,6 @@ class Rectangle2I(var x1: Int, var y1: Int, var x2: Int, var y2: Int) : Configur
         return Vector2I(x2, y2)
     }
 
-    fun isPointInside(point: Vector2D): Boolean {
-        return (point.x >= x1 && point.x <= x2 && point.y >= y1 && point.y <= y2)
-    }
 
     fun isPointInside(point: Vector2I): Boolean {
         return (point.x in x1..x2) && (point.y in y1..y2)

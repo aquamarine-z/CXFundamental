@@ -70,4 +70,7 @@ class Vector2I(var x: Int, var y: Int) {
         this.x = vector.x
         this.y = vector.y
     }
+    fun Int.indexToVector2I(width: Int, height: Int): Vector2I {
+        return Vector2I(this % width, this / height)
+    }
 }

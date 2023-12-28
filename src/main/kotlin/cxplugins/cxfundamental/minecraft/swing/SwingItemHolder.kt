@@ -13,7 +13,7 @@ open class SwingItemHolder(
         "Button",
         "Swing Button Component"
 
-    )
+    ), override var id: String? = null
 ) : SwingComponent, Clickable {
 
     override fun repaint(): Array<Array<ItemStack?>> {

@@ -9,50 +9,50 @@ import org.bukkit.event.inventory.InventoryClickEvent
 import java.util.*
 
 /**
- * Ò»¸ö¶àÒ³ÈİÆ÷ Æä×é³ÉÎª 0..height-2Îª°Ú·ÅÈİÆ÷µÄÇøÓò
- * height-1½Ğ×öButtonBar °üº¬Ò»¸öÍùÇ°·­Ò³¼üºÍÒ»¸öÍùºó·­Ò³¼ü Ò²¿ÉÒÔÌí¼Ó°´Å¥½øÈ¥´ËÇøÓò
- * @property height ¶àÒ³ÈİÆ÷µÄ¸ß¶È
+ * ä¸€ä¸ªå¤šé¡µå®¹å™¨ å…¶ç»„æˆä¸º 0..height-2ä¸ºæ‘†æ”¾å®¹å™¨çš„åŒºåŸŸ
+ * height-1å«åšButtonBar åŒ…å«ä¸€ä¸ªå¾€å‰ç¿»é¡µé”®å’Œä¸€ä¸ªå¾€åç¿»é¡µé”® ä¹Ÿå¯ä»¥æ·»åŠ æŒ‰é’®è¿›å»æ­¤åŒºåŸŸ
+ * @property height å¤šé¡µå®¹å™¨çš„é«˜åº¦
  */
 class CXMultipagePanel(internal var height: Int) {
     internal var pages: MutableList<CXPanel> = ArrayList()
     val buttonBar = mutableListOf<CXButton?>(null, null, null, null, null, null, null, null, null)
 
     /**
-     * »ñÈ¡Ä³¸öÎ»ÖÃµÄÔªËØ
+     * è·å–æŸä¸ªä½ç½®çš„å…ƒç´ 
 
-    @param page Ò³Êı
-    @param x X×ø±ê 0..8
-    @param y Y×ø±ê 0..height-1
+    @param page é¡µæ•°
+    @param x Xåæ ‡ 0..8
+    @param y Yåæ ‡ 0..height-1
      */
     fun getElement(page: Int, x: Int, y: Int): CXUIElement? {
         if (page !in pages.indices) {
-            throw IllegalArgumentException("ÊäÈëµÄpage²ÎÊı·Ç·¨!")
+            throw IllegalArgumentException("è¾“å…¥çš„pageå‚æ•°éæ³•!")
         }
         if (x !in 0..8) {
-            throw IllegalArgumentException("ÊäÈëµÄx²ÎÊı·Ç·¨! ±ØĞëÔÚ0~8ÄÚ")
+            throw IllegalArgumentException("è¾“å…¥çš„xå‚æ•°éæ³•! å¿…é¡»åœ¨0~8å†…")
         }
         if (x !in 0..(height - 1)) {
-            throw IllegalArgumentException("ÊäÈëµÄy²ÎÊı·Ç·¨! ±ØĞëÔÚ0~¸ß¶ÈÄÚ")
+            throw IllegalArgumentException("è¾“å…¥çš„yå‚æ•°éæ³•! å¿…é¡»åœ¨0~é«˜åº¦å†…")
         }
         return pages[page].getElement(x, y)
     }
 
     /**
-     * »ñÈ¡Ä³Ò»Ò³
+     * è·å–æŸä¸€é¡µ
 
-    @param page Ò³Êı
+    @param page é¡µæ•°
      */
     fun getPage(page: Int): CXPanel {
         if (page !in pages.indices) {
-            throw IllegalArgumentException("ÊäÈëµÄpage²ÎÊı·Ç·¨!")
+            throw IllegalArgumentException("è¾“å…¥çš„pageå‚æ•°éæ³•!")
         }
         return pages[page]
     }
 
     /**
-     * Îª´ËmultipagepanelÌí¼ÓĞÂµÄÒ»Ò³µÄDSL·½·¨
+     * ä¸ºæ­¤multipagepanelæ·»åŠ æ–°çš„ä¸€é¡µçš„DSLæ–¹æ³•
 
-    @param title ĞÂµÄÒ»Ò³µÄ±êÌâ
+    @param title æ–°çš„ä¸€é¡µçš„æ ‡é¢˜
      */
     fun panel(title: String, lambda: CXPanel.() -> Unit) {
         var panel = CXPanel(height, title)
@@ -61,9 +61,9 @@ class CXMultipagePanel(internal var height: Int) {
     }
 
     /**
-     * ÔÚ°´Å¥ÇøÉèÖÃÒ»¸ö°´Å¥
-     * @param index 0..8 ±íÊ¾Î»ÖÃ
-     * @param button ÒªÉèÖÃµÄ°´Å¥
+     * åœ¨æŒ‰é’®åŒºè®¾ç½®ä¸€ä¸ªæŒ‰é’®
+     * @param index 0..8 è¡¨ç¤ºä½ç½®
+     * @param button è¦è®¾ç½®çš„æŒ‰é’®
      */
     fun setButtonOnButtonBar(index: Int, button: CXButton?) {
         buttonBar[index] = button
@@ -71,9 +71,9 @@ class CXMultipagePanel(internal var height: Int) {
     }
 
     /**
-     * ÔÚ°´Å¥ÇøÍ¨¹ıDSLÉèÖÃÒ»¸ö°´Å¥
-     * @param index 0..8 ±íÊ¾Î»ÖÃ
-     * @param buttonLambda ÒªÉèÖÃµÄ°´Å¥µÄDSL
+     * åœ¨æŒ‰é’®åŒºé€šè¿‡DSLè®¾ç½®ä¸€ä¸ªæŒ‰é’®
+     * @param index 0..8 è¡¨ç¤ºä½ç½®
+     * @param buttonLambda è¦è®¾ç½®çš„æŒ‰é’®çš„DSL
      */
     fun setButtonOnButtonBar(index: Int, buttonLambda: CXButton.() -> Unit) {
         var button = CXButton()
@@ -83,14 +83,14 @@ class CXMultipagePanel(internal var height: Int) {
     }
 
     /**
-     * ÇĞ»»µ½ÏÂÒ»Ò³µÄ°´Å¥
+     * åˆ‡æ¢åˆ°ä¸‹ä¸€é¡µçš„æŒ‰é’®
      */
-    var nextPageButton = CXItemStack(Material.SLIME_BALL, 1, "&3&lÏÂÒ»Ò³", "&3&lµãÎÒÇ°ÍùÏÂÒ»Ò³")
+    var nextPageButton = CXItemStack(Material.SLIME_BALL, 1, "&3&lä¸‹ä¸€é¡µ", "&3&lç‚¹æˆ‘å‰å¾€ä¸‹ä¸€é¡µ")
 
     /**
-     * ÇĞ»»µ½ÉÏÒ»Ò³µÄ°´Å¥
+     * åˆ‡æ¢åˆ°ä¸Šä¸€é¡µçš„æŒ‰é’®
      */
-    var previousPageButton = CXItemStack(Material.SLIME_BALL, 1, "&3&lÉÏÒ»Ò³", "&3&lµãÎÒ·µ»ØÉÏÒ»Ò³")
+    var previousPageButton = CXItemStack(Material.SLIME_BALL, 1, "&3&lä¸Šä¸€é¡µ", "&3&lç‚¹æˆ‘è¿”å›ä¸Šä¸€é¡µ")
 
     init {
         var nextPage = object : CXButton(nextPageButton) {
@@ -119,23 +119,23 @@ class CXMultipagePanel(internal var height: Int) {
     var index = 0
 
     /**
-     * ÔÚÖ¸¶¨Î»ÖÃÉèÖÃÒ»¸ö×é¼ş
-     * @param Ò³Êı
-     * @param x X×ø±ê 0..8
-     * @param y Y×ø±ê 0..height-2
-     * @param button ÉèÖÃµÄ°´Å¥
+     * åœ¨æŒ‡å®šä½ç½®è®¾ç½®ä¸€ä¸ªç»„ä»¶
+     * @param é¡µæ•°
+     * @param x Xåæ ‡ 0..8
+     * @param y Yåæ ‡ 0..height-2
+     * @param button è®¾ç½®çš„æŒ‰é’®
      */
     fun set(page: Int, x: Int, y: Int, button: CXButton) {
-        if (page < 0 || page >= pages.size) throw ArrayIndexOutOfBoundsException("Ö¸¶¨Ò³Ãæ²»´æÔÚ")
-        if (y < 0 || y >= height - 1) throw ArrayIndexOutOfBoundsException("Ö¸¶¨µÄÎ»ÖÃ²»´æÔÚ")
+        if (page < 0 || page >= pages.size) throw ArrayIndexOutOfBoundsException("æŒ‡å®šé¡µé¢ä¸å­˜åœ¨")
+        if (y < 0 || y >= height - 1) throw ArrayIndexOutOfBoundsException("æŒ‡å®šçš„ä½ç½®ä¸å­˜åœ¨")
         pages[page].set(x, y, button)
     }
 
     /**
-     * ÔÚÖ¸¶¨Î»ÖÃÉèÖÃÒ»¸ö×é¼ş
-     * @param Ò³Êı
-     * @param location Î»ÖÃ 0..(9*(height-2)-1)
-     * @param button ÉèÖÃµÄ°´Å¥
+     * åœ¨æŒ‡å®šä½ç½®è®¾ç½®ä¸€ä¸ªç»„ä»¶
+     * @param é¡µæ•°
+     * @param location ä½ç½® 0..(9*(height-2)-1)
+     * @param button è®¾ç½®çš„æŒ‰é’®
      */
     fun set(page: Int, location: Int, button: CXButton) {
         var x = CXInventory.integerToPos(location % (height - 1)).blockX
@@ -144,9 +144,9 @@ class CXMultipagePanel(internal var height: Int) {
     }
 
     /**
-     * ÔÚÖ¸¶¨Î»ÖÃÉèÖÃÒ»¸ö×é¼ş
-     * @param location Î»ÖÃ 0..(9*(height-2)-1)*(pageAmount)
-     * @param button ÉèÖÃµÄ°´Å¥
+     * åœ¨æŒ‡å®šä½ç½®è®¾ç½®ä¸€ä¸ªç»„ä»¶
+     * @param location ä½ç½® 0..(9*(height-2)-1)*(pageAmount)
+     * @param button è®¾ç½®çš„æŒ‰é’®
      */
     fun set(location: Int, button: CXButton) {
         var page = location / (height - 1)
@@ -156,15 +156,15 @@ class CXMultipagePanel(internal var height: Int) {
     }
 
     /**
-     * Ìí¼ÓÒ»¸ö¿ÕÒ³½øÈë´Ëmultipagepanel
-     * @param title ´ËÒ³µÄ±êÌâ
+     * æ·»åŠ ä¸€ä¸ªç©ºé¡µè¿›å…¥æ­¤multipagepanel
+     * @param title æ­¤é¡µçš„æ ‡é¢˜
      */
     fun addEmptyPage(title: String = "") {
         this.add(CXPanel(height, title))
     }
 
     /**
-     * Ë¢ĞÂ°´Å¥ÇøÓòµÄÄÚÈİ
+     * åˆ·æ–°æŒ‰é’®åŒºåŸŸçš„å†…å®¹
      */
     fun updateButtonBar() {
         for (i in pages.indices) {
@@ -183,16 +183,16 @@ class CXMultipagePanel(internal var height: Int) {
     }
 
     /**
-     * ÉèÖÃÒ»¸ö°´Å¥µ½Ö¸¶¨Î»ÖÃ Èç¹û´ËÎ»ÖÃ²»´æÔÚ Ôò×Ô¶¯ĞÂ½¨Ç°ÃæµÄÒ³
+     * è®¾ç½®ä¸€ä¸ªæŒ‰é’®åˆ°æŒ‡å®šä½ç½® å¦‚æœæ­¤ä½ç½®ä¸å­˜åœ¨ åˆ™è‡ªåŠ¨æ–°å»ºå‰é¢çš„é¡µ
      *
-     * @param page Ò³Êı
-     * @param x X×ø±ê
-     * @param y Y×ø±ê
-     * @param button °´Å¥
-     * @param title Èç¹ûÒªĞÂ½¨Ò³Ãæ ĞÂ½¨Ò³ÃæµÄ±êÌâ
+     * @param page é¡µæ•°
+     * @param x Xåæ ‡
+     * @param y Yåæ ‡
+     * @param button æŒ‰é’®
+     * @param title å¦‚æœè¦æ–°å»ºé¡µé¢ æ–°å»ºé¡µé¢çš„æ ‡é¢˜
      */
     fun setWithCreateNewPage(page: Int, x: Int, y: Int, button: CXButton, title: String = "") {
-        if (page < 0) throw ArrayIndexOutOfBoundsException("Ò³Ãæ²»ÄÜĞ¡ÓÚ0")
+        if (page < 0) throw ArrayIndexOutOfBoundsException("é¡µé¢ä¸èƒ½å°äº0")
         var addPage = false
         if (page >= pages.size) {
             addPage = true
@@ -201,18 +201,18 @@ class CXMultipagePanel(internal var height: Int) {
                 this.add(p)
             }
         }
-        if (y < 0 || y >= height - 1) throw ArrayIndexOutOfBoundsException("Ö¸¶¨µÄÎ»ÖÃ²»´æÔÚ")
+        if (y < 0 || y >= height - 1) throw ArrayIndexOutOfBoundsException("æŒ‡å®šçš„ä½ç½®ä¸å­˜åœ¨")
         //index=pages.size
         pages[page].set(x, y, button)
         updateButtonBar()
     }
 
     /**
-     * ÉèÖÃÒ»¸ö°´Å¥µ½Ö¸¶¨Î»ÖÃ Èç¹û´ËÎ»ÖÃ²»´æÔÚ Ôò×Ô¶¯ĞÂ½¨Ç°ÃæµÄÒ³
+     * è®¾ç½®ä¸€ä¸ªæŒ‰é’®åˆ°æŒ‡å®šä½ç½® å¦‚æœæ­¤ä½ç½®ä¸å­˜åœ¨ åˆ™è‡ªåŠ¨æ–°å»ºå‰é¢çš„é¡µ
      *
-     * @param location Î»ÖÃ
-     * @param button °´Å¥
-     * @param title Èç¹ûÒªĞÂ½¨Ò³Ãæ ĞÂ½¨Ò³ÃæµÄ±êÌâ
+     * @param location ä½ç½®
+     * @param button æŒ‰é’®
+     * @param title å¦‚æœè¦æ–°å»ºé¡µé¢ æ–°å»ºé¡µé¢çš„æ ‡é¢˜
      */
 
     fun setWithCreateNewPage(location: Int, button: CXButton, title: String = "") {
@@ -223,12 +223,12 @@ class CXMultipagePanel(internal var height: Int) {
     }
 
     /**
-     * ÉèÖÃÒ»¸ö°´Å¥µ½Ö¸¶¨Î»ÖÃ Èç¹û´ËÎ»ÖÃ²»´æÔÚ Ôò×Ô¶¯ĞÂ½¨Ç°ÃæµÄÒ³
+     * è®¾ç½®ä¸€ä¸ªæŒ‰é’®åˆ°æŒ‡å®šä½ç½® å¦‚æœæ­¤ä½ç½®ä¸å­˜åœ¨ åˆ™è‡ªåŠ¨æ–°å»ºå‰é¢çš„é¡µ
      *
-     * @param page Ò³Êı
-     * @param location Î»ÖÃ
-     * @param button °´Å¥
-     * @param title Èç¹ûÒªĞÂ½¨Ò³Ãæ ĞÂ½¨Ò³ÃæµÄ±êÌâ
+     * @param page é¡µæ•°
+     * @param location ä½ç½®
+     * @param button æŒ‰é’®
+     * @param title å¦‚æœè¦æ–°å»ºé¡µé¢ æ–°å»ºé¡µé¢çš„æ ‡é¢˜
      */
     fun setWithCreateNewPage(page: Int, location: Int, button: CXButton, title: String = "") {
         var x = CXInventory.integerToPos(location).blockX
@@ -237,15 +237,15 @@ class CXMultipagePanel(internal var height: Int) {
     }
 
     /**
-     * Ìí¼ÓÒ»¸öpanelµ½´Ëmultipagepanel
+     * æ·»åŠ ä¸€ä¸ªpanelåˆ°æ­¤multipagepanel
      *
 
-     * @param panel ÒªÌí¼ÓµÄÈİÆ÷
+     * @param panel è¦æ·»åŠ çš„å®¹å™¨
      */
     fun add(panel: CXPanel) {
-        if (!isButtonBarEmpty(panel)) throw CXUIException("´ËPanelµÄ×îµ×ÏÂµÄ¾Å¸ö¸ñ×ÓÓĞÎïÆ· ÎŞ·¨×÷Îª¶àÒ³ÈİÆ÷µÄÆäÖĞÒ»Ò³")
+        if (!isButtonBarEmpty(panel)) throw CXUIException("æ­¤Panelçš„æœ€åº•ä¸‹çš„ä¹ä¸ªæ ¼å­æœ‰ç‰©å“ æ— æ³•ä½œä¸ºå¤šé¡µå®¹å™¨çš„å…¶ä¸­ä¸€é¡µ")
         if (panel.height > this.height)
-            throw IllegalArgumentException("´ËPanelµÄ¸ß¶È´óÓÚ¶àÒ³ÈİÆ÷µÄ¸ß¶È")
+            throw IllegalArgumentException("æ­¤Panelçš„é«˜åº¦å¤§äºå¤šé¡µå®¹å™¨çš„é«˜åº¦")
         else {
             var nextPage = object : CXButton(nextPageButton) {
                 override fun onLeftClick(event: InventoryClickEvent, frame: CXFrame) {
